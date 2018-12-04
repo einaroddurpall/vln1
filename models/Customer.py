@@ -7,9 +7,3 @@ class Customer(Person):
         self.__email = email
         self.__gsm = gsm
         self.__card_info = card_info
-    
-def main():
-    Kristjan = Customer("Kristjan", "0220982349", "Stjanihot@hotmail.com", "8451289")
-    print(Kristjan)
-
-main()
