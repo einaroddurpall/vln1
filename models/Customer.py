@@ -5,7 +5,7 @@ class Customer(Person):
     takes in name, ssn. email, gsm, card_info, history
     and the name and ssn get's sent to person parent class"""
 
-    def __init__ (self,name, ssn, email, gsm, card_info = "", history = ""):
+    def __init__ (self,name="", ssn="", email="", gsm="", card_info="", history = ""):
         Person.__init__(self, name, ssn)
         self.__email = email
         self.__gsm = gsm
@@ -49,3 +49,11 @@ class Customer(Person):
         return "Customer name: {}, SSN: {}, email: {}, gsm: {}, credit card information: {}, history: {}".format(
             self.__name, self.__ssn, self.__email, self.__gsm, self.__card_info, self.__history
         )
+
+    def make_customer(self):
+        name = input("Nafn: ")
+        ssn = input("Kennitala: ")
+        email = input("Netfang: ")
+        gsm = input("Símanúmer: ")
+        card_info = input("Kortanúmer: ")
+        return Customer(name, ssn, email, gsm, card_info)

@@ -1,7 +1,9 @@
 from os import system,name
 from time import sleep
 from services.CarService import CarService
+# from services.CustomerService import CustomerService
 from models.Car import Car
+from models.Customer import Customer
 
 class CarRentalUi:
 
@@ -36,7 +38,6 @@ class CarRentalUi:
         print("{:<35}CarHub \033[0m".format(""))
         sleep(2)
         system('clear')
-        
 
     def print_header(self, prompt=""):
         system('clear')
@@ -44,18 +45,14 @@ class CarRentalUi:
         print(prompt)
         print("="*40)
 
-    def get_action(self):
-        return input()
-
     def home_menu(self, prompt):
         self.print_header(prompt)
-        print("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða/skrá pantanir")
-        return self.get_action()
+        action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða/skrá pantanir\n")
+        return action
 
     def car_menu(self, prompt):
         self.print_header(prompt)
-        print("1.  Skoða bíl\n2.  Skrá nýjan bíl\n3.  Skoða lausa bíla\n4.  Skoða bíla í útleigu")
-        action = self.get_action()
+        action = input("1.  Skoða bíl\n2.  Skrá nýjan bíl\n3.  Skoða lausa bíla\n4.  Skoða bíla í útleigu\n")
         if action == "1":
             prompt += " / Skoða bíl"
             pass
@@ -72,13 +69,15 @@ class CarRentalUi:
             prompt += " / Skoða bíla í útleigu"
             pass
 
-    # def make_car(self, prompt):
-    #     self.print_header(prompt)
-    #     new_car = car.make_car()
-
     def customer_menu(self, prompt):
         self.print_header(prompt)
-        print("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin")
+        action = input("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin\n")
+        if action == "1":
+            pass
+        elif action == "2":
+            new_customer = Customer()
+            new_customer = new_customer.make_customer()
+            # self.__CustomerService.customer_register(new_customer)
 
     def main_menu(self):
         action = ""
