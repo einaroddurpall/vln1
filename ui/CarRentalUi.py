@@ -63,6 +63,36 @@ class CarRentalUi:
 
     def __init__(self):
         self.__CarService = CarService()
+    
+    def draw_car(self):
+        print("\033[1;34;1m{:<31}==============".format(""))
+        sleep(0.35)
+        print("{:<28}=={:<16}==".format("",""))
+        sleep(0.35)
+        print("{:<26}=={:<20}==".format("",""))
+        sleep(0.35)
+        print("{:<24}=={:<24}==".format("",""))
+        sleep(0.35)
+        print("{:<11}============={:<28}==============".format("",""))
+        sleep(0.35)
+        print("{:<10}={:<55}=".format("",""))
+        sleep(0.35)
+        print("{:<10}={:<56}=".format("",""))
+        sleep(0.35)
+        print("{:<10}=        ==={:<34}===        =".format("",""))
+        sleep(0.35)
+        print("{:<10}=      =     ={:<30}=     =      =".format("",""))
+        sleep(0.35)
+        print("{:<11}==== =       = ========================== =       = ====".format(""))
+        sleep(0.35)
+        print("{:<17}=     ={:<30}=     =".format("",""))
+        sleep(0.35)
+        print("{:<19}==={:<34}===".format("",""))
+        sleep(1.5)
+        print("{:<35}CarHub \033[0m".format(""))
+        sleep(2)
+        system('clear')
+        
 
     def main_menu(self):
         action = ""
