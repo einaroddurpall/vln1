@@ -53,8 +53,8 @@ class CarRentalUi:
                 elif action == "2":
                     prompt += " / Skrá nýjan bíl"
                     new_car = make_car(prompt)
-                    self.__CarService.register_car(new_car)
-                    print("sucess")
+                    self.__CarService.car_register(new_car)
+                    print("Sucess")
                     break
                 elif action == "3":
                     prompt += " / Skoða lausa bíla"
@@ -66,13 +66,13 @@ class CarRentalUi:
 
 
 
-def main():
-    # print("Hallo")
+# def main():
+#     # print("Hallo")
 
-    # sleep(5)
+#     # sleep(5)
 
-    # system('clear')
-    ui = CarRentalUi()
-    ui.main_menu()
+#     # system('clear')
+#     ui = CarRentalUi()
+#     ui.main_menu()
 
-main()
+# main()

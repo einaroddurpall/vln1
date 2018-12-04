@@ -1,1 +1,1 @@
-registration_num,sub_type,transmission,cartype,mileage,is_rentable,history
+Car('KJX-89','Sedan','Toyota Avencis','Manual',20000,True,'This car has no history of rental.')
