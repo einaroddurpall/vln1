@@ -1,1 +1,2 @@
 Car('KJX-89','Sedan','Toyota Avencis','Manual',20000,True,'This car has no history of rental.')
+Car('ABC 57','Sedan','Benz GL','Automatic',67000,True,'This car has no history of rental.')
