@@ -1,6 +1,6 @@
 class Car:
 
-    def __init__(self, registration_num, car_type, sub_type, transmission, milage=0, is_rentable=True, history=""):
+    def __init__(self, registration_num="", car_type="", sub_type="", transmission="", milage=0, is_rentable=True, history=""):
         self.__registration_num = registration_num
         self.__car_type = car_type
         self.__sub_type = sub_type
@@ -58,3 +58,39 @@ class Car:
 
     def check_availability(self, date1, date2):
         pass
+    
+    def make_car(self):
+        registration_num = input("Bílnúmer: ")
+        valid_car_type = False
+        while valid_car_type is False:
+            print("Flokkur bíls:")
+            car_type = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n")
+            if car_type == "1":
+                car_type = "sedan"
+            elif car_type == "2":
+                car_type = "small car"
+            elif car_type == "3":
+                car_type = "five seat suv"
+            elif car_type == "4":
+                car_type = "seven seat suv"
+            elif car_type == "5":
+                car_type = "minibus"
+            else:
+                continue
+            valid_car_type = True
+        sub_type = input("Tegund bíls: ")
+        transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
+        valid_transmission = False
+        while valid_transmission is False:
+            if transmission == "1":
+                transmission = "Sjálfskiptur"
+            elif transmission == "2":
+                transmission = "Beinskiptur"
+            else:
+                continue
+            valid_transmission = True
+        milage = input("Akstur: ")
+        is_rentable = True
+        history = ""
+        new_car = Car(registration_num, car_type, sub_type, transmission, milage, is_rentable, history)
+        return new_car
