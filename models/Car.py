@@ -2,6 +2,7 @@ class Car:
 
     def __init__(self, registration_num, car_type, sub_type, transmission, milage=0, is_rentable=True, history=""):
         self.__registration_num = registration_num
+        self.__car_type = car_type
         self.__sub_type = sub_type
         self.__transmission = transmission
         self.__milage = milage
@@ -12,18 +13,8 @@ class Car:
         else: 
             self.__history = history
 
-        valid_car_types = ["Sedan", "Five seat SUV", "Seven seat SUV", "Small car", "Minibus"]
-        valid_car_type = False
-        while valid_car_type is False:
-            if car_type in valid_car_types:
-                self.__car_type = car_type
-                valid_car_type = True
-            else:
-                print('Error: Car type: "{}" not found, car types are case sensetive.'.format(car_type))
-                car_type = input("Enter car type: ")
-
     def __str__(self):
-        return "Registration number: {}\nCar type: {}\nType {}\nTransmission: {}\nMilage: {}\nIs rentable: {}\nHistory: {}".format(
+        return "Bílnúmer: {}\nFlokkur bíls: {}\nTegund bíls {}\n{}\nAkstur: {}\nLaus: {}\nSaga: {}".format(
         self.__registration_num, self.__car_type, self.__sub_type, self.__transmission, self.__milage, self.__is_rentable, self.__history)
 
     def __repr__(self):
