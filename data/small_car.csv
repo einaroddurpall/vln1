@@ -1,1 +1,1 @@
-registration_num, sub_type, transmission, cartype, mileage
+registration_num, sub_type, transmission, cartype, mileageregistration_num, sub_type, transmission, cartype, mileage, is_rentable, history
