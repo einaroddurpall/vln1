@@ -22,6 +22,3 @@ class CarService:
             self.__car_repo_seven_seat_suv.add_car(car)
         elif car_type.lower() == "small car":
             self.__car_repo_small_car.add_car(car)
-        
-
-
