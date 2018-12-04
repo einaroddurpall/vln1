@@ -24,11 +24,36 @@ def car_menu(prompt):
 
 def make_car(prompt):
     print_header(prompt)
-    registration_num = input("Enter registration number: ")
-    car_type = input("Enter car type: ")
-    sub_type = input("Enter sub type: ")
-    transmission = input("Enter the transmission: ")
-    milage = input("Enter the milage: ")
+    registration_num = input("Bílnúmer: ")
+    valid_car_type = False
+    while valid_car_type is False:
+        print("Flokkur bíls:")
+        car_type = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n")
+        if car_type == "1":
+            car_type = "sedan"
+        elif car_type == "2":
+            car_type = "small car"
+        elif car_type == "3":
+            car_type = "five seat suv"
+        elif car_type == "4":
+            car_type = "seven seat suv"
+        elif car_type == "5":
+            car_type = "minibus"
+        else:
+            continue
+        valid_car_type = True
+    sub_type = input("Tegund bíls: ")
+    transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
+    valid_transmission = False
+    while valid_transmission is False:
+        if transmission == "1":
+            transmission = "Sjálfskiptur"
+        elif transmission == "2":
+            transmission = "Beinskiptur"
+        else:
+            continue
+        valid_transmission = True
+    milage = input("Akstur: ")
     is_rentable = True
     history = ""
     new_car = Car(registration_num, car_type, sub_type, transmission, milage, is_rentable, history)
@@ -41,8 +66,8 @@ class CarRentalUi:
 
     def main_menu(self):
         action = ""
-        prompt = ""
         while action != "q":
+            prompt = ""
             action = home_menu(prompt)
             if action == "1":
                 prompt = " / Bílar"
@@ -55,7 +80,6 @@ class CarRentalUi:
                     new_car = make_car(prompt)
                     self.__CarService.car_register(new_car)
                     print("Sucess")
-                    break
                 elif action == "3":
                     prompt += " / Skoða lausa bíla"
                     pass
