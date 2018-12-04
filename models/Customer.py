@@ -1,7 +1,7 @@
 from Person import Person
 
 class Customer(Person):
-    """Customer class, is a supclass of the Person class
+    """Customer class, is a subclass of the Person class
     takes in name, ssn. email, gsm, card_info, history
     and the name and ssn get's sent to person parent class"""
 
