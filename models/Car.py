@@ -1,6 +1,6 @@
 class Car:
 
-    def __init__(self, registration_num="", car_type="", sub_type="", transmission="", milage=0, is_rentable=True, history=""):
+    def __init__(self, registration_num, car_type, sub_type, transmission, milage=0, is_rentable=True, history=""):
         self.__registration_num = registration_num
         self.__sub_type = sub_type
         self.__transmission = transmission
@@ -59,10 +59,3 @@ class Car:
 
     def set_history(self, order):
         pass
-
-def main():
-    my_car = Car("KJX-89", "small car", "Toyota Yaris", "Manual", 25000)
-    print(my_car)
-
-
-main()
