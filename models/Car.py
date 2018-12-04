@@ -12,21 +12,15 @@ class Car:
         else: 
             self.__history = history
 
+        valid_car_types = ["Sedan", "Five seat SUV", "Seven seat SUV", "Small car", "Minibus"]
         valid_car_type = False
         while valid_car_type is False:
-            if car_type == "Sedan":
+            if car_type in valid_car_types:
                 self.__car_type = car_type
-            elif car_type == "SUV":
-                self.__car_type = car_type
-            elif car_type == "Small car":
-                self.__car_type = car_type
-            elif car_type == "Minibus":
-                self.__car_type = car_type
+                valid_car_type = True
             else:
                 print('Error: Car type: "{}" not found, car types are case sensetive.'.format(car_type))
                 car_type = input("Enter car type: ")
-                continue
-            valid_car_type = True
 
     def __str__(self):
         return "Registration number: {}\nCar type: {}\nType {}\nTransmission: {}\nMilage: {}\nIs rentable: {}\nHistory: {}".format(

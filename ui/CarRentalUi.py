@@ -54,6 +54,8 @@ class CarRentalUi:
                     prompt += " / Skrá nýjan bíl"
                     new_car = make_car(prompt)
                     self.__CarService.register_car(new_car)
+                    print("sucess")
+                    break
                 elif action == "3":
                     prompt += " / Skoða lausa bíla"
                     pass
