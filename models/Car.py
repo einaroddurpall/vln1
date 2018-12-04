@@ -34,28 +34,36 @@ class Car:
         )
 
     def get_registration_num(self):
+        """ Returns the registration number of the car."""
         return self.__registration_num
 
     def get_car_type(self):
+        """ Returns the car type of the car."""
         return self.__car_type
 
     def get_sub_type(self):
+        """ Returns the sub type of the car."""
         return self.__sub_type
     
     def get_transmission(self):
+        """ Returns the transmission of the car."""
         return self.__transmission
 
     def get_milage(self):
+        """ Returns the milage of the car."""
         return self.__milage
     
     def get_is_rentable(self):
+        """ Returns if the car is rentable or not."""
         return self.__is_rentable
     
     def get_history(self):
+        """ Returns the history of the car."""
         return self.__history
 
-    def set_registration_num(self, registration_num):
-        self.__registration_num = registration_num
+    def set_milage(self, milage):
+        """ Sets new milage for the car in the system. When the car is returned we need to update the milage for the car."""
+        self.__milage = milage
 
     def set_history(self, order):
         pass
