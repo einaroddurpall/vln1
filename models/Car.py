@@ -30,8 +30,11 @@ class Car:
 
     def __str__(self):
         return "Registration number: {}\nCar type: {}\nType {}\nTransmission: {}\nMilage: {}\nIs rentable: {}\nHistory: {}".format(
-            self.__registration_num, self.__car_type, self.__sub_type, self.__transmission, self.__milage, self.__is_rentable, self.__history
-        )
+        self.__registration_num, self.__car_type, self.__sub_type, self.__transmission, self.__milage, self.__is_rentable, self.__history)
+
+    def __repr__(self):
+        return "Car('{}','{}','{}','{}',{},{},'{}')".format(self.__registration_num, self.__car_type, self.__sub_type, self.__transmission,
+        self.__milage, self.__is_rentable, self.__history)
 
     def get_registration_num(self):
         """ Returns the registration number of the car."""
