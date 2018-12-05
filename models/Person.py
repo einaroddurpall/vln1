@@ -1,5 +1,3 @@
-
-
 class Person:
     """The person class takes in name and ssn 
     and is a parent class of costumer, Boss, and  Employee"""
