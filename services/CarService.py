@@ -27,34 +27,36 @@ class CarService:
             self.__car_repo_small_car.add_car(car)
     
     def car_find(self, registration_num):
-        for cars in self.__car_repo_five_seat_suv.get_carlist():
-            if cars.get_registration_num() == registration_num:
-                return cars
-        for cars in self.__car_repo_seven_seat_suv.get_carlist():
-            if cars.get_registration_num() == registration_num:
-                return cars
-        for cars in self.__car_repo_small_car.get_carlist():
-            if cars.get_registration_num() == registration_num:
-                return cars
-        for cars in self.__car_repo_sedan.get_carlist():
-            if cars.get_registration_num() == registration_num:
-                return cars
-        for cars in self.__car_repo_minibus.get_carlist():
-<<<<<<< HEAD
-            if cars.get_registration_num() == carnumber:
-                print(cars)
-                car_found = True
-        if car_found == True:
-            pass
-        else:
-            print("Car not found")
-=======
-            if cars.get_registration_num() == registration_num:
-                return cars
+        for car in self.__car_repo_five_seat_suv.get_carlist():
+            if car.get_registration_num() == registration_num:
+                return car
+        for car in self.__car_repo_seven_seat_suv.get_carlist():
+            if car.get_registration_num() == registration_num:
+                return car
+        for car in self.__car_repo_small_car.get_carlist():
+            if car.get_registration_num() == registration_num:
+                return car
+        for car in self.__car_repo_sedan.get_carlist():
+            if car.get_registration_num() == registration_num:
+                return car
+        for car in self.__car_repo_minibus.get_carlist():
+            if car.get_registration_num() == registration_num:
+                return car
         return "Car not found"
 
-        
-
->>>>>>> 2e2c4b058f88043924f470b7b4ef6ffabbf0694a
-
-        
+    def rent_car(self, car_type, date1, date2, insurance, card_info):
+        """ Þetta fall tekur á móti upplýsingum um pöntunina frá UI,
+            sækir lista af viðeigandi bílaflokk og fer í gegnum dagsetningarnar
+            þangað til bíll finnst sem er laus. Ef enginn finnst þá kemur
+            viðeigandi skilaboð """
+        car_type = car.get_car_type()
+        if car_type.lower() == "sedan":
+            car_type_list = self.__car_repo_sedan.get_carlist()
+        elif car_type.lower() == "five seat suv":
+            car_type_list = self.__car_repo_five_seat_suv.get_carlist()
+        elif car_type.lower() == "minibus":
+            car_type_list = self.__car_repo_minibus.get_carlist()
+        elif car_type.lower() == "seven seat suv":
+            car_type_list = self.__car_repo_seven_seat_suv.get_carlist()
+        elif car_type.lower() == "small car":
+            car_type_list = self.__car_repo_small_car.get_carlist()
