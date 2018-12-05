@@ -27,6 +27,7 @@ class CarService:
             self.__car_repo_small_car.add_car(car)
     
     def car_find(self, registration_num):
+        """Finnur bíl eftir bílnúmeri"""
         for car in self.__car_repo_five_seat_suv.get_carlist():
             if car.get_registration_num() == registration_num:
                 return car
