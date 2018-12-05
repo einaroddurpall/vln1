@@ -5,6 +5,7 @@ from services.CustomerService import CustomerService
 from models.Car import Car
 from models.Customer import Customer
 from models.Car import make_car_type
+from models.Order import Order
 
 
 
@@ -19,6 +20,7 @@ class CarRentalUi:
         self.__CustomerService = CustomerService()
     
     def draw_car(self):
+        print()
         print("\033[1;34;1m{:<31}==============".format(""))
         sleep(0.35)
         print("{:<28}=={:<16}==".format("",""))
@@ -121,7 +123,8 @@ class CarRentalUi:
         elif action == "2":
             prompt += " / Skrá nýja pöntun"
             self.print_header(prompt)
-            #Einar er að vinnna í þessu
+            new_order = Order()
+            new_order = new_order.make_order()
             pass
             
         elif action == "3":
