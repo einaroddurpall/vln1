@@ -69,7 +69,7 @@ class Car:
     def set_history(self, order):
         pass
 
-    def check_availability(self, date1, date2):
+    def check_availability(self, car, datelist):
         pass
 
     def make_car(self):
