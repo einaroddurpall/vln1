@@ -84,8 +84,8 @@ class CarRentalUi:
             pass
         elif action == "4":
             prompt += " / Skoða bíla í útleigu"
-            date1 = input("Afhendingardagur (DD.MM.YYYY): ")
-            date2 = input("Skiladagur (DD.MM.YYYY): ")
+            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
             car_info_set = self.__CarService.get_busy_cars(date1, date2)
             for car in car_info_set:
                 print(car)
