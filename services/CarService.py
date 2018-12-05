@@ -47,7 +47,7 @@ class CarService:
             if cars.get_registration_num() == carnumber:
                 print(cars)
                 car_found = True
-        if car_found = True:
+        if car_found == True:
             pass
         else:
             print("Car not found")

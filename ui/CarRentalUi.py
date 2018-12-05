@@ -129,6 +129,11 @@ class CarRentalUi:
                     if continue_q == "y":
                         step2 = True
                     system('clear')
+            else:
+                system('clear')
+                print("Kennitala ekki á skrá.")
+                sleep(2)
+                self.order_menu("Heimasíða / Skoða eða skrá pantanir")
         elif action == "3":
             prompt += " / Skila bíl"
             self.print_header(prompt)
