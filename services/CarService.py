@@ -26,24 +26,21 @@ class CarService:
         elif car_type.lower() == "small car":
             self.__car_repo_small_car.add_car(car)
     
-    def car_find(self, carnumber):
+    def car_find(self, registration_num):
         for cars in self.__car_repo_five_seat_suv.get_carlist():
-            if cars.get_registration_num() == carnumber:
-                print(cars)
-                car_found = True
+            if cars.get_registration_num() == registration_num:
+                return cars
         for cars in self.__car_repo_seven_seat_suv.get_carlist():
-            if cars.get_registration_num() == carnumber:
-                print(cars)
-                car_found = True
+            if cars.get_registration_num() == registration_num:
+                return cars
         for cars in self.__car_repo_small_car.get_carlist():
-            if cars.get_registration_num() == carnumber:
-                print(cars)
-                car_found = True
+            if cars.get_registration_num() == registration_num:
+                return cars
         for cars in self.__car_repo_sedan.get_carlist():
-            if cars.get_registration_num() == carnumber:
-                print(cars)
-                car_found = True
+            if cars.get_registration_num() == registration_num:
+                return cars
         for cars in self.__car_repo_minibus.get_carlist():
+<<<<<<< HEAD
             if cars.get_registration_num() == carnumber:
                 print(cars)
                 car_found = True
@@ -51,5 +48,13 @@ class CarService:
             pass
         else:
             print("Car not found")
+=======
+            if cars.get_registration_num() == registration_num:
+                return cars
+        return "Car not found"
+
+        
+
+>>>>>>> 2e2c4b058f88043924f470b7b4ef6ffabbf0694a
 
         
