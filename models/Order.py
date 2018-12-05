@@ -1,51 +1,53 @@
 from os import system
 from models.Car import make_car_type
 from services.CustomerService import CustomerService
+from services.OrderService import OrderService
+from datetime import date
 
 def make_date(a_date):
     day, month, year = a_date.split(".")
     return date(int(year), int(month), int(day))
 
-def get_order_info():
-    ssn = input("Kennitala viðskiptavinar: ")
-    valid_ssn = False
-    if CustomerService.check_ssn(ssn):
-        valid_ssn = True
-    if valid_ssn:
-        step1 = False
-        while step1 is not True:
-            car_type = make_car_type()
-            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-            continue_q = input("Halda áfram? (y/n) ").lower()
-            if continue_q == "y":
-                step1 = True
-            system('clear')
-        step2 = False
-        while step2 is not True:
-            number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
-            if number == "1":
-                insurance = "basic"
-            else:
-                insurance = "extra"
-            card_info = input("Kortanúmer: ")
-            continue_q = input("Halda áfram? (y/n) ").lower()
-            if continue_q == "y":
-                step2 = True
-            system('clear')
-    else:
-        system('clear')
-        print("Kennitala ekki á skrá.")
-        sleep(2)
-        self.order_menu("Heimasíða / Skoða eða skrá pantanir")
-
 class Order:
 
-    def __init__(self):
+    def __init__(self, ssn="", car_type="", date_list=[], insurance="", card_info=""):
         self.__CustomerService = CustomerService()
-        self.__order = get_order_info()
+        self.__OrderService = OrderService()
 
-
+    def get_order_info(self):
+        ssn = input("Kennitala viðskiptavinar: ")
+        valid_ssn = False
+        if self.__CustomerService.check_ssn(ssn):
+            valid_ssn = True
+        if valid_ssn:
+            step1 = False
+            while step1 is not True:
+                car_type = make_car_type()
+                date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+                date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+                date_list = self.__OrderService.date_list(date1, date2)
+                continue_q = input("Halda áfram? (y/n) ").lower()
+                if continue_q == "y":
+                    step1 = True
+                system('clear')
+            step2 = False
+            while step2 is not True:
+                number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
+                if number == "1":
+                    insurance = "basic"
+                else:
+                    insurance = "extra"
+                card_info = input("Kortanúmer: ")
+                continue_q = input("Halda áfram? (y/n) ").lower()
+                if continue_q == "y":
+                    step2 = True
+                system('clear')
+                return Order(ssn, car_type, date_list, insurance, card_info)
+        else:
+            system('clear')
+            print("Kennitala ekki á skrá.")
+            sleep(2)
+            self.order_menu("Heimasíða / Skoða eða skrá pantanir")
 
         self.__CarService(car_type, date1, date2, insurance, card_info)
 
