@@ -12,7 +12,7 @@ class Customer(Person):
         self.__card_info = card_info
         
         if history == "":
-            self.__history = "This customer has no history of rental."
+            self.__history = "Þessi viðskiptavinur hefur aldrei tekið bíl á leigu."
         else: 
             self.__history = history
 

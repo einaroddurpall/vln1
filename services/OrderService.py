@@ -59,9 +59,9 @@ class OrderService:
         while step2 is not True:
             number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
             if number == "1":
-                insurance = "basic"
+                insurance = "skyldu trygging"
             else:
-                insurance = "extra"
+                insurance = "aukaleg trygging"
             card_info = input("Kortanúmer: ")
             continue_q = input("Halda áfram? (y/n) ").lower()
             if continue_q == "y":
