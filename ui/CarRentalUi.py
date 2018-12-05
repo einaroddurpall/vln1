@@ -47,17 +47,14 @@ class CarRentalUi:
         system('clear')
 
     def print_header(self, prompt=""):
+        """ Hreinsar terminal og prentar út header með slóð """
         system('clear')
         print("Heimasíða", end="")
         print(prompt)
         print("="*40)
 
-    def home_menu(self, prompt):
-        self.print_header(prompt)
-        action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n")
-        return action
-
     def car_menu(self, prompt):
+        """ Hér er hægt að framkvæma allar aðgerðir sem koma bíl við """
         self.print_header(prompt)
         action = input("1.  Skoða bíl\n2.  Skrá nýjan bíl\n3.  Skoða lausa bíla\n4.  Skoða bíla í útleigu\n")
         if action == "1":
@@ -87,6 +84,7 @@ class CarRentalUi:
             pass
 
     def customer_menu(self, prompt):
+        """ Hér er hægt að framkvæma allar aðgerðir sem koma viðskiptavinum við """
         self.print_header(prompt)
         action = input("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin\n")
         if action == "1":
@@ -112,6 +110,7 @@ class CarRentalUi:
             self.__CustomerService.customer_register(new_customer)
 
     def order_menu(self, prompt):
+        """ Hér er hægt að framkvæma allar aðgerðir sem koma pöntunum við """
         self.print_header(prompt)
         action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Skila bíl\n")
         if action == "1":
@@ -147,16 +146,25 @@ class CarRentalUi:
                     if continue_q == "y":
                         step2 = True
                     system('clear')
+                # self.__CarService(car_type, date1, date2, insurance, card_info)
+
+            else:
+                system('clear')
+                print("Kennitala ekki á skrá.")
+                sleep(2)
+                self.order_menu("Heimasíða / Skoða eða skrá pantanir")
         elif action == "3":
             prompt += " / Skila bíl"
             self.print_header(prompt)
             pass
 
     def main_menu(self):
+        """ Main menu er loop sem hættir þegar q er sett inn."""
         action = ""
         while action != "q":
             prompt = ""
-            action = self.home_menu(prompt)
+            self.print_header(prompt)
+            action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n")
             if action == "1":
                 prompt = " / Bílar"
                 self.car_menu(prompt)

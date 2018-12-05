@@ -11,7 +11,6 @@ def make_car_type():
         except:
             print("Error: Number not in list. Please try again.")
 
-
 class Car:
 
     def __init__(self, registration_num="", car_type="", sub_type="", transmission="", milage=0, is_rentable=True, history=""):
