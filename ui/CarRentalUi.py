@@ -4,9 +4,14 @@ from services.CarService import CarService
 from services.CustomerService import CustomerService
 from models.Car import Car
 from models.Customer import Customer
-from datetime import date
 from models.Car import make_car_type
 from models.Order import Order
+
+
+
+def make_date(a_date):
+    day, month, year = a_date.split(".")
+    return date(int(year), int(month), int(day))
 
 class CarRentalUi:
 
@@ -15,7 +20,6 @@ class CarRentalUi:
         self.__CustomerService = CustomerService()
     
     def draw_car(self):
-        print()
         print("\033[1;34;1m{:<31}==============".format(""))
         sleep(0.35)
         print("{:<28}=={:<16}==".format("",""))
@@ -119,9 +123,9 @@ class CarRentalUi:
             prompt += " / Skrá nýja pöntun"
             self.print_header(prompt)
             new_order = Order()
-            new_order = new_order.make_order()
+            new_order = new_order.get_order_info()
             pass
-
+            
         elif action == "3":
             prompt += " / Skila bíl"
             self.print_header(prompt)
