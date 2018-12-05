@@ -84,6 +84,7 @@ class CarRentalUi:
             pass
         elif action == "4":
             prompt += " / Skoða bíla í útleigu"
+            self.print_header(prompt)
             date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
             date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
             car_info = self.__CarService.get_busy_cars(date1, date2)
@@ -97,6 +98,7 @@ class CarRentalUi:
             for car in car_info:
                 print(car.get_registration_num())
                 print("-"*30)
+            exit_info = input("Sláðu inn eitthvað til að fara heim: ")
 
 
     def customer_menu(self, prompt):
