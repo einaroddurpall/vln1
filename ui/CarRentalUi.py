@@ -6,6 +6,7 @@ from models.Car import Car
 from models.Customer import Customer
 from datetime import date
 from models.Car import make_car_type
+from models.Order import Order
 
 class CarRentalUi:
 
@@ -116,7 +117,8 @@ class CarRentalUi:
         elif action == "2":
             prompt += " / Skrá nýja pöntun"
             self.print_header(prompt)
-            #Einar er að vinnna í þessu
+            new_order = Order()
+            new_order = new_order.make_order()
             pass
 
         elif action == "3":
