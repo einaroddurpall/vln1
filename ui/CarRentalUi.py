@@ -20,7 +20,6 @@ class CarRentalUi:
         self.__CustomerService = CustomerService()
     
     def draw_car(self):
-        print()
         print("\033[1;34;1m{:<31}==============".format(""))
         sleep(0.35)
         print("{:<28}=={:<16}==".format("",""))
@@ -124,7 +123,7 @@ class CarRentalUi:
             prompt += " / Skrá nýja pöntun"
             self.print_header(prompt)
             new_order = Order()
-            new_order = new_order.make_order()
+            new_order = new_order.get_order_info()
             pass
             
         elif action == "3":

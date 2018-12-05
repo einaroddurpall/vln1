@@ -12,8 +12,6 @@ class CarService:
         self.__car_repo_five_seat_suv = CarRepository("five_seat_suv")
         self.__car_repo_small_car = CarRepository("small_car")
         self.__customer_service = CustomerService()
-
-        
     
     def car_register(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
