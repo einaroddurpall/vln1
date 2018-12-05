@@ -27,47 +27,23 @@ class CarService:
             self.__car_repo_small_car.add_car(car)
     
     def car_find(self, registration_num):
-        car_found = False
-        while car_found != True:
-            for cars in self.__car_repo_five_seat_suv.get_carlist():
-                if cars.get_registration_num() == registration_num:
-                    print(cars)
-                    car_found = True
-                    break
-            if car_found:
-                break
-            for cars in self.__car_repo_seven_seat_suv.get_carlist():
-                if cars.get_registration_num() == registration_num:
-                    print(cars)
-                    car_found = True
-                    break
-            if car_found:
-                break
-            for cars in self.__car_repo_small_car.get_carlist():
-                car_reg_number = cars.get_registration_num()
-                if car_reg_number == registration_num:
-                    print(cars)
-                    car_found = True
-                    break
-            if car_found:
-                break
-            for cars in self.__car_repo_sedan.get_carlist():
-                if cars.get_registration_num() == registration_num:
-                    print(cars)
-                    car_found = True
-                    break
-            if car_found:
-                break
-            for cars in self.__car_repo_minibus.get_carlist():
-                if cars.get_registration_num() == registration_num:
-                    print(cars)
-                    car_found = True
-                    break
-            if car_found:
-                break
-            print("Car not found")
-            break
-        return "Einar Einstaki"
+        for cars in self.__car_repo_five_seat_suv.get_carlist():
+            if cars.get_registration_num() == registration_num:
+                return cars
+        for cars in self.__car_repo_seven_seat_suv.get_carlist():
+            if cars.get_registration_num() == registration_num:
+                return cars
+        for cars in self.__car_repo_small_car.get_carlist():
+            if cars.get_registration_num() == registration_num:
+                return cars
+        for cars in self.__car_repo_sedan.get_carlist():
+            if cars.get_registration_num() == registration_num:
+                return cars
+        for cars in self.__car_repo_minibus.get_carlist():
+            if cars.get_registration_num() == registration_num:
+                return cars
+        return "Car not found"
+
         
 
 
