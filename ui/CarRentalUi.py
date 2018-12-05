@@ -4,8 +4,12 @@ from services.CarService import CarService
 from services.CustomerService import CustomerService
 from models.Car import Car
 from models.Customer import Customer
-from datetime import datetime
+from datetime import date
 from models.Car import make_car_type
+
+def make_date(a_date):
+    day, month, year = a_date.split(".")
+    return date(int(year), int(month), int(day))
 
 class CarRentalUi:
 
@@ -104,9 +108,27 @@ class CarRentalUi:
             if self.__CustomerService.check_ssn(ssn):
                 valid_ssn = True
             if valid_ssn:
-                car_type = make_car_type()
-                print("Success")
-                pass
+                step1 = False
+                while step1 is not True:
+                    car_type = make_car_type()
+                    date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+                    date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+                    continue_q = input("Halda áfram? (y/n) ").lower()
+                    if continue_q == "y":
+                        step1 = True
+                    system('clear')
+                step2 = False
+                while step2 is not True:
+                    number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
+                    if number == "1":
+                        insurance = "basic"
+                    else:
+                        insurance = "extra"
+                    card_info = input("Kortanúmer: ")
+                    continue_q = input("Halda áfram? (y/n) ").lower()
+                    if continue_q == "y":
+                        step2 = True
+                    system('clear')
         elif action == "3":
             prompt += " / Skila bíl"
             self.print_header(prompt)
@@ -126,17 +148,3 @@ class CarRentalUi:
             elif action == "3":
                 prompt = " / Skoða eða skrá pantanir"
                 self.order_menu(prompt)
-
-
-
-
-# def main():
-#     # print("Hallo")
-
-#     # sleep(5)
-
-#     # system('clear')
-#     ui = CarRentalUi()
-#     ui.main_menu()
-
-# main()
