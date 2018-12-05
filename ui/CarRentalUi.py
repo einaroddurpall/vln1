@@ -2,6 +2,7 @@ from os import system,name
 from time import sleep
 from services.CarService import CarService
 from services.CustomerService import CustomerService
+from services.OrderService import OrderService
 from models.Car import Car
 from models.Customer import Customer
 from models.Car import make_car_type
@@ -18,6 +19,7 @@ class CarRentalUi:
     def __init__(self):
         self.__CarService = CarService()
         self.__CustomerService = CustomerService()
+        self.__OrderService = OrderService()
     
     def draw_car(self):
         print("\033[1;34;1m{:<31}==============".format(""))
@@ -122,8 +124,11 @@ class CarRentalUi:
         elif action == "2":
             prompt += " / Skrá nýja pöntun"
             self.print_header(prompt)
-            new_order = Order()
-            new_order = new_order.get_order_info()
+            new_order = self.__OrderService.get_order_info()
+            if new_order:
+                input("Pöntun skráð.")
+            else:
+                input("Enginn bíll með þessi skilyrði fannst.")
             pass
             
         elif action == "3":

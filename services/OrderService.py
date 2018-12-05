@@ -6,7 +6,7 @@ from services.CustomerService import CustomerService
 from services.CarService import CarService
 from datetime import date
 
-def make_date_list(self, date1, date2):
+def make_date_list(date1, date2):
     date_list = []
     date_to_list = date1
     while date1 <= date2:
@@ -74,5 +74,6 @@ class OrderService:
         elif car_type.lower() == "small car":
             car_type_list = self.__CarService.__car_repo_small_car.get_carlist()
 
-        # for car in car_type_list:
+        for car in car_type_list:
+            print(car)
 
