@@ -1,5 +1,6 @@
 from os import system,name
 from time import sleep
+from datetime import date
 from services.CarService import CarService
 from services.CustomerService import CustomerService
 from services.OrderService import OrderService
@@ -7,8 +8,6 @@ from models.Car import Car
 from models.Customer import Customer
 from models.Car import make_car_type
 from models.Order import Order
-
-
 
 def make_date(a_date):
     day, month, year = a_date.split(".")
@@ -103,8 +102,6 @@ class CarRentalUi:
             print()
             while exit_info == '':
                 exit_info = input("Sláðu einn eitthvað til að fara heim: ")
-
-                
 
         elif action == "2":
             prompt += " / Skrá nýjan viðskiptavin"
