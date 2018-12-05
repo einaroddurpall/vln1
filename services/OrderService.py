@@ -19,8 +19,8 @@ class OrderService:
 
     def __init__(self):
         self.__CustomerService = CustomerService()
-        self.__OrderService = OrderService()
         self.__CarService = CarService()
+        self.car = None
 
     def make_date(self, a_date):
         day, month, year = a_date.split(".")
