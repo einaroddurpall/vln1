@@ -15,6 +15,9 @@ class CarService:
         self.__car_repo_small_car = CarRepository("small_car")
         self.__customer_service = CustomerService()
         self.__date_repo = DateRepository()
+
+    def get_date_repo(self):
+        return self.__date_repo
         
     def car_register(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
@@ -49,9 +52,9 @@ class CarService:
         return "Bíll fannst ekki"
     
     def get_busy_cars(self, date1, date2):
-        """takes in 2 dates and returns a list of all cars that are 
-        taken, busy, that day and between them, returns the cars in a set so
-        they donsent get counted twice"""
+        """Takes in 2 dates and returns a list of all cars that are 
+        taken/busy, that day and/or the days between them, returns the cars
+        in a set so they don't get counted twice."""
         list_of_days = make_date_list(date1, date2)
         car_info_dict = self.__date_repo.get_date_dict()
         car_info_list = []

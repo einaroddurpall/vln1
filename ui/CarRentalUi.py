@@ -8,8 +8,6 @@ from models.Customer import Customer
 from models.Car import make_car_type
 from models.Order import Order
 
-
-
 def make_date(a_date):
     day, month, year = a_date.split(".")
     return date(int(year), int(month), int(day))
