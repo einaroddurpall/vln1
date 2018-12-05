@@ -6,7 +6,7 @@ from services.CustomerService import CustomerService
 from services.CarService import CarService
 from datetime import date
 
-def make_date_list(self, date1, date2):
+def make_date_list(date1, date2):
     date_list = []
     date_to_list = date1
     while date1 <= date2:
