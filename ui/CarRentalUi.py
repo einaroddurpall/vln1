@@ -7,10 +7,6 @@ from models.Customer import Customer
 from datetime import date
 from models.Car import make_car_type
 
-def make_date(a_date):
-    day, month, year = a_date.split(".")
-    return date(int(year), int(month), int(day))
-
 class CarRentalUi:
 
     def __init__(self):
@@ -123,7 +119,7 @@ class CarRentalUi:
             self.print_header(prompt)
             #Einar er að vinnna í þessu
             pass
-            
+
         elif action == "3":
             prompt += " / Skila bíl"
             self.print_header(prompt)
