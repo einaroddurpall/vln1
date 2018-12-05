@@ -5,8 +5,9 @@ from models.Order import Order
 from services.CustomerService import CustomerService
 from services.CarService import CarService
 from datetime import date
+from time import sleep
 
-def make_date_list(self, date1, date2):
+def make_date_list(date1, date2):
     date_list = []
     date_to_list = date1
     while date1 <= date2:
@@ -39,10 +40,19 @@ class OrderService:
             date1 = input("Afhendingardagur (DD.MM.YYYY): ")
             date2 = input("Skiladagur (DD.MM.YYYY): ")
             date_list = make_date_list(date1, date2)
-            continue_q = input("Halda áfram? (y/n) ").lower()
-            if continue_q == "y":
-                step1 = True
-            system('clear')
+            self.car = self.rent_car(car_type, date_list)
+            if self.car:
+                continue_q = input("Halda áfram? (y/n) ").lower()
+                if continue_q == "y":
+                    step1 = True
+                system('clear')
+            else:
+                print("Enginn bíll laus með þessi skilyrði")
+                sleep(2)
+                system('clear')
+                print("Heimasíða / Skoða eða skrá pantanir / Skrá pantanir")
+                print("="*40)
+
         step2 = False
         while step2 is not True:
             number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
@@ -55,7 +65,6 @@ class OrderService:
             if continue_q == "y":
                 step2 = True
             system('clear')
-            self.rent_car(car_type, date_list)
             return Order(ssn, car_type, date_list, insurance, card_info)
         
     def rent_car(self, car_type, date_list):
