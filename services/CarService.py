@@ -2,7 +2,7 @@ from repositories.CarRepository import CarRepository
 from repositories.DateRepository import DateRepository
 from services.CustomerService import CustomerService
 from models.Car import Car
-from datetime import datetime
+from datetime import timedelta
 
 def make_date_list(date1, date2):
     date_list = []
