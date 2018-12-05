@@ -36,12 +36,12 @@ class Customer(Person):
 
     def __repr__(self):
         return "Customer('{}','{}','{}','{}','{}','{}')".format(
-            self.name, self.ssn, self.__email, self.__gsm, self.__card_info, self.__history
+            self._name, self._ssn, self.__email, self.__gsm, self.__card_info, self.__history
         )
 
     def __str__(self):
         return "Customer name: {}, SSN: {}, email: {}, gsm: {}, credit card information: {}, history: {}".format(
-            self.name, self.ssn, self.__email, self.__gsm, self.__card_info, self.__history
+            self._name, self._ssn, self.__email, self.__gsm, self.__card_info, self.__history
         )
 
     def make_customer(self):
