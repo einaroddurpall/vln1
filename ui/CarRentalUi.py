@@ -15,6 +15,7 @@ class CarRentalUi:
         self.__CustomerService = CustomerService()
     
     def draw_car(self):
+        print()
         print("\033[1;34;1m{:<31}==============".format(""))
         sleep(0.35)
         print("{:<28}=={:<16}==".format("",""))
