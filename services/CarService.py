@@ -1,5 +1,7 @@
 from repositories.CarRepository import CarRepository
 from models.Car import Car
+from datetime import datetime
+
 class CarService:
 
     def __init__(self):

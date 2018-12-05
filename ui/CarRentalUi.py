@@ -4,6 +4,8 @@ from services.CarService import CarService
 from services.CustomerService import CustomerService
 from models.Car import Car
 from models.Customer import Customer
+from datetime import datetime
+from models.Car import make_car_type
 
 class CarRentalUi:
 
@@ -48,7 +50,7 @@ class CarRentalUi:
 
     def home_menu(self, prompt):
         self.print_header(prompt)
-        action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða/skrá pantanir\n")
+        action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n")
         return action
 
     def car_menu(self, prompt):
@@ -62,7 +64,6 @@ class CarRentalUi:
             #     registration_num = input("Bílnúmer: ")
             #     break
             pass
-
         elif action == "2":
             prompt += " / Skrá nýjan bíl"
             self.print_header(prompt)
@@ -92,6 +93,8 @@ class CarRentalUi:
         self.print_header(prompt)
         action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Skila bíl\n")
         if action == "1":
+            prompt += " / Skoða pöntun"
+            self.print_header(prompt)
             pass
         elif action == "2":
             prompt += " / Skrá nýja pöntun"
@@ -101,9 +104,12 @@ class CarRentalUi:
             if self.__CustomerService.check_ssn(ssn):
                 valid_ssn = True
             if valid_ssn:
-                print("success")
+                car_type = make_car_type()
+                print("Success")
                 pass
         elif action == "3":
+            prompt += " / Skila bíl"
+            self.print_header(prompt)
             pass
 
     def main_menu(self):
@@ -118,7 +124,7 @@ class CarRentalUi:
                 prompt = " / Viðskiptavinir"
                 self.customer_menu(prompt)
             elif action == "3":
-                prompt = " / Skoða/skrá pantanir"
+                prompt = " / Skoða eða skrá pantanir"
                 self.order_menu(prompt)
 
 
