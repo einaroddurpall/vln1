@@ -9,7 +9,7 @@ def make_car_type():
             car_type = valid_car_types[number -1]
             return car_type
         except:
-            print("Error: Number not in list. Please try again.")
+            print("Error: Númer ekki í listanum, reyndu aftur.")
 
 class Car:
 
@@ -22,7 +22,7 @@ class Car:
         self.__is_rentable = is_rentable
 
         if history == "":
-            self.__history = "This car has no history of rental."
+            self.__history = "Þessi bíll er með enga sögu."
         else: 
             self.__history = history
 

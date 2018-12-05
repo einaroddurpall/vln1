@@ -19,4 +19,3 @@ class CustomerService:
             if customer.get_ssn() == ssn:
                 return customer
         return 'Customer is not in the system'
-    
