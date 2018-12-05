@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 def make_date_list(date1, date2):
     date_list = []
     date_to_list = date1
-    while date1 <= date2:
+    while date_to_list <= date2:
         date_list.append(date_to_list)
         date_to_list += timedelta(days=1)
     return date_list
