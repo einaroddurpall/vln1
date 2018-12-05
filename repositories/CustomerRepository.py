@@ -19,3 +19,6 @@ class CustomerRepository:
                 customer = eval(row.strip())
                 customers.append(customer)
         return customers
+    
+    def get_customers_list(self):
+        return self.__customers

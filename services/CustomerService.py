@@ -17,5 +17,5 @@ class CustomerService:
         customers = self.get_customer_list()
         for customer in customers:
             if customer.get_ssn() == ssn:
-                return True
-        return False
+                return customer
+        return 'Customer is not in the system'
