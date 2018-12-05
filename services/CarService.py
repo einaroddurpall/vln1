@@ -14,12 +14,8 @@ class CarService:
         self.__car_repo_five_seat_suv = CarRepository("five_seat_suv")
         self.__car_repo_small_car = CarRepository("small_car")
         self.__customer_service = CustomerService()
-<<<<<<< HEAD
         self.__date_repo = DateRepository()
         
-=======
-    
->>>>>>> ab01ec79505a776f3bd7b60a3e8edf8979a939dd
     def car_register(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
@@ -56,7 +52,7 @@ class CarService:
         """takes in 2 dates and returns a list of all cars that are 
         taken, busy, that day and between them, returns the cars in a set so
         they donsent get counted twice"""
-        list_of_days = OrderService.date_list(date1,date2)
+        list_of_days = make_date_list(date1, date2)
         car_info_dict = self.__date_repo.get_date_dict()
         car_info_list = []
         for date in list_of_days:
