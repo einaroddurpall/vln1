@@ -11,6 +11,3 @@ class Person:
 
     def get_ssn(self):
         return self._ssn
-
-
-
