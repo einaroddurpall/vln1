@@ -1,4 +1,4 @@
-from Person import Person
+from models.Person import Person
 
 class Customer(Person):
     """Customer class, is a subclass of the Person class
@@ -15,12 +15,6 @@ class Customer(Person):
             self.__history = "This customer has no history of rental."
         else: 
             self.__history = history
-
-    def get_name(self):
-        return self.__name
-
-    def get_ssn(self):
-        return self.__ssn
 
     def get_email(self):
         return self.__email
@@ -42,12 +36,12 @@ class Customer(Person):
 
     def __repr__(self):
         return "Customer('{}','{}','{}','{}','{}','{}')".format(
-            self.__name, self.__ssn, self.__email, self.__gsm, self.__card_info, self.__history
+            self.name, self.ssn, self.__email, self.__gsm, self.__card_info, self.__history
         )
 
     def __str__(self):
         return "Customer name: {}, SSN: {}, email: {}, gsm: {}, credit card information: {}, history: {}".format(
-            self.__name, self.__ssn, self.__email, self.__gsm, self.__card_info, self.__history
+            self.name, self.ssn, self.__email, self.__gsm, self.__card_info, self.__history
         )
 
     def make_customer(self):

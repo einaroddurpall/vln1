@@ -1,7 +1,7 @@
 from os import system,name
 from time import sleep
 from services.CarService import CarService
-# from services.CustomerService import CustomerService
+from services.CustomerService import CustomerService
 from models.Car import Car
 from models.Customer import Customer
 
@@ -9,6 +9,7 @@ class CarRentalUi:
 
     def __init__(self):
         self.__CarService = CarService()
+        self.__CustomerService = CustomerService()
     
     def draw_car(self):
         print("\033[1;34;1m{:<31}==============".format(""))
@@ -77,7 +78,7 @@ class CarRentalUi:
         elif action == "2":
             new_customer = Customer()
             new_customer = new_customer.make_customer()
-            # self.__CustomerService.customer_register(new_customer)
+            self.__CustomerService.customer_register(new_customer)
 
     def main_menu(self):
         action = ""

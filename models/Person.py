@@ -5,14 +5,14 @@ class Person:
     and is a parent class of costumer, Boss, and  Employee"""
 
     def __init__ (self, name, ssn):
-        self.__name = name
-        self.__ssn = ssn
+        self.name = name
+        self.ssn = ssn
 
     def get_name(self):
-        return self.__name
+        return self.name
 
     def get_ssn(self):
-        return self.__name
+        return self.name
 
 
 
