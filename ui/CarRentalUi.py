@@ -120,39 +120,9 @@ class CarRentalUi:
         elif action == "2":
             prompt += " / Skrá nýja pöntun"
             self.print_header(prompt)
-            ssn = input("Kennitala viðskiptavinar: ")
-            valid_ssn = False
-            if self.__CustomerService.check_ssn(ssn):
-                valid_ssn = True
-            if valid_ssn:
-                step1 = False
-                while step1 is not True:
-                    car_type = make_car_type()
-                    date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-                    date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-                    continue_q = input("Halda áfram? (y/n) ").lower()
-                    if continue_q == "y":
-                        step1 = True
-                    system('clear')
-                step2 = False
-                while step2 is not True:
-                    number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
-                    if number == "1":
-                        insurance = "basic"
-                    else:
-                        insurance = "extra"
-                    card_info = input("Kortanúmer: ")
-                    continue_q = input("Halda áfram? (y/n) ").lower()
-                    if continue_q == "y":
-                        step2 = True
-                    system('clear')
-                # self.__CarService(car_type, date1, date2, insurance, card_info)
-
-            else:
-                system('clear')
-                print("Kennitala ekki á skrá.")
-                sleep(2)
-                self.order_menu("Heimasíða / Skoða eða skrá pantanir")
+            #Einar er að vinnna í þessu
+            pass
+            
         elif action == "3":
             prompt += " / Skila bíl"
             self.print_header(prompt)
