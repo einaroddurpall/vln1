@@ -1,3 +1,5 @@
+from models.Customer import Customer
+
 class CustomerRepository:
 
     def __init__(self):      

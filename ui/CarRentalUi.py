@@ -82,9 +82,29 @@ class CarRentalUi:
         if action == "1":
             pass
         elif action == "2":
+            prompt += " / Skrá nýjan viðskiptavin"
+            self.print_header(prompt)
             new_customer = Customer()
             new_customer = new_customer.make_customer()
             self.__CustomerService.customer_register(new_customer)
+
+    def order_menu(self, prompt):
+        self.print_header(prompt)
+        action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Skila bíl\n")
+        if action == "1":
+            pass
+        elif action == "2":
+            prompt += " / Skrá nýja pöntun"
+            self.print_header(prompt)
+            ssn = input("Kennitala viðskiptavinar: ")
+            valid_ssn = False
+            if self.__CustomerService.check_ssn(ssn):
+                valid_ssn = True
+            if valid_ssn:
+                print("success")
+                pass
+        elif action == "3":
+            pass
 
     def main_menu(self):
         action = ""
@@ -97,6 +117,9 @@ class CarRentalUi:
             elif action == "2":
                 prompt = " / Viðskiptavinir"
                 self.customer_menu(prompt)
+            elif action == "3":
+                prompt = " / Skoða/skrá pantanir"
+                self.order_menu(prompt)
 
 
 
