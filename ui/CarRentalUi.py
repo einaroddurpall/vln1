@@ -90,7 +90,6 @@ class CarRentalUi:
             question = input("Viltu leita af ákveðnari tegund (y/n)? ")
             if question == "y":
                 car_type = input("Sláðu inn tegunds bíl :")
-                car_specific_type_list = []
                 for car in car_info:
                     if car.get_car_type() != car_type:
                         car_info.remove(car)
