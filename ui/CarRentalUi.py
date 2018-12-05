@@ -68,8 +68,10 @@ class CarRentalUi:
                 registration_num = input("Bílnúmer: ")
                 car_found_info = self.__CarService.car_find(registration_num)
                 system('clear')
+                self.print_header(prompt)
                 print(car_found_info)
-                exit_info = input("Enter something to go back: ")
+                print()
+                exit_info = input("Sláðu inn eitthvað til að fara heim: ")
             pass
         elif action == "2":
             prompt += " / Skrá nýjan bíl"
@@ -88,7 +90,20 @@ class CarRentalUi:
         self.print_header(prompt)
         action = input("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin\n")
         if action == "1":
-            pass
+            prompt += " / Leita að viðskiptavin"
+            self.print_header(prompt)
+            ssn = input("Sláðu inn kennitölu: ")
+            customer_info = self.__CustomerService.check_ssn(ssn)
+            system('clear')
+            self.print_header(prompt)
+            print(customer_info)
+            exit_info = ''
+            print()
+            while exit_info == '':
+                exit_info = input("Sláðu einn eitthvað til að fara heim: ")
+
+                
+
         elif action == "2":
             prompt += " / Skrá nýjan viðskiptavin"
             self.print_header(prompt)
