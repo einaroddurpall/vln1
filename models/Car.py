@@ -61,23 +61,17 @@ class Car:
     
     def make_car(self):
         registration_num = input("Bílnúmer: ")
+        valid_car_types = ["sedan", "small car","five seat suv","seven seat suv","minibus",]
         valid_car_type = False
         while valid_car_type is False:
             print("Flokkur bíls:")
-            car_type = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n")
-            if car_type == "1":
-                car_type = "sedan"
-            elif car_type == "2":
-                car_type = "small car"
-            elif car_type == "3":
-                car_type = "five seat suv"
-            elif car_type == "4":
-                car_type = "seven seat suv"
-            elif car_type == "5":
-                car_type = "minibus"
-            else:
-                continue
-            valid_car_type = True
+            number = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n")
+            try:
+                number = int(number)
+                car_type = valid_car_types[number -1]
+                valid_car_type = True
+            except:
+                print("Error: Number not in list. Please try again.")
         sub_type = input("Tegund bíls: ")
         transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
         valid_transmission = False
