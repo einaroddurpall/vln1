@@ -55,8 +55,14 @@ class CarRentalUi:
         self.print_header(prompt)
         action = input("1.  Skoða bíl\n2.  Skrá nýjan bíl\n3.  Skoða lausa bíla\n4.  Skoða bíla í útleigu\n")
         if action == "1":
-            prompt += " / Skoða bíl"
+            # prompt += " / Skoða bíl"
+            # self.print_header(prompt)
+            # done = False
+            # while not done:
+            #     registration_num = input("Bílnúmer: ")
+            #     break
             pass
+
         elif action == "2":
             prompt += " / Skrá nýjan bíl"
             self.print_header(prompt)
