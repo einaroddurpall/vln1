@@ -84,11 +84,23 @@ class CarRentalUi:
             pass
         elif action == "4":
             prompt += " / Skoða bíla í útleigu"
+            self.print_header(prompt)
             date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
             date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-            car_info_set = self.__CarService.get_busy_cars(date1, date2)
-            for car in car_info_set:
-                print(car)
+            car_info = self.__CarService.get_busy_cars(date1, date2)
+            question = input("Viltu leita af ákveðnari tegund (y/n)? ")
+            if question == "y":
+                car_type = input("Sláðu inn tegunds bíl :")
+                for car in car_info:
+                    if car.get_car_type() != car_type:
+                        car_info.remove(car)
+                print(car_type + ":")
+            for car in car_info:
+                print("-"*30)
+                print("{}, {}, {}, {}".format(car.get_sub_type(), car.get_registration_num(), car.get_milage(), car.get_transmission()))
+            print()
+            exit_info = input("Sláðu inn eitthvað til að fara heim: ")
+
 
     def customer_menu(self, prompt):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma viðskiptavinum við """
