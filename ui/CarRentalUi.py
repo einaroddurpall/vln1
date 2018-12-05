@@ -94,10 +94,11 @@ class CarRentalUi:
                 for car in car_info:
                     if car.get_car_type() != car_type:
                         car_info.remove(car)
-            print("-"*30)
+                print(car_type + ":")
             for car in car_info:
-                print(car.get_registration_num())
                 print("-"*30)
+                print("{}, {}, {}, {}".format(car.get_sub_type(), car.get_registration_num(), car.get_milage(), car.get_transmission()))
+            print()
             exit_info = input("Sláðu inn eitthvað til að fara heim: ")
 
 
