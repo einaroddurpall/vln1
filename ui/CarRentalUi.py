@@ -86,9 +86,19 @@ class CarRentalUi:
             prompt += " / Skoða bíla í útleigu"
             date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
             date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-            car_info_set = self.__CarService.get_busy_cars(date1, date2)
-            for car in car_info_set:
-                print(car)
+            car_info = self.__CarService.get_busy_cars(date1, date2)
+            question = input("Viltu leita af ákveðnari tegund (y/n)? ")
+            if question == "y":
+                car_type = input("Sláðu inn tegunds bíl :")
+                car_specific_type_list = []
+                for car in car_info:
+                    if car.get_car_type() != car_type:
+                        car_info.remove(car)
+            print("-"*30)
+            for car in car_info:
+                print(car.get_registration_num())
+                print("-"*30)
+
 
     def customer_menu(self, prompt):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma viðskiptavinum við """
