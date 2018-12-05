@@ -10,7 +10,7 @@ class Person:
         return self._name
 
     def get_ssn(self):
-        return self._name
+        return self._ssn
 
 
 

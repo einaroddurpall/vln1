@@ -1,3 +1,16 @@
+def make_car_type():
+    valid_car_types = ["sedan", "small car","five seat suv","seven seat suv","minibus",]
+    valid_car_type = False
+    while valid_car_type is False:
+        print("Flokkur bíls:")
+        number = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n")
+        try:
+            number = int(number)
+            car_type = valid_car_types[number -1]
+            return car_type
+        except:
+            print("Error: Number not in list. Please try again.")
+
 class Car:
 
     def __init__(self, registration_num="", car_type="", sub_type="", transmission="", milage=0, is_rentable=True, history=""):
@@ -58,20 +71,10 @@ class Car:
 
     def check_availability(self, date1, date2):
         pass
-    
+
     def make_car(self):
         registration_num = input("Bílnúmer: ")
-        valid_car_types = ["sedan", "small car","five seat suv","seven seat suv","minibus",]
-        valid_car_type = False
-        while valid_car_type is False:
-            print("Flokkur bíls:")
-            number = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n")
-            try:
-                number = int(number)
-                car_type = valid_car_types[number -1]
-                valid_car_type = True
-            except:
-                print("Error: Number not in list. Please try again.")
+        car_type = make_car_type()
         sub_type = input("Tegund bíls: ")
         transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
         valid_transmission = False

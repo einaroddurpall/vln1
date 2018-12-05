@@ -45,9 +45,14 @@ class Customer(Person):
         )
 
     def make_customer(self):
-        name = input("Nafn: ")
-        ssn = input("Kennitala: ")
-        email = input("Netfang: ")
-        gsm = input("Símanúmer: ")
-        card_info = input("Kortanúmer: ")
+        done = False
+        while not done:
+            name = input("Nafn: ")
+            ssn = input("Kennitala: ")
+            email = input("Netfang: ")
+            gsm = input("Símanúmer: ")
+            card_info = input("Kortanúmer: ")
+            correct = input("Er allt rétt? (j/n) ").lower()
+            if correct == "j":
+                done = True
         return Customer(name, ssn, email, gsm, card_info)
