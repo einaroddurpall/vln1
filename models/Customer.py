@@ -49,7 +49,6 @@ class Customer(Person):
         while not done:
             correct = input("Er allt rétt? (j/n) ").lower()
             if correct != "j":
-                correct = False
                 self.customer_change_info(customer_list)
             else:
                 done = True
@@ -71,7 +70,7 @@ class Customer(Person):
             if choice == "5":
                 break
             self.change_info(choice, customer_list)
-        
+
     def change_info(self, choice, customer_list):
         if choice == "1":
             self.make_name()
@@ -115,7 +114,8 @@ class Customer(Person):
                 domain_list = domain.split(".")
                 if len(domain_list) == 2:
                     legal_email = True
-            print("Ólöglegt netfang, reyndu aftur.")
+                else:
+                    print("Ólöglegt netfang, reyndu aftur.")
         self.__email = email
 
 def make_number(lenght_of_number, input_string, error_code_str):

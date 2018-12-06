@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 Order 1;'Customer('Gummi Hauks','0208982409','kallinn@hotmail.com','5847382','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')';'Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')';'datetime.date(2018, 12, 10)';'datetime.date(2018, 12, 11)';'skyldu trygging';'123456789012')
+=======
+Order 1;Customer('Gummi Hauks','0208982409','kallinn@hotmail.com','5847382','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.');Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.');datetime.date(2018, 12, 23);datetime.date(2018, 12, 24);skyldu trygging;4747474744747
+Order 2;Customer('Gummi Hauks','0208982409','kallinn@hotmail.com','5847382','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.');Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.');datetime.date(2018, 9, 12);datetime.date(2018, 9, 13);skyldu trygging;8293483939348
+Order 3;Customer('Gummi Hauks','0208982409','kallinn@hotmail.com','5847382','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.');Car('AK-555','Smárúta','RISA bIll','Sjálfskiptur',60000,True,'This car has no history of rental.');datetime.date(2018, 1, 1);datetime.date(2018, 1, 3);skyldu trygging;94939393939
+>>>>>>> d742cc9c8dfa332dc02f5d569e5abea2d5be7811

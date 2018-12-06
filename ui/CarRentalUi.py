@@ -76,10 +76,21 @@ class CarRentalUi:
             while exit_info == '':
                 registration_num = input("Bílnúmer: ")
                 car_found_info = self.__CarService.car_find(registration_num)
+                if car_found_info:
+                    pass
+                else:
+                    svar = input("Bill fannst ekki, reyna aftur (j/n)?")
+                    if svar.lower() == 'j':
+                        continue
+                    else:
+                        break
                 system('clear')
                 self.print_header(prompt)
                 print(car_found_info)
                 print()
+                question = input("Leita að öðru bílnúmer (j/n)?")
+                if question.lower() == "j":
+                    continue
                 exit_info = input("Sláðu inn eitthvað til að fara heim: ")
             pass
 
@@ -203,6 +214,7 @@ class CarRentalUi:
                             choice = input("Ertu viss?(j/n): ")
                             if choice == "j":
                                 self.__CustomerService.customer_delete(customer._ssn)
+                                choice = "4"
                 else:
                     choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Heimasíða'.format(ssn))
                     if choice == "2":
@@ -220,7 +232,7 @@ class CarRentalUi:
         if action == "1":
             prompt += " / Skoða pöntun"
             self.print_header(prompt)
-            order_num = input("Pöntunarnúmer: ")
+            order_name = input("Pöntunarnúmer: ")
             # self.__OrderService
         elif action == "2":
             prompt += " / Skrá nýja pöntun"
