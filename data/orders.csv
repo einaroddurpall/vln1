@@ -1,0 +1,1 @@
+Order('Customer('Hilmar Pall','0408982349','hilmarpall98@hotmail.com','8451289','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')', 'Car('ABC-57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')', 'datetime.date(2018, 12, 24)', 'datetime.date(2018, 12, 31)', 'skyldu trygging', '01234985321394583')
