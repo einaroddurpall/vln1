@@ -203,6 +203,7 @@ class CarRentalUi:
                             choice = input("Ertu viss?(j/n): ")
                             if choice == "j":
                                 self.__CustomerService.customer_delete(customer._ssn)
+                                choice = "4"
                 else:
                     choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Heimasíða'.format(ssn))
                     if choice == "2":

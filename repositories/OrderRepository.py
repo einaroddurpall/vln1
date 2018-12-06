@@ -22,16 +22,17 @@ class OrderRepository:
         self.__orders = 0
     
     def get_orders(self):
-        """Setur pantanir í lista"""
-        order_list = []
-        with open("./data/orders.csv", encoding = "UTF-8") as order_file:
-            for row in order_file.readlines():
-                    order_num, customer, car, date1, date2, insurance, card_info = row.split(";")
-                    order_num = int(order_num[-1])
-                    date_list = make_date_list(eval(date1), eval(date2))
-                    order = Order(eval(customer), eval(car), date_list, insurance, card_info, order_num)
-                    order_list.append(order)
-        return order_list
+        # """Setur pantanir í lista"""
+        # order_list = []
+        # with open("./data/orders.csv", encoding = "UTF-8") as order_file:
+        #     for row in order_file.readlines():
+        #             order_num, customer, car, date1, date2, insurance, card_info = row.split(";")
+        #             order_num = int(order_num[-1])
+        #             date_list = make_date_list(eval(date1), eval(date2))
+        #             order = Order(eval(customer), eval(car), date_list, insurance, card_info, order_num)
+        #             order_list.append(order)
+        # return order_list
+        pass
     
     def add_order(self, order):
         """Bætir við pöntun í pöntunarskjalið"""
