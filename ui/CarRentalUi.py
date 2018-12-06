@@ -179,12 +179,8 @@ class CarRentalUi:
         elif action == "2":
             prompt += " / Skrá nýja pöntun"
             self.print_header(prompt)
-            new_order = self.__OrderService.make_order_info()
-            if new_order:
-                input("Pöntun skráð.")
-            else:
-                input("Enginn bíll með þessi skilyrði fannst.")
-            pass
+            self.__OrderService.make_order_info()
+            input("Pöntun skráð.")
             
         elif action == "3":
             prompt += " / Skila bíl"
