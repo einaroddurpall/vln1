@@ -6,7 +6,7 @@ from services.CustomerService import CustomerService
 from services.CarService import CarService
 from time import sleep
 from datetime import date
-from repositories.OrderRepository import OrderRepsitory
+from repositories.OrderRepository import OrderRepository
 
 def make_date(a_date):
     day, month, year = a_date.split(".")
@@ -23,7 +23,7 @@ def make_date_list(date1, date2):
 class OrderService:
 
     def __init__(self):
-        self.__OrderRepo = OrderRepsitory()
+        self.__OrderRepo = OrderRepository()
         self.__CustomerService = CustomerService()
         self.__CarService = CarService()
         self.car = None
