@@ -44,7 +44,6 @@ class CarService:
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
         if car_type.lower() == "fólksbíll":
-<<<<<<< HEAD
             self._car_repo_sedan.add_car(car)
         elif car_type.lower() == "fimm sæta jeppi":
             self._car_repo_five_seat_suv.add_car(car)
@@ -55,18 +54,6 @@ class CarService:
         elif car_type.lower() == "smábíll":
             self._car_repo_small_car.add_car(car)
         self._all_cars_list.append(car)
-=======
-            self.__car_repo_sedan.add_car(car)
-        elif car_type.lower() == "fimm sæta jeppi":
-            self.__car_repo_five_seat_suv.add_car(car)
-        elif car_type.lower() == "smárúta":
-            self.__car_repo_minibus.add_car(car)
-        elif car_type.lower() == "sjö sæta jeppi":
-            self.__car_repo_seven_seat_suv.add_car(car)
-        elif car_type.lower() == "smábíll":
-            self.__car_repo_small_car.add_car(car)
-        self.__all_cars_list.append(car)
->>>>>>> 99a5eef1c4df098706c49a59903cd7dedb7e307b
     
     def car_find(self, registration_num):
         for car in self._all_cars_list:
