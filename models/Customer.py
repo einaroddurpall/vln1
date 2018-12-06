@@ -49,7 +49,6 @@ class Customer(Person):
         while not done:
             correct = input("Er allt rétt? (j/n) ").lower()
             if correct != "j":
-                correct = False
                 self.customer_change_info(customer_list)
             else:
                 done = True
