@@ -65,7 +65,7 @@ class Customer(Person):
     def customer_change_info(self, choice, customer_list):
         if choice == "1":
             change = make_name()
-            self._name
+            self._name = change
         elif choice == "2":
             uniqe_ssn = False
             while not uniqe_ssn:
