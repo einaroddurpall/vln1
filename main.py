@@ -6,5 +6,3 @@ def main():
     ui.main_menu()
 
 main()
-
-print("Bless")
