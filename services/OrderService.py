@@ -7,9 +7,16 @@ from services.CarService import CarService
 from time import sleep
 from datetime import date
 from repositories.OrderRepository import OrderRepository
+import string
 
 def make_date(a_date):
-    day, month, year = a_date.split(".")
+    new_string = ""
+    for letter in a_date:
+        if letter in string.digits:
+            new_string += letter
+    day = new_string[:2]
+    month = new_string[2:4]
+    year = new_string[4:]
     return date(int(year), int(month), int(day))
 
 def make_date_list(date1, date2):
@@ -45,9 +52,16 @@ class OrderService:
         step1 = False
         while step1 is not True:
             car_type = make_car_type()
-            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-            date_list = make_date_list(date1, date2)
+            valid_date = False
+            while valid_date != True:
+                try:
+                    date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+                    date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+                    date_list = make_date_list(date1, date2)
+                    valid_date = True
+                except: 
+                    print("Vinsamlegast sláðu inn gilda dagsetningu")
+                    
             car = self.rent_car(car_type, date_list)
             if car:
                 continue_q = input("Halda áfram? (y/n) ").lower()
