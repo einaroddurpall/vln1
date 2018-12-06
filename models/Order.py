@@ -1,8 +1,7 @@
 class Order:
 
-    def __init__(self, ssn="", car_type="", date_list=[], insurance="", card_info="", car=""):
+    def __init__(self, ssn="", date_list=[], insurance="", card_info="", car=""):
         self.__ssn = ssn
-        self.__car_type = car_type
         self.__date_list = date_list
         self.__insurance = insurance
         self.__card_info = card_info
@@ -10,9 +9,6 @@ class Order:
     
     def get_ssn(self):
         return self.__ssn
-
-    def get_car_type(self):
-        return self.__car_type
 
     def get_date_list(self):
         return self.__date_list
