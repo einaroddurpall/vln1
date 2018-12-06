@@ -2,7 +2,8 @@ from os import system,name
 from services.CarService import CarService
 from models.Car import Car, make_car_type
 from time import sleep
-
+from datetime import date
+import string
 
 
 def print_header(prompt=""):
@@ -12,6 +13,15 @@ def print_header(prompt=""):
     print(prompt)
     print("="*40)
 
+def make_date(a_date):
+    new_string = ""
+    for letter in a_date:
+        if letter in string.digits:
+            new_string += letter
+    day = new_string[:2]
+    month = new_string[2:4]
+    year = new_string[4:]
+    return date(int(year), int(month), int(day))
 
 class CarMenu:
 
@@ -60,6 +70,7 @@ class CarMenu:
             print("Bíll skráður í kerfið")
             sleep(3)
             self.__CarService.car_register(new_car)
+
         elif action == "3":
             self.__prompt += " / Skoða lausa bíla"
             print_header(self.__prompt)
@@ -82,7 +93,7 @@ class CarMenu:
                 if question == "j":
                     car_type = make_car_type()
                     if car_type in all_car_dict.keys():
-                        print("{}:".format(car_type))
+                        print("\n{}:".format(car_type))
                         print("="*60)
                         for car_info in all_car_dict[car_type]:
                             print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
@@ -94,7 +105,7 @@ class CarMenu:
                     for key,val in all_car_dict.items():
                         if all_car_dict[key] == []:
                             continue
-                        print(key[0].upper() + key[1:] + ":")
+                        print("\n{}:".format(key))
                         print("="*60)
                         for car_info in val:
                             print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
@@ -120,7 +131,7 @@ class CarMenu:
                 if question == "j":
                     car_type = make_car_type()
                     if car_type in car_info_dict.keys():
-                        print("{}:".format(car_type))
+                        print("\n{}:".format(car_type))
                         print("="*60)
                         for car_info in car_info_dict[car_type]:
                             print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
@@ -129,7 +140,7 @@ class CarMenu:
                         print("Enginn bíll í útleigu í þessari bílategund á þessum tíma")
                 else:
                     for key,val in car_info_dict.items():
-                        print("{}:".format(key))
+                        print("\n{}:".format(key))
                         print("="*60)
                         for car_info in val:
                             print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
