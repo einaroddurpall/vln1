@@ -86,7 +86,7 @@ class OrderService:
             if continue_q == "y":
                 step2 = True
             system('clear')
-            new_order = Order(customer, car, date_list, insurance, card_info, self.__order_num)
+            new_order = Order(customer, car, date_list, insurance, card_info, "Order " + str(self.__order_num))
             self.__order_num += 1
             self.__OrderRepo.add_order(new_order)
 
