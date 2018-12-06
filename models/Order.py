@@ -32,6 +32,9 @@ class Order:
     def get_order_name(self):
         return self.__order_name
 
+    def set_order_name(self, name):
+        self.__order_name = name
+
     def __repr__(self):
         return "{};{};{};{};{};{};{}".format(
             str(self.get_order_name()),repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.get_insurance(), self.get_card_info()

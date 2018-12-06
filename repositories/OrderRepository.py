@@ -7,7 +7,6 @@ from models.Order import Order
 from repositories.DateRepository import DateRepository
 #from services.OrderService import make_date_list
 
-
 def make_date_list(date1, date2):
     date_list = []
     date_to_list = date1
@@ -21,7 +20,15 @@ class OrderRepository:
     def __init__(self):
         self.__order_list = self.get_orders()
         self.__date_repo = DateRepository()
-        self.__orders = 0
+        #self.__names = self.get_names()
+        #self.__orders = 0
+
+    def get_names(self):
+        orders = self.__order_list
+        names = []
+        for order in orders:
+            names.append(order.get_order_name())
+        return names
     
     def get_orders(self):
         """Setur pantanir í lista"""
@@ -38,7 +45,8 @@ class OrderRepository:
     
     def add_order(self, order):
         """Bætir við pöntun í pöntunarskjalið"""
-        self.__orders += 1
+        #self.__orders += 1
+        self.get_unique_name(order)
         with open("./data/orders.csv", "a", encoding = "UTF-8") as order_file:
             order_file.write(order.__repr__() + '\n')
         self.__order_list.append(order)
@@ -48,6 +56,15 @@ class OrderRepository:
     def get_order_list(self):
         return self.__order_list
 
+    def get_unique_name(self, order):
+        names = self.get_names()
+        counter = 1
+        while True:
+            unique_name = "Order " + str(counter)
+            counter += 1
+            if unique_name not in names:
+                order.set_order_name(unique_name)
+                break
     
 
     
