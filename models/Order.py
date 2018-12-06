@@ -1,10 +1,11 @@
 class Order:
 
-    def __init__(self, customer="", car="", date_list=[], insurance=""):
+    def __init__(self, customer="", car="", date_list=[], insurance="", card_info=""):
         self.__customer = customer
         self.__car = car
         self.__date_list = date_list
         self.__insurance = insurance
+        self.__card_info = card_info
     
     def get_customer(self):
         return self.__customer
@@ -24,9 +25,12 @@ class Order:
     def get_insurance(self):
         return self.__insurance
 
+    def get_card_info(self):
+        return self.__card_info
+
     def __repr__(self):
-        return "Order('{}', '{}', '{}', '{}', '{}')".format(
-            repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.__insurance()
+        return "Order('{}', '{}', '{}', '{}', '{}', '{}')".format(
+            repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.get_insurance(), self.get_card_info()
         )
 
     # def update_info(self):
