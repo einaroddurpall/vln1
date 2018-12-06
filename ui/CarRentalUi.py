@@ -73,7 +73,7 @@ class CarRentalUi:
                 print()
                 exit_info = input("Sláðu inn eitthvað til að fara heim: ")
             pass
-            
+
         elif action == "2":
             prompt += " / Skrá nýjan bíl"
             self.print_header(prompt)
@@ -101,6 +101,8 @@ class CarRentalUi:
                 print("="*60)
             else:
                 for key,val in all_car_dict.items():
+                    if all_car_dict[key] == []:
+                        continue
                     print(key[0].upper() + key[1:] + ":")
                     print("="*60)
                     for car_info in val:

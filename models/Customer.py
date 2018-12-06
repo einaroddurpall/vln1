@@ -90,7 +90,6 @@ class Customer(Person):
         elif choice == "5":
             change = make_number(16, "Kortanúmer: ", "Þetta kortanúmer var ólöglegt, reyndu aftur.")
             self.__card_info = change
-                
 
 def make_name():
     legal_name = False
