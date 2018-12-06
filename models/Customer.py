@@ -46,11 +46,10 @@ class Customer(Person):
             self._name, self._ssn, self.__email, self.__gsm, self.__card_info, self.__history
         )
 
-    def make_customer(self):
-        customer_info_list = ["","","","",""]
+    def make_customer(self, customer_list):
         for number in range(1, 6):
             number = str(number)
-            customer_change_info(number, customer_info_list, self.__customer_repo.get_customers_list())
+            self.customer_change_info(number, customer_list)
         correct = input("Er allt rétt? (j/n) ").lower()
         if correct != "j":
             choice = ""
@@ -66,10 +65,32 @@ class Customer(Person):
                             print("Ekki valmöguleiki, veldu aftur")
                     except:
                         print("Ekki valmöguleiki, veldu aftur")
-                customer_change_info(number, customer_info_list, self.__customer_repo.get_customers_list())
+                self.customer_change_info(number, customer_list)
+        
+    def customer_change_info(self, choice, customer_list):
+        if choice == "1":
+            change = make_name()
+            self.__name = change
+        elif choice == "2":
+            uniqe_ssn = False
+            while not uniqe_ssn:
+                uniqe_ssn = True
+                change = make_number(10, "Kennitala: ", "Þessi kennitala var ólögleg, reyndu aftur.")
+                for customer in customer_list:
+                    if customer.get_ssn() == change:
+                        print("Það er nú þegar viðskiptavinur með þessa kennitölu")
+                        uniqe_ssn = False
+            self.__ssn = change
+        elif choice == "3":
+            change = make_email()
+            self.__email = change
+        elif choice == "4":
+            change = make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
+            self.__gsm = change
+        elif choice == "5":
+            change = make_number(16, "Kortanúmer: ", "Þetta kortanúmer var ólöglegt, reyndu aftur.")
+            self.__card_info = change
                 
-
-        return Customer(customer_info_list[0],customer_info_list[1],customer_info_list[2],customer_info_list[3],customer_info_list[4])
 
 def make_name():
     legal_name = False
@@ -113,27 +134,3 @@ def make_email():
             if len(domain_list) == 2:
                 return inp
         print("Ólöglegt netfang, reyndu aftur.")
-
-def customer_change_info(choice, customer_info_list, customer_list):
-    if choice == "1":
-        change = make_name()
-        customer_info_list[0] = change
-    elif choice == "2":
-        uniqe_ssn = False
-        while not uniqe_ssn:
-            uniqe_ssn = True
-            change = make_number(10, "Kennitala: ", "Þessi kennitala var ólögleg, reyndu aftur.")
-            for customer in customer_list:
-                if customer.get_ssn() == change:
-                    print("Það er nú þegar viðskiptavinur með þessa kennitölu")
-                    uniqe_ssn = False
-        customer_info_list[1] = change
-    elif choice == "3":
-        change = make_email()
-        customer_info_list[2] = change
-    elif choice == "4":
-        change = make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
-        customer_info_list[3] = change
-    elif choice == "5":
-        change = make_number(16, "Kortanúmer: ", "Þetta kortanúmer var ólöglegt, reyndu aftur.")
-        customer_info_list[4] = change
