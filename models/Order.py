@@ -10,9 +10,6 @@ class Order:
     def get_ssn(self):
         return self.__ssn
 
-    def get_ssn(self):
-        return self.__ssn
-
     def get_car_type(self):
         return self.__car_type
 
