@@ -4,26 +4,40 @@ from models.Car import Car
 from models.Customer import Customer
 from models.Order import Order
 from repositories.DateRepository import DateRepository
+#from services.OrderService import make_date_list
+
+def make_date_list(date1, date2):
+    date_list = []
+    date_to_list = date1
+    while date_to_list <= date2:
+        date_list.append(date_to_list)
+        date_to_list += timedelta(days=1)
+    return date_list
 
 class OrderRepository:
 
     def __init__(self):
         self.__order_list = self.get_orders()
         self.__date_repo = DateRepository()
+        self.__orders = 0
     
     def get_orders(self):
         """Setur pantanir í lista"""
         order_list = []
         with open("./data/orders.csv", encoding = "UTF-8") as order_file:
-            for row in order_file:
-                order = eval(row.strip())
-                order_list.append(order)
+            for row in order_file.readlines():
+                    order_num, customer, car, date1, date2, insurance, card_info = row.split(";")
+                    order_num = int(order_num[-1])
+                    date_list = make_date_list(eval(date1), eval(date2))
+                    order = Order(eval(customer), eval(car), date_list, insurance, card_info, order_num)
+                    order_list.append(order)
         return order_list
     
     def add_order(self, order):
         """Bætir við pöntun í pöntunarskjalið"""
+        self.__orders += 1
         with open("./data/orders.csv", "a", encoding = "UTF-8") as order_file:
-            order_file.write(order.__repr__() + '\n')
+            order_file.write("Order " + order.__repr__() + '\n')
         self.__order_list.append(order)
         for date in order.get_date_list():
             self.__date_repo.add_car_to_date(date, order.get_car())

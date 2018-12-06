@@ -22,3 +22,24 @@ class CustomerRepository:
     
     def get_customers_list(self):
         return self.__customers
+
+    def remove_customer(self, ssn):
+        with open("./data/customers.csv", "r+", encoding = "UTF-8") as date_file:
+            new_file = ""
+            line_list = []
+            for line in date_file.readlines():
+                line_list.append(eval(line.strip("\n")))
+            for a_customer in line_list:
+                if a_customer._ssn == ssn:
+                    line_list.remove(a_customer)
+            for a_customer in line_list:
+                new_file += a_customer.__repr__() + "\n"
+            new_file = new_file.strip("\n")
+            date_file.seek(0)
+            date_file.truncate()
+            date_file.write(new_file)
+
+def create_list(self, line_string):
+    line_string = line_string.strip("\n")
+    line_list = line_string.split(";")
+    return line_list

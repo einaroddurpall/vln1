@@ -196,16 +196,17 @@ class CarRentalUi:
                         elif choice == "2":
                             prompt += " / Breyta skráningu"
                             self.print_header(prompt)
-                            customer.customer_change_info()
+                            self.__CustomerService.customer_update_info(customer)
                         elif choice == "3":
                             prompt += " / Afskrá viðskiptavin"
                             self.print_header(prompt)
-                            # Vantar fall til að afskrá viðskiptavin
+                            choice = input("Ertu viss?(j/n): ")
+                            if choice == "j":
+                                self.__CustomerService.customer_delete(customer._ssn)
                 else:
                     choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Heimasíða'.format(ssn))
                     if choice == "2":
                         done = True
-
             elif action == "2":
                 prompt += " / Skrá nýjan viðskiptavin"
                 self.print_header(prompt)

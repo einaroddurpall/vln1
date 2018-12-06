@@ -23,3 +23,10 @@ class CustomerService:
 
     def customer_delete(self, ssn):
         self.__customer_repo.remove_customer(ssn)
+
+    def customer_update_info(self, customer):
+        customers_list = self.__customer_repo.get_customers_list()
+        new_customer = customer.customer_change_info(customers_list)
+        self.customer_delete(customer.get_ssn())
+        self.__customer_repo.add_customer(new_customer)
+        # Pæling með pantanir sem eru skráðar á gamla viðskiptavininn
