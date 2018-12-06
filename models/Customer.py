@@ -46,17 +46,16 @@ class Customer(Person):
 
     def make_customer(self):
         customer_info_list = ["","","","",""]
-        customer_info_list[0] = make_name()
-        customer_info_list[1] = input("Kennitala: ")
-        customer_info_list[2] = input("Netfang: ")
-        customer_info_list[3] = input("Símanúmer: ")
-        customer_info_list[4] = input("Kortanúmer: ")
+        for number in range(1, 6):
+            number = str(number)
+            change_customer_info(number, customer_info_list)
         correct = input("Er allt rétt? (j/n) ").lower()
         if correct != "j":
             choice = ""
             while choice != 6:
                 print("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Kortanúmer\n6. Klára Skráningu")
                 choice = input()
+                change_customer_info(choice, customer_info_list)
 
         return Customer(customer_info_list[0],customer_info_list[1],customer_info_list[2],customer_info_list[3],customer_info_list[4])
 
@@ -74,7 +73,7 @@ def make_name():
                 legal_name = True
     return inp
 
-def make_ssn():
+def make_number(lenght_of_number, error_code_str):
     legal_ssn = False
     while not legal_ssn:
         inp = input("Kennitala: ")
@@ -85,10 +84,10 @@ def make_ssn():
                 ssn += letter
             except:
                 continue
-        if len(ssn) == 10:
+        if len(ssn) == lenght_of_number:
             legal_ssn = True
         else:
-            print("Kennitalan er ekki lögleg, reyndu aftur")
+            print(error_code_str)
     return ssn
 
 def make_email():
@@ -102,4 +101,23 @@ def make_email():
             if len(domain_list) == 2:
                 legal_email = True
     return inp
+
+def change_customer_info(choice, customer_info_list):
+    if choice == "1":
+        change = make_name()
+        customer_info_list[0] = change
+    elif choice == "2":
+        change = make_number(10, "Þessi kennitala var ólögleg, reyndu aftur.")
+        customer_info_list[1] = change
+    elif choice == "3":
+        change = make_email()
+        customer_info_list[2] = change
+    elif choice == "4":
+        change = make_number(7, "Þetta símanúmer var ólöglegt, reyndu aftur.")
+        customer_info_list[1] = change
+    elif choice == "5":
+        change = make_number(16, "Þetta kortanúmer var ólöglegt, reyndu aftur.")
+        customer_info_list[1] = change
+    else:
+        None
 
