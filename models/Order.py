@@ -6,5 +6,8 @@ class Order:
         self.__date_list = date_list
         self.__insurance = insurance
         self.__card_info = card_info
+    
+    def get_ssn(self):
+        return self.__ssn
 
 # Setja get föll

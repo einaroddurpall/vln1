@@ -3,7 +3,14 @@ from repositories.DateRepository import DateRepository
 from services.CustomerService import CustomerService
 from models.Car import Car
 from datetime import datetime
-from services.OrderService import make_date_list
+
+def make_date_list(date1, date2):
+    date_list = []
+    date_to_list = date1
+    while date1 <= date2:
+        date_list.append(date_to_list)
+        date_to_list += timedelta(days=1)
+    return date_list
 
 class CarService:
 
