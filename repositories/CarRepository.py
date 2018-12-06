@@ -8,7 +8,7 @@ class CarRepository:
 
     def add_car(self, car):
         """Bæta bíl í .csv skrá fyrir viðeigandi bílaflokk og í bílalista flokksins"""
-        with open("./data/{}.csv".format(self.__name.lower()), "a") as cars_file:
+        with open("./data/{}.csv".format(self.__name.lower()), "a", encoding = "UTF-8") as cars_file:
             cars_file.write(car.__repr__() + '\n')
         self.__cars.append(car)
 
