@@ -67,7 +67,6 @@ class OrderService:
             if continue_q == "y":
                 step2 = True
             system('clear')
-            self.rent_car(car_type, date_list)
             return Order(ssn, car_type, date_list, insurance, card_info, car)
 
     def rent_car(self, car_type, date_list):

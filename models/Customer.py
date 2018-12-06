@@ -40,7 +40,7 @@ class Customer(Person):
         )
 
     def __str__(self):
-        return "Customer name: {}, SSN: {}, email: {}, gsm: {}, credit card information: {}, history: {}".format(
+        return "Nafn: {}\nKennitala: {}\nNetfang: {}\nSími: {}\nKortanúmer: {}\nSaga: {}".format(
             self._name, self._ssn, self.__email, self.__gsm, self.__card_info, self.__history
         )
 

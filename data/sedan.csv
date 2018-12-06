@@ -1,2 +1,4 @@
 Car('KJX-89','Sedan','Toyota Avencis','Manual',20000,True,'This car has no history of rental.')
 Car('ABC 57','Sedan','Benz GL','Automatic',67000,True,'This car has no history of rental.')
+Car('JJ-456','sedan','Toyota Avensis','Beinskiptur',200000,True,'Þessi bíll er með enga sögu.')
+Car('LL-999','sedan','Toyota Avensis','Sjálfskiptur',10000,True,'Þessi bíll er með enga sögu.')

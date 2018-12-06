@@ -26,5 +26,11 @@ class Order:
     def get_car(self):
         return self.__car
 
-    def update_info(self):
-        pass
+    # def update_info(self):
+    # choice = ""
+    # while choice != 6:
+    #     print("Hverju villtu breyta:\n1.  Kennitala\n2.  Flokkur bíls\n3.  Dagsetningar\n4.  Trygging\n5.  Kortanúmer\n6. Bíll")
+    #     choice = input()
+
+
+    #     return Customer(customer_info_list[0],customer_info_list[1],customer_info_list[2],customer_info_list[3],customer_info_list[4])
