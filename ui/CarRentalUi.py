@@ -73,6 +73,7 @@ class CarRentalUi:
                 print()
                 exit_info = input("Sláðu inn eitthvað til að fara heim: ")
             pass
+            
         elif action == "2":
             prompt += " / Skrá nýjan bíl"
             self.print_header(prompt)
@@ -81,7 +82,32 @@ class CarRentalUi:
             self.__CarService.car_register(new_car)
         elif action == "3":
             prompt += " / Skoða lausa bíla"
-            pass
+            self.print_header(prompt)
+            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+            car_busy_dict = self.__CarService.get_busy_cars(date1, date2)
+            all_car_dict = self.__CarService.make_all_cars_dict()
+            for key in all_car_dict:
+                for car in all_car_dict[key]:
+                    if car in car_busy_dict[key]:
+                        all_car_dict[key].remove(car)
+            question = input("Viltu leita af ákveðnari tegund (y/n)? ")
+            if question == "y":
+                car_type = input("Sláðu inn tegunds bíl :")
+                print(car_type[0].upper() + car_type[1:] + ":")
+                print("="*60)
+                for car_info in all_car_dict[car_type]:
+                    print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                print("="*60)
+            else:
+                for key,val in all_car_dict.items():
+                    print(key[0].upper() + key[1:] + ":")
+                    print("="*60)
+                    for car_info in val:
+                        print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                    print("="*60)
+            exit_info = input("Sláðu inn eitthvað til að fara heim: ")
+
         elif action == "4":
             prompt += " / Skoða bíla í útleigu"
             self.print_header(prompt)
