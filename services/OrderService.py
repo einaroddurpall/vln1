@@ -77,15 +77,15 @@ class OrderService:
     def rent_car(self, car_type, date_list):
         """ Þetta fall tekur á móti car_type og date_list, býr til carlist fyrir viðeigandi car_type og athugar hvort einhver
             bíll í þessum carlist sé laus á dögunum í date_list """
-        if car_type.lower() == "sedan":
+        if car_type.lower() == "fólksbíll":
             car_type_list = self.__CarService._car_repo_sedan.get_carlist()
-        elif car_type.lower() == "five seat suv":
+        elif car_type.lower() == "fimm sæta jeppi":
             car_type_list = self.__CarService._car_repo_five_seat_suv.get_carlist()
-        elif car_type.lower() == "minibus":
+        elif car_type.lower() == "smárúta":
             car_type_list = self.__CarService._car_repo_minibus.get_carlist()
-        elif car_type.lower() == "seven seat suv":
+        elif car_type.lower() == "sjö sæta jeppi":
             car_type_list = self.__CarService._car_repo_seven_seat_suv.get_carlist()
-        elif car_type.lower() == "small car":
+        elif car_type.lower() == "smábíll":
             car_type_list = self.__CarService._car_repo_small_car.get_carlist()
 
         date_repo = self.__CarService.get_date_repo()
