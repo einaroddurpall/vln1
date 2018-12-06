@@ -3,12 +3,13 @@ from datetime import timedelta
 from models.Car import Car
 from models.Customer import Customer
 from models.Order import Order
-     
+from repositories.DateRepository import DateRepository
 
 class OrderRepository:
 
     def __init__(self):
         self.__order_list = self.get_orders()
+        self.__date_repo = DateRepository()
     
     def get_orders(self):
         """Setur pantanir í lista"""
@@ -20,10 +21,17 @@ class OrderRepository:
         return order_list
     
     def add_order(self, order):
+<<<<<<< HEAD
         """Bætir við pöntun í pöntunarskjalið"""
         with open("./data/orders.csv", "a", encoding = "UTF-8") as order_file:
+=======
+        """Bætir við pöntun í pöntunarskjalið og setur bíl í DateRepository fyrir tímabilið"""
+        with open("./data/orders.csv", "a") as order_file:
+>>>>>>> afb8243ec8cb9e2acd404b736b77ebd25c576ac6
             order_file.write(order.__repr__() + '\n')
         self.__order_list.append(order)
+        for date in order.get_date_list():
+            self.__date_repo.add_car_to_date(date, order.get_car())
 
     def get_order_list(self):
         return self.__order_list
