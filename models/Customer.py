@@ -68,7 +68,7 @@ class Customer(Person):
     def customer_change_info(self, choice, customer_list):
         if choice == "1":
             change = make_name()
-            self.__name = change
+            self._name
         elif choice == "2":
             uniqe_ssn = False
             while not uniqe_ssn:
@@ -78,7 +78,7 @@ class Customer(Person):
                     if customer.get_ssn() == change:
                         print("Það er nú þegar viðskiptavinur með þessa kennitölu")
                         uniqe_ssn = False
-            self.__ssn = change
+            self._ssn = change
         elif choice == "3":
             change = make_email()
             self.__email = change
