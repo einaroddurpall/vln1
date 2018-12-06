@@ -1,3 +1,5 @@
+import string
+
 def make_car_type():
     valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta",]
     valid_car_type = False
@@ -84,7 +86,16 @@ class Car:
     
 
     def make_car(self):
-        registration_num = input("Bílnúmer: ")
+        while True:
+            registration_num = input("Bílnúmer: ")
+            if registration_num[0] in string.ascii_uppercase and registration_num[1] in string.ascii_uppercase\
+               and registration_num[2] == "-"\
+               and (registration_num[3] in string.ascii_uppercase or registration_num[3] in string.digits)\
+               and registration_num[4] in string.digits and registration_num[5] in string.digits:
+               break
+            else:
+                print("Bílnúmer er ekki til, vinsamlegast sláðu inn aftur")
+
         car_type = make_car_type()
         sub_type = input("Tegund bíls: ")
         transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
@@ -95,9 +106,18 @@ class Car:
             elif transmission == "2":
                 transmission = "Beinskiptur"
             else:
+                print("Villa, vinsamlegast veldu sjálfskiptan eða beinskiptan")
+                transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
                 continue
             valid_transmission = True
-        milage = input("Akstur: ")
+        valid_mileage = False
+        while valid_mileage != True: 
+            milage = input("Akstur: ")
+            try: 
+                int(milage)
+                valid_mileage = True
+            except: 
+                pass
         is_rentable = True
         history = ""
         new_car = Car(registration_num, car_type, sub_type, transmission, milage, is_rentable, history)
