@@ -10,20 +10,23 @@ class OrderRepository:
     def __init__(self):
         self.__order_list = self.get_orders()
         self.__date_repo = DateRepository()
+        self.__orders = 0
     
     def get_orders(self):
         """Setur pantanir í lista"""
         order_list = []
         with open("./data/orders.csv", encoding = "UTF-8") as order_file:
             for row in order_file:
-                order = eval(row.strip)
+                atrributes = row.split;
+                # order = eval(row.strip)
                 order_list.append(order)
         return order_list
     
     def add_order(self, order):
         """Bætir við pöntun í pöntunarskjalið"""
+        self.__orders += 1
         with open("./data/orders.csv", "a", encoding = "UTF-8") as order_file:
-            order_file.write(order.__repr__() + '\n')
+            order_file.write("Order: " + str(self.__orders) + order.__repr__() + '\n')
         self.__order_list.append(order)
         for date in order.get_date_list():
             self.__date_repo.add_car_to_date(date, order.get_car())

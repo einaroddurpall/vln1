@@ -29,7 +29,7 @@ class Order:
         return self.__card_info
 
     def __repr__(self):
-        return "Order('{}', '{}', '{}', '{}', '{}', '{}')".format(
+        return "'{}';'{}';'{}';'{}';'{}';'{}')".format(
             repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.get_insurance(), self.get_card_info()
         )
 

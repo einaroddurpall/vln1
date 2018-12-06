@@ -1,0 +1,1 @@
+Order('Customer('Jón Kristinn','0208982409','jon@gmail.com','5843254','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')', 'Car('AK-555','Smárúta','RISA bIll','Sjálfskiptur',60000,True,'This car has no history of rental.')', 'datetime.date(2018, 12, 12)', 'datetime.date(2018, 12, 14)', 'skyldu trygging', '1234567898765432')
