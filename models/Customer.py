@@ -45,14 +45,61 @@ class Customer(Person):
         )
 
     def make_customer(self):
-        done = False
-        while not done:
-            name = input("Nafn: ")
-            ssn = input("Kennitala: ")
-            email = input("Netfang: ")
-            gsm = input("Símanúmer: ")
-            card_info = input("Kortanúmer: ")
-            correct = input("Er allt rétt? (j/n) ").lower()
-            if correct == "j":
-                done = True
-        return Customer(name, ssn, email, gsm, card_info)
+        customer_info_list = ["","","","",""]
+        customer_info_list[0] = make_name()
+        customer_info_list[1] = input("Kennitala: ")
+        customer_info_list[2] = input("Netfang: ")
+        customer_info_list[3] = input("Símanúmer: ")
+        customer_info_list[4] = input("Kortanúmer: ")
+        correct = input("Er allt rétt? (j/n) ").lower()
+        if correct != "j":
+            choice = ""
+            while choice != 6:
+                print("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Kortanúmer\n6. Klára Skráningu")
+                choice = input()
+
+        return Customer(customer_info_list[0],customer_info_list[1],customer_info_list[2],customer_info_list[3],customer_info_list[4])
+
+def make_name():
+    legal_name = False
+    while not legal_name:
+        inp = input("Nafn: ")
+        for letter in inp:
+            try:
+                int(letter)
+                print("Nafnið inniheldur ólöglega stafi")
+                legal_name = False
+                break
+            except:
+                legal_name = True
+    return inp
+
+def make_ssn():
+    legal_ssn = False
+    while not legal_ssn:
+        inp = input("Kennitala: ")
+        ssn = ""
+        for letter in inp:
+            try:
+                int(letter)
+                ssn += letter
+            except:
+                continue
+        if len(ssn) == 10:
+            legal_ssn = True
+        else:
+            print("Kennitalan er ekki lögleg, reyndu aftur")
+    return ssn
+
+def make_email():
+    legal_email = False
+    while not legal_email:
+        inp = input("Netfang: ")
+        email = inp.split("@")
+        if len(email) == 2:
+            domain = email[1]
+            domain_list = domain.split(".")
+            if len(domain_list) == 2:
+                legal_email = True
+    return inp
+
