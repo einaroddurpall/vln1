@@ -8,10 +8,19 @@ from models.Car import Car, make_car_type
 from models.Customer import Customer
 from models.Car import make_car_type
 from models.Order import Order
+import string
 
 def make_date(a_date):
-    day, month, year = a_date.split(".")
+    new_string = ""
+    for letter in a_date:
+        if letter in string.digits:
+            new_string += letter
+    day = new_string[:2]
+    month = new_string[2:4]
+    year = new_string[4:]
     return date(int(year), int(month), int(day))
+
+
 
 class CarRentalUi:
 
@@ -87,54 +96,79 @@ class CarRentalUi:
         elif action == "3":
             prompt += " / Skoða lausa bíla"
             self.print_header(prompt)
-            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-            car_busy_dict = self.__CarService.get_busy_cars(date1, date2)
+            valid_date = False
+            while valid_date != True:
+                try:
+                    date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+                    date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+                    car_busy_dict = self.__CarService.get_busy_cars(date1, date2)
+                    valid_date = True
+                except: 
+                    print("Vinsamlegast sláðu inn gilda dagsetningu")
             all_car_dict = self.__CarService.make_all_cars_dict()
             for key in all_car_dict:
                 for car in all_car_dict[key]:
                     if car in car_busy_dict[key]:
                         all_car_dict[key].remove(car)
-            question = input("Viltu leita af ákveðnari tegund (j/n)? ")
-            if question == "j":
-                car_type = make_car_type()
-                print("{}:".format(car_type))
-                print("="*60)
-                for car_info in all_car_dict[car_type]:
-                    print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
-                print("="*60)
+            if all_car_dict:
+                question = input("Viltu leita af ákveðnari tegund (j/n)? ")
+                if question == "j":
+                    car_type = make_car_type()
+                    if car_type in all_car_dict.keys():
+                        print("{}:".format(car_type))
+                        print("="*60)
+                        for car_info in all_car_dict[car_type]:
+                            print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                        print("="*60)
+                    else:
+                        print("Enginn bíll laus í þessari bílategund á þessum tíma")
+
+                else:
+                    for key,val in all_car_dict.items():
+                        if all_car_dict[key] == []:
+                            continue
+                        print(key[0].upper() + key[1:] + ":")
+                        print("="*60)
+                        for car_info in val:
+                            print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                        print("="*60)
             else:
-                for key,val in all_car_dict.items():
-                    if all_car_dict[key] == []:
-                        continue
-                    print(key[0].upper() + key[1:] + ":")
-                    print("="*60)
-                    for car_info in val:
-                        print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
-                    print("="*60)
+                print("Enginn laus bíll á þessum tíma")
             exit_info = input("Sláðu inn eitthvað til að fara heim: ")
 
         elif action == "4":
             prompt += " / Skoða bíla í útleigu"
             self.print_header(prompt)
-            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-            car_info_dict = self.__CarService.get_busy_cars(date1, date2)
-            question = input("Viltu leita af ákveðnari tegund (j/n)? ")
-            if question == "j":
-                car_type = make_car_type()
-                print("{}:".format(car_type))
-                print("="*60)
-                for car_info in car_info_dict[car_type]:
-                    print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
-                print("="*60)
-            else:
-                for key,val in car_info_dict.items():
-                    print("{}:".format(key))
-                    print("="*60)
-                    for car_info in val:
-                        print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
-                    print("="*60)
+            valid_date = False
+            while valid_date != True:
+                try:
+                    date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+                    date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+                    car_info_dict = self.__CarService.get_busy_cars(date1, date2)
+                    valid_date = True
+                except: 
+                    print("Vinsamlegast sláðu inn gilda dagsetningu")
+            if car_info_dict:
+                question = input("Viltu leita af ákveðnari tegund (j/n)? ")
+                if question == "j":
+                    car_type = make_car_type()
+                    if car_type in car_info_dict.keys():
+                        print("{}:".format(car_type))
+                        print("="*60)
+                        for car_info in car_info_dict[car_type]:
+                            print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                        print("="*60)
+                    else:
+                        print("Enginn bíll í útleigu í þessari bílategund á þessum tíma")
+                else:
+                    for key,val in car_info_dict.items():
+                        print("{}:".format(key))
+                        print("="*60)
+                        for car_info in val:
+                            print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                        print("="*60)
+            else: 
+                print("Enginn bíll í útleigu á þessum tíma")
             exit_info = input("Sláðu inn eitthvað til að fara heim: ")
 
     def customer_menu(self, prompt):
