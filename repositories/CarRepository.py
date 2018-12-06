@@ -8,14 +8,14 @@ class CarRepository:
 
     def add_car(self, car):
         """Bæta bíl í .csv skrá fyrir viðeigandi bílaflokk og í bílalista flokksins"""
-        with open("./data/{}.csv".format(self.__name.lower()), "a") as cars_file:
+        with open("./data/{}.csv".format(self.__name.lower()), "a", encoding = "UTF-8") as cars_file:
             cars_file.write(car.__repr__() + '\n')
         self.__cars.append(car)
 
     def get_cars(self):
         """Ná í alla bíla úr viðeigandi bílaflokk"""
         cars = []
-        with open("./data/{}.csv".format(self.__name.lower())) as cars_file:
+        with open("./data/{}.csv".format(self.__name.lower()), encoding = "UTF-8") as cars_file:
             for row in cars_file.readlines():
                 car = eval(row.strip())
                 cars.append(car)

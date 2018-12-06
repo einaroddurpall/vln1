@@ -14,7 +14,7 @@ class OrderRepository:
     def get_orders(self):
         """Setur pantanir í lista"""
         order_list = []
-        with open("./data/orders.csv") as order_file:
+        with open("./data/orders.csv", encoding = "UTF-8") as order_file:
             for row in order_file:
                 order = eval(row.strip)
                 order_list.append(order)
@@ -22,7 +22,7 @@ class OrderRepository:
     
     def add_order(self, order):
         """Bætir við pöntun í pöntunarskjalið og setur bíl í DateRepository fyrir tímabilið"""
-        with open("./data/orders.csv", "a") as order_file:
+        with open("./data/orders.csv", "a", encoding = "UTF-8") as order_file:
             order_file.write(order.__repr__() + '\n')
         self.__order_list.append(order)
         for date in order.get_date_list():
