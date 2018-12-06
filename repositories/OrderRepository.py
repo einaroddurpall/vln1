@@ -21,13 +21,8 @@ class OrderRepository:
         return order_list
     
     def add_order(self, order):
-<<<<<<< HEAD
         """Bætir við pöntun í pöntunarskjalið"""
         with open("./data/orders.csv", "a", encoding = "UTF-8") as order_file:
-=======
-        """Bætir við pöntun í pöntunarskjalið og setur bíl í DateRepository fyrir tímabilið"""
-        with open("./data/orders.csv", "a") as order_file:
->>>>>>> afb8243ec8cb9e2acd404b736b77ebd25c576ac6
             order_file.write(order.__repr__() + '\n')
         self.__order_list.append(order)
         for date in order.get_date_list():
