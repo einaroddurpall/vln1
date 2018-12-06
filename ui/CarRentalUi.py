@@ -73,7 +73,7 @@ class CarRentalUi:
                 print()
                 exit_info = input("Sláðu inn eitthvað til að fara heim: ")
             pass
-            
+
         elif action == "2":
             prompt += " / Skrá nýjan bíl"
             self.print_header(prompt)
@@ -101,6 +101,8 @@ class CarRentalUi:
                 print("="*60)
             else:
                 for key,val in all_car_dict.items():
+                    if all_car_dict[key] == []:
+                        continue
                     print(key[0].upper() + key[1:] + ":")
                     print("="*60)
                     for car_info in val:
@@ -138,20 +140,19 @@ class CarRentalUi:
         if action == "1":
             prompt += " / Leita að viðskiptavin"
             self.print_header(prompt)
-            ssn = input("Sláðu inn kennitölu: ")
+            ssn = input("Kennitala: ")
             customer = self.__CustomerService.check_ssn(ssn)
             system('clear')
             self.print_header(prompt)
             print(customer, end="")
-            print()
             choice = ""
             if customer != 'Viðskiptavinur er ekki í kerfinu.':
                 while choice is not "4":
-                    choice = input("1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Heimasíða\n")
+                    choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Heimasíða\n")
                     if choice == "1":
                         prompt += " / Sjá pantanir"
                         self.print_header(prompt)
-                        #Vantar fall til að afskrá viðskiptavin
+                        #Vantar fall til að sjá pantanir
                     elif choice == "2":
                         prompt += " / Breyta skráningu"
                         self.print_header(prompt)
@@ -174,17 +175,12 @@ class CarRentalUi:
             prompt += " / Skoða pöntun"
             self.print_header(prompt)
             order_num = input("Pöntunarnúmer: ")
-            self.__OrderService
-            pass
+            # self.__OrderService
         elif action == "2":
             prompt += " / Skrá nýja pöntun"
             self.print_header(prompt)
-            new_order = self.__OrderService.make_order_info()
-            if new_order:
-                input("Pöntun skráð.")
-            else:
-                input("Enginn bíll með þessi skilyrði fannst.")
-            pass
+            self.__OrderService.make_order_info()
+            input("Pöntun skráð.")
             
         elif action == "3":
             prompt += " / Skila bíl"
