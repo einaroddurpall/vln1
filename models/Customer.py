@@ -5,7 +5,7 @@ class Customer(Person):
     takes in name, ssn. email, gsm, history
     and the name and ssn get's sent to person parent class"""
 
-    def __init__ (self,name="", ssn="", email="", gsm="", history = ""):
+    def __init__ (self,name="", ssn="", email="", gsm="", history=""):
         Person.__init__(self, name, ssn)
         self.__email = email
         self.__gsm = gsm
@@ -22,7 +22,7 @@ class Customer(Person):
     def get_gsm(self):
         return self.__gsm
 
-    def update_cutomer_info (self, history):
+    def update_cutomer_history (self, history):
         """function that creates a history or adds
         new history to the old one with an enter between it"""
         self.__history += history + "\n"
@@ -44,28 +44,36 @@ class Customer(Person):
     def make_customer(self, customer_list):
         for number in range(1, 5):
             number = str(number)
-            self.customer_change_info(number, customer_list)
-        correct = input("Er allt rétt? (j/n) ").lower()
-        if correct != "j":
-            choice = ""
-            while choice != "6":
-                print("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu")
-                legal_choice = False
-                while not legal_choice:
-                    choice = input()
-                    try:
-                        if int(choice) in range(1,6):
-                            legal_choice = True
-                        else:
-                            print("Ekki valmöguleiki, veldu aftur")
-                    except:
+            self.change_info(number, customer_list)
+        done = False
+        while not done:
+            correct = input("Er allt rétt? (j/n) ").lower()
+            if correct != "j":
+                self.customer_change_info(customer_list)
+            else:
+                done = True
+
+    def customer_change_info(self, customer_list):
+        correct = False
+        while not correct:
+            print("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu")
+            legal_choice = False
+            while not legal_choice:
+                choice = input()
+                try:
+                    if int(choice) in range(1,6):
+                        legal_choice = True
+                    else:
                         print("Ekki valmöguleiki, veldu aftur")
-                self.customer_change_info(number, customer_list)
+                except:
+                    print("Ekki valmöguleiki, veldu aftur")
+            if choice == "5":
+                break
+            self.change_info(choice, customer_list)
         
-    def customer_change_info(self, choice, customer_list):
+    def change_info(self, choice, customer_list):
         if choice == "1":
-            change = make_name()
-            self._name = change
+            self.make_name()
         elif choice == "2":
             uniqe_ssn = False
             while not uniqe_ssn:
@@ -77,25 +85,38 @@ class Customer(Person):
                         uniqe_ssn = False
             self._ssn = change
         elif choice == "3":
-            change = make_email()
-            self.__email = change
+            self.make_email()
         elif choice == "4":
             change = make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
             self.__gsm = change
 
-def make_name():
-    legal_name = False
-    while not legal_name:
-        inp = input("Nafn: ")
-        for letter in inp:
-            try:
-                int(letter)
-                print("Nafnið inniheldur ólöglega stafi")
-                legal_name = False
-                break
-            except:
-                legal_name = True
-    return inp
+    def make_name(self):
+        legal_name = False
+        while not legal_name:
+            name = input("Nafn: ")
+            for letter in name:
+                try:
+                    int(letter)
+                    print("Nafnið inniheldur ólöglega stafi")
+                    legal_name = False
+                    break
+                except:
+                    legal_name = True
+        self._name = name
+
+    def make_email(self):
+        legal_email = False
+        while not legal_email:
+            email = input("Netfang: ")
+            email_split = email.split("@")
+            if len(email_split) == 2:
+                domain = email_split[1]
+                domain_list = domain.split(".")
+                if len(domain_list) == 2:
+                    legal_email = True
+                else:
+                    print("Ólöglegt netfang, reyndu aftur.")
+        self.__email = email
 
 def make_number(lenght_of_number, input_string, error_code_str):
     legal_ssn = False
@@ -113,15 +134,3 @@ def make_number(lenght_of_number, input_string, error_code_str):
         else:
             print(error_code_str)
     return ssn
-
-def make_email():
-    legal_email = False
-    while not legal_email:
-        inp = input("Netfang: ")
-        email = inp.split("@")
-        if len(email) == 2:
-            domain = email[1]
-            domain_list = domain.split(".")
-            if len(domain_list) == 2:
-                return inp
-        print("Ólöglegt netfang, reyndu aftur.")

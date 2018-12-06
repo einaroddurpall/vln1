@@ -34,7 +34,7 @@ class OrderService:
         self.__CustomerService = CustomerService()
         self.__CarService = CarService()
         self.__car = None
-        self.__order_num = 1
+        #self.__order_num = 1
 
     def make_date(self, a_date):
         day, month, year = a_date.split(".")
@@ -86,8 +86,8 @@ class OrderService:
             if continue_q == "y":
                 step2 = True
             system('clear')
-            new_order = Order(customer, car, date_list, insurance, card_info, self.__order_num)
-            self.__order_num += 1
+            new_order = Order(customer, car, date_list, insurance, card_info) #"Order " + str(self.__order_num))
+            #self.__order_num += 1
             self.__OrderRepo.add_order(new_order)
 
     def rent_car(self, car_type, date_list):

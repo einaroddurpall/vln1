@@ -1,5 +1,7 @@
-<<<<<<< HEAD
 Customer('Hilmar Pall','0408982349','hilmarpall98@hotmail.com','8451289','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
-=======
 Customer('Einar Oddur Páll Rúnarsson','2505983519','einaropr@gmail.com	','8662282','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
->>>>>>> 2428e1060f91d46947bd3df59aa1e6d3d59c666c
+Customer('Gummi Hauks','0208982409','kallinn@hotmail.com','5847382','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
+Customer('Jón Kristinn Þórðarson','2107982349','jonkrona@gmail.com','8201580','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
+Customer('Afi','3322111234','afi@amma.is','1238008','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
+Customer('Hylmar Páll Stevánsson','0607982349','hylmarskrifagott@live.com','5812345','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
+
