@@ -1,2 +1,2 @@
-Car('KJ-X89','small car','Toyota Yaris','Beinskiptur',45000,True,'This car has no history of rental.')
-Car('MM-555','small car','Toyota Auris','Sjálfskiptur',60000,True,'This car has no history of rental.')
+Car('KJ-X89','Smábíll','Toyota Yaris','Beinskiptur',45000,True,'This car has no history of rental.')
+Car('MM-555','Smábíll','Toyota Auris','Sjálfskiptur',60000,True,'This car has no history of rental.')

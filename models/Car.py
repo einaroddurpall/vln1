@@ -1,5 +1,5 @@
 def make_car_type():
-    valid_car_types = ["sedan", "small car","five seat suv","seven seat suv","minibus",]
+    valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta",]
     valid_car_type = False
     while valid_car_type is False:
         print("Flokkur bíls:")

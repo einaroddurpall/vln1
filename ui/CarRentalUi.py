@@ -91,24 +91,14 @@ class CarRentalUi:
             question = input("Viltu leita af ákveðnari tegund (j/n)? ")
             if question == "j":
                 car_type = make_car_type()
-                if car_type == "sedan":
-                    ice_car_type = "Fólksbíll"
-                elif car_type == "small car":
-                    ice_car_type = "Smábíll"
-                elif car_type == "five seat suv":
-                    ice_car_type = "Fimm sæta jeppi"
-                elif car_type == "seven seat suv":
-                    ice_car_type = "Sjö sæta jeppi"
-                elif car_type == "minibus":
-                    ice_car_type = "Smárúta"
-                print("{}:".format(ice_car_type))
+                print("{}:".format("{}:".format(car_type)))
                 print("="*60)
                 for car_info in car_info_dict[car_type]:
                     print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
                 print("="*60)
             else:
                 for key,val in car_info_dict.items():
-                    print(key[0].upper() + key[1:] + ":")
+                    print("{}:".format(key))
                     print("="*60)
                     for car_info in val:
                         print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
