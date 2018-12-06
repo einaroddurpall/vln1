@@ -20,8 +20,22 @@ class CarService:
         self.__car_repo_seven_seat_suv = CarRepository("seven_seat_suv")
         self.__car_repo_five_seat_suv = CarRepository("five_seat_suv")
         self.__car_repo_small_car = CarRepository("small_car")
+        self.__all_cars_list = self.make_all_cars_list()
         self.__customer_service = CustomerService()
         self.__date_repo = DateRepository()
+
+    def make_all_cars_list(self):
+        car_repo_list = [self.__car_repo_sedan, self.__car_repo_minibus, self.__car_repo_seven_seat_suv,
+        self.__car_repo_five_seat_suv, self.__car_repo_small_car]
+        all_cars_list = []
+        for car_repo in car_repo_list:
+            car_type_list = car_repo.get_carlist()
+            for car in car_type_list:
+                all_cars_list.append(car)
+        return all_cars_list
+
+    def get_all_cars_list(self):
+        return self.__all_cars_list
 
     def get_date_repo(self):
         return self.__date_repo
@@ -39,21 +53,10 @@ class CarService:
             self.__car_repo_seven_seat_suv.add_car(car)
         elif car_type.lower() == "small car":
             self.__car_repo_small_car.add_car(car)
+        all_cars_list.append(car)
     
     def car_find(self, registration_num):
-        for car in self.__car_repo_five_seat_suv.get_carlist():
-            if car.get_registration_num() == registration_num:
-                return car
-        for car in self.__car_repo_seven_seat_suv.get_carlist():
-            if car.get_registration_num() == registration_num:
-                return car
-        for car in self.__car_repo_small_car.get_carlist():
-            if car.get_registration_num() == registration_num:
-                return car
-        for car in self.__car_repo_sedan.get_carlist():
-            if car.get_registration_num() == registration_num:
-                return car
-        for car in self.__car_repo_minibus.get_carlist():
+        for car in self.__all_cars_list:
             if car.get_registration_num() == registration_num:
                 return car
         return "Bíll fannst ekki"
