@@ -40,10 +40,6 @@
 2018-12-01;Car('AK-555','Smárúta','RISA bIll','Sjálfskiptur',60000,True,'This car has no history of rental.')
 2018-12-02;Car('AK-555','Smárúta','RISA bIll','Sjálfskiptur',60000,True,'This car has no history of rental.')
 2018-12-03;Car('AK-555','Smárúta','RISA bIll','Sjálfskiptur',60000,True,'This car has no history of rental.')
-<<<<<<< HEAD
-2018-12-10;Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
-2018-12-11;Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
-=======
 2018-01-23;Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
 2018-01-24;Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
 2018-03-12;Car('KJ-X89','Smábíll','Toyota Yaris','Beinskiptur',45000,True,'This car has no history of rental.')
@@ -69,4 +65,3 @@
 2018-01-01;Car('AK-555','Smárúta','RISA bIll','Sjálfskiptur',60000,True,'This car has no history of rental.')
 2018-01-02;Car('AK-555','Smárúta','RISA bIll','Sjálfskiptur',60000,True,'This car has no history of rental.')
 2018-01-03;Car('AK-555','Smárúta','RISA bIll','Sjálfskiptur',60000,True,'This car has no history of rental.')
->>>>>>> d742cc9c8dfa332dc02f5d569e5abea2d5be7811
