@@ -7,6 +7,10 @@ from services.CarService import CarService
 from time import sleep
 from datetime import date
 
+def make_date(a_date):
+    day, month, year = a_date.split(".")
+    return date(int(year), int(month), int(day))
+
 def make_date_list(date1, date2):
     date_list = []
     date_to_list = date1
@@ -37,8 +41,8 @@ class OrderService:
         step1 = False
         while step1 is not True:
             car_type = make_car_type()
-            date1 = input("Afhendingardagur (DD.MM.YYYY): ")
-            date2 = input("Skiladagur (DD.MM.YYYY): ")
+            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
             date_list = make_date_list(date1, date2)
             self.car = self.rent_car(car_type, date_list)
             if self.car:
@@ -56,9 +60,9 @@ class OrderService:
         while step2 is not True:
             number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
             if number == "1":
-                insurance = "basic"
+                insurance = "skyldu trygging"
             else:
-                insurance = "extra"
+                insurance = "aukaleg trygging"
             card_info = input("Kortanúmer: ")
             continue_q = input("Halda áfram? (y/n) ").lower()
             if continue_q == "y":
