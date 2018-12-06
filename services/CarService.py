@@ -64,15 +64,16 @@ class CarService:
         in and dosent repeat the cars."""
         list_of_days = make_date_list(date1, date2)
         car_info_dict = self.__date_repo.get_date_dict()
-        car_info_list = []
+        car_type_info_dict = {}
         car_licence_list = []
         for date in list_of_days:
             if date in car_info_dict:
                 car_list = car_info_dict[date]
                 for car in car_list:
-                    if car.get_registration_num() not in car_licence_list:
-                        car_licence_list.append(car.get_registration_num())
-                        car_info_list.append(car)
+                    car_licence = car.get_registration_num()
+                    if car_licence not in car_licence_list:
+                        car_licence_list.append(car_licence)
+                        car_type_info_dict[car.get_car_type()] = car_type_info_dict.get(car.get_car_type(), []) + [[car_licence, car.get_sub_type(), car.get_milage(), car.get_transmission()]]
+        return car_type_info_dict
 
-        return car_info_list
 
