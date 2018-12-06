@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-Car('KJX-89','Fólksbíll','Toyota Avencis','Beinskiptur',20000,True,'This car has no history of rental.')
-Car('ABC 57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
-=======
 Car('KJ-X89','Fólksbíll','Toyota Avensis','Beinskiptur',20000,True,'This car has no history of rental.')
 Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
->>>>>>> d0abb5ffb6c0ce1560146c3eb4923e8cde4d145e
 Car('QQ-111','Fólksbíll','Toyo','Sjálfskiptur',2000,True,'Þessi bíll er með enga sögu.')
 Car('QQ-222','Fólksbíll','Toyo','Sjálfskiptur',2000,True,'Þessi bíll er með enga sögu.')
 Car('BB-444','Fólksbíll','Toyo','Sjálfskiptur',4000,True,'Þessi bíll er með enga sögu.')
-<<<<<<< HEAD
-=======
 Car('RZ-553','Fólksbíll','Merzedes Bens C300','Beinskiptur',45000,True,'This car has no history of rental.')
 Car('PR-666','Fólksbíll','Ford Focus','Beinskiptur',45000,True,'This car has no history of rental.')
 Car('KJ-X81','Fólksbíll','Toyota Avensis','Beinskiptur',45000,True,'This car has no history of rental.')
->>>>>>> d0abb5ffb6c0ce1560146c3eb4923e8cde4d145e
