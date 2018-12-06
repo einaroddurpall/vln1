@@ -79,6 +79,10 @@ class CarRentalUi:
             self.print_header(prompt)
             new_car = Car()
             new_car = new_car.make_car()
+            system('clear')
+            self.print_header(prompt)
+            print("Bíll skráður í kerfið")
+            sleep(3)
             self.__CarService.car_register(new_car)
         elif action == "3":
             prompt += " / Skoða lausa bíla"
@@ -135,38 +139,44 @@ class CarRentalUi:
 
     def customer_menu(self, prompt):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma viðskiptavinum við """
-        self.print_header(prompt)
-        action = input("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin\n")
-        if action == "1":
-            prompt += " / Leita að viðskiptavin"
+        done = False
+        while not done:
             self.print_header(prompt)
-            ssn = input("Sláðu inn kennitölu: ")
-            customer = self.__CustomerService.check_ssn(ssn)
-            system('clear')
-            self.print_header(prompt)
-            print(customer, end="")
-            print()
-            choice = ""
-            if customer != 'Viðskiptavinur er ekki í kerfinu.':
-                while choice is not "4":
-                    choice = input("1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Heimasíða\n")
-                    if choice == "1":
-                        prompt += " / Sjá pantanir"
-                        self.print_header(prompt)
-                        #Vantar fall til að afskrá viðskiptavin
-                    elif choice == "2":
-                        prompt += " / Breyta skráningu"
-                        self.print_header(prompt)
-                        customer.customer_change_info()
-                    elif choice == "3":
-                        prompt += " / Afskrá viðskiptavin"
-                        self.print_header(prompt)
-                        # Vantar fall til að afskrá viðskiptavin
+            action = input("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin\n")
+            if action == "1":
+                prompt += " / Leita að viðskiptavin"
+                self.print_header(prompt)
+                ssn = input("Kennitala: ")
+                customer = self.__CustomerService.check_ssn(ssn)
+                system('clear')
+                self.print_header(prompt)
+                choice = ""
+                if customer:
+                    while choice is not "4":
+                        print(customer)
+                        choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Heimasíða\n")
+                        if choice == "1":
+                            prompt += " / Sjá pantanir"
+                            self.print_header(prompt)
+                            #Vantar fall til að sjá pantanir
+                        elif choice == "2":
+                            prompt += " / Breyta skráningu"
+                            self.print_header(prompt)
+                            customer.customer_change_info()
+                        elif choice == "3":
+                            prompt += " / Afskrá viðskiptavin"
+                            self.print_header(prompt)
+                            # Vantar fall til að afskrá viðskiptavin
+                else:
+                    choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Heimasíða'.format(ssn))
+                    if choice == "2":
+                        done = True
 
-        elif action == "2":
-            prompt += " / Skrá nýjan viðskiptavin"
-            self.print_header(prompt)
-            self.__CustomerService.customer_register()
+            elif action == "2":
+                prompt += " / Skrá nýjan viðskiptavin"
+                self.print_header(prompt)
+                self.__CustomerService.customer_register()
+                done = True
 
     def order_menu(self, prompt):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma pöntunum við """
@@ -176,17 +186,12 @@ class CarRentalUi:
             prompt += " / Skoða pöntun"
             self.print_header(prompt)
             order_num = input("Pöntunarnúmer: ")
-            self.__OrderService
-            pass
+            # self.__OrderService
         elif action == "2":
             prompt += " / Skrá nýja pöntun"
             self.print_header(prompt)
-            new_order = self.__OrderService.make_order_info()
-            if new_order:
-                input("Pöntun skráð.")
-            else:
-                input("Enginn bíll með þessi skilyrði fannst.")
-            pass
+            self.__OrderService.make_order_info()
+            input("Pöntun skráð.")
             
         elif action == "3":
             prompt += " / Skila bíl"

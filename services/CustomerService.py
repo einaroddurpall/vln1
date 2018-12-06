@@ -20,4 +20,3 @@ class CustomerService:
         for customer in customers:
             if customer.get_ssn() == ssn:
                 return customer
-        return 'Viðskiptavinur er ekki í kerfinu.'

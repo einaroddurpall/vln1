@@ -36,7 +36,8 @@ class OrderService:
         ssn = input("Kennitala viðskiptavinar: ")
         valid_ssn = False
         while valid_ssn is not True:
-            if self.__CustomerService.check_ssn(ssn):
+            customer = self.__CustomerService.check_ssn(ssn)
+            if customer:
                 valid_ssn = True
             else:
                 ssn = input("Kennitala ekki á skrá\nKennitala viðskiptavinar\n")
@@ -70,9 +71,8 @@ class OrderService:
             if continue_q == "y":
                 step2 = True
             system('clear')
-            new_order = Order(ssn, date_list, insurance, card_info, car)
-            # self.__OrderRepo.XX(new_order)
-            return new_order
+            new_order = Order(customer, car, date_list, insurance, card_info)
+            self.__OrderRepo.add_order(new_order)
 
     def rent_car(self, car_type, date_list):
         """ Þetta fall tekur á móti car_type og date_list, býr til carlist fyrir viðeigandi car_type og athugar hvort einhver

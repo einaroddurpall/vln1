@@ -15,7 +15,7 @@ class CarRepository:
     def get_cars(self):
         """Ná í alla bíla úr viðeigandi bílaflokk"""
         cars = []
-        with open("./data/{}.csv".format(self.__name.lower())) as cars_file:
+        with open("./data/{}.csv".format(self.__name.lower()), encoding = "UTF-8") as cars_file:
             for row in cars_file.readlines():
                 car = eval(row.strip())
                 cars.append(car)
