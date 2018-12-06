@@ -1,7 +1,1 @@
-Customer('Jón Helgason','250598-3519','jon_helga@gmail.com','6654343','111111222','This customer has no history of rental.')
-Customer('Björgvin','1509982710','bjoggi@gmail.com','38924893829432','1234567891012134','This customer has no history of rental.')
-<<<<<<< HEAD
-Customer('J','2107982349','ab@ab.com','8201580','4321567896321478','�essi vi�skiptavinur hefur aldrei teki� b�l � leigu.')
-=======
-Customer('Stjáni Blái','24.12.1998','stjani_blai@flatkaka.is','5812345','123456789','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
->>>>>>> a5916fc30b2257fed566bc8ddbe3657c99a3ef80
+Customer('Einar Oddur Páll Rúnarsson','2505983519','aaa@gmail.is','8222222','1111111111111111','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
