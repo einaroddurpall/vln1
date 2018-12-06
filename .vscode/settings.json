@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
     "python.pythonPath": "C:\\Users\\Totason\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe"
+=======
+    "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3"
+>>>>>>> 85cd6de574c88c33009c1cc8feef4badcc3eb761
 }
