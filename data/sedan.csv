@@ -7,7 +7,3 @@ Car('BB-444','Fólksbíll','Toyo','Sjálfskiptur',4000,True,'Þessi bíll er me�
 Car('RZ-553','Fólksbíll','Merzedes Bens C300','Beinskiptur',45000,True,'This car has no history of rental.')
 Car('PR-666','Fólksbíll','Ford Focus','Beinskiptur',45000,True,'This car has no history of rental.')
 Car('KJ-X81','Fólksbíll','Toyota Avensis','Beinskiptur',45000,True,'This car has no history of rental.')
-<<<<<<< HEAD
-Car('BB-234','Fólksbíll','Toyo','Sjálfskiptur',2500,True,'Þessi bíll er með enga sögu.')
-=======
->>>>>>> afb8243ec8cb9e2acd404b736b77ebd25c576ac6
