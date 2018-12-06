@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 Car('KJX-89','Sedan','Toyota Avencis','Manual',20000,True,'This car has no history of rental.')
 Car('ABC 57','Sedan','Benz GL','Automatic',67000,True,'This car has no history of rental.')
 Car('JJ-456','sedan','Toyota Avensis','Beinskiptur',200000,True,'Þessi bíll er með enga sögu.')
 Car('LL-999','sedan','Toyota Avensis','Sjálfskiptur',10000,True,'Þessi bíll er með enga sögu.')
+=======
+Car('KJX-89','Fólksbíll','Toyota Avencis','Beinskiptur',20000,True,'This car has no history of rental.')
+Car('ABC 57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
+Car('QQ-111','Fólksbíll','Toyo','Sjálfskiptur',2000,True,'Þessi bíll er með enga sögu.')
+Car('QQ-222','Fólksbíll','toyo','Sjálfskiptur',2000,True,'Þessi bíll er með enga sögu.')
+Car('BB-444','Fólksbíll','Toyo','Sjálfskiptur',4000,True,'Þessi bíll er með enga sögu.')
+>>>>>>> 99a5eef1c4df098706c49a59903cd7dedb7e307b
