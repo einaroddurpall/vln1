@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 Car('ABC 57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
->>>>>>> 1b6472d2ab40d3a536a0761eff8be2eeb2f3c2de
 Car('KJ-X89','Fólksbíll','Toyota Avensis','Beinskiptur',20000,True,'This car has no history of rental.')
 Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
 Car('QQ-111','Fólksbíll','Toyo','Sjálfskiptur',2000,True,'Þessi bíll er með enga sögu.')

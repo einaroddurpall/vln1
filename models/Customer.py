@@ -42,19 +42,19 @@ class Customer(Person):
         )
 
     def make_customer(self, customer_list):
-        for number in range(1, 6):
+        for number in range(1, 5):
             number = str(number)
             self.customer_change_info(number, customer_list)
         correct = input("Er allt rétt? (j/n) ").lower()
         if correct != "j":
             choice = ""
             while choice != "6":
-                print("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Kortanúmer\n6. Klára Skráningu")
+                print("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
                     choice = input()
                     try:
-                        if int(choice) in range(1,7):
+                        if int(choice) in range(1,6):
                             legal_choice = True
                         else:
                             print("Ekki valmöguleiki, veldu aftur")
@@ -82,13 +82,6 @@ class Customer(Person):
         elif choice == "4":
             change = make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
             self.__gsm = change
-<<<<<<< HEAD
-=======
-        elif choice == "5":
-            change = make_number(16, "Kortanúmer: ", "Þetta kortanúmer var ólöglegt, reyndu aftur.")
-            self.__card_info = change
-                
->>>>>>> 203c2268a6b164d870bd5e7ddb42ec566e54a842
 
 def make_name():
     legal_name = False
