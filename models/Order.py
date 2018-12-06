@@ -33,7 +33,7 @@ class Order:
         return self.__order_num
 
     def __repr__(self):
-        return "'{}';'{}';'{}';'{}';'{}';'{}';'{}')".format(
+        return "{};'{}';'{}';'{}';'{}';'{}';'{}')".format(
             str(self.get_order_num()),repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.get_insurance(), self.get_card_info()
         )
 
