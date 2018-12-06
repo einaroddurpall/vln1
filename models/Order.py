@@ -10,4 +10,17 @@ class Order:
     def get_ssn(self):
         return self.__ssn
 
-# Setja get föll
+    def get_car_type(self):
+        return self.__car_type
+
+    def get_date_list(self):
+        return self.__date_list
+
+    def get_insurance(self):
+        return self.__insurance
+
+    def get_car_infro(self):
+        return self.__card_info
+
+    def update_info(self):
+        pass
