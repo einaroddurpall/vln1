@@ -1,11 +1,12 @@
 class Order:
 
-    def __init__(self, customer="", car="", date_list=[], insurance="", card_info=""):
+    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_num=0):
         self.__customer = customer
         self.__car = car
         self.__date_list = date_list
         self.__insurance = insurance
         self.__card_info = card_info
+        self.__order_num = order_num
     
     def get_customer(self):
         return self.__customer
@@ -27,6 +28,9 @@ class Order:
 
     def get_card_info(self):
         return self.__card_info
+
+    def get_order_num(self):
+        return self.__order_num
 
     def __repr__(self):
         return "Order('{}', '{}', '{}', '{}', '{}', '{}')".format(
