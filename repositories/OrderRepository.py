@@ -16,7 +16,7 @@ class OrderRepository:
         order_list = []
         with open("./data/orders.csv", encoding = "UTF-8") as order_file:
             for row in order_file:
-                order = eval(row.strip)
+                order = eval(row.strip())
                 order_list.append(order)
         return order_list
     

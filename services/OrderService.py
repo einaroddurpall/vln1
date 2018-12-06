@@ -7,9 +7,16 @@ from services.CarService import CarService
 from time import sleep
 from datetime import date
 from repositories.OrderRepository import OrderRepository
+import string
 
 def make_date(a_date):
-    day, month, year = a_date.split(".")
+    new_string = ""
+    for letter in a_date:
+        if letter in string.digits:
+            new_string += letter
+    day = new_string[:2]
+    month = new_string[2:4]
+    year = new_string[4:]
     return date(int(year), int(month), int(day))
 
 def make_date_list(date1, date2):
@@ -26,7 +33,8 @@ class OrderService:
         self.__OrderRepo = OrderRepository()
         self.__CustomerService = CustomerService()
         self.__CarService = CarService()
-        self.car = None
+        self.__car = None
+        self.__order_num = 1
 
     def make_date(self, a_date):
         day, month, year = a_date.split(".")
@@ -44,9 +52,16 @@ class OrderService:
         step1 = False
         while step1 is not True:
             car_type = make_car_type()
-            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-            date_list = make_date_list(date1, date2)
+            valid_date = False
+            while valid_date != True:
+                try:
+                    date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+                    date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+                    date_list = make_date_list(date1, date2)
+                    valid_date = True
+                except: 
+                    print("Vinsamlegast sláðu inn gilda dagsetningu")
+                    
             car = self.rent_car(car_type, date_list)
             if car:
                 continue_q = input("Halda áfram? (y/n) ").lower()
@@ -71,7 +86,8 @@ class OrderService:
             if continue_q == "y":
                 step2 = True
             system('clear')
-            new_order = Order(customer, car, date_list, insurance, card_info)
+            new_order = Order(customer, car, date_list, insurance, card_info, self.__order_num)
+            self.__order_num += 1
             self.__OrderRepo.add_order(new_order)
 
     def rent_car(self, car_type, date_list):

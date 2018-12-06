@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Customer('Hilmar Pall','0408982349','hilmarpall98@hotmail.com','8451289','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
+=======
+Customer('Einar Oddur Páll Rúnarsson','2505983519','einaropr@gmail.com	','8662282','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
+>>>>>>> 2428e1060f91d46947bd3df59aa1e6d3d59c666c
