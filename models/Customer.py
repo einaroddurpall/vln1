@@ -44,11 +44,11 @@ class Customer(Person):
             self._name, self._ssn, self.__email, self.__gsm, self.__card_info, self.__history
         )
 
-    def make_customer(self):
+    def make_customer(self, customer_list):
         customer_info_list = ["","","","",""]
         for number in range(1, 6):
             number = str(number)
-            customer_change_info(number, customer_info_list, self.__customer_repo.get_customers_list())
+            customer_change_info(number, customer_info_list, customer_list)
         correct = input("Er allt rétt? (j/n) ").lower()
         if correct != "j":
             choice = ""
@@ -64,7 +64,7 @@ class Customer(Person):
                             print("Ekki valmöguleiki, veldu aftur")
                     except:
                         print("Ekki valmöguleiki, veldu aftur")
-                customer_change_info(number, customer_info_list, self.__customer_repo.get_customers_list())
+                customer_change_info(number, customer_info_list, customer_list)
                 
 
         return Customer(customer_info_list[0],customer_info_list[1],customer_info_list[2],customer_info_list[3],customer_info_list[4])
