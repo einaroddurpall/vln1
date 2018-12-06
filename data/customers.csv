@@ -1,1 +1,9 @@
+<<<<<<< HEAD
+Customer('Jón Helgason','250598-3519','jon_helga@gmail.com','6654343','111111222','This customer has no history of rental.')
+Customer('Björgvin','1509982710','bjoggi@gmail.com','38924893829432','1234567891012134','This customer has no history of rental.')
+Customer('Stjáni Blái','24.12.1998','stjani_blai@flatkaka.is','5812345','123456789','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
 Customer('Einar Oddur Páll Rúnarsson','2505983519','aaa@gmail.is','8222222','1111111111111111','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
+Customer('Friðjón Guðjónsson','2212723519','Friddi@hotmail.com','6667777','1212121212121212','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
+=======
+Customer('Einar Oddur Páll Rúnarsson','2505983519','aaa@gmail.is','8222222','1111111111111111','Þessi viðskiptavinur hefur aldrei tekið bíl á leigu.')
+>>>>>>> 99a5eef1c4df098706c49a59903cd7dedb7e307b
