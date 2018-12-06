@@ -25,6 +25,7 @@ class CarService:
         self._date_repo = DateRepository()
 
     def make_all_cars_list(self):
+        '''Fall sem nær í alla bíla sem erum í skránum og skilar þeim sem í lista'''
         car_repo_list = [self._car_repo_sedan, self._car_repo_minibus, self._car_repo_seven_seat_suv,
         self._car_repo_five_seat_suv, self._car_repo_small_car]
         all_cars_list = []
@@ -35,6 +36,9 @@ class CarService:
         return all_cars_list
 
     def make_all_cars_dict(self):
+        """fall sem tekur nær i lista af öllum bílum sem eru inn í skránni
+        og skilar síðan dictunary sem er með key sem flokk af bíl og síðan 
+        info um bílin sem value"""
         all_car_dict = {}
         for car in self._all_cars_list:
             car_info_list = [car.get_registration_num(), car.get_sub_type(), car.get_milage(), car.get_transmission()]
