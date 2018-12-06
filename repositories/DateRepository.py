@@ -16,7 +16,7 @@ class DateRepository:
         hvaða bílar eru bókaðir þá dagsetningu."""
         if date in self.__dates_dict:
             self.__dates_dict[date].append(car)
-            with open("./data/dates.csv", "r+") as date_file:
+            with open("./data/dates.csv", "r+", encoding = "UTF-8") as date_file:
                 new_file = ""
                 for line in date_file.readlines():
                     line_list = self.create_list(line)
@@ -29,7 +29,7 @@ class DateRepository:
                 date_file.write(new_file)
         else:
             self.__dates_dict[date] = [car]
-            with open("./data/dates.csv", "a") as date_file:
+            with open("./data/dates.csv", "a", encoding = "UTF-8") as date_file:
                 new_line = str(date) + ";" + car.__repr__() + "\n"
                 date_file.write(new_line)
 
@@ -38,7 +38,7 @@ class DateRepository:
         sem key í dictionary og setur alla bíla sem eru bókaðir á þeirri dagsetningu
         í lista og setur þann lista sem value fyrir viðeigandi dagsetningu."""
         date_dict = {}
-        with open("./data/dates.csv") as date_file:
+        with open("./data/dates.csv", encoding = "UTF-8") as date_file:
             for line in date_file.readlines():
                 line_list = self.create_list(line)
                 the_date = self.create_date_from_string(line_list[0])

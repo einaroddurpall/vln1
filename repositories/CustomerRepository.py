@@ -7,14 +7,14 @@ class CustomerRepository:
 
     def add_customer(self, customer):
         """Bæta viðskiptavin í .csv skrá og í viðskiptavinalista"""
-        with open("./data/customers.csv", "a") as customers_file:
+        with open("./data/customers.csv", "a", encoding = "UTF-8") as customers_file:
             customers_file.write(customer.__repr__() + '\n')
         self.__customers.append(customer)
 
     def get_customers(self):
         """Ná í alla viðskiptavini"""
         customers = []
-        with open("./data/customers.csv") as customers_file:
+        with open("./data/customers.csv", encoding = "UTF-8") as customers_file:
             for row in customers_file.readlines():
                 customer = eval(row.strip())
                 customers.append(customer)

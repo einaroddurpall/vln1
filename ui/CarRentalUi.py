@@ -79,6 +79,10 @@ class CarRentalUi:
             self.print_header(prompt)
             new_car = Car()
             new_car = new_car.make_car()
+            system('clear')
+            self.print_header(prompt)
+            print("Bíll skráður í kerfið")
+            sleep(3)
             self.__CarService.car_register(new_car)
         elif action == "3":
             prompt += " / Skoða lausa bíla"
