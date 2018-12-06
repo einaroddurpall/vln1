@@ -6,6 +6,7 @@ from services.CustomerService import CustomerService
 from services.CarService import CarService
 from time import sleep
 from datetime import date
+from repositories.OrderRepository import OrderRepsitory
 
 def make_date(a_date):
     day, month, year = a_date.split(".")
@@ -22,6 +23,7 @@ def make_date_list(date1, date2):
 class OrderService:
 
     def __init__(self):
+        self.__OrderRepo = OrderRepsitory()
         self.__CustomerService = CustomerService()
         self.__CarService = CarService()
         self.car = None
@@ -68,7 +70,9 @@ class OrderService:
             if continue_q == "y":
                 step2 = True
             system('clear')
-            return Order(ssn, date_list, insurance, card_info, car)
+            new_order = Order(ssn, date_list, insurance, card_info, car)
+            # self.__OrderRepo.XX(new_order)
+            return new_order
 
     def rent_car(self, car_type, date_list):
         """ Þetta fall tekur á móti car_type og date_list, býr til carlist fyrir viðeigandi car_type og athugar hvort einhver
