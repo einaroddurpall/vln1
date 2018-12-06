@@ -24,17 +24,13 @@ class CustomerRepository:
         return self.__customers
 
     def remove_customer(self, ssn):
-        with open("./data/customers.csv", "r+", encoding = "UTF-8") as date_file:
+        with open("./data/customers.csv", "w", encoding = "UTF-8") as date_file:
             new_file = ""
-            line_list = []
-            for line in date_file.readlines():
-                line_list.append(eval(line.strip("\n")))
-            for a_customer in line_list:
+            for a_customer in self.__customers:
                 if a_customer._ssn == ssn:
-                    line_list.remove(a_customer)
-            for a_customer in line_list:
+                    self.__customers.remove(a_customer)
+            for a_customer in self.__customers:
                 new_file += a_customer.__repr__() + "\n"
-            new_file = new_file.strip("\n")
             date_file.seek(0)
             date_file.truncate()
             date_file.write(new_file)
