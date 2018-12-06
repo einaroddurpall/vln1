@@ -70,7 +70,7 @@ class CarService:
         for car in self._all_cars_list:
             if car.get_registration_num() == registration_num:
                 return car
-        return "Bíll fannst ekki"
+        return False
     
     def get_busy_cars(self, date1, date2):
         """Takes in 2 dates and returns a list of all cars that are 

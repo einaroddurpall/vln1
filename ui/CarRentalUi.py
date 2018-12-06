@@ -76,10 +76,21 @@ class CarRentalUi:
             while exit_info == '':
                 registration_num = input("Bílnúmer: ")
                 car_found_info = self.__CarService.car_find(registration_num)
+                if car_found_info:
+                    pass
+                else:
+                    svar = input("Bill fannst ekki, reyna aftur (j/n)?")
+                    if svar.lower() == 'j':
+                        continue
+                    else:
+                        break
                 system('clear')
                 self.print_header(prompt)
                 print(car_found_info)
                 print()
+                question = input("Leita að öðru bílnúmer (j/n)?")
+                if question.lower() == "j":
+                    continue
                 exit_info = input("Sláðu inn eitthvað til að fara heim: ")
             pass
 

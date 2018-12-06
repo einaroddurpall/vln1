@@ -70,7 +70,7 @@ class Customer(Person):
             if choice == "5":
                 break
             self.change_info(choice, customer_list)
-        
+
     def change_info(self, choice, customer_list):
         if choice == "1":
             self.make_name()
