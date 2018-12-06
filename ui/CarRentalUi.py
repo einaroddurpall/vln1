@@ -1,4 +1,4 @@
-from os import system, name
+from os import system,name
 from time import sleep
 from datetime import date
 from services.CarService import CarService
@@ -73,6 +73,7 @@ class CarRentalUi:
                 print()
                 exit_info = input("Sláðu inn eitthvað til að fara heim: ")
             pass
+            
         elif action == "2":
             prompt += " / Skrá nýjan bíl"
             self.print_header(prompt)
@@ -81,7 +82,32 @@ class CarRentalUi:
             self.__CarService.car_register(new_car)
         elif action == "3":
             prompt += " / Skoða lausa bíla"
-            pass
+            self.print_header(prompt)
+            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+            car_busy_dict = self.__CarService.get_busy_cars(date1, date2)
+            all_car_dict = self.__CarService.make_all_cars_dict()
+            for key in all_car_dict:
+                for car in all_car_dict[key]:
+                    if car in car_busy_dict[key]:
+                        all_car_dict[key].remove(car)
+            question = input("Viltu leita af ákveðnari tegund (y/n)? ")
+            if question == "y":
+                car_type = input("Sláðu inn tegunds bíl :")
+                print(car_type[0].upper() + car_type[1:] + ":")
+                print("="*60)
+                for car_info in all_car_dict[car_type]:
+                    print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                print("="*60)
+            else:
+                for key,val in all_car_dict.items():
+                    print(key[0].upper() + key[1:] + ":")
+                    print("="*60)
+                    for car_info in val:
+                        print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                    print("="*60)
+            exit_info = input("Sláðu inn eitthvað til að fara heim: ")
+
         elif action == "4":
             prompt += " / Skoða bíla í útleigu"
             self.print_header(prompt)
@@ -91,24 +117,14 @@ class CarRentalUi:
             question = input("Viltu leita af ákveðnari tegund (j/n)? ")
             if question == "j":
                 car_type = make_car_type()
-                if car_type == "sedan":
-                    ice_car_type = "Fólksbíll"
-                elif car_type == "small car":
-                    ice_car_type = "Smábíll"
-                elif car_type == "five seat suv":
-                    ice_car_type = "Fimm sæta jeppi"
-                elif car_type == "seven seat suv":
-                    ice_car_type = "Sjö sæta jeppi"
-                elif car_type == "minibus":
-                    ice_car_type = "Smárúta"
-                print("{}:".format(ice_car_type))
+                print("{}:".format("{}:".format(car_type)))
                 print("="*60)
                 for car_info in car_info_dict[car_type]:
                     print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
                 print("="*60)
             else:
                 for key,val in car_info_dict.items():
-                    print(key[0].upper() + key[1:] + ":")
+                    print("{}:".format(key))
                     print("="*60)
                     for car_info in val:
                         print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
@@ -126,16 +142,21 @@ class CarRentalUi:
             customer = self.__CustomerService.check_ssn(ssn)
             system('clear')
             self.print_header(prompt)
-            print(customer + "\n")
+            print(customer, end="")
+            print()
             choice = ""
             if customer != 'Viðskiptavinur er ekki í kerfinu.':
-                while choice is not "3":
-                    choice = input("1.  Breyta skráningu\n2.  Afskrá viðskiptavin\n3.  Heimasíða\n")
+                while choice is not "4":
+                    choice = input("1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Heimasíða\n")
                     if choice == "1":
+                        prompt += " / Sjá pantanir"
+                        self.print_header(prompt)
+                        #Vantar fall til að afskrá viðskiptavin
+                    elif choice == "2":
                         prompt += " / Breyta skráningu"
                         self.print_header(prompt)
                         customer.customer_change_info()
-                    elif choice == "2":
+                    elif choice == "3":
                         prompt += " / Afskrá viðskiptavin"
                         self.print_header(prompt)
                         # Vantar fall til að afskrá viðskiptavin
@@ -143,9 +164,7 @@ class CarRentalUi:
         elif action == "2":
             prompt += " / Skrá nýjan viðskiptavin"
             self.print_header(prompt)
-            new_customer = Customer()
-            new_customer = new_customer.make_customer()
-            self.__CustomerService.customer_register(new_customer)
+            self.__CustomerService.customer_register()
 
     def order_menu(self, prompt):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma pöntunum við """
@@ -154,11 +173,13 @@ class CarRentalUi:
         if action == "1":
             prompt += " / Skoða pöntun"
             self.print_header(prompt)
+            order_num = input("Pöntunarnúmer: ")
+            self.__OrderService
             pass
         elif action == "2":
             prompt += " / Skrá nýja pöntun"
             self.print_header(prompt)
-            new_order = self.__OrderService.get_order_info()
+            new_order = self.__OrderService.make_order_info()
             if new_order:
                 input("Pöntun skráð.")
             else:

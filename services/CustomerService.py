@@ -7,8 +7,10 @@ class CustomerService:
     def __init__(self):
         self.__customer_repo = CustomerRepository()
 
-    def customer_register(self, customer):
-        self.__customer_repo.add_customer(customer)
+    def customer_register(self):
+        new_customer = Customer()
+        new_customer = new_customer.make_customer()
+        self.__customer_repo.add_customer(new_customer)
 
     def get_customer_list(self):
         return self.__customer_repo.get_customers()

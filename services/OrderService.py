@@ -6,6 +6,7 @@ from services.CustomerService import CustomerService
 from services.CarService import CarService
 from time import sleep
 from datetime import date
+from repositories.OrderRepository import OrderRepsitory
 
 def make_date(a_date):
     day, month, year = a_date.split(".")
@@ -22,6 +23,7 @@ def make_date_list(date1, date2):
 class OrderService:
 
     def __init__(self):
+        self.__OrderRepo = OrderRepsitory()
         self.__CustomerService = CustomerService()
         self.__CarService = CarService()
         self.car = None
@@ -30,7 +32,7 @@ class OrderService:
         day, month, year = a_date.split(".")
         return date(int(year), int(month), int(day))
 
-    def get_order_info(self):
+    def make_order_info(self):
         ssn = input("Kennitala viðskiptavinar: ")
         valid_ssn = False
         while valid_ssn is not True:
@@ -68,13 +70,13 @@ class OrderService:
             if continue_q == "y":
                 step2 = True
             system('clear')
-            return Order(ssn, car_type, date_list, insurance, card_info, car)
+            new_order = Order(ssn, date_list, insurance, card_info, car)
+            # self.__OrderRepo.XX(new_order)
+            return new_order
 
     def rent_car(self, car_type, date_list):
-        """ Þetta fall tekur á móti upplýsingum um pöntunina frá UI,
-            sækir lista af viðeigandi bílaflokk og fer í gegnum dagsetningarnar
-            þangað til bíll finnst sem er laus. Ef enginn finnst þá kemur
-            viðeigandi skilaboð """
+        """ Þetta fall tekur á móti car_type og date_list, býr til carlist fyrir viðeigandi car_type og athugar hvort einhver
+            bíll í þessum carlist sé laus á dögunum í date_list """
         if car_type.lower() == "sedan":
             car_type_list = self.__CarService._car_repo_sedan.get_carlist()
         elif car_type.lower() == "five seat suv":
@@ -92,3 +94,6 @@ class OrderService:
             if car.check_availability(date_list, date_dict, car_type_list):
                 return car
         return None
+
+    def get_order(self, order_num):
+        pass
