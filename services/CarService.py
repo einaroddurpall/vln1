@@ -36,10 +36,10 @@ class CarService:
 
     def make_all_cars_dict(self):
         all_car_dict = {}
-        for car in self.__all_cars_list:
+        for car in self._all_cars_list:
             car_info_list = [car.get_registration_num(), car.get_sub_type(), car.get_milage(), car.get_transmission()]
             all_car_dict[car.get_car_type()] = all_car_dict.get(car.get_car_type(), []) + [car_info_list]
-            print(all_car_dict)
+        print(all_car_dict)
         return all_car_dict
 
     def get_all_cars_list(self):
