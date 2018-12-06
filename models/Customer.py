@@ -1,4 +1,5 @@
 from models.Person import Person
+from repositories.CustomerRepository import CustomerRepository
 
 class Customer(Person):
     """Customer class, is a subclass of the Person class
@@ -10,6 +11,7 @@ class Customer(Person):
         self.__email = email
         self.__gsm = gsm
         self.__card_info = card_info
+        self.__customer_repo = CustomerRepository()
         
         if history == "":
             self.__history = "Þessi viðskiptavinur hefur aldrei tekið bíl á leigu."
@@ -72,8 +74,8 @@ class Customer(Person):
 def make_name():
     legal_name = False
     while not legal_name:
-        inp = input("Nafn: ")
-        for letter in inp:
+        name = input("Nafn: ")
+        for letter in name:
             try:
                 int(letter)
                 print("Nafnið inniheldur ólöglega stafi")
@@ -81,7 +83,7 @@ def make_name():
                 break
             except:
                 legal_name = True
-    return inp
+    return name
 
 def make_number(lenght_of_number, input_string, error_code_str):
     legal_ssn = False
@@ -112,8 +114,6 @@ def make_email():
                 return inp
         print("Ólöglegt netfang, reyndu aftur.")
 
-
-
 def customer_change_info(choice, customer_info_list, customer_list):
     if choice == "1":
         change = make_name()
@@ -137,6 +137,3 @@ def customer_change_info(choice, customer_info_list, customer_list):
     elif choice == "5":
         change = make_number(16, "Kortanúmer: ", "Þetta kortanúmer var ólöglegt, reyndu aftur.")
         customer_info_list[4] = change
-    else:
-        None
-
