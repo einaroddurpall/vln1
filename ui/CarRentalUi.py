@@ -1,4 +1,4 @@
-from os import system,name
+from os import system, name
 from time import sleep
 from datetime import date
 from services.CarService import CarService
@@ -105,7 +105,6 @@ class CarRentalUi:
                     print("="*60)
             exit_info = input("Sláðu inn eitthvað til að fara heim: ")
 
-
     def customer_menu(self, prompt):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma viðskiptavinum við """
         self.print_header(prompt)
@@ -114,14 +113,22 @@ class CarRentalUi:
             prompt += " / Leita að viðskiptavin"
             self.print_header(prompt)
             ssn = input("Sláðu inn kennitölu: ")
-            customer_info = self.__CustomerService.check_ssn(ssn)
+            customer = self.__CustomerService.check_ssn(ssn)
             system('clear')
             self.print_header(prompt)
-            print(customer_info)
-            exit_info = ''
-            print()
-            while exit_info == '':
-                exit_info = input("Sláðu einn eitthvað til að fara heim: ")
+            print(customer + "\n")
+            choice = ""
+            if customer != 'Viðskiptavinur er ekki í kerfinu.':
+                while choice is not "3":
+                    choice = input("1.  Breyta skráningu\n2.  Afskrá viðskiptavin\n3.  Heimasíða\n")
+                    if choice == "1":
+                        prompt += " / Breyta skráningu"
+                        self.print_header(prompt)
+                        customer.customer_change_info()
+                    elif choice == "2":
+                        prompt += " / Afskrá viðskiptavin"
+                        self.print_header(prompt)
+                        # Vantar fall til að afskrá viðskiptavin
 
         elif action == "2":
             prompt += " / Skrá nýjan viðskiptavin"

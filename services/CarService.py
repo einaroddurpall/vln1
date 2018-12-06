@@ -15,18 +15,18 @@ def make_date_list(date1, date2):
 class CarService:
 
     def __init__(self):
-        self.__car_repo_sedan = CarRepository("Sedan")
-        self.__car_repo_minibus = CarRepository("Minibus")
-        self.__car_repo_seven_seat_suv = CarRepository("seven_seat_suv")
-        self.__car_repo_five_seat_suv = CarRepository("five_seat_suv")
-        self.__car_repo_small_car = CarRepository("small_car")
-        self.__all_cars_list = self.make_all_cars_list()
-        self.__customer_service = CustomerService()
-        self.__date_repo = DateRepository()
+        self._car_repo_sedan = CarRepository("Sedan")
+        self._car_repo_minibus = CarRepository("Minibus")
+        self._car_repo_seven_seat_suv = CarRepository("seven_seat_suv")
+        self._car_repo_five_seat_suv = CarRepository("five_seat_suv")
+        self._car_repo_small_car = CarRepository("small_car")
+        self._all_cars_list = self.make_all_cars_list()
+        self._customer_service = CustomerService()
+        self._date_repo = DateRepository()
 
     def make_all_cars_list(self):
-        car_repo_list = [self.__car_repo_sedan, self.__car_repo_minibus, self.__car_repo_seven_seat_suv,
-        self.__car_repo_five_seat_suv, self.__car_repo_small_car]
+        car_repo_list = [self._car_repo_sedan, self._car_repo_minibus, self._car_repo_seven_seat_suv,
+        self._car_repo_five_seat_suv, self._car_repo_small_car]
         all_cars_list = []
         for car_repo in car_repo_list:
             car_type_list = car_repo.get_carlist()
@@ -35,14 +35,15 @@ class CarService:
         return all_cars_list
 
     def get_all_cars_list(self):
-        return self.__all_cars_list
+        return self._all_cars_list
 
     def get_date_repo(self):
-        return self.__date_repo
+        return self._date_repo
         
     def car_register(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
+<<<<<<< HEAD
         if car_type.lower() == "fólksbíll":
             self.__car_repo_sedan.add_car(car)
         elif car_type.lower() == "fimm sæta jeppi":
@@ -54,9 +55,22 @@ class CarService:
         elif car_type.lower() == "smábíll":
             self.__car_repo_small_car.add_car(car)
         self.__all_cars_list.append(car)
+=======
+        if car_type.lower() == "sedan":
+            self._car_repo_sedan.add_car(car)
+        elif car_type.lower() == "five seat suv":
+            self._car_repo_five_seat_suv.add_car(car)
+        elif car_type.lower() == "minibus":
+            self._car_repo_minibus.add_car(car)
+        elif car_type.lower() == "seven seat suv":
+            self._car_repo_seven_seat_suv.add_car(car)
+        elif car_type.lower() == "small car":
+            self._car_repo_small_car.add_car(car)
+        self._all_cars_list.append(car)
+>>>>>>> 3783b5fa79280b8520d4e33285c418abf2577053
     
     def car_find(self, registration_num):
-        for car in self.__all_cars_list:
+        for car in self._all_cars_list:
             if car.get_registration_num() == registration_num:
                 return car
         return "Bíll fannst ekki"
@@ -66,7 +80,7 @@ class CarService:
         taken/busy, that day and/or the days between them, returns the cars
         in and dosent repeat the cars."""
         list_of_days = make_date_list(date1, date2)
-        car_info_dict = self.__date_repo.get_date_dict()
+        car_info_dict = self._date_repo.get_date_dict()
         car_type_info_dict = {}
         car_licence_list = []
         for date in list_of_days:

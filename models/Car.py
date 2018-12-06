@@ -69,8 +69,19 @@ class Car:
     def set_history(self, order):
         pass
 
-    def check_availability(self, car, datelist):
-        pass
+    def check_availability(self, date_list, date_dict, car_list):
+        is_rentable = True
+        for date in date_list:
+            if date in date_dict:
+                for car in date_dict[date]:
+                    if self == car:
+                        is_rentable = False
+                        break
+        return is_rentable
+
+    def __eq__(self, other):
+        return self.get_registration_num() == other.get_registration_num()
+    
 
     def make_car(self):
         registration_num = input("Bílnúmer: ")

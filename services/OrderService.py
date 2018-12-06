@@ -24,6 +24,7 @@ class OrderService:
     def __init__(self):
         self.__CustomerService = CustomerService()
         self.__CarService = CarService()
+        self.car = None
 
     def make_date(self, a_date):
         day, month, year = a_date.split(".")
@@ -67,7 +68,6 @@ class OrderService:
             if continue_q == "y":
                 step2 = True
             system('clear')
-            self.rent_car(car_type, date_list)
             return Order(ssn, car_type, date_list, insurance, card_info, car)
 
     def rent_car(self, car_type, date_list):
@@ -76,25 +76,19 @@ class OrderService:
             þangað til bíll finnst sem er laus. Ef enginn finnst þá kemur
             viðeigandi skilaboð """
         if car_type.lower() == "sedan":
-            car_type_list = self.__CarService.__car_repo_sedan.get_carlist()
+            car_type_list = self.__CarService._car_repo_sedan.get_carlist()
         elif car_type.lower() == "five seat suv":
-            car_type_list = self.__CarService.__car_repo_five_seat_suv.get_carlist()
+            car_type_list = self.__CarService._car_repo_five_seat_suv.get_carlist()
         elif car_type.lower() == "minibus":
-            car_type_list = self.__CarService.__car_repo_minibus.get_carlist()
+            car_type_list = self.__CarService._car_repo_minibus.get_carlist()
         elif car_type.lower() == "seven seat suv":
-            car_type_list = self.__CarService.__car_repo_seven_seat_suv.get_carlist()
+            car_type_list = self.__CarService._car_repo_seven_seat_suv.get_carlist()
         elif car_type.lower() == "small car":
-            car_type_list = self.__CarService.__car_repo_small_car.get_carlist()
+            car_type_list = self.__CarService._car_repo_small_car.get_carlist()
 
         date_repo = self.__CarService.get_date_repo()
         date_dict = date_repo.get_date_dict()
         for car in car_type_list:
-            is_rentable = True
-            for date in date_list:
-                if date in date_dict:
-                    if car in date_dict[date]:
-                        is_rentable = False
-                        break
-            if is_rentable:
+            if car.check_availability(date_list, date_dict, car_type_list):
                 return car
         return None
