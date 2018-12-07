@@ -17,6 +17,9 @@ class Order:
     def get_customer(self):
         return self.__customer
 
+    def set_customer(self, customer):
+        self.__customer = customer
+
     def get_first_day(self):
         return self.__date_list[0]
 
