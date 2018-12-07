@@ -90,7 +90,8 @@ class Car:
     
 
     def make_car(self, prompt):
-        while True:
+        done = False
+        while done != True:
             registration_num = input("Bílnúmer: ")
             if registration_num[0] in string.ascii_uppercase and registration_num[1] in string.ascii_uppercase\
                and registration_num[2] == "-"\
@@ -98,35 +99,42 @@ class Car:
                and registration_num[4] in string.digits and registration_num[5] in string.digits:
                break
             else:
-                print("Bílnúmer er ekki til, vinsamlegast sláðu inn aftur")
-                sleep(2)
-                print_header(prompt)
+                choice = input('Bílnúmerið: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n'.format(registration_num))
+                if choice == "2":
+                    exit_info = 2
+                    done = True
+                elif choice == "3":
+                    exit_info = 1
+                    done = True
+                    
 
-        car_type = make_car_type()
-        if car_type == None:
-            return None
-        sub_type = input("Tegund bíls: ")
-        transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
-        valid_transmission = False
-        while valid_transmission is False:
-            if transmission == "1":
-                transmission = "Sjálfskiptur"
-            elif transmission == "2":
-                transmission = "Beinskiptur"
-            else:
-                print("Villa, vinsamlegast veldu sjálfskiptan eða beinskiptan")
+            if done != True:
+                car_type = make_car_type()
+                if car_type == None:
+                    return None
+                sub_type = input("Tegund bíls: ")
                 transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
-                continue
-            valid_transmission = True
-        valid_mileage = False
-        while valid_mileage != True: 
-            milage = input("Akstur: ")
-            try: 
-                int(milage)
-                valid_mileage = True
-            except: 
-                pass
-        is_rentable = True
-        history = ""
-        new_car = Car(registration_num, car_type, sub_type, transmission, milage, is_rentable, history)
-        return new_car
+                valid_transmission = False
+                while valid_transmission is False:
+                    if transmission == "1":
+                        transmission = "Sjálfskiptur"
+                    elif transmission == "2":
+                        transmission = "Beinskiptur"
+                    else:
+                        print("Villa, vinsamlegast veldu sjálfskiptan eða beinskiptan")
+                        transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
+                        continue
+                    valid_transmission = True
+                valid_mileage = False
+                while valid_mileage != True: 
+                    milage = input("Akstur: ")
+                    try: 
+                        int(milage)
+                        valid_mileage = True
+                    except: 
+                        pass
+                is_rentable = True
+                history = ""
+                new_car = Car(registration_num, car_type, sub_type, transmission, milage, is_rentable, history)
+                return new_car
+        return exit_info

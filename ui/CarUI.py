@@ -47,17 +47,19 @@ class CarMenu:
                 print_header(prompt)
                 new_car = Car()
                 new_car = new_car.make_car(prompt)
-                if new_car:
+                if type(new_car) != int:
                     print_header(prompt)
                     print("Bíll skráður í kerfið.")
                     sleep(3)
                     self.__CarService.car_register(new_car)
+                elif new_car == 1: 
+                    done = True
             elif action == "3":
                 exit_info = ""
                 while exit_info == "":
                     prompt += " / Skoða lausa bíla"
                     print_header(prompt)
-                    self.__CarService.get_available_cars()
+                    self.__CarService.get_available_cars(prompt)
                     question = input("1.  Skoða fleiri lausa bíla\n2.  Tilbaka\n3.  Heim\n")
                     if question == "2":
                         exit_info = "Tilbaka"
@@ -69,7 +71,7 @@ class CarMenu:
                 while exit_info == "":
                     prompt += " / Skoða bíla í útleigu"
                     print_header(prompt)
-                    busy_cars_dict = self.__CarService.get_busy_cars()
+                    busy_cars_dict = self.__CarService.get_busy_cars(prompt)
                     self.__CarService.print_car_dict(busy_cars_dict)
                     question = input("1.  Skoða fleiri bíla í útleigu\n2.  Tilbaka\n3.  Heim\n")
                     if question == "2":
@@ -79,3 +81,5 @@ class CarMenu:
                         done = True
             else:
                 done = True
+
+
