@@ -46,6 +46,10 @@ class Order:
             str(self.get_order_name()),repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.get_insurance(), self.get_card_info()
         )
     
+    def __str__(self):
+        return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}".format(
+            self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), self.__insurance, self.__card_info
+        )
     
     def change_info(self, step, car_service, customer_service):
         if step == "1":

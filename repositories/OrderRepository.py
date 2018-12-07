@@ -60,7 +60,7 @@ class OrderRepository:
         names = self.__names
         counter = 1
         while True:
-            unique_name = "Order " + str(counter)
+            unique_name = "Pöntun " + str(counter)
             counter += 1
             if unique_name not in names:
                 order.set_order_name(unique_name)
