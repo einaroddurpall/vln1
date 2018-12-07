@@ -1,6 +1,7 @@
 from services.OrderService import OrderService
 from models.Order import Order
 from os import system
+from time import sleep
 from models.ui_methods import print_header
 
 class OrderMenu:
@@ -36,7 +37,7 @@ class OrderMenu:
                             elif choice == "2":
                                 prompt += " / Eyða pöntun"
                                 print_header(prompt)
-                                choice = input("Ertu viss?(j/n): ")
+                                choice = input("Ertu viss? (j/n): ")
                                 if choice == "j":
                                     self.__order_service.order_delete(order)
                                     choice = "Tilbaka"
@@ -49,19 +50,23 @@ class OrderMenu:
                                 exit_info = "Heim"
                                 done = True
                     else:
-                        choice = input('Pöntunin: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heimasíða'.format(order_name))
+                        choice = input('Pöntunin: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heimasíða\n'.format(order_name))
                         if choice == "2":
                             exit_info = "Tilbaka"
                         elif choice == "3":
                             exit_info = "Heim"
                             done = True
-                # self.__order_service
-                #Skoða bíl? á þetta ekki að vera skoða pöntun?
             elif action == "2":
                 prompt += " / Skrá nýja pöntun"
                 print_header(prompt)
-                self.__order_service.make_order_info()
-                input("Pöntun skráð.")
+                new_order = self.__order_service.make_order_info()
+                if new_order == "Tilbaka":
+                    None
+                elif new_order == "Heim":
+                    done = True
+                else: 
+                    print("Pöntun skráð.")
+                    sleep(2)
             
             elif action == "3":
                 prompt += " / Skila bíl"

@@ -53,7 +53,6 @@ class CarRentalUi:
             if action == "1":
                 self.__CarUI()
             elif action == "2":
-                prompt = " / Viðskiptavinir"
-                self.__CustomerUI(prompt)
+                self.__CustomerUI()
             elif action == "3":
                 self.__OrderUI()
