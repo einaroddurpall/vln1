@@ -68,3 +68,6 @@
 2018-12-08;Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
 2018-12-09;Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
 2018-12-10;Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True,'This car has no history of rental.')
+2019-12-22;Car('KJ-X89','Smábíll','Toyota Yaris','Beinskiptur',45000,True,'This car has no history of rental.')
+2019-12-23;Car('KJ-X89','Smábíll','Toyota Yaris','Beinskiptur',45000,True,'This car has no history of rental.')
+2019-12-24;Car('KJ-X89','Smábíll','Toyota Yaris','Beinskiptur',45000,True,'This car has no history of rental.')

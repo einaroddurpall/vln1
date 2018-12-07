@@ -1,9 +1,7 @@
-from services.CustomerService import CustomerService
 from models.Car import make_car_type
 import string
 from datetime import datetime, timedelta, date
 from os import system
-from services.CarService import CarService
 from time import sleep
 from models.Customer import make_number
 
@@ -15,8 +13,6 @@ class Order:
         self.__insurance = insurance
         self.__card_info = card_info
         self.__order_name = order_name
-        self.__customer_service = CustomerService()
-        self.__car_service = CarService()
     
     def get_customer(self):
         return self.__customer
@@ -51,12 +47,12 @@ class Order:
         )
     
     
-    def change_info(self, step):
+    def change_info(self, step, car_service, customer_service):
         if step == "1":
             valid_ssn = False
             while valid_ssn is not True:
                 ssn = input("Kennitala viðskiptavinar: ")
-                self.__customer = self.__customer_service.check_ssn(ssn)
+                self.__customer = customer_service.check_ssn(ssn)
                 if self.__customer:
                     valid_ssn = True
                 else:
@@ -75,7 +71,7 @@ class Order:
                     except: 
                         print("Vinsamlegast sláðu inn gilda dagsetningu")
                         
-                self.__car = self.rent_car(car_type, self.__date_list)
+                self.__car = self.rent_car(car_type, self.__date_list, car_service)
                 if self.__car:
                     continue_q = input("Halda áfram? (y/n) ").lower()
                     if continue_q == "y":
@@ -103,21 +99,21 @@ class Order:
                 #self.__order_num += 1
 
 
-    def rent_car(self, car_type, date_list):
+    def rent_car(self, car_type, date_list, car_service):
         """ Þetta fall tekur á móti car_type og date_list, býr til carlist fyrir viðeigandi car_type og athugar hvort einhver
             bíll í þessum carlist sé laus á dögunum í date_list """
         if car_type.lower() == "fólksbíll":
-            car_type_list = self.__car_service._car_repo_sedan.get_carlist()
+            car_type_list = car_service._car_repo_sedan.get_carlist()
         elif car_type.lower() == "fimm sæta jeppi":
-            car_type_list = self.__car_service._car_repo_five_seat_suv.get_carlist()
+            car_type_list = car_service._car_repo_five_seat_suv.get_carlist()
         elif car_type.lower() == "smárúta":
-            car_type_list = self.__car_service._car_repo_minibus.get_carlist()
+            car_type_list = car_service._car_repo_minibus.get_carlist()
         elif car_type.lower() == "sjö sæta jeppi":
-            car_type_list = self.__car_service._car_repo_seven_seat_suv.get_carlist()
+            car_type_list = car_service._car_repo_seven_seat_suv.get_carlist()
         elif car_type.lower() == "smábíll":
-            car_type_list = self.__car_service._car_repo_small_car.get_carlist()
+            car_type_list = car_service._car_repo_small_car.get_carlist()
 
-        date_repo = self.__car_service.get_date_repo()
+        date_repo = car_service.get_date_repo()
         date_dict = date_repo.get_date_dict()
         for car in car_type_list:
             if car.check_availability(date_list, date_dict, car_type_list):

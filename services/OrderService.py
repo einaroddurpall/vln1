@@ -6,6 +6,7 @@ from time import sleep
 from datetime import date
 from repositories.OrderRepository import OrderRepository
 import string
+from services.CustomerService import CustomerService
 
 
 
@@ -14,6 +15,7 @@ class OrderService:
     def __init__(self):
         self.__order_repo = OrderRepository()
         self.__car_service = CarService()
+        self.__customer_service = CustomerService()
         self.__car = None
         #self.__order_num = 1
 
@@ -24,7 +26,7 @@ class OrderService:
     def make_order_info(self):
         new_order = Order()
         for step in range(1, 5):
-            new_order.change_info(str(step))
+            new_order.change_info(str(step), self.__car_service, self.__customer_service)
         continue_q = input("Er allt rétt? (j/n) ").lower()
         if continue_q != "j":
             self.change_order_info(new_order, True)
@@ -48,12 +50,18 @@ class OrderService:
                     print("Ekki valmöguleiki, veldu aftur")
             if choice == "5":
                 correct = True
-            order.change_info(choice)
+            order.change_info(choice, self.__car_service, self.__customer_service)
         if new_or_not:
             self.__order_repo.add_order(order)
         else:
             #self.__order_repo.update_order(order)
             pass
+
+    def get_order_by_name(self, name):
+        for order in self.__order_repo.get_order_list():
+            if order.get_order_name() == name:
+                return order
+            return None
 
     def get_order(self, order_num):
         pass
