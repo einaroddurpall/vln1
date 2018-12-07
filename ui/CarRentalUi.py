@@ -1,11 +1,11 @@
-from os import system,name
+from os import system, name
 from time import sleep
 from datetime import date
 import string
 from ui.CarUI import CarMenu
 from ui.CustomerUI import CustomerMenu
 from ui.OrderUI import OrderMenu
-
+from models.ui_methods import print_header
 
 class CarRentalUi:
 
@@ -13,8 +13,7 @@ class CarRentalUi:
         self.__CarUI = CarMenu
         self.__OrderUI = OrderMenu
         self.__CustomerUI = CustomerMenu
-    
-    
+
     def draw_car(self):
         print("\033[1;34;1m{:<31}==============".format(""))
         sleep(0.35)
@@ -44,23 +43,15 @@ class CarRentalUi:
         sleep(2)
         system('clear')
 
-    def print_header(self, prompt=""):
-        """ Hreinsar terminal og prentar út header með slóð """
-        system('clear')
-        print("Heimasíða", end="")
-        print(prompt)
-        print("="*40)
-
     def main_menu(self):
         """ Main menu er loop sem hættir þegar q er sett inn."""
         action = ""
         while action != "q":
-            prompt = ""
-            self.print_header(prompt)
+            prompt = "Heimasíða"
+            print_header(prompt)
             action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n")
             if action == "1":
-                prompt = " / Bílar"
-                self.__CarUI(prompt)
+                self.__CarUI()
             elif action == "2":
                 prompt = " / Viðskiptavinir"
                 self.__CustomerUI(prompt)
