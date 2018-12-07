@@ -1,8 +1,9 @@
 from repositories.CarRepository import CarRepository
 from repositories.DateRepository import DateRepository
 from services.CustomerService import CustomerService
-from models.Car import Car
+from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
+from models.ui_methods import make_date
 
 def make_date_list(date1, date2):
     date_list = []
@@ -71,11 +72,52 @@ class CarService:
             if car.get_registration_num() == registration_num:
                 return car
         return False
-    
-    def get_busy_cars(self, date1, date2):
+
+    def search_for_spacific_kind(self, a_dict):
+        """Function that asks user if he wants to find
+        info about specific car type and does so"""
+        question = input("Viltu leita af ákveðnari tegund (j/n)? ")
+        if question == "j":
+            car_type = make_car_type()              #Key er tegund bílsins bæta við verði við hliðin á tegundinni carservice get_car_price
+            if car_type in a_dict.keys():
+                print("\n{}:".format(car_type))
+                print("="*60)
+                for car_info in a_dict[car_type]:
+                    print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                print("="*60)
+                return False
+            else:
+                print("Enginn bíll laus í þessari bílategund á þessum tíma")
+        return True
+
+    def print_out_info_for_all_car_types(self, a_dict):
+        for key,val in a_dict.items():
+            print("\n{}:".format(key))    #Key er tegund bílsins bæta við verði við hliðin á tegundinni
+            print("="*60)
+            for car_info in val:
+                print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+            print("="*60)
+
+    def print_car_dict(self, a_dict):
+        if a_dict:
+            statement = self.search_for_spacific_kind(a_dict)
+            if statement:
+                self.print_out_info_for_all_car_types(a_dict)
+        else:
+            print("Enginn laus bíll á þessum tíma")
+
+    def get_busy_cars(self):
         """Takes in 2 dates and returns a list of all cars that are 
         taken/busy, that day and/or the days between them, returns the cars
         in and dosent repeat the cars."""
+        date_found = False
+        while not date_found:
+            try:
+                date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+                date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+                date_found = True
+            except: 
+                print("Vinsamlegast sláðu inn gilda dagsetningu")
         list_of_days = make_date_list(date1, date2)
         car_info_dict = self._date_repo.get_date_dict()
         car_type_info_dict = {}
@@ -89,5 +131,28 @@ class CarService:
                         car_licence_list.append(car_licence)
                         car_type_info_dict[car.get_car_type()] = car_type_info_dict.get(car.get_car_type(), []) + [[car_licence, car.get_sub_type(), car.get_milage(), car.get_transmission()]]
         return car_type_info_dict
+
+    def get_available_cars(self):
+        car_busy_dict = self.get_busy_cars()
+        all_car_dict = self.make_all_cars_dict()
+        delete_key_list = []
+        for key in all_car_dict:
+            for car in all_car_dict[key]:
+                try:
+                    if car in car_busy_dict[key]:
+                        all_car_dict[key].remove(car)
+                        if all_car_dict[key] == []:
+                            delete_key_list.append(key)
+                except:
+                    None
+        for key in delete_key_list:
+            del all_car_dict[key]
+        self.print_car_dict(all_car_dict)
+        # if all_car_dict:
+        #     statement = self.search_for_spacific_kind(all_car_dict)
+        #     if statement:
+        #         self.print_out_info_for_all_car_types(all_car_dict)
+        # else:
+        #     print("Enginn laus bíll á þessum tíma")
 
 

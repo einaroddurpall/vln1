@@ -20,8 +20,8 @@ class OrderRepository:
     def __init__(self):
         self.__order_list = self.get_orders()
         self.__date_repo = DateRepository()
-        #self.__names = self.get_names()
-        #self.__orders = 0
+        self.__names = self.get_names()
+        
 
     def get_names(self):
         orders = self.__order_list
@@ -57,7 +57,7 @@ class OrderRepository:
         return self.__order_list
 
     def get_unique_name(self, order):
-        names = self.get_names()
+        names = self.__names
         counter = 1
         while True:
             unique_name = "Order " + str(counter)

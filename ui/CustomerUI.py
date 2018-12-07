@@ -1,15 +1,8 @@
 from services.CustomerService import CustomerService
 from models.Customer import Customer
 from os import system
-
-
-def print_header(prompt=""):
-    """ Hreinsar terminal og prentar út header með slóð """
-    system('clear')
-    print("Heimasíða", end="")
-    print(prompt)
-    print("="*40)
-
+from models.ui_methods import print_header
+from models.ui_methods import make_date
 
 class CustomerMenu:
 
@@ -17,7 +10,6 @@ class CustomerMenu:
         self.__CustomerService = CustomerService()
         self.__prompt = prompt
         self.customer_menu()
-
 
     def customer_menu(self):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma viðskiptavinum við """
