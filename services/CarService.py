@@ -91,7 +91,7 @@ class CarService:
         info about specific car type and does so"""
         question = input("Viltu leita af ákveðnari tegund (j/n)? ")
         if question == "j":
-            car_type = make_car_type()              #Key er tegund bílsins bæta við verði við hliðin á tegundinni carservice get_car_price
+            car_type = make_car_type()
             if car_type in a_dict.keys():
                 print("\n{}:".format(car_type))
                 print("="*60)
@@ -105,7 +105,7 @@ class CarService:
 
     def print_out_info_for_all_car_types(self, a_dict):
         for key,val in a_dict.items():
-            print("\n{}:".format(key))    #Key er tegund bílsins bæta við verði við hliðin á tegundinni
+            print("\n{:>10}{:>20}:".format(key, get_car_price(key)))    #Key er tegund bílsins bæta við verði við hliðin á tegundinni
             print("="*60)
             for car_info in val:
                 print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
@@ -161,11 +161,3 @@ class CarService:
         for key in delete_key_list:
             del all_car_dict[key]
         self.print_car_dict(all_car_dict)
-        # if all_car_dict:
-        #     statement = self.search_for_spacific_kind(all_car_dict)
-        #     if statement:
-        #         self.print_out_info_for_all_car_types(all_car_dict)
-        # else:
-        #     print("Enginn laus bíll á þessum tíma")
-
-

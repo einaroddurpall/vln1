@@ -5,32 +5,6 @@ from time import sleep
 from datetime import date
 import string
 from models.ui_methods import print_header
-# from models.ui_methods import make_date
-
-# def search_for_spacific_kind(a_dict):
-#     """Function that asks user if he wants to find
-#     info about specific car type and does so"""
-#     question = input("Viltu leita af ákveðnari tegund (j/n)? ")
-#     if question == "j":
-#         car_type = make_car_type()              #Key er tegund bílsins bæta við verði við hliðin á tegundinni carservice get_car_price
-#         if car_type in a_dict.keys():
-#             print("\n{}:".format(car_type))
-#             print("="*60)
-#             for car_info in a_dict[car_type]:
-#                 print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
-#             print("="*60)
-#             return False
-#         else:
-#             print("Enginn bíll laus í þessari bílategund á þessum tíma")
-#     return True
-
-# def print_out_info_for_all_car_types(a_dict):
-#     for key,val in a_dict.items():
-#         print("\n{}:".format(key))    #Key er tegund bílsins bæta við verði við hliðin á tegundinni
-#         print("="*60)
-#         for car_info in val:
-#             print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
-#         print("="*60)
 
 class CarMenu:
 
@@ -45,7 +19,7 @@ class CarMenu:
             prompt = "Heimasíða / Bílar"
             print_header(prompt)
             action = input("1.  Skoða bíl\n2.  Skrá nýjan bíl\n3.  Skoða lausa bíla\n4.  Skoða bíla í útleigu\n5.  Heim\n")
-            if action == "1":  #Tilbúið
+            if action == "1":
                 prompt += " / Skoða bíl"
                 print_header(prompt)
                 exit_info = ""
