@@ -31,6 +31,9 @@ class Customer(Person):
         """Prints out the history"""
         return self.__history
 
+    def __eq__(self, other):
+        return self.get_ssn() == other.get_ssn()
+
     def __repr__(self):
         return "Customer('{}','{}','{}','{}','{}')".format(
             self._name, self._ssn, self.__email, self.__gsm, self.__history
