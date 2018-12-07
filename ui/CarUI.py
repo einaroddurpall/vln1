@@ -39,6 +39,7 @@ class CarMenu:
                     system('clear')
                     print_header(prompt)
                     print(car_found)
+                    print("="*60)
                     question = input("\n1.  Leita að öðru bílnúmeri\n2.  Tilbaka\n3.  Heim\n")
                     if question == "2":
                         exit_info = "Tilbaka"

@@ -20,7 +20,8 @@ class CustomerMenu:
             if action == "1":
                 exit_info = ""
                 while exit_info == "":
-                    prompt += " / Leita að viðskiptavin"
+                    if  "/ Leita að viðskiptavin" not in prompt:
+                        prompt += " / Leita að viðskiptavin"
                     print_header(prompt)
                     ssn = input("Kennitala: ")
                     customer = self.__CustomerService.check_ssn(ssn)
