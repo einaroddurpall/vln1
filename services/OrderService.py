@@ -111,5 +111,11 @@ class OrderService:
                 return car
         return None
 
-    def get_order(self, order_num):
-        pass
+    def get_order_by_ssn(self, ssn):
+        customer = self.__CustomerService.check_ssn(ssn)
+        orders = []
+        for order in self.__OrderRepo.get_order_list():
+            if order.get_customer() == customer:
+                orders.append(order)
+        return orders
+        
