@@ -25,6 +25,7 @@ class OrderMenu:
             print_header(self.__prompt)
             order_name = input("Pöntunarnúmer: ")
             # self.__OrderService
+            #Skoða bíl? á þetta ekki að vera skoða pöntun?
         elif action == "2":
             self.__prompt += " / Skrá nýja pöntun"
             print_header(self.__prompt)
