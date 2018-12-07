@@ -68,9 +68,9 @@ class Customer(Person):
                 except:
                     print("Ekki valmöguleiki, veldu aftur")
             if choice == "5":
-                break
+                correct = True
             self.change_info(choice, customer_list)
-        
+
     def change_info(self, choice, customer_list):
         if choice == "1":
             self.make_name()

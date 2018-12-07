@@ -41,14 +41,14 @@ class OrderService:
         return date(int(year), int(month), int(day))
 
     def make_order_info(self):
-        ssn = input("Kennitala viðskiptavinar: ")
         valid_ssn = False
         while valid_ssn is not True:
+            ssn = input("Kennitala viðskiptavinar: ")
             customer = self.__CustomerService.check_ssn(ssn)
             if customer:
                 valid_ssn = True
             else:
-                ssn = input("Kennitala ekki á skrá\nKennitala viðskiptavinar\n")
+                print("Kennitala ekki á skrá")
         step1 = False
         while step1 is not True:
             car_type = make_car_type()
