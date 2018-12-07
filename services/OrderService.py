@@ -9,8 +9,6 @@ import string
 from services.CustomerService import CustomerService
 from services.ChangeService import ChangeService
 
-
-
 class OrderService:
 
     def __init__(self):
@@ -29,7 +27,11 @@ class OrderService:
     def make_order_info(self):
         new_order = Order()
         for step in range(1, 5):
-            new_order.change_info(str(step), self.__car_service, self.__customer_service)
+            choice = new_order.change_info(str(step), self.__car_service, self.__customer_service)
+            if choice == "Tilbaka":
+                return "Tilbaka"
+            elif choice == "Heim":
+                return "Heim"
         continue_q = input("Er allt rétt? (j/n) ").lower()
         if continue_q != "j":
             self.change_order_info(new_order, True)

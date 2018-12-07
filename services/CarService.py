@@ -5,6 +5,8 @@ from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
 from models.ui_methods import make_date
 from services.ChangeService import ChangeService
+from time import sleep
+from models.ui_methods import print_header
 
 def make_date_list(date1, date2):
     date_list = []
@@ -107,7 +109,7 @@ class CarService:
 
     def print_out_info_for_all_car_types(self, a_dict):
         for key,val in a_dict.items():
-            print("\n{:>10}{:>20}:".format(key, get_car_price(key)))    #Key er tegund bílsins bæta við verði við hliðin á tegundinni
+            print("\n{:>0}{:>20}:".format(key, get_car_price(key)))    #Key er tegund bílsins bæta við verði við hliðin á tegundinni
             print("="*60)
             for car_info in val:
                 print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
@@ -121,7 +123,7 @@ class CarService:
         else:
             print("Enginn laus bíll á þessum tíma")
 
-    def get_busy_cars(self):
+    def get_busy_cars(self, prompt):
         """Takes in 2 dates and returns a list of all cars that are 
         taken/busy, that day and/or the days between them, returns the cars
         in and dosent repeat the cars."""
@@ -130,9 +132,16 @@ class CarService:
             try:
                 date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
                 date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-                date_found = True
+                if date1 <= date2:
+                    date_found = True
+                else:
+                    print("Villa! Skiladagur getur ekki verið á undan afhendingardegi")
+                    sleep(2)
+                    print_header(prompt)
             except: 
                 print("Vinsamlegast sláðu inn gilda dagsetningu")
+                sleep(2)
+                print_header(prompt)
         list_of_days = make_date_list(date1, date2)
         car_info_dict = self._date_repo.get_date_dict()
         car_type_info_dict = {}
@@ -147,8 +156,8 @@ class CarService:
                         car_type_info_dict[car.get_car_type()] = car_type_info_dict.get(car.get_car_type(), []) + [[car_licence, car.get_sub_type(), car.get_milage(), car.get_transmission()]]
         return car_type_info_dict
 
-    def get_available_cars(self):
-        car_busy_dict = self.get_busy_cars()
+    def get_available_cars(self, prompt):
+        car_busy_dict = self.get_busy_cars(prompt)
         all_car_dict = self.make_all_cars_dict()
         delete_key_list = []
         for key in all_car_dict:

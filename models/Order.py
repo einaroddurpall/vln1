@@ -66,7 +66,12 @@ class Order:
                 if self.__customer:
                     valid_ssn = True
                 else:
-                    print("Kennitala ekki á skrá")
+                    choice = input("Kennitalan {} fannst ekki.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n".format(ssn))
+                    if choice == "2":
+                        return "Tilbaka"
+                    elif choice == "3":
+                        return "Heim"
+
         elif step == "2":
             step2 = False
             while step2 is not True:
