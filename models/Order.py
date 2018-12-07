@@ -73,9 +73,7 @@ class Order:
                         
                 self.__car = self.rent_car(car_type, self.__date_list, car_service)
                 if self.__car:
-                    continue_q = input("Halda áfram? (y/n) ").lower()
-                    if continue_q == "y":
-                        step2 = True
+                    step2 = True
                     system('clear')
                 else:
                     print("Enginn bíll laus með þessi skilyrði")
