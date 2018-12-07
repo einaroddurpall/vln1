@@ -56,7 +56,7 @@ class CarMenu:
                 while exit_info == "":
                     prompt += " / Skoða lausa bíla"
                     print_header(prompt)
-                    self.__CarService.get_available_cars()
+                    self.__CarService.get_available_cars(prompt)
                     question = input("1.  Skoða fleiri lausa bíla\n2.  Tilbaka\n3.  Heim\n")
                     if question == "2":
                         exit_info = "Tilbaka"
@@ -68,7 +68,7 @@ class CarMenu:
                 while exit_info == "":
                     prompt += " / Skoða bíla í útleigu"
                     print_header(prompt)
-                    busy_cars_dict = self.__CarService.get_busy_cars()
+                    busy_cars_dict = self.__CarService.get_busy_cars(prompt)
                     self.__CarService.print_car_dict(busy_cars_dict)
                     question = input("1.  Skoða fleiri bíla í útleigu\n2.  Tilbaka\n3.  Heim\n")
                     if question == "2":
@@ -78,3 +78,5 @@ class CarMenu:
                         done = True
             else:
                 done = True
+
+
