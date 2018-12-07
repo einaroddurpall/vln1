@@ -105,7 +105,7 @@ class CarService:
 
     def print_out_info_for_all_car_types(self, a_dict):
         for key,val in a_dict.items():
-            print("\n{:>10}{:>20}:".format(key, get_car_price(key)))    #Key er tegund bílsins bæta við verði við hliðin á tegundinni
+            print("\n{:>0}{:>20}:".format(key, get_car_price(key)))    #Key er tegund bílsins bæta við verði við hliðin á tegundinni
             print("="*60)
             for car_info in val:
                 print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))

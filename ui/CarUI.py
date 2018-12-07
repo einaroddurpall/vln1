@@ -24,9 +24,10 @@ class CarMenu:
                 print_header(prompt)
                 exit_info = ""
                 while exit_info == "":
-                    car_found = self.__CarService.car_find(input("Bílnúmer: "))
+                    registration_num = input("Bílnúmer: ")
+                    car_found = self.__CarService.car_find(registration_num)
                     if not car_found:
-                        question = input("Bíll fannst ekki, reyna aftur (j/n)? ")
+                        question = input("Bíll {} fannst ekki\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heimasíða\n".format(registration_num))
                         if question.lower() == 'j':
                             print_header(prompt)
                             continue
@@ -45,7 +46,7 @@ class CarMenu:
                 prompt += " / Skrá nýjan bíl"
                 print_header(prompt)
                 new_car = Car()
-                new_car = new_car.make_car()
+                new_car = new_car.make_car(prompt)
                 if new_car:
                     print_header(prompt)
                     print("Bíll skráður í kerfið.")
