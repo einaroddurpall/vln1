@@ -51,15 +51,11 @@ class CarRentalUi:
             print_header(prompt)
             action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n")
             if action == "1":
-                
+
                 self.__CarUI()
             elif action == "2":
                 prompt += " / Viðskiptavinir"
                 self.__CustomerUI(prompt)
             elif action == "3":
-<<<<<<< HEAD
-                prompt += " / Skoða eða skrá pantanir"
-                self.__OrderUI(prompt)
-=======
+
                 self.__OrderUI()
->>>>>>> 773aca0f549f2c51dea775bd49a35c5e3acb816d

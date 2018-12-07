@@ -47,11 +47,13 @@ class CarMenu:
                 print_header(prompt)
                 new_car = Car()
                 new_car = new_car.make_car(prompt)
-                if new_car:
+                if type(new_car) != int:
                     print_header(prompt)
                     print("Bíll skráður í kerfið.")
                     sleep(3)
                     self.__CarService.car_register(new_car)
+                elif new_car == 1: 
+                    done = True
             elif action == "3":
                 exit_info = ""
                 while exit_info == "":
