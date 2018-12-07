@@ -60,13 +60,20 @@ class OrderRepository:
         names = self.__names
         counter = 1
         while True:
-            unique_name = "Order " + str(counter)
+            unique_name = "Pöntun " + str(counter)
             counter += 1
             if unique_name not in names:
                 order.set_order_name(unique_name)
                 break
-    
 
+    def update_order_list(self):
+        with open("./data/orders.csv", "w", encoding = "UTF-8") as orders_file:
+            new_file = ""
+            for order in self.__order_list:
+                new_file += order.__repr__() + "\n"
+            orders_file.seek(0)
+            orders_file.truncate()
+            orders_file.write(new_file)
     
 
 # def make_date_list(date1, date2):

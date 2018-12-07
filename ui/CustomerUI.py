@@ -42,7 +42,7 @@ class CustomerMenu:
                             print_header(self.__prompt)
                             choice = input("Ertu viss?(j/n): ")
                             if choice == "j":
-                                self.__CustomerService.customer_delete(customer._ssn)
+                                self.__CustomerService.customer_delete(customer)
                                 choice = "4"
                 else:
                     choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Heimasíða'.format(ssn))

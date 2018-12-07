@@ -13,6 +13,19 @@ def make_date_list(date1, date2):
         date_to_list += timedelta(days=1)
     return date_list
 
+def get_car_price(car_type):
+    '''Tekur inn streng sem lýsir bíltegundinni og skilar verðið á þeim flokki'''
+    if car_type.lower() == "smábíll":
+        return CarRepository.SMÁBÍll
+    elif car_type.lower() == 'fólksbíll':
+        return CarRepository.FÓlKSBÍLL
+    elif car_type.lower() == 'fimm sæta jeppi':
+        return CarRepository.FIMM_SÆTA_JEPPI
+    elif car_type.lower() == 'sjö sæta jeppi':
+        return CarRepository.SJÖ_SÆTA_JEPPI
+    elif car_type.lower() == 'smárúta':
+        return CarRepository.SMÁRÚTA
+
 class CarService:
 
     def __init__(self):
