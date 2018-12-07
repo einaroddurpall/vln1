@@ -14,6 +14,7 @@ class OrderService:
 
     def __init__(self):
         self.__order_repo = OrderRepository()
+        self.__order_list = self.__order_repo.get_order_list()
         self.__car_service = CarService()
         self.__customer_service = CustomerService()
         self.__car = None
@@ -54,8 +55,7 @@ class OrderService:
         if new_or_not:
             self.__order_repo.add_order(order)
         else:
-            #self.__order_repo.update_order(order)
-            pass
+            self.__order_repo.update_order_list()
 
     def get_order_by_name(self, name):
         for order in self.__order_repo.get_order_list():
@@ -64,10 +64,13 @@ class OrderService:
             return None
 
     def get_order_by_ssn(self, ssn):
-        customer = self.__CustomerService.check_ssn(ssn)
+        customer = self.__customer_service.check_ssn(ssn)
         orders = []
-        for order in self.__OrderRepo.get_order_list():
+        for order in self.__order_repo.get_order_list():
             if order.get_customer() == customer:
                 orders.append(order)
         return orders
         
+    def order_delete(self, order):
+        self.__order_list.remove(order)
+        self.__order_repo.update_order_list()
