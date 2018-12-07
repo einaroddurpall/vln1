@@ -8,7 +8,7 @@ def print_header(prompt=""):
         """ Hreinsar terminal og prentar út header með slóð """
         system('clear')
         print(prompt)
-        print("="*40)
+        print("="*60)
 
 def make_date(a_date):
     new_string = ""

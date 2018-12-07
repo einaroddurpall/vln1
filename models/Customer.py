@@ -1,4 +1,5 @@
 from models.Person import Person
+from models.ui_methods import print_header
 
 class Customer(Person):
     """Customer class, is a subclass of the Person class
@@ -73,6 +74,8 @@ class Customer(Person):
             if choice == "5":
                 correct = True
             self.change_info(choice, customer_list)
+            print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
+
 
     def change_info(self, choice, customer_list):
         if choice == "1":

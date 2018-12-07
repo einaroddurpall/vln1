@@ -24,10 +24,11 @@ class CustomerMenu:
                     print_header(prompt)
                     ssn = input("Kennitala: ")
                     customer = self.__CustomerService.check_ssn(ssn)
-                    print_header(prompt)
                     exit_info2 = ""
                     if customer:
                         while exit_info2 == "":
+                            prompt = "Heimasíða / Viðskiptavinir / Leita að viðskiptavin"
+                            print_header(prompt)
                             print(customer)
                             choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Tilbaka\n5.  Heim\n")
                             if choice == "1":
@@ -44,7 +45,8 @@ class CustomerMenu:
                                 choice = input("Ertu viss?(j/n): ")
                                 if choice == "j":
                                     self.__CustomerService.customer_delete(customer)
-                                    choice = "4"
+                                    exit_info = "Tilbaka"
+                                    exit_info2 = "Tilbaka"
                             elif choice == "4":
                                 exit_info = "Tilbaka"
                                 exit_info2 = "Tilbaka"
@@ -63,6 +65,5 @@ class CustomerMenu:
                 prompt += " / Skrá nýjan viðskiptavin"
                 print_header(prompt)
                 self.__CustomerService.customer_register()
-                done = True
             else:
                 done = True
