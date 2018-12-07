@@ -65,7 +65,16 @@ class OrderRepository:
             if unique_name not in names:
                 order.set_order_name(unique_name)
                 break
-    
+
+
+    def update_costumers_list(self):
+        with open("./data/orders.csv", "w", encoding = "UTF-8") as orders_file:
+            new_file = ""
+            for a_customer in self.__customers:
+                new_file += a_customer.__repr__() + "\n"
+            customers_file.seek(0)
+            customers_file.truncate()
+            customers_file.write(new_file)
 
     
 

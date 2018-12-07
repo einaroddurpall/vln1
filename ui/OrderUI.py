@@ -21,7 +21,7 @@ class OrderMenu:
         print_header(self.__prompt)
         action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Skila bíl\n")
         if action == "1":
-            self.__prompt += " / Skoða bíl"
+            self.__prompt += " / Skoða pöntun"
             print_header(self.__prompt)
             order_name = input("Pöntunarnúmer: ")
             # self.__OrderService

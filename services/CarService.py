@@ -13,6 +13,7 @@ def make_date_list(date1, date2):
     return date_list
 
 def get_car_price(car_type):
+    '''Tekur inn streng sem lýsir bíltegundinni og skilar verðið á þeim flokki'''
     if car_type.lower() == "smábíll":
         return CarRepository.SMÁBÍll
     elif car_type.lower() == 'fólksbíll':
