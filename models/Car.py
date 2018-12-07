@@ -1,4 +1,6 @@
 import string
+from time import sleep
+from models.ui_methods import print_header
 
 def make_car_type():
     valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
@@ -87,7 +89,7 @@ class Car:
         return self.get_registration_num() == other.get_registration_num()
     
 
-    def make_car(self):
+    def make_car(self, prompt):
         while True:
             registration_num = input("Bílnúmer: ")
             if registration_num[0] in string.ascii_uppercase and registration_num[1] in string.ascii_uppercase\
@@ -97,6 +99,8 @@ class Car:
                break
             else:
                 print("Bílnúmer er ekki til, vinsamlegast sláðu inn aftur")
+                sleep(2)
+                print_header(prompt)
 
         car_type = make_car_type()
         if car_type == None:

@@ -57,5 +57,9 @@ class CarRentalUi:
                 prompt += " / Viðskiptavinir"
                 self.__CustomerUI(prompt)
             elif action == "3":
+<<<<<<< HEAD
                 prompt += " / Skoða eða skrá pantanir"
                 self.__OrderUI(prompt)
+=======
+                self.__OrderUI()
+>>>>>>> 773aca0f549f2c51dea775bd49a35c5e3acb816d
