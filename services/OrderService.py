@@ -61,7 +61,7 @@ class OrderService:
         for order in self.__order_repo.get_order_list():
             if order.get_order_name() == name:
                 return order
-            return None
+        return None
 
     def get_order_by_ssn(self, ssn):
         customer = self.__customer_service.check_ssn(ssn)
