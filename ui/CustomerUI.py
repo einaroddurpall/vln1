@@ -45,7 +45,7 @@ class CustomerMenu:
                                 self.__CustomerService.customer_delete(customer)
                                 choice = "4"
                 else:
-                    choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Heimasíða'.format(ssn))
+                    choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Heimasíða\n'.format(ssn))
                     if choice == "2":
                         done = True
             elif action == "2":
