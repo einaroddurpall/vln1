@@ -64,9 +64,9 @@ class OrderService:
             return None
 
     def get_order_by_ssn(self, ssn):
-        customer = self.__CustomerService.check_ssn(ssn)
+        customer = self.__customer_service.check_ssn(ssn)
         orders = []
-        for order in self.__OrderRepo.get_order_list():
+        for order in self.__order_repo.get_order_list():
             if order.get_customer() == customer:
                 orders.append(order)
         return orders

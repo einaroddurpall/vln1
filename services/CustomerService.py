@@ -18,8 +18,9 @@ class CustomerService:
             if customer.get_ssn() == ssn:
                 return customer
 
-    def customer_delete(self, ssn):
-        self.__customer_repo.remove_customer(ssn)
+    def customer_delete(self, customer):
+        self.__customers_list.remove(customer)
+        self.__customer_repo.update_costumers_list()
 
     def customer_update_info(self, customer):
         customer.customer_change_info(self.__customers_list)
