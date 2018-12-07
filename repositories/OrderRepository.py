@@ -66,16 +66,14 @@ class OrderRepository:
                 order.set_order_name(unique_name)
                 break
 
-
-    def update_costumers_list(self):
+    def update_order_list(self):
         with open("./data/orders.csv", "w", encoding = "UTF-8") as orders_file:
             new_file = ""
-            for a_customer in self.__customers:
-                new_file += a_customer.__repr__() + "\n"
-            customers_file.seek(0)
-            customers_file.truncate()
-            customers_file.write(new_file)
-
+            for order in self.__order_list:
+                new_file += order.__repr__() + "\n"
+            orders_file.seek(0)
+            orders_file.truncate()
+            orders_file.write(new_file)
     
 
 # def make_date_list(date1, date2):
