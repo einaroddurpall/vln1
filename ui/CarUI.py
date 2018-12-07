@@ -27,7 +27,7 @@ class CarMenu:
                     registration_num = input("Bílnúmer: ")
                     car_found = self.__CarService.car_find(registration_num)
                     if not car_found:
-                        question = input("Bíll {} fannst ekki\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heimasíða\n".format(registration_num))
+                        question = input("Bíll {} fannst ekki\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heima\n".format(registration_num))
                         if question.lower() == 'j':
                             print_header(prompt)
                             continue
