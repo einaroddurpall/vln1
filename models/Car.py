@@ -1,6 +1,6 @@
 import string
 from time import sleep
-from models.ui_methods import print_header
+from models.ui_methods import print_header, error_handle
 
 def make_car_type():
     valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
@@ -99,42 +99,50 @@ class Car:
                and registration_num[4] in string.digits and registration_num[5] in string.digits:
                break
             else:
-                choice = input('Bílnúmerið: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n'.format(registration_num))
-                if choice == "2":
-                    exit_info = 2
-                    done = True
-                elif choice == "3":
-                    exit_info = 1
-                    done = True
+                true_input = False
+                while true_input != True:
+                    choice = error_handle("Bílnúmerið", registration_num)
+                    if choice == "2":
+                        exit_info = 2
+                        done = True
+                        true_input = True
+                    elif choice == "3":
+                        exit_info = 1
+                        done = True
+                        true_input = True
+                    elif choice == "1":
+                        true_input = True
+                    else:
+                        print("Please enter a valid choice")
                     
 
-            if done != True:
-                car_type = make_car_type()
-                if car_type == None:
-                    return None
-                sub_type = input("Tegund bíls: ")
-                transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
-                valid_transmission = False
-                while valid_transmission is False:
-                    if transmission == "1":
-                        transmission = "Sjálfskiptur"
-                    elif transmission == "2":
-                        transmission = "Beinskiptur"
-                    else:
-                        print("Villa, vinsamlegast veldu sjálfskiptan eða beinskiptan")
-                        transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
-                        continue
-                    valid_transmission = True
-                valid_mileage = False
-                while valid_mileage != True: 
-                    milage = input("Akstur: ")
-                    try: 
-                        int(milage)
-                        valid_mileage = True
-                    except: 
-                        pass
-                is_rentable = True
-                history = ""
-                new_car = Car(registration_num, car_type, sub_type, transmission, milage, is_rentable, history)
-                return new_car
+        if done != True:
+            car_type = make_car_type()
+            if car_type == None:
+                return None
+            sub_type = input("Tegund bíls: ")
+            transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
+            valid_transmission = False
+            while valid_transmission is False:
+                if transmission == "1":
+                    transmission = "Sjálfskiptur"
+                elif transmission == "2":
+                    transmission = "Beinskiptur"
+                else:
+                    print("Villa, vinsamlegast veldu sjálfskiptan eða beinskiptan")
+                    transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
+                    continue
+                valid_transmission = True
+            valid_mileage = False
+            while valid_mileage != True: 
+                milage = input("Akstur: ")
+                try: 
+                    int(milage)
+                    valid_mileage = True
+                except: 
+                    pass
+            is_rentable = True
+            history = ""
+            new_car = Car(registration_num, car_type, sub_type, transmission, milage, is_rentable, history)
+            return new_car
         return exit_info

@@ -19,3 +19,7 @@ def make_date(a_date):
     month = new_string[2:4]
     year = new_string[4:]
     return date(int(year), int(month), int(day))
+
+def error_handle(search, search_input):
+        choice = input('{}: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n'.format(search, search_input))
+        return choice
