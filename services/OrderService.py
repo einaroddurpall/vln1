@@ -1,38 +1,21 @@
 from datetime import datetime, timedelta
 from os import system
-from models.Car import make_car_type
 from models.Order import Order
-from services.CustomerService import CustomerService
 from services.CarService import CarService
 from time import sleep
 from datetime import date
 from repositories.OrderRepository import OrderRepository
 import string
+from services.CustomerService import CustomerService
 
-def make_date(a_date):
-    new_string = ""
-    for letter in a_date:
-        if letter in string.digits:
-            new_string += letter
-    day = new_string[:2]
-    month = new_string[2:4]
-    year = new_string[4:]
-    return date(int(year), int(month), int(day))
 
-def make_date_list(date1, date2):
-    date_list = []
-    date_to_list = date1
-    while date_to_list <= date2:
-        date_list.append(date_to_list)
-        date_to_list += timedelta(days=1)
-    return date_list
 
 class OrderService:
 
     def __init__(self):
-        self.__OrderRepo = OrderRepository()
-        self.__CustomerService = CustomerService()
-        self.__CarService = CarService()
+        self.__order_repo = OrderRepository()
+        self.__car_service = CarService()
+        self.__customer_service = CustomerService()
         self.__car = None
         #self.__order_num = 1
 
@@ -41,75 +24,44 @@ class OrderService:
         return date(int(year), int(month), int(day))
 
     def make_order_info(self):
-        valid_ssn = False
-        while valid_ssn is not True:
-            ssn = input("Kennitala viðskiptavinar: ")
-            customer = self.__CustomerService.check_ssn(ssn)
-            if customer:
-                valid_ssn = True
-            else:
-                print("Kennitala ekki á skrá")
-        step1 = False
-        while step1 is not True:
-            car_type = make_car_type()
-            valid_date = False
-            while valid_date != True:
+        new_order = Order()
+        for step in range(1, 5):
+            new_order.change_info(str(step), self.__car_service, self.__customer_service)
+        continue_q = input("Er allt rétt? (j/n) ").lower()
+        if continue_q != "j":
+            self.change_order_info(new_order, True)
+        else:
+            self.__order_repo.add_order(new_order)
+
+        
+    def change_order_info(self, order, new_or_not):
+        correct = False
+        while not correct:
+            print("Hverju villtu breyta:\n1. Kennitölu á pöntun\n2. Bíl og dagsetningu\n3. Tryggingu\n4. Kortanúmeri\n5. Klára Skráningu")
+            legal_choice = False
+            while not legal_choice:
+                choice = input()
                 try:
-                    date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-                    date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-                    date_list = make_date_list(date1, date2)
-                    valid_date = True
-                except: 
-                    print("Vinsamlegast sláðu inn gilda dagsetningu")
-                    
-            car = self.rent_car(car_type, date_list)
-            if car:
-                continue_q = input("Halda áfram? (y/n) ").lower()
-                if continue_q == "y":
-                    step1 = True
-                system('clear')
-            else:
-                print("Enginn bíll laus með þessi skilyrði")
-                sleep(2)
-                system('clear')
-                print("Heimasíða / Skoða eða skrá pantanir / Skrá pantanir")
-                print("="*40)
-        step2 = False
-        while step2 is not True:
-            number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
-            if number == "1":
-                insurance = "skyldu trygging"
-            else:
-                insurance = "aukaleg trygging"
-            card_info = input("Kortanúmer: ")
-            continue_q = input("Halda áfram? (y/n) ").lower()
-            if continue_q == "y":
-                step2 = True
-            system('clear')
-            new_order = Order(customer, car, date_list, insurance, card_info) #"Order " + str(self.__order_num))
-            #self.__order_num += 1
-            self.__OrderRepo.add_order(new_order)
+                    if int(choice) in range(1,6):
+                        legal_choice = True
+                    else:
+                        print("Ekki valmöguleiki, veldu aftur")
+                except:
+                    print("Ekki valmöguleiki, veldu aftur")
+            if choice == "5":
+                correct = True
+            order.change_info(choice, self.__car_service, self.__customer_service)
+        if new_or_not:
+            self.__order_repo.add_order(order)
+        else:
+            #self.__order_repo.update_order(order)
+            pass
 
-    def rent_car(self, car_type, date_list):
-        """ Þetta fall tekur á móti car_type og date_list, býr til carlist fyrir viðeigandi car_type og athugar hvort einhver
-            bíll í þessum carlist sé laus á dögunum í date_list """
-        if car_type.lower() == "fólksbíll":
-            car_type_list = self.__CarService._car_repo_sedan.get_carlist()
-        elif car_type.lower() == "fimm sæta jeppi":
-            car_type_list = self.__CarService._car_repo_five_seat_suv.get_carlist()
-        elif car_type.lower() == "smárúta":
-            car_type_list = self.__CarService._car_repo_minibus.get_carlist()
-        elif car_type.lower() == "sjö sæta jeppi":
-            car_type_list = self.__CarService._car_repo_seven_seat_suv.get_carlist()
-        elif car_type.lower() == "smábíll":
-            car_type_list = self.__CarService._car_repo_small_car.get_carlist()
-
-        date_repo = self.__CarService.get_date_repo()
-        date_dict = date_repo.get_date_dict()
-        for car in car_type_list:
-            if car.check_availability(date_list, date_dict, car_type_list):
-                return car
-        return None
+    def get_order_by_name(self, name):
+        for order in self.__order_repo.get_order_list():
+            if order.get_order_name() == name:
+                return order
+            return None
 
     def get_order_by_ssn(self, ssn):
         customer = self.__CustomerService.check_ssn(ssn)
