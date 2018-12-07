@@ -70,7 +70,7 @@ class OrderRepository:
         with open("./data/orders.csv", "w", encoding = "UTF-8") as orders_file:
             new_file = ""
             for order in self.__order_list:
-                new_file += order.__repr__() + "\n"
+                new_file += order.__repr__()
             orders_file.seek(0)
             orders_file.truncate()
             orders_file.write(new_file)
