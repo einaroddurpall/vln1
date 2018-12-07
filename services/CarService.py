@@ -4,6 +4,7 @@ from services.CustomerService import CustomerService
 from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
 from models.ui_methods import make_date
+from services.ChangeService import ChangeService
 
 def make_date_list(date1, date2):
     date_list = []
@@ -37,6 +38,7 @@ class CarService:
         self._all_cars_list = self.make_all_cars_list()
         self._customer_service = CustomerService()
         self._date_repo = DateRepository()
+        self.__change_service = ChangeService()
 
     def make_all_cars_list(self):
         '''Fall sem nær í alla bíla sem erum í skránum og skilar þeim sem í lista'''

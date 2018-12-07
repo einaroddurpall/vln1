@@ -1,12 +1,14 @@
 from repositories.CustomerRepository import CustomerRepository
 from models.Customer import Customer
 from datetime import datetime
+from services.ChangeService import ChangeService
 
 class CustomerService:
 
     def __init__(self):
         self.__customer_repo = CustomerRepository()
         self.__customers_list = self.__customer_repo.get_customers_list()
+        self.__change_service = ChangeService()
 
     def customer_register(self):
         new_customer = Customer()
@@ -23,6 +25,9 @@ class CustomerService:
         self.__customer_repo.update_costumers_list()
 
     def customer_update_info(self, customer):
+        old_customer = customer
         customer.customer_change_info(self.__customers_list)
         self.__customer_repo.update_costumers_list()
-        # Pæling með pantanir sem eru skráðar á gamla viðskiptavininn
+        #Pæling með pantanir sem eru skráðar á gamla viðskiptavininn
+        self.__change_service.change_customer_info_consequences(old_customer, customer)
+        

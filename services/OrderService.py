@@ -7,6 +7,7 @@ from datetime import date
 from repositories.OrderRepository import OrderRepository
 import string
 from services.CustomerService import CustomerService
+from services.ChangeService import ChangeService
 
 
 
@@ -18,6 +19,7 @@ class OrderService:
         self.__car_service = CarService()
         self.__customer_service = CustomerService()
         self.__car = None
+        self.__change_service = ChangeService()
         #self.__order_num = 1
 
     def make_date(self, a_date):
