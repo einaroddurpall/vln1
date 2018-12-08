@@ -7,7 +7,7 @@ from models.ui_methods import make_date
 class CustomerMenu:
 
     def __init__(self):
-        self.__CustomerService = CustomerService()
+        self.__customer_service = CustomerService()
         self.customer_menu()
 
     def customer_menu(self):
@@ -24,7 +24,7 @@ class CustomerMenu:
                         prompt += " / Leita að viðskiptavin"
                     print_header(prompt)
                     ssn = input("Kennitala: ")
-                    customer = self.__CustomerService.check_ssn(ssn)
+                    customer = self.__customer_service.check_ssn(ssn)
                     exit_info2 = ""
                     if customer:
                         while exit_info2 == "":
@@ -39,13 +39,13 @@ class CustomerMenu:
                             elif choice == "2":
                                 prompt += " / Breyta skráningu"
                                 print_header(prompt)
-                                self.__CustomerService.customer_update_info(customer)
+                                self.__customer_service.customer_update_info(customer)
                             elif choice == "3":
                                 prompt += " / Afskrá viðskiptavin"
                                 print_header(prompt)
                                 choice = input("Ertu viss?(j/n): ")
                                 if choice == "j":
-                                    self.__CustomerService.customer_delete(customer)
+                                    self.__customer_service.customer_delete(customer)
                                     exit_info = "Tilbaka"
                                     exit_info2 = "Tilbaka"
                             elif choice == "4":
@@ -65,6 +65,6 @@ class CustomerMenu:
             elif action == "2":
                 prompt += " / Skrá nýjan viðskiptavin"
                 print_header(prompt)
-                self.__CustomerService.customer_register()
+                self.__customer_service.customer_register()
             else:
                 done = True
