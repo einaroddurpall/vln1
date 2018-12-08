@@ -1,5 +1,4 @@
-from models.Employee import Employee
-from models.Boss import Boss
+from models.Staff import Staff
 
 class StaffRepository:
 
@@ -13,7 +12,7 @@ class StaffRepository:
         self.__staff.append(staff)
 
     def get_staff(self):
-        """Ná í alla starfsmenn og yfirmenn"""
+        """Ná í alla starfsmenn"""
         staff_list = []
         with open("./data/staff.csv", encoding = "UTF-8") as staff_file:
             for row in staff_file.readlines():

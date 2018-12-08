@@ -64,7 +64,7 @@ class CarRentalUi:
                 prompt = "Heimasíða"
                 print_header(prompt)
                 if admin:
-                    action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n4.  Skrá nýjan aðgang\nq.  Skrá út\n")
+                    action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n4. Aðgangs leyfi\nq.  Skrá út\n")
                     if action == '4':
                         self.__staffUI()
                 else:

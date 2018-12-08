@@ -1,6 +1,5 @@
 from repositories.StaffRepository import StaffRepository
-from models.Employee import Employee
-from models.Boss import Boss
+from models.Staff import Staff
 
 class StaffService:
 
@@ -13,3 +12,8 @@ class StaffService:
             if staff.get_username() == username and staff.get_password() == password:
                 return True, staff.get_admin()
         return False, False
+
+    def customer_register(self):
+        new_staff = Staff()
+        new_staff.make_staff(self.__staff_list)
+        self.__staff_repo.add_staff(new_staff)

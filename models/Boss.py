@@ -30,5 +30,3 @@ class Boss(Person):
     def get_admin(self):
         return self.__admin
 
-    def Change_password(self, new_password):
-        self.__password = new_password
