@@ -32,6 +32,16 @@ class CustomerRepository:
             customers_file.truncate()
             customers_file.write(new_file)
 
+    def get_unique_id(self):
+        id_list = [customer.get_id() for customer in self.__customers]
+        counter = 1
+        while True:
+            unique_id = "Viðskiptavinur " + str(counter)
+            counter += 1
+            if unique_id not in id_list:
+                return unique_id
+
+
 def create_list(self, line_string):
     line_string = line_string.strip("\n")
     line_list = line_string.split(";")

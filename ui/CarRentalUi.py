@@ -5,14 +5,18 @@ import string
 from ui.CarUI import CarMenu
 from ui.CustomerUI import CustomerMenu
 from ui.OrderUI import OrderMenu
+from ui.StaffUI import StaffMenu
 from models.ui_methods import print_header
+from services.StaffService import StaffService
 
 class CarRentalUi:
 
     def __init__(self):
-        self.__CarUI = CarMenu
-        self.__OrderUI = OrderMenu
-        self.__CustomerUI = CustomerMenu
+        self.__carUI = CarMenu
+        self.__orderUI = OrderMenu
+        self.__customerUI = CustomerMenu
+        self.__staffUI = StaffMenu
+        self.__staff_service = StaffService()
 
     def draw_car(self):
         print("\033[1;34;1m{:<31}==============".format(""))
@@ -45,14 +49,29 @@ class CarRentalUi:
 
     def main_menu(self):
         """ Main menu er loop sem hættir þegar q er sett inn."""
-        action = ""
-        while action != "q":
-            prompt = "Heimasíða"
-            print_header(prompt)
-            action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n")
-            if action == "1":
-                self.__CarUI()
-            elif action == "2":
-                self.__CustomerUI()
-            elif action == "3":
-                self.__OrderUI()
+        while True:
+            login = False
+            while login != True:
+                system('clear')
+                username = input("Username: ")
+                password = input("Password: ")
+                login, admin = self.__staff_service.check_login(username, password)
+                if login == False:
+                    print("Innskráning mystókst.")
+                    sleep(2.5)
+            action = ""
+            while action != "q":
+                prompt = "Heimasíða"
+                print_header(prompt)
+                if admin:
+                    action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n4. Aðgangs leyfi\nq.  Skrá út\n")
+                    if action == '4':
+                        self.__staffUI()
+                else:
+                    action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\nq.  Skrá út\n")
+                if action == "1":
+                    self.__carUI()
+                elif action == "2":
+                    self.__customerUI()
+                elif action == "3":
+                    self.__orderUI()

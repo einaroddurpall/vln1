@@ -97,10 +97,12 @@ class CarService:
         if question == "j":
             car_type = make_car_type()
             if car_type in a_dict.keys():
-                print("\n{:<15}{:>8}:".format(car_type, get_car_price(car_type)))
+                print("\n{:<15}{:>8} ISK:".format(car_type, get_car_price(car_type)))
                 print("="*60)
+                print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+                print('-'*60)
                 for car_info in a_dict[car_type]:
-                    print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                    print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
                 print("="*60)
                 return False
             else:
@@ -109,10 +111,12 @@ class CarService:
 
     def print_out_info_for_all_car_types(self, a_dict):
         for key,val in a_dict.items():
-            print("\n{:<15}{:>8}:".format(key, get_car_price(key)))    #Key er tegund bílsins bæta við verði við hliðin á tegundinni
+            print("\n{:<15}{:>8} ISK:".format(key, get_car_price(key)))
             print("="*60)
+            print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+            print('-'*60)
             for car_info in val:
-                print("{:>10}{:>20}{:>8}{:>15}".format(car_info[0],car_info[1],car_info[2],car_info[3],))
+                print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
             print("="*60)
 
     def print_car_dict(self, a_dict):
