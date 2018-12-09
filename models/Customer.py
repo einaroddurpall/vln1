@@ -22,7 +22,7 @@ class Customer(Person):
     def get_gsm(self):
         return self.__gsm
 
-    def update_cutomer_history (self, history):
+    def update_customer_history (self, history):
         """function that creates a history or adds
         new history to the old one with an enter between it"""
         self.__history += history + "\n"
