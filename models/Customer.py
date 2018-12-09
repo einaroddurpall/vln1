@@ -7,16 +7,21 @@ class Customer(Person):
     takes in name, ssn. email, gsm, history
     and the name and ssn get's sent to person parent class"""
 
-    def __init__ (self,name="", ssn="", email="", gsm="", history=""):
+    def __init__ (self, unique_id, name="", ssn="", email="", gsm="", history=""):
         Person.__init__(self, name, ssn)
         self.__email = email
         self.__gsm = gsm
+        self.__customer_id = unique_id
         self.__history = history
         
         if history == "":
             self.__history = "Þessi viðskiptavinur hefur aldrei tekið bíl á leigu."
         else: 
             self.__history = history
+
+    
+    def get_id(self):
+        return self.__customer_id
 
     def get_email(self):
         return self.__email
@@ -37,8 +42,8 @@ class Customer(Person):
         return self.get_ssn() == other.get_ssn()
 
     def __repr__(self):
-        return "Customer('{}','{}','{}','{}','{}')".format(
-            self._name, self._ssn, self.__email, self.__gsm, self.__history
+        return "Customer('{}','{}','{}','{}','{}','{}')".format(
+            self.__customer_id, self._name, self._ssn, self.__email, self.__gsm, self.__history
         )
 
     def __str__(self):
