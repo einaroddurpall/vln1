@@ -17,6 +17,9 @@ class Order:
     def get_customer(self):
         return self.__customer
 
+    def set_customer(self, customer):
+        self.__customer = customer
+
     def get_first_day(self):
         return self.__date_list[0]
 
@@ -63,31 +66,40 @@ class Order:
                 if self.__customer:
                     valid_ssn = True
                 else:
-                    print("Kennitala ekki á skrá")
+                    choice = input("Kennitalan {} fannst ekki.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n".format(ssn))
+                    if choice == "2":
+                        return "Tilbaka"
+                    elif choice == "3":
+                        return "Heim"
+
         elif step == "2":
             step2 = False
             while step2 is not True:
                 car_type = make_car_type()
-                valid_date = False
-                while valid_date != True:
-                    try:
-                        date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-                        date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-                        self.__date_list = make_date_list(date1, date2)
-                        valid_date = True
-                    except: 
-                        print("Vinsamlegast sláðu inn gilda dagsetningu")
-                        
-                self.__car = self.rent_car(car_type, self.__date_list, car_service)
-                if self.__car:
-                    step2 = True
-                    system('clear')
+                if car_type: 
+                    valid_date = False
+                    while valid_date != True:
+                        try:
+                            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+                            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+                            self.__date_list = make_date_list(date1, date2)
+                            valid_date = True
+                        except: 
+                            print("Vinsamlegast sláðu inn gilda dagsetningu")
+                            
+                    self.__car = self.rent_car(car_type, self.__date_list, car_service)
+                    if self.__car:
+                        step2 = True
+                        system('clear')
+                    else:
+                        print("Enginn bíll laus með þessi skilyrði")
+                        sleep(2)
+                        system('clear')
+                        print("Heimasíða / Skoða eða skrá pantanir / Skrá pantanir")
+                        print("="*40)
                 else:
-                    print("Enginn bíll laus með þessi skilyrði")
-                    sleep(2)
-                    system('clear')
-                    print("Heimasíða / Skoða eða skrá pantanir / Skrá pantanir")
-                    print("="*40)
+                    pass
+                    # villu fall
         elif step == "3":
             step3 = False
             while step3 is not True:

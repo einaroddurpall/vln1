@@ -1,4 +1,6 @@
 from models.Person import Person
+from models.Person import make_number
+from models.ui_methods import print_header
 
 class Customer(Person):
     """Customer class, is a subclass of the Person class
@@ -59,10 +61,9 @@ class Customer(Person):
     def customer_change_info(self, customer_list):
         correct = False
         while not correct:
-            print("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu")
+            choice = input("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu\n")
             legal_choice = False
             while not legal_choice:
-                choice = input()
                 try:
                     if int(choice) in range(1,6):
                         legal_choice = True
@@ -73,6 +74,8 @@ class Customer(Person):
             if choice == "5":
                 correct = True
             self.change_info(choice, customer_list)
+            print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
+
 
     def change_info(self, choice, customer_list):
         if choice == "1":
@@ -93,20 +96,6 @@ class Customer(Person):
             change = make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
             self.__gsm = change
 
-    def make_name(self):
-        legal_name = False
-        while not legal_name:
-            name = input("Nafn: ")
-            for letter in name:
-                try:
-                    int(letter)
-                    print("Nafnið inniheldur ólöglega stafi")
-                    legal_name = False
-                    break
-                except:
-                    legal_name = True
-        self._name = name
-
     def make_email(self):
         legal_email = False
         while not legal_email:
@@ -120,20 +109,3 @@ class Customer(Person):
                 else:
                     print("Ólöglegt netfang, reyndu aftur.")
         self.__email = email
-
-def make_number(lenght_of_number, input_string, error_code_str):
-    legal_ssn = False
-    while not legal_ssn:
-        inp = input(input_string)
-        ssn = ""
-        for letter in inp:
-            try:
-                int(letter)
-                ssn += letter
-            except:
-                continue
-        if len(ssn) == lenght_of_number:
-            legal_ssn = True
-        else:
-            print(error_code_str)
-    return ssn

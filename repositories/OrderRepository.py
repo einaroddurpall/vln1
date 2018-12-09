@@ -64,6 +64,7 @@ class OrderRepository:
             counter += 1
             if unique_name not in names:
                 order.set_order_name(unique_name)
+                self.__names.append(unique_name)
                 break
 
     def update_order_list(self):
