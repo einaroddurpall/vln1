@@ -39,7 +39,7 @@ class Customer(Person):
         return self.__history
 
     def __eq__(self, other):
-        return self.get_ssn() == other.get_ssn()
+        return self.get_id() == other.get_id()
 
     def __repr__(self):
         return "Customer('{}','{}','{}','{}','{}','{}')".format(
