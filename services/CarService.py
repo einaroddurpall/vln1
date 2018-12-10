@@ -189,3 +189,11 @@ class CarService:
         for key in delete_key_list:
             del all_car_dict[key]
         self.print_car_dict(all_car_dict)
+
+    def car_get_history(self, car):
+        orders = self._order_repo.get_order_list()
+        car_orders = []
+        for order in orders:
+            if order.get_car() == car:
+                car_orders.append(order)
+        return car_orders
