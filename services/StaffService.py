@@ -13,7 +13,7 @@ class StaffService:
                 return True, staff.get_admin()
         return False, False
 
-    def customer_register(self):
+    def staff_register(self):
         new_staff = Staff()
         new_staff.make_staff(self.__staff_list)
         self.__staff_repo.add_staff(new_staff)
@@ -26,3 +26,8 @@ class StaffService:
         staff.staff_change_info(self.__staff_list)
         self.__staff_repo.update_staff_list()
         #Pæling með pantanir sem eru skráðar á gamla viðskiptavinin
+
+    def check_ssn(self, ssn):
+        for staff in self.__staff_list:
+            if staff.get_ssn() == ssn:
+                return staff
