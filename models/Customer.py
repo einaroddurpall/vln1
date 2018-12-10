@@ -1,5 +1,5 @@
 from models.Person import Person
-from models.ui_methods import print_header, make_number
+from models.methods import print_header, make_number
 from time import sleep
 
 class Customer(Person):

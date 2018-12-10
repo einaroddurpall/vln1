@@ -3,10 +3,9 @@ from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
 from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
-from models.ui_methods import make_date
+from models.methods import print_header, make_date
 from services.ChangeService import ChangeService
 from time import sleep
-from models.ui_methods import print_header
 
 def make_date_list(date1, date2):
     date_list = []
