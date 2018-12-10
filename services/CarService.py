@@ -3,10 +3,9 @@ from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
 from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
-from models.ui_methods import make_date
+from models.methods import print_header, make_date
 from services.ChangeService import ChangeService
 from time import sleep
-from models.ui_methods import print_header
 
 def make_date_list(date1, date2):
     date_list = []
@@ -111,6 +110,7 @@ class CarService:
                 else:
                     print("Enginn bíll laus í þessari bílategund á þessum tíma")
                     return False
+
             else:
                 return None
         return True
@@ -196,5 +196,13 @@ class CarService:
                     None
         for key in delete_key_list:
             del all_car_dict[key]
-        go_home = self.print_car_dict(all_car_dict)
-        return go_home
+        go_back = self.print_car_dict(all_car_dict)
+        return go_back
+
+    def car_get_history(self, car):
+        orders = self._order_repo.get_order_list()
+        car_orders = []
+        for order in orders:
+            if order.get_car() == car:
+                car_orders.append(order)
+        return car_orders

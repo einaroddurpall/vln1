@@ -4,7 +4,7 @@ from models.Car import Car
 from time import sleep
 from datetime import date
 import string
-from models.ui_methods import print_header, error_handle
+from models.methods import print_header, error_handle
 
 class CarMenu:
 
@@ -42,8 +42,16 @@ class CarMenu:
                         print_header(prompt)
                         print(car_found)
                         print("="*60)
-                        question = input("\n1.  Leita að öðru bílnúmeri\n2.  Uppfæra upplýsingar bíls\n3.  Afskrá bíl\n4.  Tilbaka\n5.  Heim\n")
-                        if question == "2":
+                        question = input("\n1.  Skoða pantanir\n2.  Leita að öðru bílnúmeri\n3.  Uppfæra upplýsingar bíls\n4.  Afskrá bíl\n5.  Tilbaka\n6.  Heim\n")
+                        if question == "1":
+                            car_orders = self.__car_service.car_get_history(car_found)
+                            if car_orders:
+                                for order in car_orders:
+                                    print(order)
+                            else:
+                                print("Þessi bíll hefur enga notkunarsögu.")
+                            input("Ýttu á enter til að halda áfram: ")
+                        elif question == "3":
                             #car_found.update_car_info()
                             pass
                         elif question == "4":
@@ -58,7 +66,7 @@ class CarMenu:
                 print_header(prompt)
                 new_car = Car()
                 new_car = new_car.make_car(prompt)
-                if type(new_car) != int:
+                if new_car:
                     print_header(prompt)
                     print("Bíll skráður í kerfið.")
                     sleep(3)
@@ -79,7 +87,7 @@ class CarMenu:
                             exit_info = "Heim"
                             done = True
                     else:
-                        exit_info = "Hilmar er fáviti"
+                        exit_info = "Tilbaka"
             elif action == "4":
                 exit_info = ""
                 while exit_info == "":
@@ -98,5 +106,3 @@ class CarMenu:
                         exit_info = "Hilmar er fáviti"
             else:
                 done = True
-
-
