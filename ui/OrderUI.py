@@ -16,7 +16,7 @@ class OrderMenu:
             prompt = "Heimasíða / Skoða eða skrá pantanir"
             print_header(prompt)
             action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Skila bíl\n4.  Heim\n")
-            if action == "1":
+            if action == "1":      # Bæta við að það sé hægt að skrifa 1 í staðinn fyrir Order 1
                 prompt += " / Skoða pöntun"
                 print_header(prompt)
                 exit_info = ""
@@ -31,10 +31,10 @@ class OrderMenu:
                             print(order)
                             print('='*60)
                             choice = input("\n1.  Uppfæra pöntun\n2.  Eyða pöntun\n3.  Tilbaka\n4.  Heim\n")
-                            if choice == "1":
+                            if choice == "1":       #Pöntun uppfærist í csv næst þegar kerfið er opnað
                                 prompt += " / Uppfæra Pöntun"
-                                print_header(prompt)
-                                self.__order_service.change_order_info(order, False)
+                                self.__order_service.change_order_info(order, False, prompt)
+                                exit_info = "Pöntun uppfærð"
                             elif choice == "2":
                                 prompt += " / Eyða pöntun"
                                 print_header(prompt)
@@ -57,19 +57,25 @@ class OrderMenu:
                         elif choice == "3":
                             exit_info = "Heim"
                             done = True
-            elif action == "2":
-                prompt += " / Skrá nýja pöntun"
-                print_header(prompt)
-                texti, new_order = self.__order_service.make_order_info()
-                if texti == "Tilbaka":
-                    None
-                elif texti == "Heim":
-                    done = True
-                else: 
-                    print("Verð: {} ISK".format(new_order.get_order_price()))
-                    print("Pöntun skráð.")
-                    sleep(2)
-            
+            elif action == "2":     # Athuga hvort dagsetningin sé liðin
+                finished = False
+                while not finished:
+                    prompt = "Heimasíða / Skoða eða skrá pantanir / Skrá nýja pöntun"
+                    print_header(prompt)
+                    texti, new_order = self.__order_service.make_order_info(prompt)
+                    if texti == "Tilbaka":
+                        None
+                    elif texti == "Heim":
+                        done = True
+                    else: 
+                        print_header(prompt)
+                        print("Verð: {} ISK\nPöntun skráð.".format(new_order.get_order_price()))
+                        choice = input("1.  Skrá aðra pöntun\n2.  Tilbaka\n3.  Heim\n")
+                        if choice == "2":
+                            finished = True
+                        elif choice == "3":
+                            finished = True
+                            done = True
             elif action == "3":
                 prompt += " / Skila bíl"
                 print_header(prompt)

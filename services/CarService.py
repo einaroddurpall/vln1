@@ -6,6 +6,7 @@ from datetime import datetime, timedelta
 from models.methods import print_header, make_date
 from services.ChangeService import ChangeService
 from time import sleep
+from os import system
 
 def make_date_list(date1, date2):
     date_list = []
@@ -67,22 +68,25 @@ class CarService:
 
     def get_order_repo(self):
         return self._order_repo
-    def make_car(self):
+    def make_car(self, prompt):
         new_car = Car()
         for step in range(1,6):
             new_car.car_change_info(str(step), self._all_cars_list)
+            if new_car.get_car_type == None:
+                return False
         continue_q = input("Er allt rétt? (j/n): ").lower()
         if continue_q != "j":
-            self.change_car_info(new_car, True)
+            self.change_car_info(new_car, True, prompt)
         else:
             self.car_register(new_car)
         return True
         
-    def change_car_info(self, car, new_or_not):
+    def change_car_info(self, car, new_or_not, prompt):
         old_car = car
         correct = False
         if new_or_not:
             while not correct:
+                print_header(prompt)
                 print("Hverju villtu breyta:\n1. Bílnúmeri\n2. Bílaflokkur\n3. Undirtegund\n4. Skipting\n5. Akstur(km)\n6. Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
@@ -99,6 +103,7 @@ class CarService:
                 car.car_change_info(choice, self._all_cars_list)
         else:
             while not correct:
+                print_header(prompt)
                 print("Hverju villtu breyta:\n1. Undirtegund\n2. Skipting\n3. Akstur(km)\n4. Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
