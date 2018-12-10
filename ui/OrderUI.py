@@ -29,6 +29,7 @@ class OrderMenu:
                         while choice == "":
                             prompt = "Heimasíða / Skoða eða skrá pantanir / Skoða pöntun"
                             print(order)
+                            print('='*60)
                             choice = input("\n1.  Uppfæra pöntun\n2.  Eyða pöntun\n3.  Tilbaka\n4.  Heim\n")
                             if choice == "1":
                                 prompt += " / Uppfæra Pöntun"

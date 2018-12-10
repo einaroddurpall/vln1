@@ -1,4 +1,5 @@
 from models.Person import Person
+from models.Person import make_number
 from models.ui_methods import print_header
 
 class Customer(Person):
@@ -6,10 +7,11 @@ class Customer(Person):
     takes in name, ssn. email, gsm, history
     and the name and ssn get's sent to person parent class"""
 
-    def __init__ (self,name="", ssn="", email="", gsm="", history=""):
+    def __init__ (self, unique_id, name="", ssn="", email="", gsm="", history=""):
         Person.__init__(self, name, ssn)
         self.__email = email
         self.__gsm = gsm
+        self.__customer_id = unique_id
         self.__history = history
         
         if history == "":
@@ -17,13 +19,17 @@ class Customer(Person):
         else: 
             self.__history = history
 
+    
+    def get_id(self):
+        return self.__customer_id
+
     def get_email(self):
         return self.__email
 
     def get_gsm(self):
         return self.__gsm
 
-    def update_cutomer_history (self, history):
+    def update_customer_history (self, history):
         """function that creates a history or adds
         new history to the old one with an enter between it"""
         self.__history += history + "\n"
@@ -33,11 +39,11 @@ class Customer(Person):
         return self.__history
 
     def __eq__(self, other):
-        return self.get_ssn() == other.get_ssn()
+        return self.get_id() == other.get_id()
 
     def __repr__(self):
-        return "Customer('{}','{}','{}','{}','{}')".format(
-            self._name, self._ssn, self.__email, self.__gsm, self.__history
+        return "Customer('{}','{}','{}','{}','{}','{}')".format(
+            self.__customer_id, self._name, self._ssn, self.__email, self.__gsm, self.__history
         )
 
     def __str__(self):
@@ -60,10 +66,9 @@ class Customer(Person):
     def customer_change_info(self, customer_list):
         correct = False
         while not correct:
-            print("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu")
+            choice = input("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu\n")
             legal_choice = False
             while not legal_choice:
-                choice = input()
                 try:
                     if int(choice) in range(1,6):
                         legal_choice = True
@@ -96,20 +101,6 @@ class Customer(Person):
             change = make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
             self.__gsm = change
 
-    def make_name(self):
-        legal_name = False
-        while not legal_name:
-            name = input("Nafn: ")
-            for letter in name:
-                try:
-                    int(letter)
-                    print("Nafnið inniheldur ólöglega stafi")
-                    legal_name = False
-                    break
-                except:
-                    legal_name = True
-        self._name = name
-
     def make_email(self):
         legal_email = False
         while not legal_email:
@@ -123,20 +114,3 @@ class Customer(Person):
                 else:
                     print("Ólöglegt netfang, reyndu aftur.")
         self.__email = email
-
-def make_number(lenght_of_number, input_string, error_code_str):
-    legal_ssn = False
-    while not legal_ssn:
-        inp = input(input_string)
-        ssn = ""
-        for letter in inp:
-            try:
-                int(letter)
-                ssn += letter
-            except:
-                continue
-        if len(ssn) == lenght_of_number:
-            legal_ssn = True
-        else:
-            print(error_code_str)
-    return ssn

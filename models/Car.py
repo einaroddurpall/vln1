@@ -15,7 +15,7 @@ def make_car_type():
             car_type = valid_car_types[number -1]
             return car_type
         except:
-            print("Error: Númer ekki í listanum, reyndu aftur.")
+            print("Númer ekki í listanum, reyndu aftur.")
 
 class Car:
 
@@ -91,13 +91,13 @@ class Car:
 
     def make_car(self, prompt):
         done = False
-        while done != True:
+        while not done:
             registration_num = input("Bílnúmer: ")
             if registration_num[0] in string.ascii_uppercase and registration_num[1] in string.ascii_uppercase\
-               and registration_num[2] == "-"\
-               and (registration_num[3] in string.ascii_uppercase or registration_num[3] in string.digits)\
-               and registration_num[4] in string.digits and registration_num[5] in string.digits:
-               break
+            and registration_num[2] == "-"\
+            and (registration_num[3] in string.ascii_uppercase or registration_num[3] in string.digits)\
+            and registration_num[4] in string.digits and registration_num[5] in string.digits:
+                break
             else:
                 true_input = False
                 while true_input != True:
@@ -113,7 +113,7 @@ class Car:
                     elif choice == "1":
                         true_input = True
                     else:
-                        print("Please enter a valid choice")
+                        print("Ekki löglegur valmöguleiki, reyndu aftur.")
                     
 
         if done != True:

@@ -11,7 +11,8 @@ class CustomerService:
         self.__change_service = ChangeService()
 
     def customer_register(self):
-        new_customer = Customer()
+        unique_id = self.__customer_repo.get_unique_id()
+        new_customer = Customer(unique_id=unique_id)
         new_customer.make_customer(self.__customer_repo.get_customers_list())
         self.__customer_repo.add_customer(new_customer)
 
