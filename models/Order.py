@@ -4,15 +4,17 @@ from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
 from models.methods import make_number
+from models.Car import Car
 
 class Order:
-    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name=""):
+    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name="", order_price = 0):
         self.__customer = customer
         self.__car = car
         self.__date_list = date_list
         self.__insurance = insurance
         self.__card_info = card_info
         self.__order_name = order_name
+        self.__order_price = order_price
     
     def get_customer(self):
         return self.__customer
@@ -40,6 +42,9 @@ class Order:
 
     def get_order_name(self):
         return self.__order_name
+    
+    def get_order_price(self):
+        return self.__order_price
 
     def set_order_name(self, name):
         self.__order_name = name
@@ -48,15 +53,21 @@ class Order:
         return self.get_order_name() == other.get_order_name()
 
     def __repr__(self):
-        return "{};{};{};{};{};{};{}".format(
-            str(self.get_order_name()),repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.get_insurance(), self.get_card_info()
+        return "{};{};{};{};{};{};{};{}".format(
+            str(self.get_order_name()),repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.get_insurance(), self.get_card_info(), self.get_order_price()
         )
     
     def __str__(self):
-        return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}".format(
-            self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), self.__insurance, self.__card_info
+        return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}\nVerð: {}".format(
+            self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), self.__insurance, self.__card_info, self.get_order_price()
         )
     
+    def make_price(self, price):
+        """sets the price of the orders"""
+        self.__order_price = price
+
+
+
     def change_info(self, step, car_service, customer_service):
         if step == "1":
             valid_ssn = False

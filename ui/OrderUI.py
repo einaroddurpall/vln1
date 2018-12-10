@@ -60,13 +60,13 @@ class OrderMenu:
             elif action == "2":
                 prompt += " / Skrá nýja pöntun"
                 print_header(prompt)
-                new_order = self.__order_service.make_order_info()
-                order = new_order
-                if new_order == "Tilbaka":
+                texti, new_order = self.__order_service.make_order_info()
+                if texti == "Tilbaka":
                     None
-                elif new_order == "Heim":
+                elif texti == "Heim":
                     done = True
                 else: 
+                    print("Verð: {} ISK".format(new_order.get_order_price()))
                     print("Pöntun skráð.")
                     sleep(2)
             
