@@ -37,7 +37,8 @@ class CarRepository:
             car_type_file.write(new_file)
     
     def remove_car(self, car):
-        pass
+        self.__cars.remove(car)
+        self.update_car_list()
 
 
     def get_carlist(self):

@@ -122,7 +122,7 @@ class Car:
         for letter in registration_num:
             if (letter in string.ascii_letters) or (letter in string.digits):
                 new_registration_num += letter
-        if len(registration_num) != 5:
+        if len(new_registration_num) != 5:
             print("Þetta bílnúmer var ólöglegt, reyndu aftur.")
             return False
         registration_num = new_registration_num.upper()

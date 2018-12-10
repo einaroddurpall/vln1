@@ -67,7 +67,6 @@ class CarService:
 
     def get_order_repo(self):
         return self._order_repo
-    
     def make_car(self):
         new_car = Car()
         for step in range(1,6):
@@ -121,6 +120,8 @@ class CarService:
             self.update_car_list(car)
             self.__change_service.change_car_info_consequences(old_car, car)
 
+    
+        
     def car_register(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
@@ -135,7 +136,6 @@ class CarService:
         elif car_type.lower() == "smábíll":
             self._car_repo_small_car.add_car(car)
         self._all_cars_list.append(car)
-
     def update_car_list(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
@@ -285,3 +285,4 @@ class CarService:
             self._car_repo_seven_seat_suv.remove_car(car)
         elif car_type == 'smárúta':
             self._car_repo_minibus.remove_car(car)
+
