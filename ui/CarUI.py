@@ -43,7 +43,10 @@ class CarMenu:
                         print(car_found)
                         print("="*60)
                         question = input("\n1.  Leita að öðru bílnúmeri\n2.  Uppfæra upplýsingar bíls\n3.  Afskrá bíl\n4.  Tilbaka\n5.  Heim\n")
-                        if question == "2":
+                        if question == "1":
+                            system('clear')
+                            break
+                        elif question == "2":
                             #car_found.update_car_info()
                             pass
                         elif question == "4":
@@ -58,7 +61,7 @@ class CarMenu:
                 print_header(prompt)
                 new_car = Car()
                 new_car = new_car.make_car(prompt)
-                if type(new_car) != int:
+                if new_car:
                     print_header(prompt)
                     print("Bíll skráður í kerfið.")
                     sleep(3)

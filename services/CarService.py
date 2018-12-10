@@ -19,15 +19,15 @@ def make_date_list(date1, date2):
 def get_car_price(car_type):
     '''Tekur inn streng sem lýsir bíltegundinni og skilar verðið á þeim flokki'''
     if car_type.lower() == "smábíll":
-        return CarRepository.SMÁBÍLL
+        return CarRepository.SMALL_CAR_PRICE
     elif car_type.lower() == 'fólksbíll':
-        return CarRepository.FÓLKSBÍLL
+        return CarRepository.SEDAN_PRICE
     elif car_type.lower() == 'fimm sæta jeppi':
-        return CarRepository.FIMM_SÆTA_JEPPI
+        return CarRepository.FIVE_SEAT_SUV_PRICE
     elif car_type.lower() == 'sjö sæta jeppi':
-        return CarRepository.SJÖ_SÆTA_JEPPI
+        return CarRepository.SEVEN_SEAT_SUV_PRICE
     elif car_type.lower() == 'smárúta':
-        return CarRepository.SMÁRÚTA
+        return CarRepository.MINIBUS_PRICE
 
 class CarService:
 

@@ -9,3 +9,4 @@ Car('PR-666','Fólksbíll','Ford Focus','Beinskiptur',45000,True,'This car has n
 Car('KJ-X81','Fólksbíll','Toyota Avensis','Beinskiptur',45000,True,'This car has no history of rental.')
 Car('BB-234','Fólksbíll','Toyo','Sjálfskiptur',2500,True,'Þessi bíll er með enga sögu.')
 Car('PP-L90','Fólksbíll','Toyota Avensis','Sjálfskiptur',45000,True,'Þessi bíll er með enga sögu.')
+Car('KL-900','Fólksbíll','Toyota Avensis','Sjálfskiptur',10,True,'Þessi bíll er með enga sögu.')
