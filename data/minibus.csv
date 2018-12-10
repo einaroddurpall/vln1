@@ -1,1 +1,2 @@
-Car('AK-555','Smárúta','RISA bIll','Sjálfskiptur',60000,True,'This car has no history of rental.')Car('HP-S69','Smárúta','Toyota camri big','Beinskiptur',45000,True,'Þessi bíll er með enga sögu.')
+Car('AK-555','Smárúta','RISA bIll','Sjálfskiptur',60000,True,'This car has no history of rental.')
+Car('HP-S69','Smárúta','Toyota camri big','Beinskiptur',45000,True,'Þessi bíll er með enga sögu.')
