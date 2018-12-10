@@ -48,7 +48,7 @@ class StaffMenu:
                                     self.__staff_service.staff_delete(staff)
                                     exit_info = "Tilbaka"
                                     exit_info2 = "Tilbaka"
-                            elif choice == "4":
+                            elif choice == "3":
                                 exit_info = "Tilbaka"
                                 exit_info2 = "Tilbaka"
                             else:

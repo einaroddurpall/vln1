@@ -1,5 +1,10 @@
 from models.Person import Person
+<<<<<<< HEAD
+from models.ui_methods import print_header
+=======
 from models.ui_methods import print_header, make_number
+from time import sleep
+>>>>>>> 57b389023420168e3b9a06c46585ac739889cc4c
 
 class Customer(Person):
     """Customer class, is a subclass of the Person class
@@ -11,7 +16,11 @@ class Customer(Person):
         self.__email = email
         self.__gsm = gsm
         self.__customer_id = unique_id
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> 57b389023420168e3b9a06c46585ac739889cc4c
     def get_id(self):
         return self.__customer_id
 
@@ -64,7 +73,6 @@ class Customer(Person):
             self.change_info(choice, customer_list)
             print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
 
-
     def change_info(self, choice, customer_list):
         if choice == "1":
             self.make_name()
@@ -72,7 +80,7 @@ class Customer(Person):
             uniqe_ssn = False
             while not uniqe_ssn:
                 uniqe_ssn = True
-                change = make_number(10, "Kennitala: ", "Þessi kennitala var ólögleg, reyndu aftur.")
+                change = self.make_number(10, "Kennitala: ", "Þessi kennitala var ólögleg, reyndu aftur.")
                 for customer in customer_list:
                     if customer.get_ssn() == change:
                         print("Það er nú þegar viðskiptavinur með þessa kennitölu")
@@ -81,7 +89,7 @@ class Customer(Person):
         elif choice == "3":
             self.make_email()
         elif choice == "4":
-            change = make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
+            change = self.make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
             self.__gsm = change
 
     def make_email(self):
@@ -95,5 +103,10 @@ class Customer(Person):
                 if len(domain_list) == 2:
                     legal_email = True
                 else:
-                    print("Ólöglegt netfang, reyndu aftur.")
+                    print("Netfangið {} er ekki löglegt netfang.".format(email))
+                    choice = input("1.  Reyna aftur\n2.  Tilbaka\n3.  Heim")
+                    if choice == "2":
+                        return "Tilbaka"
+                    elif choice == "3":
+                        return "Heim"
         self.__email = email
