@@ -193,7 +193,6 @@ class CarService:
             del all_car_dict[key]
         go_back = self.print_car_dict(all_car_dict)
         return go_back
-        self.print_car_dict(all_car_dict)
 
     def car_get_history(self, car):
         orders = self._order_repo.get_order_list()
