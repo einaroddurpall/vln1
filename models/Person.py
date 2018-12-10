@@ -1,6 +1,6 @@
 class Person:
     """The person class takes in name and ssn 
-    and is a parent class of costumer, Boss, and  Employee"""
+    and is a parent class of costumer, Boss, and Employee"""
 
     def __init__ (self, name, ssn):
         self._name = name
@@ -26,20 +26,20 @@ class Person:
                     legal_name = True
         self._name = name
 
-def make_number(lenght_of_number, input_string, error_code_str):
-    legal_ssn = False
-    while not legal_ssn:
-        inp = input(input_string)
-        ssn = ""
-        for letter in inp:
-            try:
-                int(letter)
-                ssn += letter
-            except:
+    def make_number(self, lenght_of_number, input_string, error_code_str):
+        legal_ssn = False
+        while not legal_ssn:
+            inp = input(input_string)
+            ssn = ""
+            for letter in inp:
+                try:
+                    int(letter)
+                    ssn += letter
+                except:
+                    print(error_code_str)
+                    continue
+            if len(ssn) == lenght_of_number:
+                legal_ssn = True
+            else:
                 print(error_code_str)
-                continue
-        if len(ssn) == lenght_of_number:
-            legal_ssn = True
-        else:
-            print(error_code_str)
-    return ssn
+        return ssn

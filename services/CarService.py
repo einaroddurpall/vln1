@@ -18,9 +18,9 @@ def make_date_list(date1, date2):
 
 def get_car_price(car_type):
     '''Tekur inn streng sem lýsir bíltegundinni og skilar verðið á þeim flokki'''
-    if car_type.lower() == "SMÁBÍLL":
+    if car_type.lower() == "smábíll":
         return CarRepository.SMÁBÍLL
-    elif car_type.lower() == 'FÓLKSBÍLL':
+    elif car_type.lower() == 'fólksbíll':
         return CarRepository.FÓLKSBÍLL
     elif car_type.lower() == 'fimm sæta jeppi':
         return CarRepository.FIMM_SÆTA_JEPPI
@@ -72,7 +72,7 @@ class CarService:
     def car_register(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
-        if car_type.lower() == "FÓLKSBÍLL":
+        if car_type.lower() == "fólksbíll":
             self._car_repo_sedan.add_car(car)
         elif car_type.lower() == "fimm sæta jeppi":
             self._car_repo_five_seat_suv.add_car(car)
@@ -80,7 +80,7 @@ class CarService:
             self._car_repo_minibus.add_car(car)
         elif car_type.lower() == "sjö sæta jeppi":
             self._car_repo_seven_seat_suv.add_car(car)
-        elif car_type.lower() == "SMÁBÍLL":
+        elif car_type.lower() == "smábíll":
             self._car_repo_small_car.add_car(car)
         self._all_cars_list.append(car)
     
