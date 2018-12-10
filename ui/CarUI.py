@@ -36,16 +36,23 @@ class CarMenu:
                         elif choice == "3":
                             done = True
                             break
-                    system('clear')
-                    print_header(prompt)
-                    print(car_found)
-                    print("="*60)
-                    question = input("\n1.  Leita að öðru bílnúmeri\n2.  Tilbaka\n3.  Heim\n")
-                    if question == "2":
-                        exit_info = "Tilbaka"
-                    elif question == "3":
-                        exit_info = "Heim"
-                        done = True
+                    car_selected = True
+                    while car_selected:
+                        system('clear')
+                        print_header(prompt)
+                        print(car_found)
+                        print("="*60)
+                        question = input("\n1.  Leita að öðru bílnúmeri\n2.  Uppfæra upplýsingar bíls\n3.  Afskrá bíl\n4.  Tilbaka\n5.  Heim\n")
+                        if question == "2":
+                            #car_found.update_car_info()
+                            pass
+                        elif question == "4":
+                            exit_info = "Tilbaka"
+                            car_selected = False
+                        elif question == "5":
+                            exit_info = "Heim"
+                            car_selected = False
+                            done = True
             elif action == "2":
                 prompt += " / Skrá nýjan bíl"
                 print_header(prompt)
