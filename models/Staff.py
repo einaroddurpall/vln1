@@ -14,7 +14,7 @@ class Staff(Person):
         self.__admin = admin
 
     def __repr__(self):
-        return "Employee('{}','{}','{}','{}','{}')".format(
+        return "Staff('{}','{}','{}','{}',{})".format(
             self._name, self._ssn, self.__username, self.__password, self.__admin
         )
 
