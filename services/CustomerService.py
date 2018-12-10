@@ -16,7 +16,7 @@ class CustomerService:
         unique_id = self.__customer_repo.get_unique_id()
         new_customer = Customer(unique_id=unique_id)
         new_customer.make_customer(self.__customer_repo.get_customers_list())
-        if new_customer != "Tilbaka" or new_customer != "Heim":
+        if type(new_customer) != str:
             self.__customer_repo.add_customer(new_customer)
             return "Skráning tókst"
         else:
