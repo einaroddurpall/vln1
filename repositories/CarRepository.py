@@ -2,8 +2,8 @@ from models.Car import Car
 
 
 class CarRepository:
-    SMÁBÍll = 10000
-    FÓlKSBÍLL = 15000
+    SMÁBÍLL = 10000
+    FÓLKSBÍLL = 15000
     FIMM_SÆTA_JEPPI = 20000
     SJÖ_SÆTA_JEPPI = 25000
     SMÁRÚTA = 30000
