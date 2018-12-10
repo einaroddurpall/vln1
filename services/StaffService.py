@@ -23,7 +23,7 @@ class StaffService:
         self.__staff_repo.update_staff_list()
 
     def staff_update_info(self, staff):
-        staff.staff_change_info(self.__staff_list)
+        staff.update_info(self.__staff_list)
         self.__staff_repo.update_staff_list()
         #Pæling með pantanir sem eru skráðar á gamla viðskiptavinin
 
