@@ -1,5 +1,5 @@
 from repositories.CarRepository import CarRepository
-from repositories.DateRepository import DateRepository
+from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
 from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
@@ -39,7 +39,7 @@ class CarService:
         self._car_repo_small_car = CarRepository("small_car")
         self._all_cars_list = self.make_all_cars_list()
         self._customer_service = CustomerService()
-        self._date_repo = DateRepository()
+        self._order_repo = OrderRepository()
         self.__change_service = ChangeService()
 
     def make_all_cars_list(self):
@@ -66,8 +66,8 @@ class CarService:
     def get_all_cars_list(self):
         return self._all_cars_list
 
-    def get_date_repo(self):
-        return self._date_repo
+    def get_order_repo(self):
+        return self._order_repo
         
     def car_register(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
@@ -127,6 +127,19 @@ class CarService:
         else:
             print("Enginn laus bíll á þessum tíma")
 
+    def get_date_dict(self):
+        date_dict = {}
+        order_list = self._order_repo.get_order_list()
+        for order in order_list:
+            order_dates = make_date_list(order.get_first_day(), order.get_last_day())
+            car = order.get_car()
+            for date in order_dates:
+                if date in date_dict:
+                    date_dict[date].append(car)
+                else:
+                    date_dict[date] = [car]
+        return date_dict
+
     def get_busy_cars(self, prompt):
         """Takes in 2 dates and returns a list of all cars that are 
         taken/busy, that day and/or the days between them, returns the cars
@@ -147,7 +160,7 @@ class CarService:
                 sleep(2)
                 print_header(prompt)
         list_of_days = make_date_list(date1, date2)
-        car_info_dict = self._date_repo.get_date_dict()
+        car_info_dict = self.get_date_dict()
         car_type_info_dict = {}
         car_licence_list = []
         for date in list_of_days:

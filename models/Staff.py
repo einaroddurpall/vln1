@@ -48,7 +48,7 @@ class Staff(Person):
     def update_info(self, staff_list):
         correct = False
         while not correct:
-            choice = input("Hverju villtu breyta:\n1.  Nafn\n2.  Kennitala\n3.  Notandnafn\n4.  Lykilorð\n5.  Breyta aðgani\n6.  Klára Skráningu\n")
+            choice = input("Hverju villtu breyta:\n1.  Nafn\n2.  Kennitala\n3.  Notandnafn\n4.  Lykilorð\n5.  Breyta aðgangi\n6.  Klára Skráningu\n")
             legal_choice = False
             while not legal_choice:
                 try:
@@ -67,7 +67,15 @@ class Staff(Person):
         if choice == "1":
             self.make_name()
         elif choice == "2":
-            make_number(10, "Kennitala: ", "Kennitalan fannst ekki")
+            uniqe_ssn = False
+            while not uniqe_ssn:
+                uniqe_ssn = True
+                change = make_number(10, "Kennitala: ", "Þessi kennitala var ólögleg, reyndu aftur.")
+                for staff in staff_list:
+                    if staff.get_ssn() == change:
+                        print("Það er nú þegar viðskiptavinur með þessa kennitölu")
+                        uniqe_ssn = False
+            self._ssn = change
         elif choice == "3":
             self.make_username('Notandanafn: ')
         elif choice == "4":
