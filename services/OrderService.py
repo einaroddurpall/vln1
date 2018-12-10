@@ -32,7 +32,7 @@ class OrderService:
                 return "Tilbaka"
             elif choice == "Heim":
                 return "Heim"
-        continue_q = input("Er allt rétt? (j/n) ").lower()
+        continue_q = input("Er allt rétt? (j/n): ").lower()
         if continue_q != "j":
             self.change_order_info(new_order, True)
         else:

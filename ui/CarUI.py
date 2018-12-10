@@ -54,6 +54,14 @@ class CarMenu:
                         elif question == "3":
                             #car_found.update_car_info()
                             pass
+                        elif question == "3":
+                            prompt += " / Afskrá bíl"
+                            print_header(prompt)
+                            choice = input("Ertu viss?(j/n): ")
+                            if choice == "j":
+                                self.__car_service.car_delete(car_found)
+                                exit_info = "Tilbaka"
+                                car_selected = False
                         elif question == "4":
                             exit_info = "Tilbaka"
                             car_selected = False

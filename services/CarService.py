@@ -206,3 +206,23 @@ class CarService:
             if order.get_car() == car:
                 car_orders.append(order)
         return car_orders
+
+    def car_delete(self, car):
+        self._all_cars_list.remove(car)
+        car_type = car.get_car_type()
+        if car_type == 'smá bíll':
+            self._car_repo_small_car.remove_car(car)
+        elif car_type == 'fólksbíll':
+            self._car_repo_sedan.remove_car(car)
+        elif car_type == 'fimm sæta jeppi':
+            self._car_repo_five_seat_suv.remove_car(car)
+        elif car_type == 'sjö sæta jeppi':
+            self._car_repo_seven_seat_suv.remove_car(car)
+        elif car_type == 'smárúta':
+            self._car_repo_minibus.remove_car(car)
+
+    # def car_update_info(self, car):
+    #     old_car = car
+    #     car.customer_change_info(self.__customers_list)
+    #     self.__customer_repo.update_costumers_list()
+    #     self.__change_service.change_car_info_consequences(old_car, car)
