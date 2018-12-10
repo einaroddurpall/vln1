@@ -36,6 +36,13 @@ class CustomerMenu:
                                 prompt += " / Sjá pantanir"
                                 print_header(prompt)
                                 #Vantar fall til að sjá pantanir
+                                customer_orders = self.__customer_service.customer_get_history(customer)
+                                if customer_orders:
+                                    for order in customer_orders:
+                                        print(order)
+                                else:
+                                    print("Þessi viðskiptavinur hefur enga notkunarsögu.")
+                                input("Ýttu á enter til að halda áfram: ")
                             elif choice == "2":
                                 prompt += " / Breyta skráningu"
                                 print_header(prompt)
