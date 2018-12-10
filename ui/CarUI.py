@@ -102,5 +102,3 @@ class CarMenu:
                         done = True
             else:
                 done = True
-
-
