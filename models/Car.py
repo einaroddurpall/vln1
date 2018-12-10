@@ -1,5 +1,6 @@
 import string
 from time import sleep
+from datetime import date
 from models.methods import print_header, error_handle
 
 def make_car_type():
@@ -25,6 +26,7 @@ class Car:
         self.__transmission = transmission
         self.__milage = milage
         self.__is_rentable = is_rentable
+
 
     def __str__(self):
         return "Bílnúmer: {}\nFlokkur bíls: {}\nTegund bíls {}\n{}\nAkstur: {}\nLaus: {}".format(
