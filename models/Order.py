@@ -22,6 +22,9 @@ class Order:
     def set_customer(self, customer):
         self.__customer = customer
 
+    def set_car(self, car):
+        self.__car = car
+
     def get_first_day(self):
         return self.__date_list[0]
 

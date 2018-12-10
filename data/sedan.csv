@@ -1,5 +1,5 @@
-Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True)
-Car('KJ-X89','Fólksbíll','Toyota Avensis','Beinskiptur',20000,True)
+Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',1,True)
+Car('KJ-X89','Fólksbíll','Toyota Avensis','Beinskiptur',10909,True)
 Car('AB-C57','Fólksbíll','Benz GL','Sjálfskiptur',67000,True)
 Car('QQ-111','Fólksbíll','Toyo','Sjálfskiptur',2000,True)
 Car('QQ-222','Fólksbíll','Toyo','Sjálfskiptur',2000,True)
