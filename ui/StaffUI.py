@@ -41,7 +41,7 @@ class StaffMenu:
                                 print_header(prompt)
                                 self.__staff_service.staff_update_info(staff)
                             elif choice == "2":
-                                prompt += " / Afskrá viðskiptavin"
+                                prompt += " / Afskrá starfsmann"
                                 print_header(prompt)
                                 choice = input("Ertu viss?(j/n): ")
                                 if choice == "j":

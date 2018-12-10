@@ -1,5 +1,6 @@
 import string
 from time import sleep
+from datetime import date
 from models.ui_methods import print_header, error_handle
 
 def make_car_type():
@@ -26,6 +27,7 @@ class Car:
         self.__transmission = transmission
         self.__milage = milage
         self.__is_rentable = is_rentable
+
 
         if history == "":
             self.__history = "Þessi bíll er með enga sögu."
@@ -74,16 +76,16 @@ class Car:
 
     def set_history(self, order):
         pass
+    
 
-    def check_availability(self, date_list, date_dict, car_list):
-        is_rentable = True
-        for date in date_list:
-            if date in date_dict:
-                for car in date_dict[date]:
-                    if self == car:
-                        is_rentable = False
-                        break
-        return is_rentable
+    # def check_availability(self, date_dict, car_list):
+    #     is_rentable = True
+    #     if date(today()) in date_dict:
+    #         for car in date_dict[date]:
+    #             if self == car:
+    #                 is_rentable = False
+    #                 break
+    #     return is_rentable
 
     def __eq__(self, other):
         return self.get_registration_num() == other.get_registration_num()

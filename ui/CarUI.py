@@ -67,29 +67,35 @@ class CarMenu:
                     done = True
             elif action == "3":
                 exit_info = ""
+                prompt += " / Skoða lausa bíla"
                 while exit_info == "":
-                    prompt += " / Skoða lausa bíla"
                     print_header(prompt)
-                    self.__car_service.get_available_cars(prompt)
-                    question = input("1.  Skoða fleiri lausa bíla\n2.  Tilbaka\n3.  Heim\n")
-                    if question == "2":
-                        exit_info = "Tilbaka"
-                    elif question == "3":
-                        exit_info = "Heim"
-                        done = True
+                    go_home = self.__car_service.get_available_cars(prompt)
+                    if go_home != True:
+                        question = input("1.  Skoða fleiri lausa bíla\n2.  Tilbaka\n3.  Heim\n")
+                        if question == "2":
+                            exit_info = "Tilbaka"
+                        elif question == "3":
+                            exit_info = "Heim"
+                            done = True
+                    else:
+                        exit_info = "Hilmar er fáviti"
             elif action == "4":
                 exit_info = ""
                 while exit_info == "":
                     prompt += " / Skoða bíla í útleigu"
                     print_header(prompt)
                     busy_cars_dict = self.__car_service.get_busy_cars(prompt)
-                    self.__car_service.print_car_dict(busy_cars_dict)
-                    question = input("1.  Skoða fleiri bíla í útleigu\n2.  Tilbaka\n3.  Heim\n")
-                    if question == "2":
-                        exit_info = "Tilbaka"
-                    elif question == "3":
-                        exit_info = "Heim"
-                        done = True
+                    go_home = self.__car_service.print_car_dict(busy_cars_dict)
+                    if go_home != True:
+                        question = input("1.  Skoða fleiri bíla í útleigu\n2.  Tilbaka\n3.  Heim\n")
+                        if question == "2":
+                            exit_info = "Tilbaka"
+                        elif question == "3":
+                            exit_info = "Heim"
+                            done = True
+                    else:
+                        exit_info = "Hilmar er fáviti"
             else:
                 done = True
 
