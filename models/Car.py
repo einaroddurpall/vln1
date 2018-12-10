@@ -6,8 +6,7 @@ def make_car_type():
     valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
     valid_car_type = False
     while valid_car_type is False:
-        print("Flokkur bíls:")
-        number = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n6.  Hætta við\n")
+        number = input("Flokkur bíls: \n1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n6.  Hætta við\n")
         try:
             number = int(number)
             if number == 6:
@@ -15,7 +14,7 @@ def make_car_type():
             car_type = valid_car_types[number -1]
             return car_type
         except:
-            print("Númer ekki í listanum, reyndu aftur.")
+            print("Númerið: {} er ekki í listanum, reyndu aftur.".format(number))
 
 class Car:
 

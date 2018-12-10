@@ -78,7 +78,8 @@ class CarMenu:
                 while exit_info == "":
                     prompt += " / Skoða lausa bíla"
                     print_header(prompt)
-                    if self.__car_service.get_available_cars(prompt) != True:
+                    go_back = self.__car_service.get_available_cars(prompt)
+                    if go_back != True:
                         question = input("1.  Skoða fleiri lausa bíla\n2.  Tilbaka\n3.  Heim\n")
                         if question == "2":
                             exit_info = "Tilbaka"
