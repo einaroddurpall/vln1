@@ -42,8 +42,16 @@ class CarMenu:
                         print_header(prompt)
                         print(car_found)
                         print("="*60)
-                        question = input("\n1.  Leita að öðru bílnúmeri\n2.  Uppfæra upplýsingar bíls\n3.  Afskrá bíl\n4.  Tilbaka\n5.  Heim\n")
-                        if question == "2":
+                        question = input("\n1.  Skoða pantanir\n2.  Leita að öðru bílnúmeri\n3.  Uppfæra upplýsingar bíls\n4.  Afskrá bíl\n5.  Tilbaka\n6.  Heim\n")
+                        if question == "1":
+                            car_orders = self._car_service.car_get_history(car_found)
+                            if car_orders:
+                                for order in car_orders:
+                                    print(order)
+                            else:
+                                print("Þessi bíll hefur enga notkunarsögu.")
+                            input("Ýttu á enter til að halda áfram: ")
+                        elif question == "3":
                             #car_found.update_car_info()
                             pass
                         elif question == "4":
