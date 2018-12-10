@@ -20,9 +20,47 @@ class StaffMenu:
             if action == "1":
                 prompt += " / Skrá nýjan starfsmann"
                 print_header(prompt)
-                self.__staff_service.customer_register()
+                self.__staff_service.staff_register()
             elif action == "2":
-                prompt += " / leita af starfsmann"
-                print_header(prompt)
+                exit_info = ""
+                while exit_info == "":
+                    if  "/ Leita að starfsmanni" not in prompt:
+                        prompt += " / Leita að starfsmanni"
+                    print_header(prompt)
+                    ssn = input("Kennitala: ")
+                    staff = self.__staff_service.check_ssn(ssn)
+                    exit_info2 = ""
+                    if staff:
+                        while exit_info2 == "":
+                            prompt = "Heimasíða / Starfsmenn / Leita að starfsmanni"
+                            print_header(prompt)
+                            print(staff)
+                            choice = input("1.  Breyta upplýsingum starfsmann\n2.  Afskrá starfsmann\n3.  Tilbaka\n4.  Heim\n")
+                            if choice == "1":
+                                prompt += " / Breyta upplýsingum starfsmann"
+                                print_header(prompt)
+                                self.__staff_service.staff_update_info(staff)
+                            elif choice == "2":
+                                prompt += " / Afskrá viðskiptavin"
+                                print_header(prompt)
+                                choice = input("Ertu viss?(j/n): ")
+                                if choice == "j":
+                                    self.__staff_service.staff_delete(staff)
+                                    exit_info = "Tilbaka"
+                                    exit_info2 = "Tilbaka"
+                            elif choice == "3":
+                                exit_info = "Tilbaka"
+                                exit_info2 = "Tilbaka"
+                            else:
+                                exit_info = "Heim"
+                                exit_info2 = "Heim"
+                                done = True
+                    else:
+                        choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n'.format(ssn))
+                        if choice == "2":
+                            exit_info = "Tilbaka"
+                        elif choice == "3":
+                            exit_info = "Heim"
+                            done = True
             else:
                 done = True
