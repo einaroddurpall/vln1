@@ -2,8 +2,7 @@ from services.CustomerService import CustomerService
 from models.Customer import Customer
 from os import system
 from time import sleep
-from models.ui_methods import print_header
-from models.ui_methods import make_date
+from models.methods import print_header, make_date
 
 class CustomerMenu:
 

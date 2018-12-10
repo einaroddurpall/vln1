@@ -4,7 +4,7 @@ from models.Car import Car
 from time import sleep
 from datetime import date
 import string
-from models.ui_methods import print_header, error_handle
+from models.methods import print_header, error_handle
 
 class CarMenu:
 
@@ -78,13 +78,15 @@ class CarMenu:
                 while exit_info == "":
                     prompt += " / Skoða lausa bíla"
                     print_header(prompt)
-                    self.__car_service.get_available_cars(prompt)
-                    question = input("1.  Skoða fleiri lausa bíla\n2.  Tilbaka\n3.  Heim\n")
-                    if question == "2":
+                    if self.__car_service.get_available_cars(prompt) != True:
+                        question = input("1.  Skoða fleiri lausa bíla\n2.  Tilbaka\n3.  Heim\n")
+                        if question == "2":
+                            exit_info = "Tilbaka"
+                        elif question == "3":
+                            exit_info = "Heim"
+                            done = True
+                    else:
                         exit_info = "Tilbaka"
-                    elif question == "3":
-                        exit_info = "Heim"
-                        done = True
             elif action == "4":
                 exit_info = ""
                 while exit_info == "":
