@@ -72,7 +72,7 @@ class CustomerMenu:
                 prompt += " / Skrá nýjan viðskiptavin"
                 print_header(prompt)
                 new_customer = self.__customer_service.customer_register()
-                if new_customer == "Heim":
+                if type(new_customer) == str:
                     done = True
             else:
                 done = True
