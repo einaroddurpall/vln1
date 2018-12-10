@@ -1,5 +1,5 @@
 from models.Person import Person
-from models.Person import make_number  #Ef maður erfir klasa þarf þá að importa?
+from models.ui_methods import make_number
 from models.ui_methods import print_header
 from os import system
 
@@ -67,7 +67,7 @@ class Staff(Person):
         if choice == "1":
             self.make_name()
         elif choice == "2":
-            self.make_number
+            make_number(10, "Kennitala: ", "Kennitalan fannst ekki")
         elif choice == "3":
             self.make_username('Notandanafn: ')
         elif choice == "4":

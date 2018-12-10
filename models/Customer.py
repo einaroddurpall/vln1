@@ -1,6 +1,5 @@
 from models.Person import Person
-from models.Person import make_number
-from models.ui_methods import print_header
+from models.ui_methods import print_header, make_number
 
 class Customer(Person):
     """Customer class, is a subclass of the Person class
@@ -13,14 +12,6 @@ class Customer(Person):
         self.__gsm = gsm
         self.__customer_id = unique_id
         
-<<<<<<< HEAD
-        if history == "":
-            self.__history = "Þessi viðskiptavinur hefur aldrei tekið bíl á leigu."
-        else: 
-            self.__history = history
-
-=======
->>>>>>> f3e384d7a3c31a32ce7a4bc781aba3cdd5eedd2b
     def get_id(self):
         return self.__customer_id
 
