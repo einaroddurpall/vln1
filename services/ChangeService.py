@@ -19,4 +19,8 @@ class ChangeService:
                 order.set_customer(new_customer)
         self.__order_repo.update_order_list()
 
-    #def change_order_info_consequences(self, )
+    def change_car_info_consequences(self, old_car, new_car):
+        for order in self.__order_list:
+            if order.get_car() == old_car:
+                order.set_car(new_car)
+        self.__order_repo.update_order_list()

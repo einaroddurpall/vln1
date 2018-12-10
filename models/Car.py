@@ -108,7 +108,7 @@ class Car:
         elif step == "5":
             valid_mileage = False
             while valid_mileage != True: 
-                milage = input("Akstur: ")
+                milage = input("Akstur(km): ")
                 try: 
                     int(milage)
                     self.__milage = milage
@@ -118,10 +118,14 @@ class Car:
         #return exit_info
 
     def check_registration_num(self, registration_num, all_cars_list):
-        if len(registration_num) not in [5,6]:
+        new_registration_num = ""
+        for letter in registration_num:
+            if (letter in string.ascii_letters) or (letter in string.digits):
+                new_registration_num += letter
+        if len(registration_num) != 5:
             print("Þetta bílnúmer var ólöglegt, reyndu aftur.")
             return False
-        registration_num = registration_num.lower()
+        registration_num = new_registration_num.upper()
         if registration_num[0] in string.ascii_letters and registration_num[1] in string.ascii_letters\
         and (registration_num[2] in string.ascii_uppercase or registration_num[2] in string.digits)\
         and registration_num[3] in string.digits and registration_num[4] in string.digits:

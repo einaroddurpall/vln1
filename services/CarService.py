@@ -77,11 +77,13 @@ class CarService:
             self.change_car_info(new_car, True)
         else:
             self.car_register(new_car)
+        return True
         
     def change_car_info(self, car, new_or_not):
+        old_car = car
         correct = False
-        while not correct:
-            if new_or_not:
+        if new_or_not:
+            while not correct:
                 print("Hverju villtu breyta:\n1. Bílnúmeri\n2. Bílaflokkur\n3. Undirtegund\n4. Skipting\n5. Akstur(km)\n6. Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
@@ -96,26 +98,29 @@ class CarService:
                 if choice == "6":
                     correct = True
                 car.car_change_info(choice, self._all_cars_list)
-            else:
+        else:
+            while not correct:
                 print("Hverju villtu breyta:\n1. Undirtegund\n2. Skipting\n3. Akstur(km)\n4. Klára Skráningu")
-            legal_choice = False
-            while not legal_choice:
-                choice = input()
-                try:
-                    if int(choice) in range(1,4):
-                        legal_choice = True
-                        choice = str(int(choice) + 2)
-                    else:
+                legal_choice = False
+                while not legal_choice:
+                    choice = input()
+                    try:
+                        if int(choice) in range(1,5):
+                            legal_choice = True
+                            choice = str(int(choice) + 2)
+                        else:
+                            print("Ekki valmöguleiki, veldu aftur")
+                    except:
                         print("Ekki valmöguleiki, veldu aftur")
-                except:
-                    print("Ekki valmöguleiki, veldu aftur")
-            if choice == "6":
-                correct = True
-            car.car_change_info(choice, self._all_cars_list)
+                if choice == "6":
+                    correct = True
+                car.car_change_info(choice, self._all_cars_list)
         if new_or_not:
             self.car_register(car)
         else:
             self.update_car_list(car)
+            self.__change_service.change_car_info_consequences(old_car, car)
+
     def car_register(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
@@ -135,15 +140,15 @@ class CarService:
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
         if car_type.lower() == "fólksbíll":
-            self._car_repo_sedan.update_car_list(car)
+            self._car_repo_sedan.update_car_list()
         elif car_type.lower() == "fimm sæta jeppi":
-            self._car_repo_five_seat_suv.update_car_list(car)
+            self._car_repo_five_seat_suv.update_car_list()
         elif car_type.lower() == "smárúta":
-            self._car_repo_minibus.update_car_list(car)
+            self._car_repo_minibus.update_car_list()
         elif car_type.lower() == "sjö sæta jeppi":
-            self._car_repo_seven_seat_suv.update_car_list(car)
+            self._car_repo_seven_seat_suv.update_car_list()
         elif car_type.lower() == "smábíll":
-            self._car_repo_small_car.update_car_list(car)
+            self._car_repo_small_car.update_car_list()
     
     def car_find(self, registration_num):
         for car in self._all_cars_list:

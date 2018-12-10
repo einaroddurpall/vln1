@@ -1,13 +1,14 @@
 from datetime import datetime, timedelta
 from os import system
 from models.Order import Order
-from services.CarService import CarService
+from services.CarService import CarService, get_car_price
 from time import sleep
 from datetime import date
 from repositories.OrderRepository import OrderRepository
 import string
 from services.CustomerService import CustomerService
 from services.ChangeService import ChangeService
+from models.Car import Car
 
 class OrderService:
 
@@ -32,11 +33,13 @@ class OrderService:
                 return "Tilbaka"
             elif choice == "Heim":
                 return "Heim"
-        continue_q = input("Er allt rétt? (j/n) ").lower()
+        continue_q = input("Er allt rétt? (j/n): ").lower()
         if continue_q != "j":
             self.change_order_info(new_order, True)
         else:
             self.__order_repo.add_order(new_order)
+        price = self.calc_price(new_order)
+        print("Verð: {} ISK".format(price))
 
         
     def change_order_info(self, order, new_or_not):
@@ -78,3 +81,16 @@ class OrderService:
     def order_delete(self, order):
         self.__order_list.remove(order)
         self.__order_repo.update_order_list()
+
+    def calc_price(self, order):
+        car = order.get_car()
+        car_type = car.get_car_type()
+        base_price = get_car_price(car_type)
+        dates = len(order.get_date_list())
+        insurance = order.get_insurance()
+        if insurance == 'skyldu trygging':
+            insurance_price = 2000
+        else:
+            insurance_price = 3500
+        final_price = dates*(base_price + insurance_price)
+        return final_price
