@@ -19,16 +19,15 @@ class CustomerMenu:
             action = input("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin\n3.  Heim\n")
             if action == "1":
                 exit_info = ""
+                prompt += " / Leta að viðskiptavin"
                 while exit_info == "":
-                    if  "/ Leita að viðskiptavin" not in prompt:
-                        prompt += " / Leita að viðskiptavin"
                     print_header(prompt)
                     ssn = input("Kennitala: ")
                     customer = self.__customer_service.check_ssn(ssn)
                     exit_info2 = ""
                     if customer:
+                        prompt += " / Leita að viðskiptavin"
                         while exit_info2 == "":
-                            prompt = "Heimasíða / Viðskiptavinir / Leita að viðskiptavin"
                             print_header(prompt)
                             print(customer)
                             choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Tilbaka\n5.  Heim\n")
