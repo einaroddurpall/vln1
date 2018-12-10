@@ -19,7 +19,6 @@ class Customer(Person):
         else: 
             self.__history = history
 
-    
     def get_id(self):
         return self.__customer_id
 
