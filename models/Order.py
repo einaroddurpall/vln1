@@ -3,7 +3,11 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
+<<<<<<< HEAD
 from models.Person import Person
+=======
+from models.ui_methods import make_number
+>>>>>>> 57b389023420168e3b9a06c46585ac739889cc4c
 
 class Order:
     def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name=""):

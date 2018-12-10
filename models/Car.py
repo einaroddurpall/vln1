@@ -88,7 +88,6 @@ class Car:
     def __eq__(self, other):
         return self.get_registration_num() == other.get_registration_num()
     
-
     def make_car(self, prompt):
         done = False
         while not done:
@@ -101,7 +100,9 @@ class Car:
             else:
                 true_input = False
                 while true_input != True:
-                    choice = error_handle("Bílnúmerið", registration_num)
+                    print_header(prompt)
+                    print("Bílnúmerið ", registration_num, " er ekki löglegt bílnúmer.")
+                    choice = input("1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n")
                     if choice == "2":
                         exit_info = 2
                         done = True
@@ -114,8 +115,6 @@ class Car:
                         true_input = True
                     else:
                         print("Ekki löglegur valmöguleiki, reyndu aftur.")
-                    
-
         if done != True:
             car_type = make_car_type()
             if car_type == None:

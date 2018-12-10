@@ -1,6 +1,7 @@
 from services.CustomerService import CustomerService
 from models.Customer import Customer
 from os import system
+from time import sleep
 from models.ui_methods import print_header
 from models.ui_methods import make_date
 
@@ -35,14 +36,13 @@ class CustomerMenu:
                             if choice == "1":
                                 prompt += " / Sjá pantanir"
                                 print_header(prompt)
-                                #Vantar fall til að sjá pantanir
                                 customer_orders = self.__customer_service.customer_get_history(customer)
                                 if customer_orders:
                                     for order in customer_orders:
                                         print(order)
                                 else:
                                     print("Þessi viðskiptavinur hefur enga notkunarsögu.")
-                                input("Ýttu á enter til að halda áfram: ")
+                                    sleep(2)
                             elif choice == "2":
                                 prompt += " / Breyta skráningu"
                                 print_header(prompt)
@@ -72,6 +72,8 @@ class CustomerMenu:
             elif action == "2":
                 prompt += " / Skrá nýjan viðskiptavin"
                 print_header(prompt)
-                self.__customer_service.customer_register()
+                new_customer = self.__customer_service.customer_register()
+                if new_customer == "Heim":
+                    done = True
             else:
                 done = True

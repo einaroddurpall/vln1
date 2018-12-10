@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-Staff('Hilmar Pall','0407982349','Hilmar','0407','True')
-Staff('Kristján Ari','0408982349','Kristján','0407','False')
-Staff('Einar','2505983519','Einar','1234','True')
-Staff('Bla Blason','1212121234','Purfa','1111',False)
-=======
-Staff('Hilmar Pall','0407982349','Hilmar','0407',True)
+Staff('Hólmar Páll','0407982349','Hilmar','0407',True)
 Staff('Kristján Ari','0408982349','Kristján','0407',False)
->>>>>>> f3e384d7a3c31a32ce7a4bc781aba3cdd5eedd2b
+Staff('Einar','2505983519','Einar','1234',True)
+Staff('Bla Blason','1212121234','Purfa','1111',False)
+Staff('Skeinar Oddur Páll Njáll Áll Rúnarsson','','Skeinar','0407',False)
+Staff('Skeinar Oddur Páll Rúnarsson','1234567890','skeinar','0407',False)

@@ -23,3 +23,21 @@ def make_date(a_date):
 def error_handle(search, search_input):
         choice = input('{}: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n'.format(search, search_input))
         return choice
+
+def make_number(lenght_of_number, input_string, error_code_str):
+        legal_ssn = False
+        while not legal_ssn:
+            inp = input(input_string)
+            ssn = ""
+            for letter in inp:
+                try:
+                    int(letter)
+                    ssn += letter
+                except:
+                    print(error_code_str)
+                    continue
+            if len(ssn) == lenght_of_number:
+                legal_ssn = True
+            else:
+                print(error_code_str)
+        return ssn
