@@ -52,9 +52,9 @@ class CarMenu:
                                 print("Þessi bíll hefur enga notkunarsögu.")
                             input("Ýttu á enter til að halda áfram: ")
                         elif question == "3":
-                            #car_found.update_car_info()
-                            pass
-                        elif question == "3":
+                            self.__car_service.change_car_info(car_found, False)
+                            
+                        elif question == "4":
                             prompt += " / Afskrá bíl"
                             print_header(prompt)
                             choice = input("Ertu viss?(j/n): ")
@@ -62,24 +62,22 @@ class CarMenu:
                                 self.__car_service.car_delete(car_found)
                                 exit_info = "Tilbaka"
                                 car_selected = False
-                        elif question == "4":
+                        elif question == "5":
                             exit_info = "Tilbaka"
                             car_selected = False
-                        elif question == "5":
+                        elif question == "6":
                             exit_info = "Heim"
                             car_selected = False
                             done = True
             elif action == "2":
                 prompt += " / Skrá nýjan bíl"
                 print_header(prompt)
-                new_car = Car()
-                new_car = new_car.make_car(prompt)
-                if new_car:
+                car_was_made = self.__car_service.make_car()
+                if car_was_made:
                     print_header(prompt)
                     print("Bíll skráður í kerfið.")
                     sleep(3)
-                    self.__car_service.car_register(new_car)
-                elif new_car == 1: 
+                elif car_was_made == 1: 
                     done = True
             elif action == "3":
                 exit_info = ""
