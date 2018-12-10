@@ -3,7 +3,7 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.ui_methods import make_number
+from models.methods import make_number
 
 class Order:
     def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name=""):
@@ -130,8 +130,7 @@ class Order:
         elif car_type.lower() == "smábíll":
             car_type_list = car_service._car_repo_small_car.get_carlist()
 
-        date_repo = car_service.get_date_repo()
-        date_dict = date_repo.get_date_dict()
+        date_dict = car_service.get_date_dict()
         for car in car_type_list:
             if car.check_availability(date_list, date_dict, car_type_list):
                 return car

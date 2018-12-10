@@ -4,7 +4,7 @@ from models.Car import Car
 from time import sleep
 from datetime import date
 import string
-from models.ui_methods import print_header, error_handle
+from models.methods import print_header, error_handle
 
 class CarMenu:
 
@@ -42,8 +42,16 @@ class CarMenu:
                         print_header(prompt)
                         print(car_found)
                         print("="*60)
-                        question = input("\n1.  Leita að öðru bílnúmeri\n2.  Uppfæra upplýsingar bíls\n3.  Afskrá bíl\n4.  Tilbaka\n5.  Heim\n")
-                        if question == "2":
+                        question = input("\n1.  Skoða pantanir\n2.  Leita að öðru bílnúmeri\n3.  Uppfæra upplýsingar bíls\n4.  Afskrá bíl\n5.  Tilbaka\n6.  Heim\n")
+                        if question == "1":
+                            car_orders = self.__car_service.car_get_history(car_found)
+                            if car_orders:
+                                for order in car_orders:
+                                    print(order)
+                            else:
+                                print("Þessi bíll hefur enga notkunarsögu.")
+                            input("Ýttu á enter til að halda áfram: ")
+                        elif question == "3":
                             #car_found.update_car_info()
                             pass
                         elif question == "3":
@@ -66,7 +74,7 @@ class CarMenu:
                 print_header(prompt)
                 new_car = Car()
                 new_car = new_car.make_car(prompt)
-                if type(new_car) != int:
+                if new_car:
                     print_header(prompt)
                     print("Bíll skráður í kerfið.")
                     sleep(3)
@@ -75,30 +83,34 @@ class CarMenu:
                     done = True
             elif action == "3":
                 exit_info = ""
+                prompt += " / Skoða lausa bíla"
                 while exit_info == "":
-                    prompt += " / Skoða lausa bíla"
                     print_header(prompt)
-                    self.__car_service.get_available_cars(prompt)
-                    question = input("1.  Skoða fleiri lausa bíla\n2.  Tilbaka\n3.  Heim\n")
-                    if question == "2":
+                    go_home = self.__car_service.get_available_cars(prompt)
+                    if go_home != True:
+                        question = input("1.  Skoða fleiri lausa bíla\n2.  Tilbaka\n3.  Heim\n")
+                        if question == "2":
+                            exit_info = "Tilbaka"
+                        elif question == "3":
+                            exit_info = "Heim"
+                            done = True
+                    else:
                         exit_info = "Tilbaka"
-                    elif question == "3":
-                        exit_info = "Heim"
-                        done = True
             elif action == "4":
                 exit_info = ""
                 while exit_info == "":
                     prompt += " / Skoða bíla í útleigu"
                     print_header(prompt)
                     busy_cars_dict = self.__car_service.get_busy_cars(prompt)
-                    self.__car_service.print_car_dict(busy_cars_dict)
-                    question = input("1.  Skoða fleiri bíla í útleigu\n2.  Tilbaka\n3.  Heim\n")
-                    if question == "2":
-                        exit_info = "Tilbaka"
-                    elif question == "3":
-                        exit_info = "Heim"
-                        done = True
+                    go_home = self.__car_service.print_car_dict(busy_cars_dict)
+                    if go_home != True:
+                        question = input("1.  Skoða fleiri bíla í útleigu\n2.  Tilbaka\n3.  Heim\n")
+                        if question == "2":
+                            exit_info = "Tilbaka"
+                        elif question == "3":
+                            exit_info = "Heim"
+                            done = True
+                    else:
+                        exit_info = "Hilmar er fáviti"
             else:
                 done = True
-
-

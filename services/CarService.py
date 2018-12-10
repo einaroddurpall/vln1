@@ -3,10 +3,9 @@ from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
 from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
-from models.ui_methods import make_date
+from models.methods import print_header, make_date
 from services.ChangeService import ChangeService
 from time import sleep
-from models.ui_methods import print_header
 
 def make_date_list(date1, date2):
     date_list = []
@@ -68,6 +67,8 @@ class CarService:
 
     def get_order_repo(self):
         return self._order_repo
+    
+    
         
     def car_register(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
@@ -96,17 +97,22 @@ class CarService:
         question = input("Viltu leita af ákveðnari tegund (j/n)? ")
         if question == "j":
             car_type = make_car_type()
-            if car_type in a_dict.keys():
-                print("\n{:<15}{:>8} ISK:".format(car_type, get_car_price(car_type)))
-                print("="*60)
-                print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
-                print('-'*60)
-                for car_info in a_dict[car_type]:
-                    print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
-                print("="*60)
-                return False
+            if car_type != None:
+                if car_type in a_dict.keys():
+                    print("\n{:<15}{:>8} ISK:".format(car_type, get_car_price(car_type)))
+                    print("="*60)
+                    print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+                    print('-'*60)
+                    for car_info in a_dict[car_type]:
+                        print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
+                    print("="*60)
+                    return False
+                else:
+                    print("Enginn bíll laus í þessari bílategund á þessum tíma")
+                    return False
+
             else:
-                print("Enginn bíll laus í þessari bílategund á þessum tíma")
+                return None
         return True
 
     def print_out_info_for_all_car_types(self, a_dict):
@@ -124,6 +130,8 @@ class CarService:
             statement = self.search_for_specific_car(a_dict)
             if statement:
                 self.print_out_info_for_all_car_types(a_dict)
+            elif statement == None:
+                return True         
         else:
             print("Enginn laus bíll á þessum tíma")
 
@@ -188,7 +196,16 @@ class CarService:
                     None
         for key in delete_key_list:
             del all_car_dict[key]
-        self.print_car_dict(all_car_dict)
+        go_back = self.print_car_dict(all_car_dict)
+        return go_back
+
+    def car_get_history(self, car):
+        orders = self._order_repo.get_order_list()
+        car_orders = []
+        for order in orders:
+            if order.get_car() == car:
+                car_orders.append(order)
+        return car_orders
 
     def car_delete(self, car):
         self._all_cars_list.remove(car)

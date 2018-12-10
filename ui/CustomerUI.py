@@ -1,8 +1,8 @@
 from services.CustomerService import CustomerService
 from models.Customer import Customer
 from os import system
-from models.ui_methods import print_header
-from models.ui_methods import make_date
+from time import sleep
+from models.methods import print_header, make_date
 
 class CustomerMenu:
 
@@ -19,16 +19,15 @@ class CustomerMenu:
             action = input("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin\n3.  Heim\n")
             if action == "1":
                 exit_info = ""
+                prompt += " / Leta að viðskiptavin"
                 while exit_info == "":
-                    if  "/ Leita að viðskiptavin" not in prompt:
-                        prompt += " / Leita að viðskiptavin"
                     print_header(prompt)
                     ssn = input("Kennitala: ")
                     customer = self.__customer_service.check_ssn(ssn)
                     exit_info2 = ""
                     if customer:
+                        prompt += " / Leita að viðskiptavin"
                         while exit_info2 == "":
-                            prompt = "Heimasíða / Viðskiptavinir / Leita að viðskiptavin"
                             print_header(prompt)
                             print(customer)
                             choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Tilbaka\n5.  Heim\n")
@@ -41,7 +40,7 @@ class CustomerMenu:
                                         print(order)
                                 else:
                                     print("Þessi viðskiptavinur hefur enga notkunarsögu.")
-                                input("Ýttu á enter til að halda áfram: ")
+                                    sleep(2)
                             elif choice == "2":
                                 prompt += " / Breyta skráningu"
                                 print_header(prompt)
@@ -71,6 +70,8 @@ class CustomerMenu:
             elif action == "2":
                 prompt += " / Skrá nýjan viðskiptavin"
                 print_header(prompt)
-                self.__customer_service.customer_register()
+                new_customer = self.__customer_service.customer_register()
+                if type(new_customer) == str:
+                    done = True
             else:
                 done = True

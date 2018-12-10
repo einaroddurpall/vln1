@@ -1,7 +1,7 @@
 from os import system,name
 from services.StaffService import StaffService
 from time import sleep
-from models.ui_methods import print_header, error_handle
+from models.methods import print_header, error_handle
 from models.Staff import Staff
 
 class StaffMenu:
@@ -41,7 +41,7 @@ class StaffMenu:
                                 print_header(prompt)
                                 self.__staff_service.staff_update_info(staff)
                             elif choice == "2":
-                                prompt += " / Afskrá viðskiptavin"
+                                prompt += " / Afskrá starfsmann"
                                 print_header(prompt)
                                 choice = input("Ertu viss?(j/n): ")
                                 if choice == "j":
