@@ -130,8 +130,7 @@ class Order:
         elif car_type.lower() == "smábíll":
             car_type_list = car_service._car_repo_small_car.get_carlist()
 
-        date_repo = car_service.get_date_repo()
-        date_dict = date_repo.get_date_dict()
+        date_dict = car_service.get_date_dict()
         for car in car_type_list:
             if car.check_availability(date_list, date_dict, car_type_list):
                 return car
