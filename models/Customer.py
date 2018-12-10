@@ -7,19 +7,12 @@ class Customer(Person):
     takes in name, ssn. email, gsm, history
     and the name and ssn get's sent to person parent class"""
 
-    def __init__ (self, unique_id, name="", ssn="", email="", gsm="", history=""):
+    def __init__ (self, unique_id, name="", ssn="", email="", gsm=""):
         Person.__init__(self, name, ssn)
         self.__email = email
         self.__gsm = gsm
         self.__customer_id = unique_id
-        self.__history = history
         
-        if history == "":
-            self.__history = "Þessi viðskiptavinur hefur aldrei tekið bíl á leigu."
-        else: 
-            self.__history = history
-
-    
     def get_id(self):
         return self.__customer_id
 
@@ -29,26 +22,17 @@ class Customer(Person):
     def get_gsm(self):
         return self.__gsm
 
-    def update_customer_history (self, history):
-        """function that creates a history or adds
-        new history to the old one with an enter between it"""
-        self.__history += history + "\n"
-
-    def show_history(self):
-        """Prints out the history"""
-        return self.__history
-
     def __eq__(self, other):
         return self.get_id() == other.get_id()
 
     def __repr__(self):
-        return "Customer('{}','{}','{}','{}','{}','{}')".format(
-            self.__customer_id, self._name, self._ssn, self.__email, self.__gsm, self.__history
+        return "Customer('{}','{}','{}','{}','{}')".format(
+            self.__customer_id, self._name, self._ssn, self.__email, self.__gsm
         )
 
     def __str__(self):
-        return "Nafn: {}\nKennitala: {}\nNetfang: {}\nSími: {}\nSaga: {}".format(
-            self._name, self._ssn, self.__email, self.__gsm, self.__history
+        return "Nafn: {}\nKennitala: {}\nNetfang: {}\nSími: {}".format(
+            self._name, self._ssn, self.__email, self.__gsm
         )
 
     def make_customer(self, customer_list):
