@@ -14,15 +14,15 @@ class StaffMenu:
         """her er hægt að skrá nýjan aðgan að forritinu"""
         done = False
         while not done:
-            prompt = "Heimasíða / Aðgangs leyfi"
+            prompt = "Heimasíða / Starfsmenn"
             print_header(prompt)
-            action = input("1. Skrá nýjan Starfsmann\n2. Leita af starfsmanni\n4. Heim\n")
+            action = input("1.  Skrá nýjan starfsmann\n2.  Leita af starfsmanni\n3.  Heim\n")
             if action == "1":
-                prompt += " / Skrá nýjan Starfsmann"
+                prompt += " / Skrá nýjan starfsmann"
                 print_header(prompt)
                 self.__staff_service.customer_register()
             elif action == "2":
-                prompt += " / leita af Starfsmann"
+                prompt += " / leita af starfsmann"
                 print_header(prompt)
             else:
                 done = True

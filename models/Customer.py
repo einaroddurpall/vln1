@@ -13,6 +13,14 @@ class Customer(Person):
         self.__gsm = gsm
         self.__customer_id = unique_id
         
+<<<<<<< HEAD
+        if history == "":
+            self.__history = "Þessi viðskiptavinur hefur aldrei tekið bíl á leigu."
+        else: 
+            self.__history = history
+
+=======
+>>>>>>> f3e384d7a3c31a32ce7a4bc781aba3cdd5eedd2b
     def get_id(self):
         return self.__customer_id
 
