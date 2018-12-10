@@ -26,6 +26,10 @@ class CarRepository:
                 car = eval(row.strip())
                 cars.append(car)
         return cars
+    
+    def remove_car(self, car):
+        pass
+
 
     def get_carlist(self):
         return self.__cars

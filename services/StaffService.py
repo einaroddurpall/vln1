@@ -25,7 +25,6 @@ class StaffService:
     def staff_update_info(self, staff):
         staff.update_info(self.__staff_list)
         self.__staff_repo.update_staff_list()
-        #Pæling með pantanir sem eru skráðar á gamla viðskiptavinin
 
     def check_ssn(self, ssn):
         for staff in self.__staff_list:
