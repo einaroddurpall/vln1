@@ -67,6 +67,8 @@ class CarService:
 
     def get_order_repo(self):
         return self._order_repo
+    
+    
         
     def car_register(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
@@ -95,19 +97,22 @@ class CarService:
         question = input("Viltu leita af ákveðnari tegund (j/n)? ")
         if question == "j":
             car_type = make_car_type()
-            if car_type in a_dict.keys():
-                print("\n{:<15}{:>8} ISK:".format(car_type, get_car_price(car_type)))
-                print("="*60)
-                print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
-                print('-'*60)
-                for car_info in a_dict[car_type]:
-                    print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
-                print("="*60)
-                return False
-            elif car_type == None:
-                return False
+            if car_type != None:
+                if car_type in a_dict.keys():
+                    print("\n{:<15}{:>8} ISK:".format(car_type, get_car_price(car_type)))
+                    print("="*60)
+                    print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+                    print('-'*60)
+                    for car_info in a_dict[car_type]:
+                        print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
+                    print("="*60)
+                    return False
+                else:
+                    print("Enginn bíll laus í þessari bílategund á þessum tíma")
+                    return False
+
             else:
-                print("Enginn bíll laus í þessari bílategund á þessum tíma")
+                return None
         return True
 
     def print_out_info_for_all_car_types(self, a_dict):
@@ -125,8 +130,8 @@ class CarService:
             statement = self.search_for_specific_car(a_dict)
             if statement:
                 self.print_out_info_for_all_car_types(a_dict)
-            else:
-                return True
+            elif statement == None:
+                return True         
         else:
             print("Enginn laus bíll á þessum tíma")
 
