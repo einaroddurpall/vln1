@@ -61,6 +61,7 @@ class OrderMenu:
                 prompt += " / Skrá nýja pöntun"
                 print_header(prompt)
                 new_order = self.__order_service.make_order_info()
+                order = new_order
                 if new_order == "Tilbaka":
                     None
                 elif new_order == "Heim":
