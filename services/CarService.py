@@ -189,3 +189,17 @@ class CarService:
         for key in delete_key_list:
             del all_car_dict[key]
         self.print_car_dict(all_car_dict)
+
+    def car_delete(self, car):
+        self._all_cars_list.remove(car)
+        car_type = car.get_car_type()
+        if car_type == 'smá bíll':
+            self._car_repo_small_car.remove_car(car)
+        elif car_type == 'fólksbíll':
+            self._car_repo_sedan.remove_car(car)
+        elif car_type == 'fimm sæta jeppi':
+            self._car_repo_five_seat_suv.remove_car(car)
+        elif car_type == 'sjö sæta jeppi':
+            self._car_repo_seven_seat_suv.remove_car(car)
+        elif car_type == 'smárúta':
+            self._car_repo_minibus.remove_car(car)
