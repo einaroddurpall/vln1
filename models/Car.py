@@ -19,7 +19,7 @@ def make_car_type():
 
 class Car:
 
-    def __init__(self, registration_num="", car_type="", sub_type="", transmission="", milage=0, is_rentable=True, history=""):
+    def __init__(self, registration_num="", car_type="", sub_type="", transmission="", milage=0, is_rentable=True):
         self.__registration_num = registration_num
         self.__car_type = car_type
         self.__sub_type = sub_type
@@ -27,18 +27,13 @@ class Car:
         self.__milage = milage
         self.__is_rentable = is_rentable
 
-        if history == "":
-            self.__history = "Þessi bíll er með enga sögu."
-        else: 
-            self.__history = history
-
     def __str__(self):
-        return "Bílnúmer: {}\nFlokkur bíls: {}\nTegund bíls {}\n{}\nAkstur: {}\nLaus: {}\nSaga: {}".format(
-        self.__registration_num, self.__car_type, self.__sub_type, self.__transmission, self.__milage, self.__is_rentable, self.__history)
+        return "Bílnúmer: {}\nFlokkur bíls: {}\nTegund bíls {}\n{}\nAkstur: {}\nLaus: {}".format(
+        self.__registration_num, self.__car_type, self.__sub_type, self.__transmission, self.__milage, self.__is_rentable)
 
     def __repr__(self):
-        return "Car('{}','{}','{}','{}',{},{},'{}')".format(self.__registration_num, self.__car_type, self.__sub_type, self.__transmission,
-        self.__milage, self.__is_rentable, self.__history)
+        return "Car('{}','{}','{}','{}',{},{})".format(self.__registration_num, self.__car_type, self.__sub_type, self.__transmission,
+        self.__milage, self.__is_rentable)
 
     def get_registration_num(self):
         """ Returns the registration number of the car."""
@@ -63,17 +58,10 @@ class Car:
     def get_is_rentable(self):
         """ Returns if the car is rentable or not."""
         return self.__is_rentable
-    
-    def get_history(self):
-        """ Returns the history of the car."""
-        return self.__history
 
     def set_milage(self, milage):
         """ Sets new milage for the car in the system. When the car is returned we need to update the milage for the car."""
         self.__milage = milage
-
-    def set_history(self, order):
-        pass
 
     def check_availability(self, date_list, date_dict, car_list):
         is_rentable = True
@@ -141,7 +129,6 @@ class Car:
                 except: 
                     pass
             is_rentable = True
-            history = ""
-            new_car = Car(registration_num, car_type, sub_type, transmission, milage, is_rentable, history)
+            new_car = Car(registration_num, car_type, sub_type, transmission, milage, is_rentable)
             return new_car
         return exit_info
