@@ -3,7 +3,7 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Customer import make_number
+from models.Person import Person
 
 class Order:
     def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name=""):
@@ -13,6 +13,7 @@ class Order:
         self.__insurance = insurance
         self.__card_info = card_info
         self.__order_name = order_name
+        self.__person = Person
     
     def get_customer(self):
         return self.__customer
@@ -111,7 +112,7 @@ class Order:
                     self.__insurance = "skyldu trygging"
                     step3 = True
         elif step == "4":
-            self.__card_info = make_number(16, "Kortanúmer: ", "Ólöglegt kortanúmer, reyndu aftur.")
+            self.__card_info = self.__person.make_number(16, "Kortanúmer: ", "Ólöglegt kortanúmer, reyndu aftur.")
                 #"Order " + str(self.__order_num))
                 #self.__order_num += 1
 

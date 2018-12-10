@@ -1,5 +1,4 @@
 from models.Person import Person
-from models.Person import make_number
 from models.ui_methods import print_header
 
 class Customer(Person):
@@ -12,15 +11,7 @@ class Customer(Person):
         self.__email = email
         self.__gsm = gsm
         self.__customer_id = unique_id
-        
-<<<<<<< HEAD
-        if history == "":
-            self.__history = "Þessi viðskiptavinur hefur aldrei tekið bíl á leigu."
-        else: 
-            self.__history = history
 
-=======
->>>>>>> f3e384d7a3c31a32ce7a4bc781aba3cdd5eedd2b
     def get_id(self):
         return self.__customer_id
 
@@ -81,7 +72,7 @@ class Customer(Person):
             uniqe_ssn = False
             while not uniqe_ssn:
                 uniqe_ssn = True
-                change = make_number(10, "Kennitala: ", "Þessi kennitala var ólögleg, reyndu aftur.")
+                change = self.make_number(10, "Kennitala: ", "Þessi kennitala var ólögleg, reyndu aftur.")
                 for customer in customer_list:
                     if customer.get_ssn() == change:
                         print("Það er nú þegar viðskiptavinur með þessa kennitölu")
@@ -90,7 +81,7 @@ class Customer(Person):
         elif choice == "3":
             self.make_email()
         elif choice == "4":
-            change = make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
+            change = self.make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
             self.__gsm = change
 
     def make_email(self):
