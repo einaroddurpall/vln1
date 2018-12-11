@@ -294,4 +294,4 @@ class CarService:
             self._car_repo_seven_seat_suv.remove_car(car)
         elif car_type == 'smárúta':
             self._car_repo_minibus.remove_car(car)
-
+        self.__change_service.delete_car_consequences(car, self)
