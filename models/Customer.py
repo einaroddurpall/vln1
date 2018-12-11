@@ -14,31 +14,43 @@ class Customer(Person):
         self.__customer_id = unique_id
         
     def get_id(self):
+        """Skilar einkennandi númeri viðskiptavins, id, sem forritið hefur skaffað."""
         return self.__customer_id
 
     def get_email(self):
+        """Skilar netfangi viðskiptavinar."""
         return self.__email
 
     def get_gsm(self):
+        """Skilar símanúmeri viðskiptavinar."""
         return self.__gsm
 
     def __eq__(self, other):
+        """Tveir viðskiptavinir eru sami einstaklingur ef þeir hafa sama einkennandi númer, id."""
         return self.get_id() == other.get_id()
 
     def __repr__(self):
+        """Strengur sem sýnir hvernig búa má til eintak af viðeigandi viðskiptavin."""
         return "Customer('{}','{}','{}','{}','{}')".format(
             self.__customer_id, self._name, self._ssn, self.__email, self.__gsm
         )
 
     def __str__(self):
+        """Strengur sem birtist er viðskiptavinur er prentaður."""
         return "Nafn: {}\nKennitala: {}\nNetfang: {}\nSími: {}".format(
             self._name, self._ssn, self.__email, self.__gsm
         )
 
+    def get_info_list(self):
+        return [self._name, self._ssn, self.__email, self.__gsm, self.__customer_id]
+
     def make_customer(self, customer_list):
-        for number in range(1, 5):
-            number = str(number)
-            self.change_info(number, customer_list)
+        for step in range(1, 5):
+            self.change_info(str(step), customer_list)
+            info_list = self.get_info_list()
+            for info in info_list:
+                if info == "t" or info == "h":
+                    return info
         done = False
         while not done:
             correct = input("Er allt rétt? (j/n) ").lower()
@@ -51,6 +63,7 @@ class Customer(Person):
         correct = False
         while not correct:
             choice = input("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu\n")
+            print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
             legal_choice = False
             while not legal_choice:
                 try:
@@ -85,6 +98,8 @@ class Customer(Person):
             self.__gsm = change
 
     def make_email(self):
+        """Fall sem leiðir notanda í gegnum það ferli að skrá netfang viðskiptavinar. Netfangið
+        verður að hafa @ merki og lén."""
         legal_email = False
         while not legal_email:
             email = input("Netfang: ")

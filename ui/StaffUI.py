@@ -5,13 +5,14 @@ from models.Functions import print_header, error_handle
 from models.Staff import Staff
 
 class StaffMenu:
+    '''þessi klasi sér um að sækja allar upplýsingar sem tengjast starfsmanni og prenta það út'''
 
     def __init__(self):
         self.__staff_service = StaffService()
         self.staff_menu()
 
     def staff_menu(self):
-        """her er hægt að skrá nýjan aðgan að forritinu"""
+        """her er hægt að skrá nýjan aðgan að forritinu og breyta uppl."""
         done = False
         while not done:
             prompt = "Heimasíða / Starfsmenn"

@@ -51,23 +51,29 @@ class OrderMenu:
                                 exit_info = "Heim"
                                 done = True
                     else:
-                        choice = input('Pöntunin: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heimasíða\n'.format(order_name))
-                        if choice == "2":
+                        choice = input('Pöntunin: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heimasíða\n'.format(order_name))
+                        if choice == "t":
                             exit_info = "Tilbaka"
-                        elif choice == "3":
+                        elif choice == "h":
                             exit_info = "Heim"
                             done = True
-            elif action == "2":     # Athuga hvort dagsetningin sé liðin
+            elif action == "2":
                 finished = False
                 while not finished:
                     prompt = "Heimasíða / Skoða eða skrá pantanir / Skrá nýja pöntun"
                     print_header(prompt)
-                    texti, new_order = self.__order_service.make_order_info(prompt)
-                    if texti == "Tilbaka":
-                        None
-                    elif texti == "Heim":
+                    new_order = self.__order_service.make_order_info(prompt)
+                    # texti, new_order = self.__order_service.make_order_info(prompt)
+                    # if texti == "Tilbaka":
+                    #     None
+                    # elif texti == "Heim":
+                    #     done = True
+                    if new_order == "h":
+                        finished = True
                         done = True
-                    else: 
+                    elif new_order == "t":
+                        finished = True
+                    else:
                         print_header(prompt)
                         print("Verð: {}\nPöntun skráð.".format(pretty_str(new_order.get_order_price(), "ISK")))
                         choice = input("1.  Skrá aðra pöntun\n2.  Tilbaka\n3.  Heim\n")
@@ -79,6 +85,8 @@ class OrderMenu:
             elif action == "3":
                 prompt += " / Klára pantanir dagsins"
                 print_header(prompt)
-                self.__order_service.complete_orders(prompt)
+                choice = self.__order_service.complete_orders(prompt)
+                if choice == "h":
+                    done = True
             else:
                 done = True
