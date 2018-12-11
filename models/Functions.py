@@ -72,3 +72,12 @@ def make_date_list(date1, date2):
         date_list.append(date_to_list)
         date_to_list += timedelta(days=1)
     return date_list
+
+def pretty_str(milage, afgangur):
+    milage_str = str(milage)
+    milage_new_str = ""
+    for index, letter in enumerate(milage_str[::-1]):
+        if index % 3 == 0 and index != 0:
+            milage_new_str += "."
+        milage_new_str += letter
+    return milage_new_str[::-1] + " " + afgangur
