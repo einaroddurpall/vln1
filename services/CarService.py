@@ -3,7 +3,7 @@ from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
 from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
-from models.methods import print_header, make_date, check_registration_num
+from models.Methods import print_header, make_date, check_registration_num
 from services.ChangeService import ChangeService
 from time import sleep
 from os import system
@@ -283,7 +283,7 @@ class CarService:
 
     def car_delete(self, car):
         self._all_cars_list.remove(car)
-        car_type = car.get_car_type()
+        car_type = car.get_car_type().lower()
         if car_type == 'smá bíll':
             self._car_repo_small_car.remove_car(car)
         elif car_type == 'fólksbíll':

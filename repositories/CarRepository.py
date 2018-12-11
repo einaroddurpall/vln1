@@ -40,6 +40,5 @@ class CarRepository:
         self.__cars.remove(car)
         self.update_car_list()
 
-
     def get_carlist(self):
         return self.__cars

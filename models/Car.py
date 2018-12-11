@@ -1,7 +1,7 @@
 import string
 from time import sleep
 from datetime import date
-from models.methods import print_header, error_handle, check_registration_num
+from models.Methods import print_header, error_handle, check_registration_num
 
 def make_car_type():
     valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
@@ -10,8 +10,6 @@ def make_car_type():
         number = input("Flokkur bíls: \n1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n6.  Hætta við\n")
         try:
             number = int(number)
-            if number == 6:
-                return None
             car_type = valid_car_types[number -1]
             return car_type
         except:

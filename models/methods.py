@@ -57,3 +57,9 @@ def check_registration_num(registration_num):
         return registration_num
     print("Þetta bílnúmer var ólöglegt, reyndu aftur.")
     return False
+
+def check_input(a_string):
+    if a_string.lower() == "h":
+        return "heim"
+    elif a_string.lower() == "t":
+        return "tilbaka"

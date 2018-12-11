@@ -3,7 +3,7 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.methods import make_number
+from models.Methods import make_number
 from models.Car import Car
 
 class Order:
@@ -69,8 +69,6 @@ class Order:
         """sets the price of the orders"""
         self.__order_price = price
 
-
-
     def change_info(self, step, car_service, customer_service):
         if step == "1":
             valid_ssn = False
@@ -85,7 +83,6 @@ class Order:
                         return "Tilbaka"
                     elif choice == "3":
                         return "Heim"
-
         elif step == "2":
             step2 = False
             while step2 is not True:
