@@ -253,11 +253,14 @@ class CarService:
         return car_type_info_dict
 
     def get_available_cars(self, prompt):
+        """Fær uppflettilista með uppteknum bílum, fær svo uppflettilista með öllum bílum, finnur svo þá bíla 
+        sem eru sameiginlegir í báðum listum og fjarlægir þá úr uppflettilistanum með öllum bílum"""
+
         car_busy_dict = self.get_busy_cars(prompt)
         all_car_dict = self.make_all_cars_dict()
         delete_key_list = []
-        for key in all_car_dict:
-            for car in all_car_dict[key]:
+        for key in car_busy_dict:
+            for car in car_busy_dict[key]:
                 try:
                     if car in car_busy_dict[key]:
                         all_car_dict[key].remove(car)

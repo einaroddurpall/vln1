@@ -8,6 +8,8 @@ from models.Car import Car
 
 class Order:
     def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name="", order_price = 0, complete = False):
+        """Hver pöntun hefur viðskiptavin, bíl, lista af dögum, tryggingu, kortaupplýsingar(sem tryggingu), pöntunarnúmer/nafn, 
+        verð og upplýsingar um hvort hún er búin eða ekki."""
         self.__customer = customer
         self.__car = car
         self.__date_list = date_list
@@ -18,24 +20,31 @@ class Order:
         self.__complete = complete
     
     def get_customer(self):
+        """Skilar viðskiptavin pöntunarinnar."""
         return self.__customer
 
     def get_first_day(self):
+        """Skilar fyrsta dag pöntunarinnar."""
         return self.__date_list[0]
 
     def get_last_day(self):
+        """Skilar síðasta dag pöntunarinnar."""
         return self.__date_list[-1]
 
     def get_car(self):
+        """Skilar bíl pöntunarinnar."""
         return self.__car
 
     def get_date_list(self):
+        """Skilar öllum dögum pöntunarinnar."""
         return self.__date_list
 
     def get_insurance(self):
+        """Skilar tryggingaupplýsingum pöntunarinnar."""
         return self.__insurance
 
     def get_card_info(self):
+        """Skilar kortaupplýsingum viðskiptavinar pöntunarinnar."""
         return self.__card_info
 
     def get_order_name(self):
