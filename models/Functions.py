@@ -72,3 +72,12 @@ def make_date_list(date1, date2):
         date_list.append(date_to_list)
         date_to_list += timedelta(days=1)
     return date_list
+
+def pretty_str(number, unit):
+    number_str = str(number)
+    number_new_str = ""
+    for index, letter in enumerate(number_str[::-1]):
+        if index % 3 == 0 and index != 0:
+            number_new_str += "."
+        number_new_str += letter
+    return number_new_str[::-1] + " " + unit
