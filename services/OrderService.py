@@ -135,11 +135,16 @@ class OrderService:
                         order_price = int(order_to_complete.get_order_price())
                         new_milage_boolean = False
                         while not new_milage_boolean:
-                            new_milage = int(input("Hvað er bíllinn núna keyrður? "))
-                            milage_difference = new_milage - car.get_milage()
-                            if 0 < milage_difference:
-                                new_milage_boolean = True
-                            else:
+                            try:
+                                new_milage = input("Hvað er bíllinn núna keyrður? ").lower()
+                                if new_milage == "t" or new_milage == "h":
+                                    return new_milage
+                                milage_difference = int(new_milage) - car.get_milage()
+                                if 0 < milage_difference:
+                                    new_milage_boolean = True
+                                else:
+                                    print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
+                            except:
                                 print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
                         day_price = order_price // len(order_to_complete.get_date_list())
                         final_payment = int(order_price + milage_difference // 150 * 0.02 * day_price)
