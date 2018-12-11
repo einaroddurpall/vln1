@@ -3,7 +3,7 @@ from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
 from models.Car import Car
 from datetime import datetime, timedelta
-from models.Functions import print_header, make_date, check_registration_num, make_date_list, pretty_str, make_car_type
+from models.Functions import print_header, make_date, check_registration_num, make_date_list, pretty_str, make_car_type, legal_dates
 from services.ChangeService import ChangeService
 from time import sleep
 from os import system
@@ -223,21 +223,7 @@ class CarService:
         """Takes in 2 dates and returns a list of all cars that are 
         taken/busy, that day and/or the days between them, returns the cars
         in and dosent repeat the cars."""
-        date_found = False
-        while not date_found:
-            try:
-                date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-                date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-                if date1 <= date2:
-                    date_found = True
-                else:
-                    print("Villa! Skiladagur getur ekki verið á undan afhendingardegi")
-                    sleep(2)
-                    print_header(prompt)
-            except: 
-                print("Vinsamlegast sláðu inn gilda dagsetningu")
-                sleep(2)
-                print_header(prompt)
+        date1, date2 = legal_dates(prompt)
         list_of_days = make_date_list(date1, date2)
         car_info_dict = self.get_date_dict()
         car_type_info_dict = {}
