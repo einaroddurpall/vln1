@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',696969,True)
 Car('POP00','Fólksbíll','VW Passat','Sjálfskiptur',3000,True)
+=======
+Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',23112,True)
+Car('HSG98','Fólksbíll','BLA','Sjálfskiptur',5000,True)
+>>>>>>> a5ab56dc987568246eed79e9480a1c5df7ad977e
