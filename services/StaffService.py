@@ -15,8 +15,11 @@ class StaffService:
 
     def staff_register(self):
         new_staff = Staff()
-        new_staff.make_staff(self.__staff_list)
-        self.__staff_repo.add_staff(new_staff)
+        legal = new_staff.make_staff(self.__staff_list)
+        if legal == True:
+            self.__staff_repo.add_staff(new_staff)
+        else:
+            pass
     
     def staff_delete(self, staff):
         self.__staff_list.remove(staff)

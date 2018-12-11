@@ -204,7 +204,7 @@ class CarService:
             elif statement == None:
                 return True         
         else:
-            print("Enginn laus bíll á þessum tíma")
+            print("Enginn bíll í útleigu á þessum tíma")
 
     def get_date_dict(self):
         date_dict = {}
