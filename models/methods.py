@@ -1,6 +1,7 @@
 from datetime import date
 from os import system
 import string
+from datetime import timedelta
 
 # class UiMethods:
 #     def __init__(self)
@@ -63,3 +64,11 @@ def check_input(a_string):
         return "heim"
     elif a_string.lower() == "t":
         return "tilbaka"
+
+def make_date_list(date1, date2):
+    date_list = []
+    date_to_list = date1
+    while date_to_list <= date2:
+        date_list.append(date_to_list)
+        date_to_list += timedelta(days=1)
+    return date_list

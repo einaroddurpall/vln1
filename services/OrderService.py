@@ -96,3 +96,13 @@ class OrderService:
     def order_delete(self, order):
         self.__order_list.remove(order)
         self.__order_repo.update_order_list()
+
+    def complete_orders(self, prompt):
+        order_list = self.__order_repo.get_order_list()
+        order_not_complete_list = []
+        for order in order_list:
+            if order.get_order_complete() != "True\n":
+                order_not_complete_list.append(order)
+        for order in order_not_complete_list:
+            print(order)
+        input()

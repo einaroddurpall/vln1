@@ -25,9 +25,12 @@ class CarMenu:
                 exit_info = ""
                 while exit_info == "":
                     registration_num = input("Bílnúmer: ")
-                    car_found = self.__car_service.car_find(registration_num)
+                    car_found, legal_reg_num = self.__car_service.car_find(registration_num)
                     if not car_found:
-                        choice = error_handle("Bíll", registration_num)
+                        if not legal_reg_num:
+                            choice = input('1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n')
+                        else:
+                            choice = error_handle("Bíllinn: ", registration_num)
                         if choice == "1":
                             print_header(prompt)
                             continue
