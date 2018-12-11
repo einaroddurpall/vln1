@@ -60,6 +60,7 @@ class CarService:
 
     def get_order_repo(self):
         return self._order_repo
+
     def make_car(self, prompt):
         new_car = Car()
         for step in range(1,6):
@@ -138,15 +139,16 @@ class CarService:
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
         if car_type.lower() == "fólksbíll":
-            self._car_repo_sedan.update_car_list()
+            self._car_repo_sedan.update_car_list(car)
         elif car_type.lower() == "fimm sæta jeppi":
-            self._car_repo_five_seat_suv.update_car_list()
+            self._car_repo_five_seat_suv.update_car_list(car)
         elif car_type.lower() == "smárúta":
-            self._car_repo_minibus.update_car_list()
+            self._car_repo_minibus.update_car_list(car)
         elif car_type.lower() == "sjö sæta jeppi":
-            self._car_repo_seven_seat_suv.update_car_list()
+            self._car_repo_seven_seat_suv.update_car_list(car)
         elif car_type.lower() == "smábíll":
-            self._car_repo_small_car.update_car_list()
+            self._car_repo_small_car.update_car_list(car)
+        
     
     def car_find(self, registration_num):
         registration_num = check_registration_num(registration_num)
@@ -250,6 +252,8 @@ class CarService:
     def get_available_cars(self, prompt):
         car_busy_dict = self.get_busy_cars(prompt)
         all_car_dict = self.make_all_cars_dict()
+        print(all_car_dict)
+        print(car_busy_dict)
         delete_key_list = []
         for key in all_car_dict:
             for car in all_car_dict[key]:
@@ -286,4 +290,4 @@ class CarService:
             self._car_repo_seven_seat_suv.remove_car(car)
         elif car_type == 'smárúta':
             self._car_repo_minibus.remove_car(car)
-        self.__change_service.delete_car_consequences(car, self)
+        self.__change_service.delete_car_consequences(car, self, self._customer_service)
