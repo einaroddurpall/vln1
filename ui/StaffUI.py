@@ -1,7 +1,7 @@
 from os import system,name
 from services.StaffService import StaffService
 from time import sleep
-from models.Methods import print_header, error_handle
+from models.Functions import print_header, error_handle
 from models.Staff import Staff
 
 class StaffMenu:

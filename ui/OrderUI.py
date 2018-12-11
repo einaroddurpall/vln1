@@ -2,7 +2,7 @@ from services.OrderService import OrderService
 from models.Order import Order
 from os import system
 from time import sleep
-from models.Methods import print_header
+from models.Functions import print_header
 
 class OrderMenu:
     def __init__(self):
