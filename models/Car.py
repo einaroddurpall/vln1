@@ -1,7 +1,7 @@
 import string
 from time import sleep
 from datetime import date
-from models.methods import print_header, error_handle
+from models.Methods import print_header, error_handle, check_registration_num
 
 def make_car_type():
     valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
@@ -10,8 +10,6 @@ def make_car_type():
         number = input("Flokkur bíls: \n1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n6.  Hætta við\n")
         try:
             number = int(number)
-            if number == 6:
-                return None
             car_type = valid_car_types[number -1]
             return car_type
         except:
@@ -77,13 +75,16 @@ class Car:
     def __eq__(self, other):
         return self.get_registration_num() == other.get_registration_num()
 
-    
     def car_change_info(self, step, all_cars_list):
         if step == "1":
             done = False
             while not done:
                 registration_num = input("Bílnúmer: ")
-                registration_num = self.check_registration_num(registration_num, all_cars_list)
+                registration_num = check_registration_num(registration_num)
+                for car in all_cars_list:
+                    if registration_num == car.get_registration_num():
+                        print("Þetta bílnúmer er nú þegar á skrá")
+                        registration_num = False
                 if registration_num:
                     self.__registration_num = registration_num
                     done = True
@@ -116,33 +117,7 @@ class Car:
                 except: 
                     pass
         #return exit_info
-
-    def check_registration_num(self, registration_num, all_cars_list):
-        new_registration_num = ""
-        for letter in registration_num:
-            if (letter in string.ascii_letters) or (letter in string.digits):
-                new_registration_num += letter
-        if len(new_registration_num) != 5:
-            print("Þetta bílnúmer var ólöglegt, reyndu aftur.")
-            return False
-        registration_num = new_registration_num.upper()
-        if registration_num[0] in string.ascii_letters and registration_num[1] in string.ascii_letters\
-        and (registration_num[2] in string.ascii_uppercase or registration_num[2] in string.digits)\
-        and registration_num[3] in string.digits and registration_num[4] in string.digits:
-            for car in all_cars_list:
-                if registration_num == car.get_registration_num():
-                    print("Þetta bílnúmer er nú þegar á skrá")
-                    return False
-            return registration_num
-        print("Þetta bílnúmer var ólöglegt, reyndu aftur.")
-        return False
                 
-                
-
-
-
-
-
         # done = False
         # while not done:
         #     registration_num = input("Bílnúmer: ")

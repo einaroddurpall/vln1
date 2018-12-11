@@ -33,11 +33,11 @@ class OrderRepository:
         order_list = []
         with open("./data/orders.csv", encoding = "UTF-8") as order_file:
             for row in order_file.readlines():
-                    order_name, customer, car, date1, date2, insurance, card_info = row.split(";")
+                    order_name, customer, car, date1, date2, insurance, card_info, price = row.split(";")
                     date1 = eval(date1)
                     date2 = eval(date2)
                     date_list = make_date_list(date1, date2)
-                    order = Order(eval(customer), eval(car), date_list, insurance, card_info, order_name)
+                    order = Order(eval(customer), eval(car), date_list, insurance, card_info, order_name, price)
                     order_list.append(order)
         return order_list
     
