@@ -18,9 +18,7 @@ class CustomerService:
         new_customer.make_customer(self.__customer_repo.get_customers_list())
         if type(new_customer) != str:
             self.__customer_repo.add_customer(new_customer)
-            return "Skráning tókst"
-        else:
-            return new_customer
+        return new_customer
 
     def check_ssn(self, ssn):
         for customer in self.__customers_list:

@@ -62,7 +62,7 @@ class OrderMenu:
                 while not finished:
                     prompt = "Heimasíða / Skoða eða skrá pantanir / Skrá nýja pöntun"
                     print_header(prompt)
-                    texti, new_order = self.__order_service.make_order_info(prompt)
+                    texti, new_order = self.__order_service.make_order_info(prompt, False)
                     if texti == "Tilbaka":
                         None
                     elif texti == "Heim":
