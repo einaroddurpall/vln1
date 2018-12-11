@@ -9,7 +9,7 @@ from services.CarService import CarService, get_car_price
 from services.CustomerService import CustomerService
 from services.ChangeService import ChangeService
 from models.Car import Car
-from models.Methods import print_header
+from models.Functions import print_header
 
 def calc_price( order):
     """Calculates the price of an order"""

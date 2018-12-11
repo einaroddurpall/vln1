@@ -3,7 +3,7 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Methods import make_number, make_date_list
+from models.Functions import make_number, make_date_list
 from models.Car import Car
 
 class Order:

@@ -4,7 +4,7 @@ from datetime import timedelta
 from models.Car import Car
 from models.Customer import Customer
 from models.Order import Order
-from models.Methods import make_date_list
+from models.Functions import make_date_list
 
 class OrderRepository:
 
