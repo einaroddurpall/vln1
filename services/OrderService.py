@@ -44,17 +44,17 @@ class OrderService:
         new_order = Order()
         for step in range(1, 5):
             choice = new_order.change_info(str(step), self.__car_service, self.__customer_service, prompt)
-            if choice == "Tilbaka":
-                return "Tilbaka", new_order
-            elif choice == "Heim":
-                return "Heim", new_order
+            if choice == "t":
+                return "t"
+            elif choice == "h":
+                return "h"
         continue_q = input("Er allt rétt? (j/n) ").lower()
         if continue_q != "j":
             self.change_order_info(new_order, True, prompt)
         price = calc_price(new_order)
         new_order.set_price(price)
         self.__order_repo.add_order(new_order)
-        return "", new_order
+        return new_order
         
     def change_order_info(self, order, new_or_not, prompt):
         correct = False
