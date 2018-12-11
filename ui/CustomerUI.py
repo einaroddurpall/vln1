@@ -67,6 +67,8 @@ class CustomerMenu:
                 if customer_orders:
                     for order in customer_orders:
                         print(order)
+                        print()
+                    input("Ýttu á enter til að halda áfram: ")
                 else:
                     print("Þessi viðskiptavinur hefur enga notkunarsögu.")
                     sleep(2)
@@ -84,6 +86,7 @@ class CustomerMenu:
             elif choice == "4":
                 self.__order_service = OrderService()
                 self.__order_service.make_order_info(prompt, customer)
+                self.__customer_service.update_order_repo()
             elif choice == "t":
                 return "Tilbaka", False
             else:

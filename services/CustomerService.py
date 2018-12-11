@@ -21,6 +21,9 @@ class CustomerService:
             self.__customer_repo.add_customer(new_customer)
         return new_customer
 
+    def update_order_repo(self):
+        self.__order_repo = OrderRepository()
+
     def check_ssn(self, ssn):
         for customer in self.__customers_list:
             if customer.get_ssn() == ssn:
