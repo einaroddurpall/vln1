@@ -3,7 +3,7 @@ from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
 from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
-from models.methods import print_header, make_date
+from models.methods import print_header, make_date, check_registration_num
 from services.ChangeService import ChangeService
 from time import sleep
 from os import system
@@ -158,9 +158,11 @@ class CarService:
             self._car_repo_small_car.update_car_list()
     
     def car_find(self, registration_num):
-        for car in self._all_cars_list:
-            if car.get_registration_num() == registration_num:
-                return car
+        registration_num = check_registration_num(registration_num)
+        if registration_num:
+            for car in self._all_cars_list:
+                if car.get_registration_num() == registration_num:
+                    return car
         return False
 
     def search_for_specific_car(self, a_dict):
