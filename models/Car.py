@@ -1,19 +1,7 @@
 import string
 from time import sleep
 from datetime import date
-from models.Functions import print_header, error_handle, check_registration_num, pretty_str
-
-def make_car_type():
-    valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
-    valid_car_type = False
-    while valid_car_type is False:
-        number = input("Flokkur bíls: \n1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n6.  Hætta við\n")
-        try:
-            number = int(number)
-            car_type = valid_car_types[number -1]
-            return car_type
-        except:
-            print("Númerið: {} er ekki í listanum, reyndu aftur.".format(number))
+from models.Functions import print_header, error_handle, check_registration_num, pretty_str, make_car_type
 
 class Car:
 
@@ -25,7 +13,6 @@ class Car:
         self.__transmission = transmission
         self.__milage = milage
         self.__is_rentable = is_rentable
-
 
     def __str__(self):
         """Strengur sem birtist er bíll er prentaður."""
@@ -82,23 +69,25 @@ class Car:
         """Tveir bílar eru sami bíllinn ef þeir hafa sama bílnúmer."""
         return self.get_registration_num() == other.get_registration_num()
 
-    def car_change_info(self, step, all_cars_list):
+    def car_change_info(self, step, all_cars_list, prompt):
         if step == "1":
             done = False
             while not done:
+                print_header(prompt)
                 registration_num = input("Bílnúmer: ")
+                if registration_num.lower() == "h" or registration_num.lower() == "t":
+                    return registration_num
                 registration_num = check_registration_num(registration_num)
                 for car in all_cars_list:
                     if registration_num == car.get_registration_num():
-                        print("Þetta bílnúmer er nú þegar á skrá")
+                        print("Villa: Þetta bílnúmer er nú þegar á skrá")
+                        sleep(2)
                         registration_num = False
                 if registration_num:
                     self.__registration_num = registration_num
                     done = True
         elif step == "2":
             self.__car_type = make_car_type()
-            if self.__car_type == None:
-                return None
         elif step == "3":
             self.__sub_type = input("Tegund bíls: ")
         elif step == "4":
@@ -116,67 +105,10 @@ class Car:
         elif step == "5":
             valid_mileage = False
             while valid_mileage != True: 
-                milage = input("Akstur(km): ")
+                milage = input("Akstur (km): ")
                 try: 
                     int(milage)
                     self.__milage = milage
                     valid_mileage = True
                 except: 
-                    print('Vinsamlegast sláðu inn réttan Aksturvegalengd bíl.')
-        #return exit_info
-                
-        # done = False
-        # while not done:
-        #     registration_num = input("Bílnúmer: ")
-        #     if registration_num[0] in string.ascii_uppercase and registration_num[1] in string.ascii_uppercase\
-        #     and registration_num[2] == "-"\
-        #     and (registration_num[3] in string.ascii_uppercase or registration_num[3] in string.digits)\
-        #     and registration_num[4] in string.digits and registration_num[5] in string.digits:
-        #         break
-        #     else:
-        #         true_input = False
-        #         while true_input != True:
-        #             print_header(prompt)
-        #             print("Bílnúmerið ", registration_num, " er ekki löglegt bílnúmer.")
-        #             choice = input("1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n")
-        #             if choice == "2":
-        #                 exit_info = 2
-        #                 done = True
-        #                 true_input = True
-        #             elif choice == "3":
-        #                 exit_info = 1
-        #                 done = True
-        #                 true_input = True
-        #             elif choice == "1":
-        #                 true_input = True
-        #             else:
-        #                 print("Ekki löglegur valmöguleiki, reyndu aftur.")
-        # if done != True:
-        #     car_type = make_car_type()
-        #     if car_type == None:
-        #         return None
-        #     sub_type = input("Tegund bíls: ")
-        #     transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
-        #     valid_transmission = False
-        #     while valid_transmission is False:
-        #         if transmission == "1":
-        #             transmission = "Sjálfskiptur"
-        #         elif transmission == "2":
-        #             transmission = "Beinskiptur"
-        #         else:
-        #             print("Villa, vinsamlegast veldu sjálfskiptan eða beinskiptan")
-        #             transmission = input("1.  Sjálfskiptur\n2.  Beinskiptur\n")
-        #             continue
-        #         valid_transmission = True
-        #     valid_mileage = False
-        #     while valid_mileage != True: 
-        #         milage = input("Akstur: ")
-        #         try: 
-        #             int(milage)
-        #             valid_mileage = True
-        #         except: 
-        #             pass
-        #     is_rentable = True
-        #     new_car = Car(registration_num, car_type, sub_type, transmission, milage, is_rentable)
-        #     return new_car
-        # return exit_info
+                    print('Vinsamlegast sláðu inn réttan akstursvegalengd bíl.')

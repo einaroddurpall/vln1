@@ -43,7 +43,7 @@ class OrderService:
     def make_order_info(self, prompt):
         new_order = Order()
         for step in range(1, 5):
-            choice = new_order.change_info(str(step), self.__car_service, self.__customer_service)
+            choice = new_order.change_info(str(step), self.__car_service, self.__customer_service, prompt)
             if choice == "Tilbaka":
                 return "Tilbaka", new_order
             elif choice == "Heim":
@@ -51,10 +51,9 @@ class OrderService:
         continue_q = input("Er allt rétt? (j/n) ").lower()
         if continue_q != "j":
             self.change_order_info(new_order, True, prompt)
-        else:
-            price = calc_price(new_order)
-            new_order.make_price(price)
-            self.__order_repo.add_order(new_order)
+        price = calc_price(new_order)
+        new_order.set_price(price)
+        self.__order_repo.add_order(new_order)
         return "", new_order
         
     def change_order_info(self, order, new_or_not, prompt):
@@ -74,7 +73,7 @@ class OrderService:
                     print("Ekki valmöguleiki, veldu aftur")
             if choice == "5":
                 correct = True
-            order.change_info(choice, self.__car_service, self.__customer_service)
+            order.change_info(choice, self.__car_service, self.__customer_service, prompt)
         if new_or_not:
             self.__order_repo.add_order(order)
         else:
@@ -107,9 +106,8 @@ class OrderService:
                 order_list = self.__order_repo.get_order_list()
                 order_to_complete_list = []
                 for order in order_list:
-                    if order.get_order_complete() != True:
-                        if order.get_last_day() == date.today():
-                            order_to_complete_list.append(order)
+                    if order.get_order_complete() != True and order.get_last_day() == date.today():
+                        order_to_complete_list.append(order)
                 if order_to_complete_list == []:
                     print("Engin pöntun þarf að klára í dag.")
                     sleep(2)
@@ -133,8 +131,14 @@ class OrderService:
                     else:
                         car = order_to_complete.get_car()
                         order_price = int(order_to_complete.get_order_price())
-                        new_milage = int(input("Hvað er bíllinn núna keyrður? "))  # Vantar villucheck hvort bíll sé nokkuð minna keyrður en hann var
-                        milage_difference = new_milage - car.get_milage()
+                        new_milage_boolean = False
+                        while not new_milage_boolean:
+                            new_milage = int(input("Hvað er bíllinn núna keyrður? "))
+                            milage_difference = new_milage - car.get_milage()
+                            if 0 < milage_difference:
+                                new_milage_boolean = True
+                            else:
+                                print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
                         day_price = order_price // len(order_to_complete.get_date_list())
                         final_payment = int(order_price + milage_difference // 150 * 0.02 * day_price)
                         final_payment = pretty_str(final_payment, "ISK")

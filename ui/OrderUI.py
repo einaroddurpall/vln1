@@ -57,7 +57,7 @@ class OrderMenu:
                         elif choice == "3":
                             exit_info = "Heim"
                             done = True
-            elif action == "2":     # Athuga hvort dagsetningin sé liðin
+            elif action == "2":
                 finished = False
                 while not finished:
                     prompt = "Heimasíða / Skoða eða skrá pantanir / Skrá nýja pöntun"

@@ -1,9 +1,8 @@
-from models.Car import make_car_type
 import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Functions import make_number, make_date_list, make_date, pretty_str
+from models.Functions import make_number, make_date_list, make_date, pretty_str, make_car_type, legal_dates, print_header
 from models.Car import Car
 
 class Order:
@@ -93,11 +92,11 @@ class Order:
             self.__insurance, self.__card_info, pretty_str(self.get_order_price(), "ISK"), self.get_order_complete()
         )
     
-    def make_price(self, price):
+    def set_price(self, price):
         """sets the price of the orders"""
         self.__order_price = price
 
-    def change_info(self, step, car_service, customer_service):
+    def change_info(self, step, car_service, customer_service, prompt):
         if step == "1":
             valid_ssn = False
             while valid_ssn is not True:
@@ -115,38 +114,16 @@ class Order:
             step2 = False
             while step2 is not True:
                 car_type = make_car_type()
-                if car_type: 
-                    valid_date = False
-                    while valid_date != True:
-                        try:
-                            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-                            #Athugar hvort við séum að panta í fortíðinni
-                            if date1 < date.today():
-                                print("Getur ekki pantað bíl aftur í tímann, vinsamlegast sláðu inn gildar dagsetningar")
-                            else:
-                                date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-                                if date1 <= date2:
-                                    self.__date_list = make_date_list(date1, date2)
-                                    valid_date = True
-                                else:
-                                    print("Vinsamlegast sláðu inn gilda dagsetningar(Afhendingardagur getur ekki verið á eftir skiladegi)")
-                                    sleep(.5)
-                        except: 
-                            print("Vinsamlegast sláðu inn gilda dagsetningu")
-                            
-                    self.__car = self.rent_car(car_type, self.__date_list, car_service)
-                    if self.__car:
-                        step2 = True
-                        system('clear')
-                    else:
-                        print("Enginn bíll laus með þessi skilyrði")
-                        sleep(2)
-                        system('clear')
-                        print("Heimasíða / Skoða eða skrá pantanir / Skrá pantanir")
-                        print("="*40)
+                date1, date2 = legal_dates(prompt)
+                self.__date_list = make_date_list(date1, date2)
+                self.__car = self.rent_car(car_type, self.__date_list, car_service)
+                if self.__car:
+                    step2 = True
+                    print_header(prompt)
                 else:
-                    pass
-                    # villu fall
+                    print("Enginn bíll laus með þessi skilyrði")
+                    sleep(2)
+                    print_header(prompt)
         elif step == "3":
             step3 = False
             while step3 is not True:
@@ -163,7 +140,6 @@ class Order:
             self.__card_info = make_number(16, "Kortanúmer: ", "Ólöglegt kortanúmer, reyndu aftur.")
                 #"Order " + str(self.__order_num))
                 #self.__order_num += 1
-
 
     def rent_car(self, car_type, date_list, car_service):
         """ Þetta fall tekur á móti car_type og date_list, býr til carlist fyrir viðeigandi car_type og athugar hvort einhver
