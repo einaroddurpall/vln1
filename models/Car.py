@@ -75,9 +75,6 @@ class Car:
         """ Sets new milage for the car in the system. When the car is returned we need to update the milage for the car."""
         self.__milage = milage
 
-    def set_history(self, order):
-        pass
-
     def check_availability(self, date_list, date_dict, car_list):
         is_rentable = True
         for date in date_list:
