@@ -3,8 +3,6 @@ from os import system
 import string
 from datetime import timedelta
 
-# class UiMethods:
-#     def __init__(self)
 def print_header(prompt=""):
         """ Hreinsar terminal og prentar út header með slóð """
         system('clear')
@@ -20,6 +18,18 @@ def make_date(a_date):
     month = new_string[2:4]
     year = new_string[4:]
     return date(int(year), int(month), int(day))
+
+def make_car_type():
+    valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
+    valid_car_type = False
+    while valid_car_type is False:
+        number = input("Flokkur bíls: \n1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n6.  Hætta við\n")
+        try:
+            number = int(number)
+            car_type = valid_car_types[number -1]
+            return car_type
+        except:
+            print("Númerið: {} er ekki í listanum, reyndu aftur.".format(number))
 
 def error_handle(search, search_input):
         choice = input('{}: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n'.format(search, search_input))

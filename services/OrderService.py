@@ -53,7 +53,7 @@ class OrderService:
             self.change_order_info(new_order, True, prompt)
         else:
             price = calc_price(new_order)
-            new_order.make_price(price)
+            new_order.set_price(price)
             self.__order_repo.add_order(new_order)
         return "", new_order
         
@@ -133,8 +133,14 @@ class OrderService:
                     else:
                         car = order_to_complete.get_car()
                         order_price = int(order_to_complete.get_order_price())
-                        new_milage = int(input("Hvað er bíllinn núna keyrður? "))  # Vantar villucheck hvort bíll sé nokkuð minna keyrður en hann var
-                        milage_difference = new_milage - car.get_milage()
+                        new_milage_boolean = False
+                        while not new_milage_boolean:
+                            new_milage = int(input("Hvað er bíllinn núna keyrður? "))
+                            milage_difference = new_milage - car.get_milage()
+                            if 0 < milage_difference:
+                                new_milage_boolean = True
+                            else:
+                                print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
                         day_price = order_price // len(order_to_complete.get_date_list())
                         final_payment = int(order_price + milage_difference // 150 * 0.02 * day_price)
                         final_payment = pretty_str(final_payment, "ISK")

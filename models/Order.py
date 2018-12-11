@@ -1,9 +1,8 @@
-from models.Car import make_car_type
 import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Functions import make_number, make_date_list, make_date, pretty_str
+from models.Functions import make_number, make_date_list, make_date, pretty_str, make_car_type
 from models.Car import Car
 
 class Order:
@@ -74,7 +73,7 @@ class Order:
             self.__insurance, self.__card_info, pretty_str(self.get_order_price(), "ISK"), self.get_order_complete()
         )
     
-    def make_price(self, price):
+    def set_price(self, price):
         """sets the price of the orders"""
         self.__order_price = price
 
