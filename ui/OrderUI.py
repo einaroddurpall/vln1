@@ -79,6 +79,6 @@ class OrderMenu:
             elif action == "3":
                 prompt += " / Klára pantanir dagsins"
                 print_header(prompt)
-                
+                self.__order_service.complete_orders(prompt)
             else:
                 done = True

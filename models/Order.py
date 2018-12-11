@@ -66,7 +66,7 @@ class Order:
         )
     
     def __str__(self):
-        return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}\nVerð: {}\Pöntun lokið: {}".format(
+        return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}\nVerð: {}\nPöntun lokið: {}".format(
             self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), 
             self.__insurance, self.__card_info, self.get_order_price(), self.get_order_complete()
         )
