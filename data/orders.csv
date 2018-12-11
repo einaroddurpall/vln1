@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 Pöntun 1;Customer('Viðskiptavinur 6','einar','2505983519','einaropr@gmail.com','8662282');Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',23112,True);datetime.date(2019, 1, 1);datetime.date(2019, 1, 3);Aukatrygging;2938454738294738;55500;False
 Pöntun 2;Customer('Viðskiptavinur 6','einar','2505983519','einaropr@gmail.com','8662282');Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',23112,True);datetime.date(2018, 12, 12);datetime.date(2018, 12, 13);Grunntrygging;1234567890123456;37000;False
-Pöntun 3;Customer('Viðskiptavinur 6','einar','2505983519','einaropr@gmail.com','8662282');Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',23112,True);datetime.date(2018, 12, 11);datetime.date(2018, 12, 11);Grunntrygging;1234567890123456;17000;False
-=======
-Pöntun 1;Customer('Viðskiptavinur 6','einar','2505983519','einaropr@gmail.com','8662282');Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',696969,True);datetime.date(2019, 1, 1);datetime.date(2019, 1, 3);aukaleg trygging;2938454738294738;55500;False
->>>>>>> 28b0958ea527234d99bf830006aeeae397ac764b
-=======
-Pöntun 1;Customer('Viðskiptavinur 6','einar','2505983519','einaropr@gmail.com','8662282');Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',23112,True);datetime.date(2019, 1, 1);datetime.date(2019, 1, 3);aukaleg trygging;2938454738294738;55500;False
->>>>>>> a5ab56dc987568246eed79e9480a1c5df7ad977e
+Pöntun 3;Customer('Viðskiptavinur 6','einar','2505983519','einaropr@gmail.com','8662282');Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',67150,True);datetime.date(2018, 12, 11);datetime.date(2018, 12, 11);Grunntrygging;1234567890123456;17000;True

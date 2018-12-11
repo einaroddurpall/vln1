@@ -55,6 +55,9 @@ class Order:
 
     def set_car(self, car):
         self.__car = car
+    
+    def set_complete(self, statement):
+        self.__complete = statement
 
     def __eq__(self, other):
         return self.get_order_name() == other.get_order_name()
