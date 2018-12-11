@@ -2,6 +2,7 @@ from repositories.OrderRepository import OrderRepository
 from repositories.CustomerRepository import CustomerRepository
 from repositories.CarRepository import CarRepository
 from models.Order import Order
+from models.Car import Car
 
 class ChangeService:
 
@@ -25,11 +26,16 @@ class ChangeService:
                 order.set_car(new_car)
         self.__order_repo.update_order_list()
 
-    def delete_car_consequences(self, car, car_service):
+    def delete_car_consequences(self, car, car_service, customer_service):
         car_type = car.get_car_type()
         for order in self.__order_list:
             if order.get_car() == car:
                 datelist = order.get_date_list()
                 new_car = order.rent_car(car_type, datelist, car_service)
-                order.set_car(new_car)
+                if new_car == None:
+                    print("Bíll var skráður í pöntun/pantanir. Enginn sambærilegur bíll er laus yfir viðeigandi tímabil. Vinsamlegast skráið bíl fyrir eftirfarandi pöntun.")
+                    print(order)
+                    order.change_info("2",car_service, customer_service)
+                else:
+                    order.set_car(new_car)
         self.__order_repo.update_order_list()

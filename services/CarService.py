@@ -3,7 +3,7 @@ from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
 from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
-from models.Functions import print_header, make_date, check_registration_num, make_date_list
+from models.Functions import print_header, make_date, check_registration_num, make_date_list, pretty_str
 from services.ChangeService import ChangeService
 from time import sleep
 from os import system
@@ -20,6 +20,7 @@ def get_car_price(car_type):
         return CarRepository.SEVEN_SEAT_SUV_PRICE
     elif car_type.lower() == 'smárúta':
         return CarRepository.MINIBUS_PRICE
+
 
 class CarService:
 
@@ -135,6 +136,7 @@ class CarService:
         elif car_type.lower() == "smábíll":
             self._car_repo_small_car.add_car(car)
         self._all_cars_list.append(car)
+
     def update_car_list(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
@@ -159,7 +161,7 @@ class CarService:
             return False, True
         return False, False
 
-    def search_for_specific_car(self, a_dict):
+    def search_for_specific_car_type(self, a_dict):
         """Function that asks user if he wants to find
         info about specific car type and does so"""
         question = input("Viltu leita af ákveðnari tegund (j/n)? ")
@@ -167,12 +169,12 @@ class CarService:
             car_type = make_car_type()
             if car_type != None:
                 if car_type in a_dict.keys():
-                    print("\n{:<15}{:>8} ISK:".format(car_type, get_car_price(car_type)))
+                    print("\n{:<18}{:>10}:".format(car_type, pretty_str(get_car_price(car_type), "ISK")))
                     print("="*60)
-                    print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+                    print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
                     print('-'*60)
                     for car_info in a_dict[car_type]:
-                        print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
+                        print("{:>20}{:>10}{:>13}{:>17}".format(car_info[1], car_info[0], pretty_str(car_info[2], "km"), car_info[3]))
                     print("="*60)
                     return False
                 else:
@@ -185,17 +187,17 @@ class CarService:
 
     def print_out_info_for_all_car_types(self, a_dict):
         for key,val in a_dict.items():
-            print("\n{:<15}{:>8} ISK:".format(key, get_car_price(key)))
+            print("\n{:<18}{:>10}:".format(key, pretty_str(get_car_price(key), "ISK")))
             print("="*60)
-            print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+            print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
             print('-'*60)
             for car_info in val:
-                print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
+                print("{:>20}{:>10}{:>13}{:>17}".format(car_info[1], car_info[0], pretty_str(car_info[2], "km"), car_info[3]))
             print("="*60)
 
     def print_car_dict(self, a_dict):
         if a_dict:
-            statement = self.search_for_specific_car(a_dict)
+            statement = self.search_for_specific_car_type(a_dict)
             if statement:
                 self.print_out_info_for_all_car_types(a_dict)
             elif statement == None:
@@ -252,8 +254,6 @@ class CarService:
     def get_available_cars(self, prompt):
         car_busy_dict = self.get_busy_cars(prompt)
         all_car_dict = self.make_all_cars_dict()
-        print(all_car_dict)
-        print(car_busy_dict)
         delete_key_list = []
         for key in all_car_dict:
             for car in all_car_dict[key]:
@@ -290,4 +290,4 @@ class CarService:
             self._car_repo_seven_seat_suv.remove_car(car)
         elif car_type == 'smárúta':
             self._car_repo_minibus.remove_car(car)
-        self.__change_service.delete_car_consequences(car, self)
+        self.__change_service.delete_car_consequences(car, self, self._customer_service)

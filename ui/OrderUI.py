@@ -2,7 +2,7 @@ from services.OrderService import OrderService
 from models.Order import Order
 from os import system
 from time import sleep
-from models.Functions import print_header
+from models.Functions import print_header, pretty_str
 
 class OrderMenu:
     def __init__(self):
@@ -69,7 +69,7 @@ class OrderMenu:
                         done = True
                     else: 
                         print_header(prompt)
-                        print("Verð: {} kr.\nPöntun skráð.".format(new_order.get_order_price()))
+                        print("Verð: {}\nPöntun skráð.".format(pretty_str(new_order.get_order_price(), "ISK")))
                         choice = input("1.  Skrá aðra pöntun\n2.  Tilbaka\n3.  Heim\n")
                         if choice == "2":
                             finished = True

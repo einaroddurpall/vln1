@@ -10,9 +10,9 @@ from services.CarService import CarService, get_car_price
 from services.CustomerService import CustomerService
 from services.ChangeService import ChangeService
 from models.Car import Car
-from models.Functions import print_header, error_handle
+from models.Functions import print_header, error_handle, pretty_str
 
-def calc_price( order):
+def calc_price(order):
     """Calculates the price of an order"""
     car = order.get_car()
     car_type = car.get_car_type()
@@ -136,14 +136,15 @@ class OrderService:
                         new_milage = int(input("Hvað er bíllinn núna keyrður? "))  # Vantar villucheck hvort bíll sé nokkuð minna keyrður en hann var
                         milage_difference = new_milage - car.get_milage()
                         day_price = order_price // len(order_to_complete.get_date_list())
-                        final_payment = order_price + milage_difference // 150 * 0.02 * day_price
+                        final_payment = int(order_price + milage_difference // 150 * 0.02 * day_price)
+                        final_payment = pretty_str(final_payment, "ISK")
                         car.set_milage(new_milage)
                         self.__car_service.update_car_list(car)
                         order_to_complete.set_car(car)
                         order_to_complete.set_complete(True)
                         self.__order_repo.update_order_list()
                         print_header(prompt)
-                        print("Viðskiptavinur þarf að greiða {} kr.\nPöntun er nú kláruð".format(int(final_payment)))
+                        print("Viðskiptavinur þarf að greiða {}\nPöntun er nú kláruð".format(final_payment))
                         choice = input("1.  Velja aðra pöntun til að klára\n2.  Tilbaka\n3.  Heim\n")
                         if choice == "2" or choice == "3":
                             finished_completing_orders = True

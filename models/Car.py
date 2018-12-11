@@ -1,7 +1,7 @@
 import string
 from time import sleep
 from datetime import date
-from models.Functions import print_header, error_handle, check_registration_num
+from models.Functions import print_header, error_handle, check_registration_num, pretty_str
 
 def make_car_type():
     valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
@@ -28,7 +28,7 @@ class Car:
 
     def __str__(self):
         return "Bílnúmer: {}-{}\nFlokkur bíls: {}\nTegund bíls {}\n{}\nAkstur: {}\nLaus: {}".format(
-        self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission, self.__milage, self.__is_rentable)
+        self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission,pretty_str(self.__milage, "km"), self.__is_rentable)
 
     def __repr__(self):
         return "Car('{}','{}','{}','{}',{},{})".format(self.__registration_num, self.__car_type, self.__sub_type, self.__transmission,
@@ -115,7 +115,7 @@ class Car:
                     self.__milage = milage
                     valid_mileage = True
                 except: 
-                    pass
+                    print('Vinsamlegast sláðu inn réttan Aksturvegalengd bíl.')
         #return exit_info
                 
         # done = False
