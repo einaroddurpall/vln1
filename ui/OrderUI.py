@@ -2,7 +2,7 @@ from services.OrderService import OrderService
 from models.Order import Order
 from os import system
 from time import sleep
-from models.Functions import print_header
+from models.Functions import print_header, pretty_str
 
 class OrderMenu:
     def __init__(self):
@@ -57,7 +57,7 @@ class OrderMenu:
                         elif choice == "3":
                             exit_info = "Heim"
                             done = True
-            elif action == "2":     # Athuga hvort dagsetningin sé liðin
+            elif action == "2":
                 finished = False
                 while not finished:
                     prompt = "Heimasíða / Skoða eða skrá pantanir / Skrá nýja pöntun"
@@ -69,7 +69,7 @@ class OrderMenu:
                         done = True
                     else: 
                         print_header(prompt)
-                        print("Verð: {} ISK\nPöntun skráð.".format(new_order.get_order_price()))
+                        print("Verð: {}\nPöntun skráð.".format(pretty_str(new_order.get_order_price(), "ISK")))
                         choice = input("1.  Skrá aðra pöntun\n2.  Tilbaka\n3.  Heim\n")
                         if choice == "2":
                             finished = True

@@ -1,23 +1,12 @@
 import string
 from time import sleep
 from datetime import date
-from models.Functions import print_header, error_handle, check_registration_num
-
-def make_car_type():
-    valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
-    valid_car_type = False
-    while valid_car_type is False:
-        number = input("Flokkur bíls: \n1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n6.  Hætta við\n")
-        try:
-            number = int(number)
-            car_type = valid_car_types[number -1]
-            return car_type
-        except:
-            print("Númerið: {} er ekki í listanum, reyndu aftur.".format(number))
+from models.Functions import print_header, error_handle, check_registration_num, pretty_str, make_car_type
 
 class Car:
 
     def __init__(self, registration_num="", car_type="", sub_type="", transmission="", milage=0, is_rentable=True):
+        """Hver bíll hefur bílnúmer, tegund, undirtegund, skiptingu og akstur."""
         self.__registration_num = registration_num
         self.__car_type = car_type
         self.__sub_type = sub_type
@@ -25,12 +14,13 @@ class Car:
         self.__milage = milage
         self.__is_rentable = is_rentable
 
-
     def __str__(self):
+        """Strengur sem birtist er bíll er prentaður."""
         return "Bílnúmer: {}-{}\nFlokkur bíls: {}\nTegund bíls {}\n{}\nAkstur: {}\nLaus: {}".format(
-        self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission, self.__milage, self.__is_rentable)
+        self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission,pretty_str(self.__milage, "km"), self.__is_rentable)
 
     def __repr__(self):
+        """Strengur sem sýnir hvernig búa má til eintak af viðeigandi bíl."""
         return "Car('{}','{}','{}','{}',{},{})".format(self.__registration_num, self.__car_type, self.__sub_type, self.__transmission,
         self.__milage, self.__is_rentable)
 
@@ -63,6 +53,9 @@ class Car:
         self.__milage = milage
 
     def check_availability(self, date_list, date_dict, car_list):
+        """Tekur við lista af dögum, dictionary sem heldur utan um hvaða bílar eru bókaðir á hverjum degi og lista
+        af bílum af ákveðnum flokki. Fallið athugar hvort bíllinn (self) er laus fyrir alla dagana í listanum og
+        skilar True eða False."""
         is_rentable = True
         for date in date_list:
             if date in date_dict:
@@ -73,25 +66,28 @@ class Car:
         return is_rentable
 
     def __eq__(self, other):
+        """Tveir bílar eru sami bíllinn ef þeir hafa sama bílnúmer."""
         return self.get_registration_num() == other.get_registration_num()
 
-    def car_change_info(self, step, all_cars_list):
+    def car_change_info(self, step, all_cars_list, prompt):
         if step == "1":
             done = False
             while not done:
+                print_header(prompt)
                 registration_num = input("Bílnúmer: ")
+                if registration_num.lower() == "h" or registration_num.lower() == "t":
+                    return registration_num
                 registration_num = check_registration_num(registration_num)
                 for car in all_cars_list:
                     if registration_num == car.get_registration_num():
-                        print("Þetta bílnúmer er nú þegar á skrá")
+                        print("Villa: Þetta bílnúmer er nú þegar á skrá")
+                        sleep(2)
                         registration_num = False
                 if registration_num:
                     self.__registration_num = registration_num
                     done = True
         elif step == "2":
             self.__car_type = make_car_type()
-            if self.__car_type == None:
-                return None
         elif step == "3":
             self.__sub_type = input("Tegund bíls: ")
         elif step == "4":
@@ -109,13 +105,10 @@ class Car:
         elif step == "5":
             valid_mileage = False
             while valid_mileage != True: 
-                milage = input("Akstur(km): ")
+                milage = input("Akstur (km): ")
                 try: 
                     int(milage)
                     self.__milage = milage
                     valid_mileage = True
                 except: 
-                    pass
-        #return exit_info
-                
-        
+                    print('Vinsamlegast sláðu inn rétta akstursvegalengd bíls.')

@@ -9,6 +9,8 @@ class CarRepository:
     MINIBUS_PRICE = 30000
 
     def __init__(self, name):
+        """Hver tilvik af car_repository á nafn sem er nafn viðeigandi bílaflokks. Það á 
+        einnig lista með öllum bílum í þeim flokki."""
         self.__name = name
         self.__cars = self.get_cars()
 
@@ -28,6 +30,8 @@ class CarRepository:
         return cars
 
     def update_car_list(self, car):
+        """Tekur við breyttum bíl og finnur gömlu útgáfu hans í skrá og lista fyrir viðeigandi.
+        Óbreytta bílnum er síðan skipt út og sá breytti er settur í staðinn."""
         for index,old_car in enumerate(self.__cars):
             if old_car == car:
                 self.__cars[index] = car
@@ -40,8 +44,10 @@ class CarRepository:
             car_type_file.write(new_file)
     
     def remove_car(self, car):
+        """Tekur við bíl og eyðit honum úr viðeigandi skrá."""
         self.__cars.remove(car)
         self.update_car_list(Car())
 
     def get_carlist(self):
+        """Skilar lista með öllum bílum af viðeigandi tegund."""
         return self.__cars

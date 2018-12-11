@@ -1,6 +1,7 @@
 from models.Person import Person
 from models.Functions import print_header, make_number
 from os import system
+from time import sleep
 
 class Staff(Person):
     """staff class, is a subclass of the Person class
@@ -14,35 +15,49 @@ class Staff(Person):
         self.__admin = admin
 
     def __repr__(self):
+        """Strengur sem sýnir hvernig búa má til eintak af viðeigandi starfsmanni."""
         return "Staff('{}','{}','{}','{}',{})".format(
             self._name, self._ssn, self.__username, self.__password, self.__admin
         )
 
     def __str__(self):
+        """Strengur sem birtist er starfsmaður er prentaður."""
         return "Nafn: {}\nKennitala: {}\nNotandanafn {}\nLykilorð {}\nAðgengi {}".format(
             self._name, self._ssn, self.__username, self.__password, self.__admin
         )
     
     def get_username(self):
+        """Skilar notendanafni starfsmanns."""
         return self.__username
 
     def get_password(self):
+        """Skilar lykilorði viðskiptavinar."""
         return self.__password
 
     def get_admin(self):
+        """Skilar True ef starfsmaður er yfirmaður annars False."""
         return self.__admin
 
     def make_staff(self, staff_list):
         for number in range(1, 6):
             number = str(number)
             self.change_info(number, staff_list)
-        done = False
+            if number == '2':
+                if self._ssn == '':
+                    done = True
+                    break
+                else:
+                    done = False
+                    
+
         while not done:
             correct = input("Er allt rétt? (j/n) ").lower()
             if correct != "j":
                 self.update_info(staff_list)
             else:
-                done = True
+                return True
+        return False
+
 
     def update_info(self, staff_list):
         correct = False
@@ -63,6 +78,7 @@ class Staff(Person):
             print_header("Heimasíða / Starfsmenn / Breyta skráningu")
 
     def change_info(self, choice, staff_list):
+        "Tekur inn upplýsingar til að breyta/búa til starfsmann"
         if choice == "1":
             self.make_name()
         elif choice == "2":
@@ -72,9 +88,14 @@ class Staff(Person):
                 change = make_number(10, "Kennitala: ", "Þessi kennitala var ólögleg, reyndu aftur.")
                 for staff in staff_list:
                     if staff.get_ssn() == change:
-                        print("Það er nú þegar viðskiptavinur með þessa kennitölu")
+                        print("Það er nú þegar starfsmaður með þessa kennitölu")
+                        sleep(2)
                         uniqe_ssn = False
-            self._ssn = change
+                        break
+                if uniqe_ssn == True:
+                    self._ssn = change
+                else:
+                    break  
         elif choice == "3":
             self.make_username('Notandanafn: ')
         elif choice == "4":

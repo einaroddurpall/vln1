@@ -1,9 +1,9 @@
 from repositories.CarRepository import CarRepository
 from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
-from models.Car import Car, make_car_type
+from models.Car import Car
 from datetime import datetime, timedelta
-from models.Functions import print_header, make_date, check_registration_num, make_date_list
+from models.Functions import print_header, make_date, check_registration_num, make_date_list, pretty_str, make_car_type, legal_dates
 from services.ChangeService import ChangeService
 from time import sleep
 from os import system
@@ -20,6 +20,7 @@ def get_car_price(car_type):
         return CarRepository.SEVEN_SEAT_SUV_PRICE
     elif car_type.lower() == 'smárúta':
         return CarRepository.MINIBUS_PRICE
+
 
 class CarService:
 
@@ -64,9 +65,9 @@ class CarService:
     def make_car(self, prompt):
         new_car = Car()
         for step in range(1,6):
-            new_car.car_change_info(str(step), self._all_cars_list)
-            if new_car.get_car_type == None:
-                return False
+            quit_info = new_car.car_change_info(str(step), self._all_cars_list, prompt)
+            if type(quit_info) == str:
+                return quit_info
         continue_q = input("Er allt rétt? (j/n): ").lower()
         if continue_q != "j":
             self.change_car_info(new_car, True, prompt)
@@ -168,30 +169,31 @@ class CarService:
             car_type = make_car_type()
             if car_type != None:
                 if car_type in a_dict.keys():
-                    print("\n{:<15}{:>8} ISK:".format(car_type, get_car_price(car_type)))
+                    print("\n\033[1m{:<18}{:>10}:\033[0m".format(car_type, pretty_str(get_car_price(car_type), "ISK")))
                     print("="*60)
-                    print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+                    print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
                     print('-'*60)
                     for car_info in a_dict[car_type]:
-                        print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
+                        car_number = car_info[0]
+                        print("{:>20}{:>6}-{}{:>13}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], pretty_str(car_info[2], "km"), car_info[3]))
                     print("="*60)
                     return False
                 else:
                     print("Enginn bíll laus í þessari bílategund á þessum tíma")
                     return False
-
             else:
                 return None
         return True
 
     def print_out_info_for_all_car_types(self, a_dict):
         for key,val in a_dict.items():
-            print("\n{:<15}{:>8} ISK:".format(key, get_car_price(key)))
+            print("\n\033[1m{:<18}{:>10}:\033[0m".format(key, pretty_str(get_car_price(key), "ISK")))
             print("="*60)
-            print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+            print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
             print('-'*60)
             for car_info in val:
-                print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
+                car_number = car_info[0]
+                print("{:>20}{:>6}-{}{:>13}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], pretty_str(car_info[2], "km"), car_info[3]))
             print("="*60)
 
     def print_car_dict(self, a_dict):
@@ -202,7 +204,7 @@ class CarService:
             elif statement == None:
                 return True         
         else:
-            print("Enginn laus bíll á þessum tíma")
+            print("Enginn bíll í útleigu á þessum tíma")
 
     def get_date_dict(self):
         date_dict = {}
@@ -221,21 +223,7 @@ class CarService:
         """Takes in 2 dates and returns a list of all cars that are 
         taken/busy, that day and/or the days between them, returns the cars
         in and dosent repeat the cars."""
-        date_found = False
-        while not date_found:
-            try:
-                date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-                date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-                if date1 <= date2:
-                    date_found = True
-                else:
-                    print("Villa! Skiladagur getur ekki verið á undan afhendingardegi")
-                    sleep(2)
-                    print_header(prompt)
-            except: 
-                print("Vinsamlegast sláðu inn gilda dagsetningu")
-                sleep(2)
-                print_header(prompt)
+        date1, date2 = legal_dates(prompt)
         list_of_days = make_date_list(date1, date2)
         car_info_dict = self.get_date_dict()
         car_type_info_dict = {}
@@ -251,13 +239,14 @@ class CarService:
         return car_type_info_dict
 
     def get_available_cars(self, prompt):
+        """Fær uppflettilista með uppteknum bílum, fær svo uppflettilista með öllum bílum, finnur svo þá bíla 
+        sem eru sameiginlegir í báðum listum og fjarlægir þá úr uppflettilistanum með öllum bílum"""
+
         car_busy_dict = self.get_busy_cars(prompt)
         all_car_dict = self.make_all_cars_dict()
-        print(all_car_dict)
-        print(car_busy_dict)
         delete_key_list = []
-        for key in all_car_dict:
-            for car in all_car_dict[key]:
+        for key in car_busy_dict:
+            for car in car_busy_dict[key]:
                 try:
                     if car in car_busy_dict[key]:
                         all_car_dict[key].remove(car)
