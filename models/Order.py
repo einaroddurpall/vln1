@@ -3,11 +3,11 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Methods import make_number
+from models.Methods import make_number, make_date_list
 from models.Car import Car
 
 class Order:
-    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name="", order_price = 0):
+    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name="", order_price = 0, complete = False):
         self.__customer = customer
         self.__car = car
         self.__date_list = date_list
@@ -15,6 +15,7 @@ class Order:
         self.__card_info = card_info
         self.__order_name = order_name
         self.__order_price = order_price
+        self.__complete = complete
     
     def get_customer(self):
         return self.__customer
@@ -49,6 +50,9 @@ class Order:
     def get_order_price(self):
         return self.__order_price
 
+    def get_order_complete(self):
+        return self.__complete
+
     def set_order_name(self, name):
         self.__order_name = name
 
@@ -56,13 +60,15 @@ class Order:
         return self.get_order_name() == other.get_order_name()
 
     def __repr__(self):
-        return "{};{};{};{};{};{};{};{}".format(
-            str(self.get_order_name()),repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.get_insurance(), self.get_card_info(), self.get_order_price()
+        return "{};{};{};{};{};{};{};{};{}".format(
+            str(self.get_order_name()),repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), 
+            repr(self.get_last_day()), self.get_insurance(), self.get_card_info(), self.get_order_price(), self.get_order_complete()
         )
     
     def __str__(self):
-        return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}\nVerð: {}".format(
-            self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), self.__insurance, self.__card_info, self.get_order_price()
+        return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}\nVerð: {}\nPöntun lokið: {}".format(
+            self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), 
+            self.__insurance, self.__card_info, self.get_order_price(), self.get_order_complete()
         )
     
     def make_price(self, price):
@@ -156,21 +162,3 @@ def make_date(a_date):
     month = new_string[2:4]
     year = new_string[4:]
     return date(int(year), int(month), int(day))
-
-def make_date_list(date1, date2):
-    date_list = []
-    date_to_list = date1
-    while date_to_list <= date2:
-        date_list.append(date_to_list)
-        date_to_list += timedelta(days=1)
-    return date_list
-
-    # def update_info(self):
-    # choice = ""
-    # while choice != 6:
-    #     print("Hverju villtu breyta:\n1.  Kennitala\n2.  Flokkur bíls\n3.  Dagsetningar\n4.  Trygging\n5.  Kortanúmer\n6. Bíll")
-    #     choice = input()
-
-
-    #     return Customer(customer_info_list[0],customer_info_list[1],customer_info_list[2],customer_info_list[3],customer_info_list[4])
-    
