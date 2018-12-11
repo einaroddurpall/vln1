@@ -15,7 +15,7 @@ class OrderMenu:
         while not done:
             prompt = "Heimasíða / Skoða eða skrá pantanir"
             print_header(prompt)
-            action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Skila bíl\n4.  Heim\n")
+            action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Klára pantanir dagsins\n4.  Heim\n")
             if action == "1":      # Bæta við að það sé hægt að skrifa 1 í staðinn fyrir Order 1
                 prompt += " / Skoða pöntun"
                 print_header(prompt)
@@ -77,7 +77,7 @@ class OrderMenu:
                             finished = True
                             done = True
             elif action == "3":
-                prompt += " / Skila bíl"
+                prompt += " / Klára pantanir dagsins"
                 print_header(prompt)
                 pass
             else:
