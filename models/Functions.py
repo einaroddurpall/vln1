@@ -38,22 +38,24 @@ def error_handle(search, search_input):
         return choice.lower()
 
 def make_number(lenght_of_number, input_string, error_code_str):
-        legal_ssn = False
-        while not legal_ssn:
-            inp = input(input_string)
-            ssn = ""
+        legal_number = False
+        while not legal_number:
+            inp = input(input_string).lower()
+            if inp == "h" or inp == "t":
+                return inp
+            number = ""
             for letter in inp:
                 try:
                     int(letter)
-                    ssn += letter
+                    number += letter
                 except:
-                    ssn = ""
+                    number = ""
                     break
-            if len(ssn) == lenght_of_number:
-                legal_ssn = True
+            if len(number) == lenght_of_number:
+                legal_number = True
             else:
                 print(error_code_str)
-        return ssn
+        return number
     
 def check_registration_num(registration_num):
     new_registration_num = ""
@@ -72,12 +74,6 @@ def check_registration_num(registration_num):
     print("Þetta bílnúmer var ólöglegt.")
     sleep(2)
     return False
-
-def check_input(a_string):
-    if a_string.lower() == "h":
-        return "heim"
-    elif a_string.lower() == "t":
-        return "tilbaka"
 
 def make_date_list(date1, date2):
     """Tekur við tveimur dagsetningum og skilar lista með öllum dögum á milli þeirra ásamt endadögunum tveimur."""

@@ -96,20 +96,23 @@ class Order:
         """sets the price of the orders"""
         self.__order_price = price
 
+    # def get_info_list(self):
+    #     return [self.__ss]
+
     def change_info(self, step, car_service, customer_service, prompt):
         if step == "1":
             valid_ssn = False
             while valid_ssn is not True:
                 ssn = input("Kennitala viðskiptavinar: ")
+                if ssn == "t" or ssn == "h":
+                    return ssn
                 self.__customer = customer_service.check_ssn(ssn)
                 if self.__customer:
                     valid_ssn = True
                 else:
-                    choice = input("Kennitalan {} fannst ekki.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n".format(ssn))
-                    if choice == "2":
-                        return "Tilbaka"
-                    elif choice == "3":
-                        return "Heim"
+                    choice = input("Kennitalan {} fannst ekki.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heim\n".format(ssn))
+                    if choice == "t" or choice == "h":
+                        return choice
         elif step == "2":
             step2 = False
             while step2 is not True:
@@ -134,6 +137,8 @@ class Order:
                 elif number == "1":
                     self.__insurance = "Grunntrygging"
                     step3 = True
+                elif number == "t" or number == "h":
+                    return number
                 else:
                     print("Vinsamlegast veldu viðurkennt gildi")
         elif step == "4":
