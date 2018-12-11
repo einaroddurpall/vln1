@@ -1,5 +1,6 @@
 from datetime import date
 from os import system
+from time import sleep
 import string
 from datetime import timedelta
 
@@ -23,7 +24,7 @@ def make_car_type():
     valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
     valid_car_type = False
     while valid_car_type is False:
-        number = input("Flokkur bíls: \n1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n6.  Hætta við\n")
+        number = input("Flokkur bíls: \n1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n")
         try:
             number = int(number)
             car_type = valid_car_types[number -1]
@@ -91,3 +92,26 @@ def pretty_str(number, unit):
             number_new_str += "."
         number_new_str += letter
     return number_new_str[::-1] + " " + unit
+
+def legal_dates(prompt):
+    valid_dates = False
+    while not valid_dates:
+        try:
+            date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
+            if date1 < date.today():
+                print("Villa: Þú getur ekki skoðað/pantað bíla aftur í tímann, vinsamlegast sláðu inn gilda dagsetningu.")
+                input('Smelltu á "Enter" til að reyna aftur')
+                print_header(prompt)
+            else:
+                date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+                if date1 <= date2:
+                    valid_dates = True
+                else:
+                    print("Villa: Afhendingardagur getur ekki verið á undan skiladegi, vinsamlegast sláðu inn gilda dagsetningu.")
+                    input('Smelltu á "Enter" til að reyna aftur')
+                    print_header(prompt)
+        except: 
+            print("Villa: Dagsetning ekki til, vinsamlegast sláðu inn gilda dagsetningu.")
+            input('Smelltu á "Enter" til að reyna aftur')
+            print_header(prompt)
+    return date1, date2

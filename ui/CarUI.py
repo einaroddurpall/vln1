@@ -30,7 +30,7 @@ class CarMenu:
                         if not legal_reg_num:
                             choice = input('1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n')
                         else:
-                            choice = error_handle("Bíllinn: ", registration_num)
+                            choice = error_handle("Bíllinn", registration_num)
                         if choice == "1":
                             print_header(prompt)
                             continue

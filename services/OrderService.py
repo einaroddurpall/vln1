@@ -43,7 +43,7 @@ class OrderService:
     def make_order_info(self, prompt):
         new_order = Order()
         for step in range(1, 5):
-            choice = new_order.change_info(str(step), self.__car_service, self.__customer_service)
+            choice = new_order.change_info(str(step), self.__car_service, self.__customer_service, prompt)
             if choice == "Tilbaka":
                 return "Tilbaka", new_order
             elif choice == "Heim":
@@ -51,10 +51,9 @@ class OrderService:
         continue_q = input("Er allt rétt? (j/n) ").lower()
         if continue_q != "j":
             self.change_order_info(new_order, True, prompt)
-        else:
-            price = calc_price(new_order)
-            new_order.set_price(price)
-            self.__order_repo.add_order(new_order)
+        price = calc_price(new_order)
+        new_order.set_price(price)
+        self.__order_repo.add_order(new_order)
         return "", new_order
         
     def change_order_info(self, order, new_or_not, prompt):
@@ -74,7 +73,7 @@ class OrderService:
                     print("Ekki valmöguleiki, veldu aftur")
             if choice == "5":
                 correct = True
-            order.change_info(choice, self.__car_service, self.__customer_service)
+            order.change_info(choice, self.__car_service, self.__customer_service, prompt)
         if new_or_not:
             self.__order_repo.add_order(order)
         else:
@@ -107,9 +106,8 @@ class OrderService:
                 order_list = self.__order_repo.get_order_list()
                 order_to_complete_list = []
                 for order in order_list:
-                    if order.get_order_complete() != True:
-                        if order.get_last_day() == date.today():
-                            order_to_complete_list.append(order)
+                    if order.get_order_complete() != True and order.get_last_day() == date.today():
+                        order_to_complete_list.append(order)
                 if order_to_complete_list == []:
                     print("Engin pöntun þarf að klára í dag.")
                     sleep(2)
