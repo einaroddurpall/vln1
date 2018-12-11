@@ -62,23 +62,25 @@ class Car:
     def __eq__(self, other):
         return self.get_registration_num() == other.get_registration_num()
 
-    def car_change_info(self, step, all_cars_list):
+    def car_change_info(self, step, all_cars_list, prompt):
         if step == "1":
             done = False
             while not done:
+                print_header(prompt)
                 registration_num = input("Bílnúmer: ")
+                if registration_num.lower() == "h" or registration_num.lower() == "t":
+                    return registration_num
                 registration_num = check_registration_num(registration_num)
                 for car in all_cars_list:
                     if registration_num == car.get_registration_num():
-                        print("Þetta bílnúmer er nú þegar á skrá")
+                        print("Villa: Þetta bílnúmer er nú þegar á skrá")
+                        sleep(2)
                         registration_num = False
                 if registration_num:
                     self.__registration_num = registration_num
                     done = True
         elif step == "2":
             self.__car_type = make_car_type()
-            if self.__car_type == None:
-                return None
         elif step == "3":
             self.__sub_type = input("Tegund bíls: ")
         elif step == "4":

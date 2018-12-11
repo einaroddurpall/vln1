@@ -18,7 +18,7 @@ class CarMenu:
         while not done:
             prompt = "Heimasíða / Bílar"
             print_header(prompt)
-            action = input("1.  Skoða bíl\n2.  Skrá nýjan bíl\n3.  Skoða lausa bíla\n4.  Skoða bíla í útleigu\n5.  Heim\n")
+            action = input("1.  Skoða bíl\n2.  Skrá nýjan bíl\n3.  Skoða lausa bíla\n4.  Skoða bíla í útleigu\nh.  Heim\n").lower()
             if action == "1":
                 prompt += " / Skoða bíl"
                 print_header(prompt)
@@ -28,15 +28,15 @@ class CarMenu:
                     car_found, legal_reg_num = self.__car_service.car_find(registration_num)
                     if not car_found:
                         if not legal_reg_num:
-                            choice = input('1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n')
+                            choice = input('1.  Reyna aftur\nt.  Tilbaka\nh.  Heim\n')
                         else:
                             choice = error_handle("Bíllinn", registration_num)
                         if choice == "1":
                             print_header(prompt)
                             continue
-                        elif choice == "2":
+                        elif choice == "t":
                             break
-                        elif choice == "3":
+                        elif choice == "h":
                             done = True
                             break
                     car_selected = True
@@ -46,7 +46,7 @@ class CarMenu:
                         print_header(prompt)
                         print(car_found)
                         print("="*60)
-                        choice = input("\n1.  Skoða pantanir\n2.  Leita að öðru bílnúmeri\n3.  Uppfæra upplýsingar bíls\n4.  Afskrá bíl\n5.  Tilbaka\n6.  Heim\n")
+                        choice = input("\n1.  Skoða pantanir\n2.  Leita að öðru bílnúmeri\n3.  Uppfæra upplýsingar bíls\n4.  Afskrá bíl\nt.  Tilbaka\nh.  Heim\n").lower()
                         if choice == "1":
                             print_header(prompt)
                             car_orders = self.__car_service.car_get_history(car_found)
@@ -72,10 +72,10 @@ class CarMenu:
                                 self.__car_service.car_delete(car_found)
                                 exit_info = "Tilbaka"
                                 car_selected = False
-                        elif choice == "5":
+                        elif choice == "t":
                             exit_info = "Tilbaka"
                             car_selected = False
-                        elif choice == "6":
+                        elif choice == "h":
                             exit_info = "Heim"
                             car_selected = False
                             done = True
@@ -83,12 +83,13 @@ class CarMenu:
                 prompt += " / Skrá nýjan bíl"
                 print_header(prompt)
                 car_was_made = self.__car_service.make_car(prompt)
-                if car_was_made:
+                if type(car_was_made) != str:
                     print_header(prompt)
                     print("Bíll skráður í kerfið.")
-                    sleep(3)
-                elif car_was_made == 1: 
-                    done = True
+                    input('Smelltu á "Enter" til að halda áfram')
+                else: 
+                    if car_was_made == "h":
+                        done = True
             elif action == "3":
                 exit_info = ""
                 prompt += " / Skoða lausa bíla"
@@ -96,10 +97,10 @@ class CarMenu:
                     print_header(prompt)
                     go_home = self.__car_service.get_available_cars(prompt)
                     if go_home != True:
-                        choice = input("1.  Skoða fleiri lausa bíla\n2.  Tilbaka\n3.  Heim\n")
-                        if choice == "2":
+                        choice = input("1.  Skoða fleiri lausa bíla\nt.  Tilbaka\nh.  Heim\n").lower()
+                        if choice == "t":
                             exit_info = "Tilbaka"
-                        elif choice == "3":
+                        elif choice == "h":
                             exit_info = "Heim"
                             done = True
                     else:
@@ -120,5 +121,5 @@ class CarMenu:
                             done = True
                     else:
                         exit_info = "Tilbaka"
-            else:
+            elif action == "h":
                 done = True

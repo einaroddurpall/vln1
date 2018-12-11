@@ -45,35 +45,31 @@ class CarRentalUi:
         sleep(1.5)
         print("{:<35}CarHub \033[0m".format(""))
         sleep(2)
-        system('clear')
 
     def main_menu(self):
-        """ Main menu er loop sem hættir þegar 4 er sett inn."""
+        """ Main menu er loop sem hættir þegar q er sett inn."""
         login = False
         while not login:
-            system('clear')
             username = input("Username: ")
             password = input("Password: ")
             login, admin = self.__staff_service.check_login(username, password)
             if login == False:
                 print("Innskráning mistókst.")
-                sleep(2)
-        done = False
-        while not done:
+                sleep(1)
+        action = ""
+        while action != "q":
             prompt = "Heimasíða"
             print_header(prompt)
             if admin:
-                action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n4.  Starfsmenn\n5.  Skrá út\n")
+                action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n4.  Starfsmenn\nq.  Skrá út\n").lower()
                 if action == '4':
                     self.__staffUI()
                     action = 0
             else:
-                action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n4.  Skrá út\n")
+                action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\nq.  Skrá út\n").lower()
             if action == "1":
                 self.__carUI()
             elif action == "2":
                 self.__customerUI()
             elif action == "3":
                 self.__orderUI()
-            elif action == "4" or action == "5":
-                done = True

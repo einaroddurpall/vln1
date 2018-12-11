@@ -65,9 +65,9 @@ class CarService:
     def make_car(self, prompt):
         new_car = Car()
         for step in range(1,6):
-            new_car.car_change_info(str(step), self._all_cars_list)
-            if new_car.get_car_type == None:
-                return False
+            quit_info = new_car.car_change_info(str(step), self._all_cars_list, prompt)
+            if type(quit_info) == str:
+                return quit_info
         continue_q = input("Er allt rétt? (j/n): ").lower()
         if continue_q != "j":
             self.change_car_info(new_car, True, prompt)
