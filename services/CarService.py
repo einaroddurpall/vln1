@@ -256,18 +256,19 @@ class CarService:
         car_busy_dict = self.get_busy_cars(prompt)
         all_car_dict = self.make_all_cars_dict()
         delete_key_list = []
+        all_car_dict_2 = all_car_dict.copy()
         for key in all_car_dict:
             for car in all_car_dict[key]:
                 try:
                     if car in car_busy_dict[key]:
-                        all_car_dict[key].remove(car)
+                        all_car_dict_2[key].remove(car)
                         if all_car_dict[key] == []:
                             delete_key_list.append(key)
                 except:
                     None
         for key in delete_key_list:
-            del all_car_dict[key]
-        go_back = self.print_car_dict(all_car_dict)
+            del all_car_dict_2[key]
+        go_back = self.print_car_dict(all_car_dict_2)
         return go_back
 
     def car_get_history(self, car):

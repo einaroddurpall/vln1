@@ -14,22 +14,27 @@ class Staff(Person):
         self.__admin = admin
 
     def __repr__(self):
+        """Strengur sem sýnir hvernig búa má til eintak af viðeigandi starfsmanni."""
         return "Staff('{}','{}','{}','{}',{})".format(
             self._name, self._ssn, self.__username, self.__password, self.__admin
         )
 
     def __str__(self):
+        """Strengur sem birtist er starfsmaður er prentaður."""
         return "Nafn: {}\nKennitala: {}\nNotandanafn {}\nLykilorð {}\nAðgengi {}".format(
             self._name, self._ssn, self.__username, self.__password, self.__admin
         )
     
     def get_username(self):
+        """Skilar notendanafni starfsmanns."""
         return self.__username
 
     def get_password(self):
+        """Skilar lykilorði viðskiptavinar."""
         return self.__password
 
     def get_admin(self):
+        """Skilar True ef starfsmaður er yfirmaður annars False."""
         return self.__admin
 
     def make_staff(self, staff_list):
