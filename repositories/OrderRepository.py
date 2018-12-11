@@ -29,7 +29,7 @@ class OrderRepository:
                     date1 = eval(date1)
                     date2 = eval(date2)
                     date_list = make_date_list(date1, date2)
-                    order = Order(eval(customer), eval(car), date_list, insurance, card_info, order_name, price, complete)
+                    order = Order(eval(customer), eval(car), date_list, insurance, card_info, order_name, price, eval(complete))
                     order_list.append(order)
         return order_list
     
