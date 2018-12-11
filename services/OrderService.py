@@ -99,10 +99,11 @@ class OrderService:
 
     def complete_orders(self, prompt):
         order_list = self.__order_repo.get_order_list()
-        order_not_complete_list = []
+        order_to_complete = []
         for order in order_list:
             if order.get_order_complete() != "True\n":
-                order_not_complete_list.append(order)
-        for order in order_not_complete_list:
+                if order.get_last_day() == date.today():
+                    order_to_complete.append(order)
+        for order in order_to_complete:
             print(order)
         input()
