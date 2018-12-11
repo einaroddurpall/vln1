@@ -5,11 +5,12 @@ from time import sleep
 from datetime import date
 import string
 from repositories.OrderRepository import OrderRepository
+from repositories.CarRepository import CarRepository
 from services.CarService import CarService, get_car_price
 from services.CustomerService import CustomerService
 from services.ChangeService import ChangeService
 from models.Car import Car
-from models.Methods import print_header
+from models.Functions import print_header, error_handle
 
 def calc_price( order):
     """Calculates the price of an order"""
@@ -18,7 +19,7 @@ def calc_price( order):
     base_price = get_car_price(car_type)
     dates = len(order.get_date_list())
     insurance = order.get_insurance()
-    if insurance == 'skyldu trygging':
+    if insurance == 'Grunntrygging':
         insurance_price = 2000
     else:
         insurance_price = 3500
@@ -99,10 +100,30 @@ class OrderService:
 
     def complete_orders(self, prompt):
         order_list = self.__order_repo.get_order_list()
-        order_not_complete_list = []
+        order_to_complete_list = []
         for order in order_list:
             if order.get_order_complete() != "True\n":
-                order_not_complete_list.append(order)
-        for order in order_not_complete_list:
+                if order.get_last_day() == date.today():
+                    order_to_complete_list.append(order)
+        # order_found = False
+        # while not order_found:
+        for order in order_to_complete_list:
             print(order)
+        choice = input("Hvaða pöntun viltu klára? ")
+        for order in order_to_complete_list:
+            if choice == order.get_order_name():
+                order_to_complete = order
+                break
+        new_milage = int(input("Hvað er bíllinn núna keyrður? "))  # Villucheck hvort bíll sé nokkuð minna keyrður en hann var
+        milage_difference = new_milage - order_to_complete.get_car().get_milage()
+        day_price = int(order_to_complete.get_order_price()) // len(order_to_complete.get_date_list())
+        final_payment = int(order_to_complete.get_order_price()) + milage_difference // 150 * 0.02 * day_price
+        car = order_to_complete.get_car()
+        car.set_milage(new_milage)
+        self.__car_service.update_car_list(car)
+        order_to_complete.set_car(car)
+        order_to_complete.set_complete(True)
+        self.__order_repo.update_order_list()
+        print_header(prompt)
+        print("Viðskiptavinur þarf að greiða {} kr.\nPöntun er nú kláruð".format(int(final_payment)))
         input()

@@ -3,7 +3,7 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Methods import make_number, make_date_list
+from models.Functions import make_number, make_date_list, make_date
 from models.Car import Car
 
 class Order:
@@ -19,12 +19,6 @@ class Order:
     
     def get_customer(self):
         return self.__customer
-
-    def set_customer(self, customer):
-        self.__customer = customer
-
-    def set_car(self, car):
-        self.__car = car
 
     def get_first_day(self):
         return self.__date_list[0]
@@ -55,6 +49,15 @@ class Order:
 
     def set_order_name(self, name):
         self.__order_name = name
+
+    def set_customer(self, customer):
+        self.__customer = customer
+
+    def set_car(self, car):
+        self.__car = car
+    
+    def set_complete(self, statement):
+        self.__complete = statement
 
     def __eq__(self, other):
         return self.get_order_name() == other.get_order_name()
@@ -162,13 +165,3 @@ class Order:
             if car.check_availability(date_list, date_dict, car_type_list):
                 return car
         return None
-
-def make_date(a_date):
-    new_string = ""
-    for letter in a_date:
-        if letter in string.digits:
-            new_string += letter
-    day = new_string[:2]
-    month = new_string[2:4]
-    year = new_string[4:]
-    return date(int(year), int(month), int(day))
