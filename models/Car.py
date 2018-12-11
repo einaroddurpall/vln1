@@ -111,4 +111,4 @@ class Car:
                     self.__milage = milage
                     valid_mileage = True
                 except: 
-                    print('Vinsamlegast sláðu inn réttan akstursvegalengd bíl.')
+                    print('Vinsamlegast sláðu inn rétta akstursvegalengd bíls.')

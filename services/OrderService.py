@@ -109,7 +109,7 @@ class OrderService:
                     if order.get_order_complete() != True and order.get_last_day() == date.today():
                         order_to_complete_list.append(order)
                 if order_to_complete_list == []:
-                    print("Engin pöntun þarf að klára í dag.")
+                    print("Enga pöntun þarf að klára í dag.")
                     sleep(2)
                     order_found = True
                     finished_completing_orders = True

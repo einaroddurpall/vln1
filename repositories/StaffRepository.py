@@ -5,6 +5,7 @@ class StaffRepository:
     def __init__(self):      
         """Á eintak af lista sem inniheldur alla starfsmenn."""
         self.__staff = self.get_staff()
+        
     
     def add_staff(self, staff):
         """Bæta starfsmanni eða yfirmanni í .csv skrá og í staff-listann."""

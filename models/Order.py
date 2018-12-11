@@ -47,36 +47,46 @@ class Order:
         return self.__card_info
 
     def get_order_name(self):
+        """Skilar pöntunarnafni pöntunarinnar."""
         return self.__order_name
     
     def get_order_price(self):
+        """Skilar verði pöntunarinnar."""
         return self.__order_price
 
     def get_order_complete(self):
+        """Skilar upplýsingum um hvort pöntun sé lokið."""
         return self.__complete
 
     def set_order_name(self, name):
+        """Tekur við einkennandi nafni og setur það sem nafn pöntunar."""
         self.__order_name = name
 
     def set_customer(self, customer):
+        """Tekur við  viðskiptavin og skráir hann sem viðskiptavin pöntunarinnar."""
         self.__customer = customer
 
     def set_car(self, car):
+        """Tekur við  bíl og setur hann sem bíl pöntunarinnar."""
         self.__car = car
     
     def set_complete(self, statement):
+        """Tekur við boolean gildi og setur það sem upplýsingar um hvort pöntun sé kláruð."""
         self.__complete = statement
 
     def __eq__(self, other):
+        """Tvær pantanir eru sama pöntunin ef þær hafa sama pöntunarnúmer."""
         return self.get_order_name() == other.get_order_name()
 
     def __repr__(self):
+        """Strengur sem sýnir hvernig búa má til eintak af viðeigandi pöntun."""
         return "{};{};{};{};{};{};{};{};{}".format(
             str(self.get_order_name()),repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), 
             repr(self.get_last_day()), self.get_insurance(), self.get_card_info(), self.get_order_price(), self.get_order_complete()
         )
     
     def __str__(self):
+        """Strengur sem birtist er pöntun er prentuð."""
         return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}\nVerð: {}\nPöntun lokið: {}".format(
             self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), 
             self.__insurance, self.__card_info, pretty_str(self.get_order_price(), "ISK"), self.get_order_complete()
@@ -138,7 +148,7 @@ class Order:
 
     def rent_car(self, car_type, date_list, car_service):
         """ Þetta fall tekur á móti car_type og date_list, býr til carlist fyrir viðeigandi car_type og athugar hvort einhver
-            bíll í þessum carlist sé laus á dögunum í date_list """
+            bíll í þessum carlist sé laus á dögunum í date_list."""
         if car_type.lower() == "fólksbíll":
             car_type_list = car_service._car_repo_sedan.get_carlist()
         elif car_type.lower() == "fimm sæta jeppi":

@@ -5,3 +5,6 @@ Customer('Viðskiptavinur 6','Einar','2505983519','einaropr@gmail.com','8662282'
 Customer('Viðskiptavinur 7','Björgvin Birkir Björgvinson','1234567890','Björgvinhot@hotmail.com','8451289')
 Customer('Viðskiptavinur 2','GUÐMUNDUR','0987654321','hot@hot.is','1234123')
 Customer('Viðskiptavinur 5','Halldór Gunnarsson','2412911219','halldor@gmail.com','8979922')
+Customer('Viðskiptavinur 5','Huginn','1509982719','huginn@gmail.com','8203727')
+Customer('Viðskiptavinur 8','Huginn','1233456789','dsofji@fdsj.is','1234567')
+Customer('Viðskiptavinur 9','Huginn','2121212121','','1234567')
