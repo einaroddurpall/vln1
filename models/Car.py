@@ -1,7 +1,7 @@
 import string
 from time import sleep
 from datetime import date
-from models.Methods import print_header, error_handle, check_registration_num
+from models.Functions import print_header, error_handle, check_registration_num
 
 def make_car_type():
     valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
