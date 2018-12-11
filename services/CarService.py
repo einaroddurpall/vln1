@@ -3,18 +3,10 @@ from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
 from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
-from models.Methods import print_header, make_date, check_registration_num
+from models.Methods import print_header, make_date, check_registration_num, make_date_list
 from services.ChangeService import ChangeService
 from time import sleep
 from os import system
-
-def make_date_list(date1, date2):
-    date_list = []
-    date_to_list = date1
-    while date_to_list <= date2:
-        date_list.append(date_to_list)
-        date_to_list += timedelta(days=1)
-    return date_list
 
 def get_car_price(car_type):
     '''Tekur inn streng sem lýsir bíltegundinni og skilar verðið á þeim flokki'''
@@ -162,8 +154,9 @@ class CarService:
         if registration_num:
             for car in self._all_cars_list:
                 if car.get_registration_num() == registration_num:
-                    return car
-        return False
+                    return car, True
+            return False, True
+        return False, False
 
     def search_for_specific_car(self, a_dict):
         """Function that asks user if he wants to find
@@ -294,4 +287,4 @@ class CarService:
             self._car_repo_seven_seat_suv.remove_car(car)
         elif car_type == 'smárúta':
             self._car_repo_minibus.remove_car(car)
-
+        self.__change_service.delete_car_consequences(car, self)
