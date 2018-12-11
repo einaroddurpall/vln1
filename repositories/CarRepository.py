@@ -27,7 +27,10 @@ class CarRepository:
                 cars.append(car)
         return cars
 
-    def update_car_list(self):
+    def update_car_list(self, car):
+        for index,old_car in enumerate(self.__cars):
+            if old_car == car:
+                self.__cars[index] = car
         with open("./data/{}.csv".format(self.__name), "w", encoding = "UTF-8") as car_type_file:
             new_file = ""
             for car in self.__cars:
@@ -38,7 +41,7 @@ class CarRepository:
     
     def remove_car(self, car):
         self.__cars.remove(car)
-        self.update_car_list()
+        self.update_car_list(Car())
 
     def get_carlist(self):
         return self.__cars
