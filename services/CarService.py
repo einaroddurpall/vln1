@@ -174,7 +174,8 @@ class CarService:
                     print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
                     print('-'*60)
                     for car_info in a_dict[car_type]:
-                        print("{:>20}{:>10}{:>13}{:>17}".format(car_info[1], car_info[0], pretty_str(car_info[2], "km"), car_info[3]))
+                        car_number = car_info[0]
+                        print("{:>20}{:>6}-{}{:>13}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], pretty_str(car_info[2], "km"), car_info[3]))
                     print("="*60)
                     return False
                 else:
@@ -191,7 +192,8 @@ class CarService:
             print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
             print('-'*60)
             for car_info in val:
-                print("{:>20}{:>10}{:>13}{:>17}".format(car_info[1], car_info[0], pretty_str(car_info[2], "km"), car_info[3]))
+                car_number = car_info[0]
+                print("{:>20}{:>6}-{}{:>13}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], pretty_str(car_info[2], "km"), car_info[3]))
             print("="*60)
 
     def print_car_dict(self, a_dict):
