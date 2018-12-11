@@ -14,23 +14,29 @@ class Customer(Person):
         self.__customer_id = unique_id
         
     def get_id(self):
+        """Skilar einkennandi númeri viðskiptavins, id, sem forritið hefur skaffað."""
         return self.__customer_id
 
     def get_email(self):
+        """Skilar netfangi viðskiptavinar."""
         return self.__email
 
     def get_gsm(self):
+        """Skilar símanúmeri viðskiptavinar."""
         return self.__gsm
 
     def __eq__(self, other):
+        """Tveir viðskiptavinir eru sami einstaklingur ef þeir hafa sama einkennandi númer, id."""
         return self.get_id() == other.get_id()
 
     def __repr__(self):
+        """Strengur sem sýnir hvernig búa má til eintak af viðeigandi viðskiptavin."""
         return "Customer('{}','{}','{}','{}','{}')".format(
             self.__customer_id, self._name, self._ssn, self.__email, self.__gsm
         )
 
     def __str__(self):
+        """Strengur sem birtist er viðskiptavinur er prentaður."""
         return "Nafn: {}\nKennitala: {}\nNetfang: {}\nSími: {}".format(
             self._name, self._ssn, self.__email, self.__gsm
         )
@@ -85,6 +91,8 @@ class Customer(Person):
             self.__gsm = change
 
     def make_email(self):
+        """Fall sem leiðir notanda í gegnum það ferli að skrá netfang viðskiptavinar. Netfangið
+        verður að hafa @ merki og lén."""
         legal_email = False
         while not legal_email:
             email = input("Netfang: ")
