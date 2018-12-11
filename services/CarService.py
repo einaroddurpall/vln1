@@ -71,7 +71,6 @@ class CarService:
             self.change_car_info(new_car, True, prompt)
         else:
             self.car_register(new_car)
-            self._all_cars_list.append(new_car)
         return True
         
     def change_car_info(self, car, new_or_not, prompt):
