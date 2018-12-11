@@ -9,7 +9,7 @@ from services.CarService import CarService, get_car_price
 from services.CustomerService import CustomerService
 from services.ChangeService import ChangeService
 from models.Car import Car
-from models.Methods import print_header
+from models.Methods import print_header, error_handle
 
 def calc_price( order):
     """Calculates the price of an order"""
@@ -18,7 +18,7 @@ def calc_price( order):
     base_price = get_car_price(car_type)
     dates = len(order.get_date_list())
     insurance = order.get_insurance()
-    if insurance == 'skyldu trygging':
+    if insurance == 'Grunntrygging':
         insurance_price = 2000
     else:
         insurance_price = 3500
@@ -99,11 +99,24 @@ class OrderService:
 
     def complete_orders(self, prompt):
         order_list = self.__order_repo.get_order_list()
-        order_to_complete = []
+        order_to_complete_list = []
         for order in order_list:
             if order.get_order_complete() != "True\n":
                 if order.get_last_day() == date.today():
-                    order_to_complete.append(order)
-        for order in order_to_complete:
+                    order_to_complete_list.append(order)
+        # order_found = False
+        # while not order_found:
+        for order in order_to_complete_list:
             print(order)
-        
+        choice = input("Hvaða pöntun viltu klára? ")
+        for order in order_to_complete_list:
+            if choice == order.get_order_name():
+                order_to_complete = order
+                break
+        new_milage = int(input("Hvað er bíllinn núna keyrður? "))
+        milage_difference = new_milage - order_to_complete.get_car().get_milage()
+        print(order_to_complete.get_order_price())
+        input()
+        day_price = int(order_to_complete.get_order_price()) // len(order_to_complete.get_date_list())
+        print(day_price)
+        input()
