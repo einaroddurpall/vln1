@@ -41,3 +41,25 @@ def make_number(lenght_of_number, input_string, error_code_str):
             else:
                 print(error_code_str)
         return ssn
+    
+def check_registration_num(registration_num):
+    new_registration_num = ""
+    for letter in registration_num:
+        if (letter in string.ascii_letters) or (letter in string.digits):
+            new_registration_num += letter
+    if len(new_registration_num) != 5:
+        print("Þetta bílnúmer var ólöglegt, reyndu aftur.")
+        return False
+    registration_num = new_registration_num.upper()
+    if registration_num[0] in string.ascii_letters and registration_num[1] in string.ascii_letters\
+    and (registration_num[2] in string.ascii_uppercase or registration_num[2] in string.digits)\
+    and registration_num[3] in string.digits and registration_num[4] in string.digits:
+        return registration_num
+    print("Þetta bílnúmer var ólöglegt, reyndu aftur.")
+    return False
+
+def check_input(a_string):
+    if a_string.lower() == "h":
+        return "heim"
+    elif a_string.lower() == "t":
+        return "tilbaka"

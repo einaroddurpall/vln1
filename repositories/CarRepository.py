@@ -26,10 +26,19 @@ class CarRepository:
                 car = eval(row.strip())
                 cars.append(car)
         return cars
+
+    def update_car_list(self):
+        with open("./data/{}.csv".format(self.__name), "w", encoding = "UTF-8") as car_type_file:
+            new_file = ""
+            for car in self.__cars:
+                new_file += car.__repr__() + "\n"
+            car_type_file.seek(0)
+            car_type_file.truncate()
+            car_type_file.write(new_file)
     
     def remove_car(self, car):
-        pass
-
+        self.__cars.remove(car)
+        self.update_car_list()
 
     def get_carlist(self):
         return self.__cars

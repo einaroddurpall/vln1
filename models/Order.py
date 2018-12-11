@@ -3,22 +3,27 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.methods import make_number
+from models.Methods import make_number
+from models.Car import Car
 
 class Order:
-    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name=""):
+    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name="", order_price = 0):
         self.__customer = customer
         self.__car = car
         self.__date_list = date_list
         self.__insurance = insurance
         self.__card_info = card_info
         self.__order_name = order_name
+        self.__order_price = order_price
     
     def get_customer(self):
         return self.__customer
 
     def set_customer(self, customer):
         self.__customer = customer
+
+    def set_car(self, car):
+        self.__car = car
 
     def get_first_day(self):
         return self.__date_list[0]
@@ -40,6 +45,9 @@ class Order:
 
     def get_order_name(self):
         return self.__order_name
+    
+    def get_order_price(self):
+        return self.__order_price
 
     def set_order_name(self, name):
         self.__order_name = name
@@ -48,15 +56,19 @@ class Order:
         return self.get_order_name() == other.get_order_name()
 
     def __repr__(self):
-        return "{};{};{};{};{};{};{}".format(
-            str(self.get_order_name()),repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.get_insurance(), self.get_card_info()
+        return "{};{};{};{};{};{};{};{}".format(
+            str(self.get_order_name()),repr(self.get_customer()), repr(self.get_car()), repr(self.get_first_day()), repr(self.get_last_day()), self.get_insurance(), self.get_card_info(), self.get_order_price()
         )
     
     def __str__(self):
-        return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}".format(
-            self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), self.__insurance, self.__card_info
+        return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}\nVerð: {}".format(
+            self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), self.__insurance, self.__card_info, self.get_order_price()
         )
     
+    def make_price(self, price):
+        """sets the price of the orders"""
+        self.__order_price = price
+
     def change_info(self, step, car_service, customer_service):
         if step == "1":
             valid_ssn = False
@@ -71,7 +83,6 @@ class Order:
                         return "Tilbaka"
                     elif choice == "3":
                         return "Heim"
-
         elif step == "2":
             step2 = False
             while step2 is not True:
@@ -81,9 +92,17 @@ class Order:
                     while valid_date != True:
                         try:
                             date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
-                            date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
-                            self.__date_list = make_date_list(date1, date2)
-                            valid_date = True
+                            #Athugar hvort við séum að panta í fortíðinni
+                            if date1 < date.today():
+                                print("Getur ekki pantað bíl aftur í tímann, vinsamlegast sláðu inn gildar dagsetningar")
+                            else:
+                                date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
+                                if date1 <= date2:
+                                    self.__date_list = make_date_list(date1, date2)
+                                    valid_date = True
+                                else:
+                                    print("Vinsamlegast sláðu inn gilda dagsetningar(Afhendingardagur getur ekki verið á eftir skiladegi)")
+                                    sleep(.5)
                         except: 
                             print("Vinsamlegast sláðu inn gilda dagsetningu")
                             
@@ -105,11 +124,13 @@ class Order:
             while step3 is not True:
                 number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
                 if number == "2":
-                    self.__insurance = "aukaleg trygging"
+                    self.__insurance = "Aukatrygging"
+                    step3 = True
+                elif number == "1":
+                    self.__insurance = "Grunntrygging"
                     step3 = True
                 else:
-                    self.__insurance = "skyldu trygging"
-                    step3 = True
+                    print("Vinsamlegast veldu viðurkennt gildi")
         elif step == "4":
             self.__card_info = make_number(16, "Kortanúmer: ", "Ólöglegt kortanúmer, reyndu aftur.")
                 #"Order " + str(self.__order_num))
