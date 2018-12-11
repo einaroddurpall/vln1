@@ -118,15 +118,17 @@ class OrderService:
                         print(order)
                         print()
                     order_to_change = input("Hvaða pöntun viltu klára? ")
+                    if order_to_change == "t" or order_to_change == "h":
+                        return order_to_change
                     for order in order_to_complete_list:
                         if order_to_change == order.get_order_name():
                             order_to_complete = order
                             break
                         order_to_complete = False
-                    if not order_to_complete:
+                    if not order_to_complete:  # ss það finnst engin pöntun með þessu nafni
                         choice = error_handle("Pöntun", order_to_change)
-                        if choice == "2" or choice == "3":
-                            finished_completing_orders = True
+                        if choice == "t" or choice == "h":
+                            return choice
                         print_header(prompt)
                     else:
                         car = order_to_complete.get_car()

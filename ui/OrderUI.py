@@ -85,6 +85,8 @@ class OrderMenu:
             elif action == "3":
                 prompt += " / Klára pantanir dagsins"
                 print_header(prompt)
-                self.__order_service.complete_orders(prompt)
+                choice = self.__order_service.complete_orders(prompt)
+                if choice == "h":
+                    done = True
             else:
                 done = True
