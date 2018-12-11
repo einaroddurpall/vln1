@@ -41,10 +41,17 @@ class Customer(Person):
             self._name, self._ssn, self.__email, self.__gsm
         )
 
+    def get_info_list(self):
+        return [self._name, self._ssn, self.__email, self.__gsm, self.__customer_id]
+
     def make_customer(self, customer_list):
         for number in range(1, 5):
             number = str(number)
             self.change_info(number, customer_list)
+            info_list = self.get_info_list()
+            for info in info_list:
+                if info == "t" or info == "h":
+                    return info
         done = False
         while not done:
             correct = input("Er allt rétt? (j/n) ").lower()

@@ -16,11 +16,15 @@ class CustomerService:
         unique_id = self.__customer_repo.get_unique_id()
         new_customer = Customer(unique_id=unique_id)
         new_customer.make_customer(self.__customer_repo.get_customers_list())
-        if type(new_customer) != str:
+        info_list = new_customer.get_info_list()
+        if "t" not in info_list and "h" not in info_list:
             self.__customer_repo.add_customer(new_customer)
             return "Skráning tókst"
         else:
-            return new_customer
+            if "t" in info_list:
+                return "t"
+            else:
+                return "h"
 
     def check_ssn(self, ssn):
         for customer in self.__customers_list:

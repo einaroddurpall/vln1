@@ -16,21 +16,26 @@ class CustomerMenu:
         while not done:
             prompt = "Heimasíða / Viðskiptavinir"
             print_header(prompt)
-            action = input("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin\n3.  Heim\n")
+            action = input("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin\nh.  Heim\n")
             if action == "1":
                 exit_info = ""
                 prompt += " / Leta að viðskiptavin"
                 while exit_info == "":
                     print_header(prompt)
-                    ssn = input("Kennitala: ")
+                    ssn = input("Kennitala: ").lower()
+                    if ssn == "h":
+                        done = True
+                        break
+                    elif ssn == "t":
+                        break
                     customer = self.__customer_service.check_ssn(ssn)
                     exit_info2 = ""
                     if customer:
-                        prompt += " / Leita að viðskiptavin"
                         while exit_info2 == "":
+                            prompt = "Heimasíða / Viðskiptavinir / Leita að viðskiptavin"
                             print_header(prompt)
                             print(customer)
-                            choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Tilbaka\n5.  Heim\n")
+                            choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\nt.  Tilbaka\nh.  Heim\n")
                             if choice == "1":
                                 prompt += " / Sjá pantanir"
                                 print_header(prompt)
@@ -38,9 +43,11 @@ class CustomerMenu:
                                 if customer_orders:
                                     for order in customer_orders:
                                         print(order)
+                                        print()
                                 else:
                                     print("Þessi viðskiptavinur hefur enga notkunarsögu.")
                                     sleep(2)
+                                input("Ýttu á enter til að halda áfram: ")
                             elif choice == "2":
                                 prompt += " / Breyta skráningu"
                                 print_header(prompt)
@@ -53,25 +60,25 @@ class CustomerMenu:
                                     self.__customer_service.customer_delete(customer)
                                     exit_info = "Tilbaka"
                                     exit_info2 = "Tilbaka"
-                            elif choice == "4":
+                            elif choice == "t":
                                 exit_info = "Tilbaka"
                                 exit_info2 = "Tilbaka"
-                            else:
+                            elif choice == "h":
                                 exit_info = "Heim"
                                 exit_info2 = "Heim"
                                 done = True
                     else:
-                        choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n'.format(ssn))
-                        if choice == "2":
-                            exit_info = "Tilbaka"
-                        elif choice == "3":
-                            exit_info = "Heim"
+                        choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heim\n'.format(ssn))
+                        if choice == "t":
+                            break
+                        elif choice == "h":
                             done = True
+                            break
             elif action == "2":
                 prompt += " / Skrá nýjan viðskiptavin"
                 print_header(prompt)
                 new_customer = self.__customer_service.customer_register()
-                if type(new_customer) == str:
+                if new_customer == "h":
                     done = True
-            else:
+            elif action == "h":
                 done = True
