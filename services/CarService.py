@@ -162,8 +162,9 @@ class CarService:
         if registration_num:
             for car in self._all_cars_list:
                 if car.get_registration_num() == registration_num:
-                    return car
-        return False
+                    return car, True
+            return False, True
+        return False, False
 
     def search_for_specific_car(self, a_dict):
         """Function that asks user if he wants to find
