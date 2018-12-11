@@ -79,6 +79,6 @@ class OrderMenu:
             elif action == "3":
                 prompt += " / Klára pantanir dagsins"
                 print_header(prompt)
-                pass
+                
             else:
                 done = True

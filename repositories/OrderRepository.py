@@ -4,15 +4,7 @@ from datetime import timedelta
 from models.Car import Car
 from models.Customer import Customer
 from models.Order import Order
-#from services.OrderService import make_date_list
-
-def make_date_list(date1, date2):
-    date_list = []
-    date_to_list = date1
-    while date_to_list <= date2:
-        date_list.append(date_to_list)
-        date_to_list += timedelta(days=1)
-    return date_list
+from models.Methods import make_date_list
 
 class OrderRepository:
 
