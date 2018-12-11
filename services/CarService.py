@@ -60,6 +60,7 @@ class CarService:
 
     def get_order_repo(self):
         return self._order_repo
+
     def make_car(self, prompt):
         new_car = Car()
         for step in range(1,6):
@@ -250,6 +251,8 @@ class CarService:
     def get_available_cars(self, prompt):
         car_busy_dict = self.get_busy_cars(prompt)
         all_car_dict = self.make_all_cars_dict()
+        print(all_car_dict)
+        print(car_busy_dict)
         delete_key_list = []
         for key in all_car_dict:
             for car in all_car_dict[key]:
