@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 Pöntun 1;Customer('Viðskiptavinur 6','einar','2505983519','einaropr@gmail.com','8662282');Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',696969,True);datetime.date(2019, 1, 1);datetime.date(2019, 1, 3);aukaleg trygging;2938454738294738;55500;False
-=======
-Pöntun 1;Customer('Viðskiptavinur 6','einar','2505983519','einaropr@gmail.com','8662282');Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',23112,True);datetime.date(2019, 1, 1);datetime.date(2019, 1, 3);aukaleg trygging;2938454738294738;55500;False
->>>>>>> a5ab56dc987568246eed79e9480a1c5df7ad977e

@@ -16,7 +16,7 @@ class StaffMenu:
         while not done:
             prompt = "Heimasíða / Starfsmenn"
             print_header(prompt)
-            action = input("1.  Skrá nýjan starfsmann\n2.  Leita af starfsmanni\n3.  Heim\n")
+            action = input("1.  Skrá nýjan starfsmann\n2.  Leita af starfsmanni\n3.  Skoða verðskrá\n4.  Heim\n")
             if action == "1":
                 prompt += " / Skrá nýjan starfsmann"
                 print_header(prompt)
@@ -62,5 +62,9 @@ class StaffMenu:
                         elif choice == "3":
                             exit_info = "Heim"
                             done = True
+            elif action == "3":
+                #self.__car
+                pass
+            
             else:
                 done = True

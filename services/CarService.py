@@ -135,6 +135,7 @@ class CarService:
         elif car_type.lower() == "smábíll":
             self._car_repo_small_car.add_car(car)
         self._all_cars_list.append(car)
+
     def update_car_list(self, car):
         """Skráir nýjan bíl í kerfið í viðeigandi bílaflokk"""
         car_type = car.get_car_type()
@@ -158,7 +159,7 @@ class CarService:
             return False, True
         return False, False
 
-    def search_for_specific_car(self, a_dict):
+    def search_for_specific_car_type(self, a_dict):
         """Function that asks user if he wants to find
         info about specific car type and does so"""
         question = input("Viltu leita af ákveðnari tegund (j/n)? ")
@@ -194,7 +195,7 @@ class CarService:
 
     def print_car_dict(self, a_dict):
         if a_dict:
-            statement = self.search_for_specific_car(a_dict)
+            statement = self.search_for_specific_car_type(a_dict)
             if statement:
                 self.print_out_info_for_all_car_types(a_dict)
             elif statement == None:
