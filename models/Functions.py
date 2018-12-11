@@ -35,8 +35,8 @@ def make_number(lenght_of_number, input_string, error_code_str):
                     int(letter)
                     ssn += letter
                 except:
-                    print(error_code_str)
-                    continue
+                    ssn = ""
+                    break
             if len(ssn) == lenght_of_number:
                 legal_ssn = True
             else:
