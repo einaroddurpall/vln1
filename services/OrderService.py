@@ -40,14 +40,17 @@ class OrderService:
         day, month, year = a_date.split(".")
         return date(int(year), int(month), int(day))
 
-    def make_order_info(self, prompt):
+    def make_order_info(self, prompt, customer_known):
         new_order = Order()
         for step in range(1, 5):
-            choice = new_order.change_info(str(step), self.__car_service, self.__customer_service, prompt)
-            if choice == "t":
-                return "t"
-            elif choice == "h":
-                return "h"
+            if customer_known and (step == 1):
+                new_order.set_customer(customer_known)
+            else:
+                choice = new_order.change_info(str(step), self.__car_service, self.__customer_service, prompt)
+                if choice == "t":
+                    return "t"
+                elif choice == "h":
+                    return "h"
         continue_q = input("Er allt rétt? (j/n) ").lower()
         if continue_q != "j":
             self.change_order_info(new_order, True, prompt)

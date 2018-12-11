@@ -62,21 +62,22 @@ class Customer(Person):
     def customer_change_info(self, customer_list):
         correct = False
         while not correct:
-            choice = input("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu\n")
-            print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
             legal_choice = False
             while not legal_choice:
+                choice = input("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu\n")
+                print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
                 try:
                     if int(choice) in range(1,6):
                         legal_choice = True
+                        if choice == "5":
+                            correct = True
+                        else:
+                            self.change_info(choice, customer_list)
+                            print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
                     else:
                         print("Ekki valmöguleiki, veldu aftur")
                 except:
                     print("Ekki valmöguleiki, veldu aftur")
-            if choice == "5":
-                correct = True
-            self.change_info(choice, customer_list)
-            print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
 
     def change_info(self, choice, customer_list):
         if choice == "1":
