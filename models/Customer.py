@@ -64,6 +64,7 @@ class Customer(Person):
         correct = False
         while not correct:
             choice = input("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu\n")
+            print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
             legal_choice = False
             while not legal_choice:
                 try:

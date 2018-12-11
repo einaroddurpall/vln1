@@ -51,10 +51,10 @@ class OrderMenu:
                                 exit_info = "Heim"
                                 done = True
                     else:
-                        choice = input('Pöntunin: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heimasíða\n'.format(order_name))
-                        if choice == "2":
+                        choice = input('Pöntunin: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heimasíða\n'.format(order_name))
+                        if choice == "t":
                             exit_info = "Tilbaka"
-                        elif choice == "3":
+                        elif choice == "h":
                             exit_info = "Heim"
                             done = True
             elif action == "2":

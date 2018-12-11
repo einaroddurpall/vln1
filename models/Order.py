@@ -95,10 +95,10 @@ class Order:
                 if self.__customer:
                     valid_ssn = True
                 else:
-                    choice = input("Kennitalan {} fannst ekki.\n1.  Reyna aftur\n2.  Tilbaka\n3.  Heim\n".format(ssn))
-                    if choice == "2":
+                    choice = input("Kennitalan {} fannst ekki.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heim\n".format(ssn))
+                    if choice == "t":
                         return "Tilbaka"
-                    elif choice == "3":
+                    elif choice == "h":
                         return "Heim"
         elif step == "2":
             step2 = False
