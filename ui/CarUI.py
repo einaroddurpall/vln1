@@ -4,7 +4,7 @@ from models.Car import Car
 from time import sleep
 from datetime import date
 import string
-from models.Methods import print_header, error_handle
+from models.Functions import print_header, error_handle
 
 class CarMenu:
 

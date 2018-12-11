@@ -24,3 +24,12 @@ class ChangeService:
             if order.get_car() == old_car:
                 order.set_car(new_car)
         self.__order_repo.update_order_list()
+
+    def delete_car_consequences(self, car, car_service):
+        car_type = car.get_car_type()
+        for order in self.__order_list:
+            if order.get_car() == car:
+                datelist = order.get_date_list()
+                new_car = order.rent_car(car_type, datelist, car_service)
+                order.set_car(new_car)
+        self.__order_repo.update_order_list()
