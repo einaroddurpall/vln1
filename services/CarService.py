@@ -172,7 +172,8 @@ class CarService:
                     print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
                     print('-'*60)
                     for car_info in a_dict[car_type]:
-                        print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
+                        car_number = car_info[0]
+                        print("{:>23}{:>6}-{}{:>10}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], car_info[2], car_info[3]))
                     print("="*60)
                     return False
                 else:
@@ -190,7 +191,8 @@ class CarService:
             print("{:>23}{:>10}{:>10}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
             print('-'*60)
             for car_info in val:
-                print("{:>23}{:>10}{:>10}{:>17}".format(car_info[1], car_info[0], car_info[2], car_info[3]))
+                car_number = car_info[0]
+                print("{:>23}{:>6}-{}{:>10}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], car_info[2], car_info[3]))
             print("="*60)
 
     def print_car_dict(self, a_dict):
@@ -252,8 +254,6 @@ class CarService:
     def get_available_cars(self, prompt):
         car_busy_dict = self.get_busy_cars(prompt)
         all_car_dict = self.make_all_cars_dict()
-        print(all_car_dict)
-        print(car_busy_dict)
         delete_key_list = []
         for key in all_car_dict:
             for car in all_car_dict[key]:
