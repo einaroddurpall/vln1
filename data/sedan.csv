@@ -1,1 +1,3 @@
-Car('BAB12','Fólksbíll','Honda Kona','Sjálfskiptur',500,True)
+Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',23112,True)
+Car('HSG98','Fólksbíll','BLA','Sjálfskiptur',5000,True)
+Car('POP00','Fólksbíll','VW Passat','Sjálfskiptur',3000,True)

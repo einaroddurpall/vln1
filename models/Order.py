@@ -3,7 +3,7 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Functions import make_number, make_date_list, make_date
+from models.Functions import make_number, make_date_list, make_date, pretty_str
 from models.Car import Car
 
 class Order:
@@ -71,7 +71,7 @@ class Order:
     def __str__(self):
         return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}\nVerð: {}\nPöntun lokið: {}".format(
             self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), 
-            self.__insurance, self.__card_info, self.get_order_price(), self.get_order_complete()
+            self.__insurance, self.__card_info, pretty_str(self.get_order_price(), "ISK"), self.get_order_complete()
         )
     
     def make_price(self, price):
