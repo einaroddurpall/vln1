@@ -1,14 +1,28 @@
 from datetime import datetime, timedelta
 from os import system
 from models.Order import Order
-from services.CarService import CarService, get_car_price
 from time import sleep
 from datetime import date
-from repositories.OrderRepository import OrderRepository
 import string
+from repositories.OrderRepository import OrderRepository
+from services.CarService import CarService, get_car_price
 from services.CustomerService import CustomerService
 from services.ChangeService import ChangeService
 from models.Car import Car
+from models.methods import print_header
+
+def calc_price( order):
+    """Calculates the price of an order"""
+    car = order.get_car()
+    car_type = car.get_car_type()
+    base_price = get_car_price(car_type)
+    dates = len(order.get_date_list())
+    insurance = order.get_insurance()
+    if insurance == 'skyldu trygging':
+        insurance_price = 2000
+    else:
+        insurance_price = 3500
+    return dates*(base_price + insurance_price)
 
 class OrderService:
 
@@ -25,26 +39,27 @@ class OrderService:
         day, month, year = a_date.split(".")
         return date(int(year), int(month), int(day))
 
-    def make_order_info(self):
+    def make_order_info(self, prompt):
         new_order = Order()
         for step in range(1, 5):
             choice = new_order.change_info(str(step), self.__car_service, self.__customer_service)
             if choice == "Tilbaka":
-                return "Tilbaka"
+                return "Tilbaka", new_order
             elif choice == "Heim":
-                return "Heim"
-        continue_q = input("Er allt rétt? (j/n): ").lower()
+                return "Heim", new_order
+        continue_q = input("Er allt rétt? (j/n) ").lower()
         if continue_q != "j":
-            self.change_order_info(new_order, True)
+            self.change_order_info(new_order, True, prompt)
         else:
+            price = calc_price(new_order)
+            new_order.make_price(price)
             self.__order_repo.add_order(new_order)
-        price = self.calc_price(new_order)
-        print("Verð: {} ISK".format(price))
-
+        return "", new_order
         
-    def change_order_info(self, order, new_or_not):
+    def change_order_info(self, order, new_or_not, prompt):
         correct = False
         while not correct:
+            print_header(prompt)
             print("Hverju villtu breyta:\n1. Kennitölu á pöntun\n2. Bíl og dagsetningu\n3. Tryggingu\n4. Kortanúmeri\n5. Klára Skráningu")
             legal_choice = False
             while not legal_choice:
@@ -81,16 +96,3 @@ class OrderService:
     def order_delete(self, order):
         self.__order_list.remove(order)
         self.__order_repo.update_order_list()
-
-    def calc_price(self, order):
-        car = order.get_car()
-        car_type = car.get_car_type()
-        base_price = get_car_price(car_type)
-        dates = len(order.get_date_list())
-        insurance = order.get_insurance()
-        if insurance == 'skyldu trygging':
-            insurance_price = 2000
-        else:
-            insurance_price = 3500
-        final_price = dates*(base_price + insurance_price)
-        return final_price

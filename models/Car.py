@@ -77,7 +77,6 @@ class Car:
     def __eq__(self, other):
         return self.get_registration_num() == other.get_registration_num()
 
-    
     def car_change_info(self, step, all_cars_list):
         if step == "1":
             done = False
