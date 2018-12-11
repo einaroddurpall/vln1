@@ -106,4 +106,4 @@ class OrderService:
                     order_to_complete.append(order)
         for order in order_to_complete:
             print(order)
-        input()
+        
