@@ -6,7 +6,7 @@ from ui.CarUI import CarMenu
 from ui.CustomerUI import CustomerMenu
 from ui.OrderUI import OrderMenu
 from ui.StaffUI import StaffMenu
-from models.methods import print_header
+from models.Methods import print_header
 from services.StaffService import StaffService
 
 class CarRentalUi:
@@ -50,7 +50,7 @@ class CarRentalUi:
     def main_menu(self):
         """ Main menu er loop sem hættir þegar 4 er sett inn."""
         login = False
-        while login != True:
+        while not login:
             system('clear')
             username = input("Username: ")
             password = input("Password: ")

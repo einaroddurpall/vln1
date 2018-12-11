@@ -3,7 +3,7 @@ from repositories.OrderRepository import OrderRepository
 from services.CustomerService import CustomerService
 from models.Car import Car, make_car_type
 from datetime import datetime, timedelta
-from models.methods import print_header, make_date
+from models.Methods import print_header, make_date
 from services.ChangeService import ChangeService
 from time import sleep
 from os import system

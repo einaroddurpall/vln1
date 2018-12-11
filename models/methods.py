@@ -41,3 +41,9 @@ def make_number(lenght_of_number, input_string, error_code_str):
             else:
                 print(error_code_str)
         return ssn
+
+def check_input(a_string):
+    if a_string.lower() == "h":
+        return "heim"
+    elif a_string.lower() == "t":
+        return "tilbaka"
