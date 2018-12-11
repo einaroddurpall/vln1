@@ -45,6 +45,7 @@ class CarMenu:
                         print("="*60)
                         choice = input("\n1.  Skoða pantanir\n2.  Leita að öðru bílnúmeri\n3.  Uppfæra upplýsingar bíls\n4.  Afskrá bíl\n5.  Tilbaka\n6.  Heim\n")
                         if choice == "1":
+                            print_header(prompt)
                             car_orders = self.__car_service.car_get_history(car_found)
                             if car_orders:
                                 for order in car_orders:
