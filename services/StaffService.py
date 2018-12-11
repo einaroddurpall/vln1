@@ -1,5 +1,6 @@
 from repositories.StaffRepository import StaffRepository
 from models.Staff import Staff
+from repositories.PriceRepository import PriceRepository
 
 class StaffService:
     '''þessi klasi vinnur úr öllum upplýsingum sem tengjast starfsmanni, skrá starfsmann, logga sig inn og 
@@ -8,6 +9,7 @@ class StaffService:
     def __init__(self):
         self.__staff_repo = StaffRepository()
         self.__staff_list = self.__staff_repo.get_staff_list()
+        self.__price_repo = PriceRepository()
 
     def check_login(self, username, password):
         '''Gá hvort usernamið og passwordið sem slegið var inn stemmir'''
@@ -40,3 +42,30 @@ class StaffService:
         for staff in self.__staff_list:
             if staff.get_ssn() == ssn:
                 return staff
+
+    def change_price(self, choice):
+        legal_price = False
+        while not legal_price:
+            new_price = input("Sláðu inn nýtt dagsverð: ")
+            try:
+                int(new_price)
+                legal_price = True
+            except:
+                print("Það virkar einungis að slá inn tölur.")
+                keep_going = input("1.  Reyna Aftur\nt.  Tilbaka\nh. Heim\n").lower()
+                if keep_going == "t":
+                    return False, False
+                elif keep_going == "h":
+                    return True, True
+        if choice == "1":
+            self.__price_repo.set_small_car_price(new_price)
+        elif choice == "2":
+            self.__price_repo.set_sedan_price(new_price)
+        elif choice == "3":
+            self.__price_repo.set_five_seat_suv_price(new_price)
+        elif choice == "4":
+            self.__price_repo.set_seven_seat_suv_price(new_price)
+        elif choice == "5":
+            self.__price_repo.set_minibus_price(new_price)
+        self.__price_repo.update_price_list()
+        return False, False
