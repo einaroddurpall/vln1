@@ -6,7 +6,7 @@ from ui.CarUI import CarMenu
 from ui.CustomerUI import CustomerMenu
 from ui.OrderUI import OrderMenu
 from ui.StaffUI import StaffMenu
-from models.Methods import print_header
+from models.Functions import print_header
 from services.StaffService import StaffService
 
 class CarRentalUi:

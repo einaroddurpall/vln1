@@ -1,5 +1,5 @@
 from models.Person import Person
-from models.Methods import print_header, make_number
+from models.Functions import print_header, make_number
 from os import system
 
 class Staff(Person):
