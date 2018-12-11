@@ -19,35 +19,37 @@ class CustomerMenu:
             action = input("1.  Leita að viðskiptavin\n2.  Skrá nýjan viðskiptavin\n3.  Heim\n")
             if action == "1":
                 exit_info = ""
-                prompt += " / Leta að viðskiptavin"
+                prompt += " / Leita að viðskiptavin"
                 while exit_info == "":
                     print_header(prompt)
                     ssn = input("Kennitala: ")
                     customer = self.__customer_service.check_ssn(ssn)
                     exit_info2 = ""
                     if customer:
-                        prompt += " / Leita að viðskiptavin"
                         while exit_info2 == "":
                             print_header(prompt)
                             print(customer)
                             choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Tilbaka\n5.  Heim\n")
                             if choice == "1":
-                                prompt += " / Sjá pantanir"
-                                print_header(prompt)
+                                temp_prompt = prompt + " / Sjá pantanir"
+                                
                                 customer_orders = self.__customer_service.customer_get_history(customer)
                                 if customer_orders:
                                     for order in customer_orders:
+                                        system('clear')
+                                        print_header(temp_prompt)
                                         print(order)
+                                        input('Smelltu á "Enter" til að halda áfram')
                                 else:
                                     print("Þessi viðskiptavinur hefur enga notkunarsögu.")
                                     sleep(2)
                             elif choice == "2":
-                                prompt += " / Breyta skráningu"
-                                print_header(prompt)
+                                temp_prompt = prompt + " / Breyta skráningu"
+                                print_header(temp_prompt)
                                 self.__customer_service.customer_update_info(customer)
                             elif choice == "3":
-                                prompt += " / Afskrá viðskiptavin"
-                                print_header(prompt)
+                                temp_prompt = prompt + " / Afskrá viðskiptavin"
+                                print_header(temp_prompt)
                                 choice = input("Ertu viss?(j/n): ")
                                 if choice == "j":
                                     self.__customer_service.customer_delete(customer)
