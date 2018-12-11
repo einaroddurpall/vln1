@@ -62,17 +62,13 @@ class OrderMenu:
                 while not finished:
                     prompt = "Heimasíða / Skoða eða skrá pantanir / Skrá nýja pöntun"
                     print_header(prompt)
-                    new_order = self.__order_service.make_order_info(prompt)
-                    # texti, new_order = self.__order_service.make_order_info(prompt)
-                    # if texti == "Tilbaka":
-                    #     None
-                    # elif texti == "Heim":
-                    #     done = True
-                    if new_order == "h":
-                        finished = True
-                        done = True
-                    elif new_order == "t":
-                        finished = True
+                    new_order = self.__order_service.make_order_info(prompt, False)
+                    if type(new_order) != Order:
+                        if new_order == "t":
+                            finished = True
+                        elif new_order == "h":
+                            finished = True
+                            done = True
                     else:
                         print_header(prompt)
                         print("Verð: {}\nPöntun skráð.".format(pretty_str(new_order.get_order_price(), "ISK")))
