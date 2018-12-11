@@ -77,6 +77,7 @@ class CarService:
             self.change_car_info(new_car, True)
         else:
             self.car_register(new_car)
+            self._all_cars_list.append(new_car)
         return True
         
     def change_car_info(self, car, new_or_not):
@@ -117,6 +118,7 @@ class CarService:
                 car.car_change_info(choice, self._all_cars_list)
         if new_or_not:
             self.car_register(car)
+            self._all_cars_list.append(car)
         else:
             self.update_car_list(car)
             self.__change_service.change_car_info_consequences(old_car, car)
