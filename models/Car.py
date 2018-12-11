@@ -6,6 +6,7 @@ from models.Functions import print_header, error_handle, check_registration_num,
 class Car:
 
     def __init__(self, registration_num="", car_type="", sub_type="", transmission="", milage=0, is_rentable=True):
+        """Hver bíll hefur bílnúmer, tegund, undirtegund, skiptingu og akstur."""
         self.__registration_num = registration_num
         self.__car_type = car_type
         self.__sub_type = sub_type
@@ -14,10 +15,12 @@ class Car:
         self.__is_rentable = is_rentable
 
     def __str__(self):
+        """Strengur sem birtist er bíll er prentaður."""
         return "Bílnúmer: {}-{}\nFlokkur bíls: {}\nTegund bíls {}\n{}\nAkstur: {}\nLaus: {}".format(
         self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission,pretty_str(self.__milage, "km"), self.__is_rentable)
 
     def __repr__(self):
+        """Strengur sem sýnir hvernig búa má til eintak af viðeigandi bíl."""
         return "Car('{}','{}','{}','{}',{},{})".format(self.__registration_num, self.__car_type, self.__sub_type, self.__transmission,
         self.__milage, self.__is_rentable)
 
@@ -50,6 +53,9 @@ class Car:
         self.__milage = milage
 
     def check_availability(self, date_list, date_dict, car_list):
+        """Tekur við lista af dögum, dictionary sem heldur utan um hvaða bílar eru bókaðir á hverjum degi og lista
+        af bílum af ákveðnum flokki. Fallið athugar hvort bíllinn (self) er laus fyrir alla dagana í listanum og
+        skilar True eða False."""
         is_rentable = True
         for date in date_list:
             if date in date_dict:
@@ -60,6 +66,7 @@ class Car:
         return is_rentable
 
     def __eq__(self, other):
+        """Tveir bílar eru sami bíllinn ef þeir hafa sama bílnúmer."""
         return self.get_registration_num() == other.get_registration_num()
 
     def car_change_info(self, step, all_cars_list, prompt):

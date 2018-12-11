@@ -11,6 +11,7 @@ def print_header(prompt=""):
         print("="*60)
 
 def make_date(a_date):
+    """Tekur við dagsetningu í formi strengs og skilar date-tilviki fyrir þann dag."""
     new_string = ""
     for letter in a_date:
         if letter in string.digits:
@@ -79,6 +80,7 @@ def check_input(a_string):
         return "tilbaka"
 
 def make_date_list(date1, date2):
+    """Tekur við tveimur dagsetningum og skilar lista með öllum dögum á milli þeirra ásamt endadögunum tveimur."""
     date_list = []
     date_to_list = date1
     while date_to_list <= date2:
