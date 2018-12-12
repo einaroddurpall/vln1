@@ -1,6 +1,5 @@
 Customer('Viðskiptavinur 1','Einnsi O Palosi','2012980349','skeina@mer.is','8549385')
 Customer('Viðskiptavinur 4','Jón Kristinn Þórðarson','2107982349','jonkrona@gmail.com','8201580')
-Customer('Viðskiptavinur 6','Einar','2505983519','einaropr@gmail.com','8662282')
 Customer('Viðskiptavinur 2','GUÐMUNDUR','0987654321','hot@hot.is','1234123')
 Customer('Viðskiptavinur 5','Halldór Gunnarsson','2412911219','halldor@gmail.com','8979922')
 Customer('Viðskiptavinur 5','Huginn','1414141414','huginn@gmail.com','8203727')
@@ -12,3 +11,6 @@ Customer('Viðskiptavinur 12','Mamma Einars','1212562349','Mammaeinars@gmail.com
 Customer('Viðskiptavinur 12','Drífa Guðrún Þorvaldsdóttir','2207982839','drifagth@gmail.com','8975906')
 Customer('Viðskiptavinur 13','Karl Karlsson','1111982929','kallibilakall@audi.is','6969123')
 Customer('Viðskiptavinur 3','Arnar','0704842349','arnar@gmail.com','8975906')
+Customer('Viðskiptavinur 6','Einar Oddur Páll Rúnarsson','2505983519','einaropr@gmail.com','8662282')
+Customer('Viðskiptavinur 7','Baldur Jónsson','1234123412','baldur@jonsson.is','8976969')
+Customer('Viðskiptavinur 14','Baldur Gunnar Jónsson','2512982119','baldur@gmail.com','8991999')

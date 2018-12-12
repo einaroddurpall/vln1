@@ -13,7 +13,18 @@ class CarMenu:
         self.car_menu()
 
     def car_menu(self):
-        """ Hér er hægt að framkvæma allar aðgerðir sem koma bíl við """
+        """ Hér eru allar aðgerðir undir "Bílar" framkvæmdar sem skiptast í fernt.
+            1. Skoða bíl, hér þarf að setja inn bílnúmer sem CarService klasinn tekur, athugar hvort það sé í kerfinu og skilar bíl.
+               Þegar bíll er valinn þá er hægt að framkvæma fjórar aðgerðir á honum.
+                1.1. Skoða pantanir, þar er hægt að skoða allar þær pantanir sem hafa verið gerðar á þeim bíl.
+                1.2. Leita að öðru bílnúmeri
+                1.3. Uppfæra upplýsingar um bíl, hér er hægt að breyta undirtegund, skiptingu og hvað bíllinn er keyrður mikið.
+                     Þegar upplýsingarnar hafa breyttar þá uppfærast öll skjöl sem bíllinn er tengdur við. (Sjá ChangeService klasann)
+                1.4. Afskrá bíl, hér er bíllinn afskráður úr kerfinu og allar þær pantarnir sem hann var með fá sjálfkrafa nýjan bíl
+                     (sjá ChangeService klasann)
+            2. Skrá nýjan bíl, sjá make_car fallið í CarService.
+            3. Skoða lausa bíla, sjá get_available_cars fallið í CarService klasanum.
+            4. Skoða bíla í útleigu, sjá get_busy_cars fallið í CarService klasanum."""
         done = False
         while not done:
             prompt = "Heimasíða / Bílar"
@@ -82,7 +93,7 @@ class CarMenu:
                                 done = True
                             exit_info = "Tilbaka"
                             car_selected = False
-            elif action == "2":    # Pæling með hætta við þegar maður velur flokk
+            elif action == "2":
                 prompt += " / Skrá nýjan bíl"
                 print_header(prompt)
                 car_was_made = self.__car_service.make_car(prompt)
@@ -96,30 +107,38 @@ class CarMenu:
             elif action == "3":
                 exit_info = ""
                 prompt += " / Skoða lausa bíla"
+                print_header(prompt)
                 while exit_info == "":
-                    print_header(prompt)
                     go_home = self.__car_service.get_available_cars(prompt)
                     if go_home != True:
-                        choice = input("1.  Skoða fleiri lausa bíla\nt.  Tilbaka\nh.  Heim\n").lower()
-                        if choice == "t" or choice == "h":
-                            if choice == "h":
-                                done = True
-                            break
+                        choice = ""
+                        while choice != "1":
+                            choice = input("1.  Skoða fleiri lausa bíla\nt.  Tilbaka\nh.  Heim\n").lower()
+                            if choice == "t" or choice == "h":
+                                if choice == "h":
+                                    done = True
+                                exit_info = "Tilbaka"
+                                break
+                            print_header(prompt)
                     else:
                         exit_info = "Tilbaka"
             elif action == "4":
                 exit_info = ""
+                print_header(prompt)
                 while exit_info == "":
                     prompt += " / Skoða bíla í útleigu"
-                    print_header(prompt)
                     busy_cars_dict = self.__car_service.get_busy_cars(prompt)
                     go_home = self.__car_service.print_car_dict(busy_cars_dict)
                     if go_home != True:
-                        choice = input("1.  Skoða fleiri bíla í útleigu\nt.  Tilbaka\nh.  Heim\n")
-                        if choice == "t" or choice == "h":
-                            if choice == "h":
-                                done = True
-                            break
+                        choice = ""
+                        while choice != "1":
+                            choice = input("1.  Skoða fleiri bíla í útleigu\nt.  Tilbaka\nh.  Heim\n")
+                            if choice == "t" or choice == "h":
+                                if choice == "h":
+                                    done = True
+                                exit_info = "Tilbaka"
+                                break
+                            print_header(prompt)
                     else:
                         exit_info = "Tilbaka"
             elif action == "h":

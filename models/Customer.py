@@ -53,7 +53,10 @@ class Customer(Person):
                     return info
         done = False
         while not done:
-            correct = input("Er allt rétt? (j/n) ").lower()
+            print_header("Heimasíða / Viðskiptavinir / Skrá nýjan viðskiptavin")
+            print(self)
+            print("="*70)
+            correct = input("\nEr allt rétt? (j/n) ").lower()
             if correct != "j":
                 self.customer_change_info(customer_list)
             else:
@@ -64,9 +67,10 @@ class Customer(Person):
         while not correct:
             legal_choice = False
             while not legal_choice:
+                print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
                 print(self)
-                print()
-                choice = input("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu\n")
+                print("="*70)
+                choice = input("\nHverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu\n")
                 print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
                 try:
                     if int(choice) in range(1,6):

@@ -13,7 +13,11 @@ class CustomerMenu:
         self.customer_menu()
 
     def customer_menu(self):
-        """ Hér er hægt að framkvæma allar aðgerðir sem koma viðskiptavinum við """
+        """ Hér er hægt að framkvæma tvær aðgerðir sem koma viðskiptavinum við.
+            1. Leita að viðskiptavin, hér tekur CustomerService klasinn við kennitölu, athugar hvort það sé til viðskiptavinur
+               í kerfinu með þessa kennitölu og skilar viðeigandi viðskiptavin. Þegar viðskiptavinur hefur verið valinn er hann
+               sentur í view_customer fallið.
+            2. Skrá nýjan viðskiptavin, sjá customer_register í CustomerService klasanum. """
         done = False
         while not done:
             prompt = "Heimasíða / Viðskiptavinir"
@@ -53,12 +57,20 @@ class CustomerMenu:
                 done = True
 
     def view_customer(self, customer, prompt):
+        """ Hér er hægt að framkvæma fjórar aðgerðir fyrir viðskiptavin.
+            1. Sjá pantanir, hér er hægt að sjá allar pantanir sem þessi viðskiptavinur hefur skráð á sig.
+            2. Breyta skráningu, hér er hægt að breyta skráningu viðskiptavinar með hjálp customer_update_info fallinu í CustomerService
+               klasanum.
+            3. Afskrá viðskiptavin, hér er viðskiptavinurinn tekinn út úr kerfinu og allar þær pantanir sem eru ókláraðar eyðast úr
+               kerfinu líka.
+            4. Skrá pöntun á viðskiptavin, hér er hoppað beint inn í make_order_info fallið í OrderService klasanum og 
+               viðskiptavinurinn líka svo það þurfi ekki að velja hann aftur."""
         exit_info2 = ""
         while exit_info2 == "":
             prompt = "Heimasíða / Viðskiptavinir / Skoða viðskiptavin"
             print_header(prompt)
             print(customer)
-            choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Skrá Pöntun á viðskiptavin\nt.  Tilbaka\nh.  Heim\n").lower()
+            choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Skrá pöntun á viðskiptavin\nt.  Tilbaka\nh.  Heim\n").lower()
             if choice == "1":
                 prompt += " / Sjá pantanir"
                 print_header(prompt)
@@ -67,7 +79,7 @@ class CustomerMenu:
                     for order in customer_orders:
                         print(order)
                         print()
-                    input("Ýttu á enter til að halda áfram: ")
+                    input('Ýttu á "Enter" til að halda áfram: ')
                 else:
                     print("Þessi viðskiptavinur hefur enga notkunarsögu.")
                     sleep(2)

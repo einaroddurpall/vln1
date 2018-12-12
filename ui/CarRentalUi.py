@@ -47,10 +47,8 @@ class CarRentalUi:
 
 
     def main_menu(self):
-        """ Main menu er loop sem hættir þegar q er sett inn."""
-        # car = self.__carUI()
-        # customer = self.__customerUI()
-        # order = self.__orderUI()
+        """ Main menu er loop sem hættir þegar q er sett inn. Á flestum input stöðum (fyrir utan þegar beðið er um dagsetningar eða 
+        bílaflokk) er hægt að setja inn "t" til að fara tilbaka eða "h" til að fara aftur á þessa síðu. """
         login = False
         while not login:
             username = input("Username: ")

@@ -70,7 +70,10 @@ class CarService:
             if type(quit_info) == str:
                 return quit_info
         new_car.set_availability(self.get_date_dict())
-        continue_q = input("Er allt rétt? (j/n): ").lower()
+        print_header(prompt)
+        print(new_car)
+        print("="*70)
+        continue_q = input("\nEr allt rétt? (j/n): ").lower()
         if continue_q != "j":
             self.change_car_info(new_car, True, prompt)
         else:
@@ -85,7 +88,7 @@ class CarService:
                 print_header(prompt)
                 print(car)
                 print("="*70)
-                print("Hverju villtu breyta:\n1.  Bílnúmeri\n2.  Bílaflokkur\n3.  Undirtegund\n4.  Skipting\n5.  Akstur(km)\n6.  Klára Skráningu")
+                print("\nHverju viltu breyta:\n1.  Bílnúmeri\n2.  Bílaflokkur\n3.  Undirtegund\n4.  Skipting\n5.  Akstur(km)\n6.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
                     choice = input()
@@ -104,7 +107,7 @@ class CarService:
                 print_header(prompt)
                 print(car)
                 print("="*70)
-                print("Hverju villtu breyta:\n1.  Undirtegund\n2.  Skipting\n3.  Akstur(km)\n4.  Klára Skráningu")
+                print("\nHverju viltu breyta:\n1.  Undirtegund\n2.  Skipting\n3.  Akstur(km)\n4.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
                     choice = input()

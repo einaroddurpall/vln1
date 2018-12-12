@@ -38,7 +38,7 @@ class ChangeService:
         input("Óloknum pöntunum viðskiptavinarins hefur verið eytt, ýttu á enter til að halda áfram.")
                     
     def change_car_info_consequences(self, old_car, new_car):
-        """Tekur við bíl eins og hann var fyrir breytingar og eftir breytingar.Finnur allar pantanir
+        """Tekur við bíl eins og hann var fyrir breytingar og eftir breytingar. Finnur allar pantanir
         þar sem óbreytti bíllinn kemur fyrir og setur þann nýja í staðinn, gerist þó aðeins ef pöntuninni
         er ekki lokið."""
         for order in self.__order_list:
