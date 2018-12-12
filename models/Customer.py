@@ -42,9 +42,14 @@ class Customer(Person):
         )
 
     def get_info_list(self):
+        '''skilar lista sem er með öllum upllýsingum sem hver viðskiptavinur hefur '''
         return [self._name, self._ssn, self.__email, self.__gsm, self.__customer_id]
 
     def make_customer(self, customer_list):
+        '''Tekur inn customer_list, til þess að passa að viðskiptavinurinn sé ekki með sömu kennitölu og annar
+        síðan rennur rennur það í gegnum for slaufu þar sem það sendir í fallið change info með mysmunandi verkfni 
+        hvert verkefni til að fá uppl. um viðskiptavin. síðan spyr það hvort all sé rétt ef ekki, þa getur notandi 
+        breytt ákveðnum uppl um viðskiptavin'''
         for step in range(1, 5):
             self.change_info(str(step), customer_list)
             info_list = self.get_info_list()
@@ -63,6 +68,8 @@ class Customer(Person):
                 done = True
 
     def customer_change_info(self, customer_list):
+        """Fall sem spyr notanda hvaða uppl. hann vill breyta um notanda og sendir síðan á change info fallið
+        hvaða upplýsinga notandi vill breyta"""
         correct = False
         while not correct:
             legal_choice = False
@@ -86,6 +93,8 @@ class Customer(Person):
                     print("Ekki valmöguleiki, veldu aftur")
 
     def change_info(self, choice, customer_list):
+        '''Fallið fær um hvað upplýsingum þarf að breyta um viðskiptavin og sendir hann i gegnum þann feril
+        og villu prófar þannig að notandi getur aðeins slegið inn réttar uppl.'''
         if choice == "1":
             self.make_name()
         elif choice == "2":

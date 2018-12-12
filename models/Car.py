@@ -16,7 +16,6 @@ class Car:
 
     def __str__(self):
         """Strengur sem birtist er bíll er prentaður."""
-
         if self.__is_available:
             is_available = "Bíllinn er í húsinu"
         else:
@@ -48,14 +47,13 @@ class Car:
     def get_milage(self):
         """ Returns the milage of the car."""
         return self.__milage
-    
-
 
     def set_milage(self, milage):
         """ Sets new milage for the car in the system. When the car is returned we need to update the milage for the car."""
         self.__milage = milage
     
     def set_availability(self, date_dict):
+        """sendir inn 'i checkabailability fallið upplýsingar og skilar hvort bílinn sé laus á þeim degi"""
         if self.check_availability([date.today()], date_dict, self.get_car_type):
             self.__is_available = True
         else:

@@ -73,7 +73,9 @@ class StaffService:
         return False, False
     
     def print_price_list(self):
-        print("{:16} {:>10}\n".format("Flokkur","Verð"))
+        print("{:16} {:>10}".format("Flokkur","Verð"))
+        print('-'*70)
         for price_list in self.__price_repo.get_price_list():
             print("{:16} {:>10}".format(price_list[0], pretty_str(price_list[1], "ISK")))
+        print("="*70)
     

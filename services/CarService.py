@@ -179,13 +179,13 @@ class CarService:
             if car_type != None:
                 if car_type in a_dict.keys():
                     print("\n{:<18}{:>10}:".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
-                    print("="*60)
+                    print("="*70)
                     print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
-                    print('-'*60)
+                    print('-'*70)
                     for car_info in a_dict[car_type]:
                         car_number = car_info[0]
                         print("{:>20}{:>6}-{}{:>13}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], pretty_str(car_info[2], "km"), car_info[3]))
-                    print("="*60)
+                    print("="*70)
                     return False
                 else:
                     print("Enginn bíll laus í þessari bílategund á þessum tíma")
@@ -198,13 +198,13 @@ class CarService:
         price_repo = PriceRepository()
         for key,val in a_dict.items():
             print("\n{:<18}{:>10}:".format(key, pretty_str(get_car_price(key, price_repo), "ISK")))
-            print("="*60)
+            print("="*70)
             print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
-            print('-'*60)
+            print('-'*70)
             for car_info in val:
                 car_number = car_info[0]
                 print("{:>20}{:>6}-{}{:>13}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], pretty_str(car_info[2], "km"), car_info[3]))
-            print("="*60)
+            print("="*70)
 
     def print_car_dict(self, a_dict):
         if a_dict:
