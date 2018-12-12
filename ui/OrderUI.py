@@ -7,7 +7,7 @@ from models.Functions import print_header, pretty_str
 class OrderMenu:
     def __init__(self):
         self.__order_service = OrderService()
-        self.order_menu()
+
 
     def order_menu(self):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma pöntunum við """

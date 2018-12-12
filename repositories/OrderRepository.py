@@ -20,7 +20,7 @@ class OrderRepository:
         for order in orders:
             names.append(order.get_order_name())
         return names
-    
+
     def get_orders(self):
         """Les pantanir úr skrá og setur í lista."""
         order_list = []

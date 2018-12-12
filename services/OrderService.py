@@ -91,9 +91,19 @@ class OrderService:
 
     def get_order_by_name(self, name):
         for order in self.__order_repo.get_order_list():
-            if order.get_order_name() == name:
+            order_num = self.get_order_num_from_name(order.get_order_name())
+            try:
+                name_num = self.get_order_num_from_name(name)
+            except:
+                name_num = name
+            if order_num == name_num:
                 return order
         return None
+
+    def get_order_num_from_name(self, name):
+        name_list = name.split()
+        num = name_list[1]
+        return num
 
     def get_order_by_ssn(self, ssn):
         customer = self.__customer_service.check_ssn(ssn)
