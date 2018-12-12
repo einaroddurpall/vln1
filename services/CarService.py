@@ -170,7 +170,7 @@ class CarService:
             car_type = make_car_type()
             if car_type != None:
                 if car_type in a_dict.keys():
-                    print("\n\033[1m{:<18}{:>10}:\033[0m".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
+                    print("\n{:<18}{:>10}:".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
                     print("="*60)
                     print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
                     print('-'*60)
@@ -189,7 +189,7 @@ class CarService:
     def print_out_info_for_all_car_types(self, a_dict):
         price_repo = PriceRepository()
         for key,val in a_dict.items():
-            print("\n\033[1m{:<18}{:>10}:\033[0m".format(key, pretty_str(get_car_price(key, price_repo), "ISK")))
+            print("\n{:<18}{:>10}:".format(key, pretty_str(get_car_price(key, price_repo), "ISK")))
             print("="*60)
             print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
             print('-'*60)

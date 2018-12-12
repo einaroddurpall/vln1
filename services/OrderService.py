@@ -63,7 +63,6 @@ class OrderService:
         print("Pöntun skráð.\n")
         sleep(2.5)
         self.__order_repo.add_order(new_order)
-        self.__order_list.append(new_order)
         return new_order
         
     def change_order_info(self, order, new_or_not, prompt):
@@ -168,14 +167,19 @@ class OrderService:
                                 print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
                         day_price = order_price // len(order_to_complete.get_date_list())
                         final_payment = int(milage_difference // 150 * 0.02 * day_price)
-                        final_payment = pretty_str(final_payment, "ISK")
                         car.set_milage(new_milage)
                         self.__car_service.update_car_list(car)
                         order_to_complete.set_car(car)
                         order_to_complete.set_complete(True)
                         self.__order_repo.update_order_list()
                         print_header(prompt)
-                        print("Viðskiptavinur þarf að greiða {}\nPöntun er nú kláruð".format(final_payment))
+                        if final_payment > 0:
+                            payment_complete = take_payment(final_payment)
+                        else:
+                            payment_complete = True
+                        if type(payment_complete) == str:
+                            return "h"
+                        print("Pöntun er nú kláruð")
                         choice = input("1.  Velja aðra pöntun til að klára\nt.  Tilbaka\nh.  Heim\n")
                         if choice == "t" or choice == "h":
                             finished_completing_orders = True
