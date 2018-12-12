@@ -57,6 +57,7 @@ class OrderService:
         price = calc_price(new_order)
         new_order.set_price(price)
         self.__order_repo.add_order(new_order)
+        self.__order_list.append(new_order)
         return new_order
         
     def change_order_info(self, order, new_or_not, prompt):

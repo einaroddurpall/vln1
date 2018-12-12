@@ -115,3 +115,6 @@ def legal_dates(prompt):
             input('Smelltu á "Enter" til að reyna aftur')
             print_header(prompt)
     return date1, date2
+
+def pretty_date (date):
+    return date[8:10] + "/" + date[5:7] + "/" + date[0:4]
