@@ -1,2 +1,11 @@
+<<<<<<< HEAD
 Pöntun 1;Customer('Viðskiptavinur 6','Einar','2505983519','einaropr@gmail.com','8662282');Car('KKK69','Smárúta','Coca Cola','Sjálfskiptur',10,True);datetime.date(2018, 12, 12);datetime.date(2018, 12, 12);Grunntrygging;1234567890123456;32000;False
 Pöntun 2;Customer('Viðskiptavinur 6','Einar','2505983519','einaropr@gmail.com','8662282');Car('KKK69','Smárúta','Coca Cola','Sjálfskiptur',10,True);datetime.date(2018, 12, 12);datetime.date(2018, 12, 12);Grunntrygging;1234567890123456;32000;False
+=======
+Pöntun 1;Customer('Viðskiptavinur 3','HILMAR PALL','0407982349','HilmarSPICY@hotmail.com','8451289');Car('HSG98','Fólksbíll','BLA','Sjálfskiptur',5000,True);datetime.date(2019, 1, 1);datetime.date(2019, 1, 5);Grunntrygging;1234123412341234;85000;False
+Pöntun 2;Customer('Viðskiptavinur 3','HILMAR PALL','0407982349','HilmarSPICY@hotmail.com','8451289');Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',24000,True);datetime.date(2019, 1, 1);datetime.date(2019, 1, 5);Grunntrygging;1234123412341234;85000;False
+Pöntun 3;Customer('Viðskiptavinur 11','Afi Sæti','5544332211','afi@amma.is','5432185');Car('POP00','Fólksbíll','VW Passat','Sjálfskiptur',3000,True);datetime.date(2018, 12, 31);datetime.date(2019, 12, 5);Aukatrygging;1234123412341234;6290000;False
+Pöntun 4;Customer('Viðskiptavinur 3','HILMAR PALL','0407982349','HilmarSPICY@hotmail.com','8451289');Car('HSG98','Fólksbíll','BLA','Sjálfskiptur',5000,True);datetime.date(2018, 12, 12);datetime.date(2018, 12, 20);Grunntrygging;1234123412341234;153000;False
+Pöntun 6;Customer('Viðskiptavinur 3','HILMAR PALL','0407982349','HilmarSPICY@hotmail.com','8451289');Car('POP00','Fólksbíll','VW Passat','Sjálfskiptur',3000,True);datetime.date(2018, 12, 12);datetime.date(2018, 12, 12);Grunntrygging;1234123412341234;17000;False
+Pöntun 5;Customer('Viðskiptavinur 3','HILMAR PALL','0407982349','HilmarSPICY@hotmail.com','8451289');Car('ICE10','Fólksbíll','Jaguar','Sjálfskiptur',20000,True);datetime.date(2018, 12, 12);datetime.date(2018, 12, 20);Grunntrygging;1234123412341234;153000;False
+>>>>>>> 870be7cb269b4bf989e72f4daffa1bf3604ebab7
