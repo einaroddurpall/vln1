@@ -93,7 +93,7 @@ class CarMenu:
                                 done = True
                             exit_info = "Tilbaka"
                             car_selected = False
-            elif action == "2":    # Pæling með hætta við þegar maður velur flokk
+            elif action == "2":
                 prompt += " / Skrá nýjan bíl"
                 print_header(prompt)
                 car_was_made = self.__car_service.make_car(prompt)
