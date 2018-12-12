@@ -17,11 +17,15 @@ class StaffMenu:
         while not done:
             prompt = "Heimasíða / Starfsmenn"
             print_header(prompt)
-            action = input("1.  Skrá nýjan starfsmann\n2.  Leita af starfsmanni\n3.  Breyta verðskrá\n4.  Heim\n")
+            action = input("1.  Skrá nýjan starfsmann\n2.  Leita af starfsmanni\n3.  Breyta verðskrá\nh.  Heim\n")
             if action == "1":
                 prompt += " / Skrá nýjan starfsmann"
                 print_header(prompt)
-                self.__staff_service.staff_register()
+                new_staff = self.__staff_service.staff_register()
+                if type(new_staff) == str:
+                    if new_staff == "h":
+                        done = True
+                    break
             elif action == "2":
                 exit_info = ""
                 while exit_info == "":
@@ -36,7 +40,7 @@ class StaffMenu:
                             prompt = "Heimasíða / Starfsmenn / Leita að starfsmanni"
                             print_header(prompt)
                             print(staff)
-                            choice = input("1.  Breyta upplýsingum starfsmann\n2.  Afskrá starfsmann\n3.  Tilbaka\n4.  Heim\n")
+                            choice = input("1.  Breyta upplýsingum starfsmann\n2.  Afskrá starfsmann\nt.  Tilbaka\nh.  Heim\n")
                             if choice == "1":
                                 prompt += " / Breyta upplýsingum starfsmann"
                                 print_header(prompt)
@@ -49,7 +53,7 @@ class StaffMenu:
                                     self.__staff_service.staff_delete(staff)
                                     exit_info = "Tilbaka"
                                     exit_info2 = "Tilbaka"
-                            elif choice == "3":
+                            elif choice == "t":
                                 exit_info = "Tilbaka"
                                 exit_info2 = "Tilbaka"
                             else:

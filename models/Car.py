@@ -90,6 +90,8 @@ class Car:
             self.__car_type = make_car_type()
         elif step == "3":
             self.__sub_type = input("Tegund bíls: ")
+            if self.__sub_type == "t" or self.__sub_type == "h":
+                return self.__sub_type
         elif step == "4":
             valid_transmission = False
             while valid_transmission is False:
@@ -100,12 +102,16 @@ class Car:
                 elif transmission == "2":
                     self.__transmission = "Beinskiptur"
                     valid_transmission = True
+                elif transmission == "t" or transmission == "h":
+                    return transmission
                 else:
                     print("Villa, vinsamlegast veldu sjálfskiptan eða beinskiptan")
         elif step == "5":
             valid_mileage = False
             while valid_mileage != True: 
                 milage = input("Akstur (km): ")
+                if milage == "t" or milage == "h":
+                    return milage
                 try: 
                     int(milage)
                     self.__milage = milage

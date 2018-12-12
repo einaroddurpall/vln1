@@ -44,14 +44,13 @@ class CustomerMenu:
                 prompt += " / Skrá nýjan viðskiptavin"
                 print_header(prompt)
                 new_customer = self.__customer_service.customer_register()
-                if new_customer == "h":
-                    done = True
-                elif type(new_customer) == Customer:
+                if type(new_customer) == Customer:
                     exit_info, done = self.view_customer(new_customer, prompt)
+                elif new_customer == "h":
+                    done = True
 
             else:
                 done = True
-
 
     def view_customer(self, customer, prompt):
         exit_info2 = ""

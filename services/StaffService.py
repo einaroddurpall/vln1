@@ -21,11 +21,12 @@ class StaffService:
     def staff_register(self):
         '''Sendir skilaboð til reboið um add viðeigandi starfsmanni í skrána'''
         new_staff = Staff()
-        legal = new_staff.make_staff(self.__staff_list)
-        if legal == True:
+        new_staff = new_staff.make_staff(self.__staff_list)
+        if type(new_staff) != str:
             self.__staff_repo.add_staff(new_staff)
+            return new_staff
         else:
-            pass
+            return new_staff
     
     def staff_delete(self, staff):
         '''Eyðir starfsmanni úr listanum og sendir á repoið að eyða starfsmanni úr skránum'''
