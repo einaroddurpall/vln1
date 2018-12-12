@@ -85,7 +85,7 @@ class CarService:
                 print_header(prompt)
                 print(car)
                 print("="*70)
-                print("Hverju villtu breyta:\n1.  Bílnúmeri\n2.  Bílaflokkur\n3.  Undirtegund\n4.  Skipting\n5.  Akstur(km)\n6.  Klára Skráningu")
+                print("\nHverju viltu breyta:\n1.  Bílnúmeri\n2.  Bílaflokkur\n3.  Undirtegund\n4.  Skipting\n5.  Akstur(km)\n6.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
                     choice = input()
@@ -104,7 +104,7 @@ class CarService:
                 print_header(prompt)
                 print(car)
                 print("="*70)
-                print("Hverju villtu breyta:\n1.  Undirtegund\n2.  Skipting\n3.  Akstur(km)\n4.  Klára Skráningu")
+                print("\nHverju viltu breyta:\n1.  Undirtegund\n2.  Skipting\n3.  Akstur(km)\n4.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
                     choice = input()
@@ -277,7 +277,7 @@ class CarService:
     def car_delete(self, car):
         self._all_cars_list.remove(car)
         car_type = car.get_car_type().lower()
-        if car_type == 'smá bíll':
+        if car_type == 'smábíll':
             self._car_repo_small_car.remove_car(car)
         elif car_type == 'fólksbíll':
             self._car_repo_sedan.remove_car(car)
