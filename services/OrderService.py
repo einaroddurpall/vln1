@@ -186,6 +186,7 @@ class OrderService:
                     order_to_complete.set_complete(True)
                     self.__order_repo.update_order_list()
                     car.set_milage(new_milage)
+                    print_header(prompt)
                     print("Pöntun er nú kláruð")
                     choice = input("1.  Velja aðra pöntun til að klára\nt.  Tilbaka\nh.  Heim\n")
                     if choice == "t" or choice == "h":
