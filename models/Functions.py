@@ -8,7 +8,7 @@ def print_header(prompt=""):
         """ Hreinsar terminal og prentar út header með slóð """
         system('clear')
         print(prompt)
-        print("="*60)
+        print("="*70)
 
 def make_date(a_date):
     """Tekur við dagsetningu í formi strengs og skilar date-tilviki fyrir þann dag."""
@@ -64,7 +64,6 @@ def check_registration_num(registration_num):
             new_registration_num += letter
     if len(new_registration_num) != 5:
         print("Þetta bílnúmer var ólöglegt.")
-        sleep(2)
         return False
     registration_num = new_registration_num.upper()
     if registration_num[0] in string.ascii_letters and registration_num[1] in string.ascii_letters\
@@ -115,3 +114,47 @@ def legal_dates(prompt):
             input('Smelltu á "Enter" til að reyna aftur')
             print_header(prompt)
     return date1, date2
+
+def pretty_date (date):
+    return date[8:10] + "/" + date[5:7] + "/" + date[0:4]
+
+def take_payment(price):
+    payment_complete = False
+    while not payment_complete:
+        print("\nVerð: {}".format(pretty_str(price, "ISK")))
+        pay_choice = input("1.  Borga með korti\n2.  Borga með reiðufé\nh.  Hætta við\n").lower()
+        if pay_choice == "h":
+            return "h"
+        elif pay_choice == "2":
+            complete = take_cash(price)
+            if type(complete) != bool:
+                if complete == "h":
+                    return "h"
+            else:
+                payment_complete = True
+    return True
+
+def take_cash(price):
+    legal_amount = False
+    while not legal_amount:
+        amount = input("Sláðu inn magn (ISK): ")
+        try:
+            amount = int(amount)
+            legal_amount = True
+        except:
+            print("Sláðu einungis inn tölustafi.")
+            keep_going = input("1.  Reyna aftur\nt.  Tilbaka\nh.  Hætta við\n").lower()
+            if keep_going == "t":
+                return "t"
+            elif keep_going == "h":
+                return "h"
+    if amount >= price:
+        print("Greiðsla tókst: Afgangur er {} ISK".format(amount - price))
+        return True
+    else:
+        final_pay_choice = input("Greiðsla ekki nógu stór. {} ISK vantar uppá\n1.  Borga restina með pening\n2.  Borga restina með korti á skrá\nh. hætta\n").lower()
+        if final_pay_choice == "h":
+            return "h"
+        else:
+            print("Greiðsla tókst.")
+            return True

@@ -7,7 +7,7 @@ from models.Functions import print_header, pretty_str
 class OrderMenu:
     def __init__(self):
         self.__order_service = OrderService()
-        self.order_menu()
+
 
     def order_menu(self):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma pöntunum við """
@@ -15,13 +15,18 @@ class OrderMenu:
         while not done:
             prompt = "Heimasíða / Skoða eða skrá pantanir"
             print_header(prompt)
-            action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Klára pantanir dagsins\n4.  Heim\n")
+            action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Klára pantanir dagsins\nh.  Heim\n")
             if action == "1":      # Bæta við að það sé hægt að skrifa 1 í staðinn fyrir Order 1
                 prompt += " / Skoða pöntun"
                 print_header(prompt)
                 exit_info = ""
                 while exit_info == "":
                     order_name = input("Pöntunarnúmer: ")
+                    if order_name == "t":
+                        break
+                    elif order_name == "h":
+                        done = True
+                        break
                     order = self.__order_service.get_order_by_name(order_name)
                     print_header(prompt)
                     choice = ""
@@ -71,7 +76,6 @@ class OrderMenu:
                             done = True
                     else:
                         print_header(prompt)
-                        print("Verð: {}\nPöntun skráð.".format(pretty_str(new_order.get_order_price(), "ISK")))
                         choice = input("1.  Skrá aðra pöntun\n2.  Tilbaka\n3.  Heim\n")
                         if choice == "2":
                             finished = True

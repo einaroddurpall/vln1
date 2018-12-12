@@ -1,6 +1,7 @@
 from models.Staff import Staff
 
 class StaffRepository:
+    '''þessi klasi vinur með að sækja allar uppl. um starfsmann og sendir þær í StaffService'''
 
     def __init__(self):      
         """Á eintak af lista sem inniheldur alla starfsmenn."""

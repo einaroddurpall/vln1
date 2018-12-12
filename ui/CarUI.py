@@ -10,7 +10,6 @@ class CarMenu:
 
     def __init__(self):
         self.__car_service = CarService()
-        self.car_menu()
 
     def car_menu(self):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma bíl við """
@@ -25,6 +24,10 @@ class CarMenu:
                 exit_info = ""
                 while exit_info == "":
                     registration_num = input("Bílnúmer: ")
+                    if registration_num == "t" or registration_num == "h":
+                        if registration_num == "h":
+                            done = True
+                        break
                     car_found, legal_reg_num = self.__car_service.car_find(registration_num)
                     if not car_found:
                         if not legal_reg_num:
@@ -34,10 +37,9 @@ class CarMenu:
                         if choice == "1":
                             print_header(prompt)
                             continue
-                        elif choice == "t":
-                            break
-                        elif choice == "h":
-                            done = True
+                        elif choice == "t" or choice == "h":
+                            if choice == "h":
+                                done = True
                             break
                     car_selected = True
                     while car_selected:
@@ -73,13 +75,11 @@ class CarMenu:
                                 self.__car_service.car_delete(car_found)
                                 exit_info = "Tilbaka"
                                 car_selected = False
-                        elif choice == "t":
+                        elif choice == "t" or choice == "h":
+                            if choice == "h":
+                                done = True
                             exit_info = "Tilbaka"
                             car_selected = False
-                        elif choice == "h":
-                            exit_info = "Heim"
-                            car_selected = False
-                            done = True
             elif action == "2":    # Pæling með hætta við þegar maður velur flokk
                 prompt += " / Skrá nýjan bíl"
                 print_header(prompt)
@@ -99,11 +99,10 @@ class CarMenu:
                     go_home = self.__car_service.get_available_cars(prompt)
                     if go_home != True:
                         choice = input("1.  Skoða fleiri lausa bíla\nt.  Tilbaka\nh.  Heim\n").lower()
-                        if choice == "t":
-                            exit_info = "Tilbaka"
-                        elif choice == "h":
-                            exit_info = "Heim"
-                            done = True
+                        if choice == "t" or choice == "h":
+                            if choice == "h":
+                                done = True
+                            break
                     else:
                         exit_info = "Tilbaka"
             elif action == "4":
@@ -114,12 +113,11 @@ class CarMenu:
                     busy_cars_dict = self.__car_service.get_busy_cars(prompt)
                     go_home = self.__car_service.print_car_dict(busy_cars_dict)
                     if go_home != True:
-                        choice = input("1.  Skoða fleiri bíla í útleigu\n2.  Tilbaka\n3.  Heim\n")
-                        if choice == "2":
-                            exit_info = "Tilbaka"
-                        elif choice == "3":
-                            exit_info = "Heim"
-                            done = True
+                        choice = input("1.  Skoða fleiri bíla í útleigu\nt.  Tilbaka\nh.  Heim\n")
+                        if choice == "t" or choice == "h":
+                            if choice == "h":
+                                done = True
+                            break
                     else:
                         exit_info = "Tilbaka"
             elif action == "h":

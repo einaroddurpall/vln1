@@ -2,7 +2,7 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Functions import make_number, make_date_list, make_date, pretty_str, make_car_type, legal_dates, print_header
+from models.Functions import make_number, make_date_list, make_date, pretty_str, make_car_type, legal_dates, print_header, pretty_date
 from models.Car import Car
 
 class Order:
@@ -87,9 +87,10 @@ class Order:
     
     def __str__(self):
         """Strengur sem birtist er pöntun er prentuð."""
-        return "{}\nViðskiptavinur: {}\nBíll: {}\nAfendingardagur: {}\nSkiladagur: {}\nTrygging: {}\nKortanúmer: {}\nVerð: {}\nPöntun lokið: {}".format(
-            self.__order_name, self.__customer.get_name(), self.__car.get_registration_num(), str(self.get_first_day()), str(self.get_last_day()), 
-            self.__insurance, self.__card_info, pretty_str(self.get_order_price(), "ISK"), self.get_order_complete()
+        return "{}\n".format(self.__order_name) + "-"*60 + "\n" + "{:<18} {}\n{:<18} {}\n{:<18} {}\n{:<18} {}\n{:<18} {}\n{:<18} {}\n{:<18} {}\n{:<18} {}".format(
+             "Viðskiptavinur:", self.__customer.get_name(), "Bíll:", self.__car.get_registration_num(), 
+            "Afendingardagur:", pretty_date(str(self.get_first_day())), "Skiladagur:", pretty_date(str(self.get_last_day())), 
+            "Trygging:", self.__insurance, "Kortanumer:", self.__card_info, "Verð:",pretty_str(self.get_order_price(), "ISK"), "Pöntun lokið:", self.get_order_complete()
         )
     
     def set_price(self, price):

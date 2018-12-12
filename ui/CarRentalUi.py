@@ -42,12 +42,15 @@ class CarRentalUi:
         print("{:<17}=     ={:<30}=     =".format("",""))
         sleep(0.35)
         print("{:<19}==={:<34}===".format("",""))
-        sleep(1.5)
+        sleep(1)
         print("{:<35}CarHub \033[0m".format(""))
-        sleep(2)
+
 
     def main_menu(self):
         """ Main menu er loop sem hættir þegar q er sett inn."""
+        car = self.__carUI()
+        customer = self.__customerUI()
+        order = self.__orderUI()
         login = False
         while not login:
             username = input("Username: ")
@@ -64,12 +67,11 @@ class CarRentalUi:
                 action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n4.  Starfsmenn\nq.  Skrá út\n").lower()
                 if action == '4':
                     self.__staffUI()
-                    action = 0
             else:
                 action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\nq.  Skrá út\n").lower()
             if action == "1":
-                self.__carUI()
+                car.car_menu()
             elif action == "2":
-                self.__customerUI()
+                customer.customer_menu()
             elif action == "3":
-                self.__orderUI()
+                order.order_menu()
