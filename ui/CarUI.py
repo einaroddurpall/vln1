@@ -53,6 +53,7 @@ class CarMenu:
                             if car_orders:
                                 for order in car_orders:
                                     print(order)
+                                    print()
                             else:
                                 print_header(prompt)
                                 print("Þessi bíll hefur enga notkunarsögu.")
