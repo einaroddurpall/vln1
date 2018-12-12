@@ -69,7 +69,7 @@ class OrderService:
         correct = False
         while not correct:
             print_header(prompt)
-            print("Hverju villtu breyta:\n1. Kennitölu á pöntun\n2. Bíl og dagsetningu\n3. Tryggingu\n4. Kortanúmeri\n5. Klára Skráningu")
+            print("Hverju villtu breyta:\n1.  Kennitölu á pöntun\n2.  Bíl og dagsetningu\n3.  Tryggingu\n4.  Kortanúmeri\n5.  Klára Skráningu")
             legal_choice = False
             while not legal_choice:
                 choice = input()
@@ -139,8 +139,10 @@ class OrderService:
                     order_to_change = input("Hvaða pöntun viltu klára? ")
                     if order_to_change == "t" or order_to_change == "h":
                         return order_to_change
+                    if len(order_to_change.split()) == 2:
+                        order_to_change = order_to_change.split()[1]
                     for order in order_to_complete_list:
-                        if order_to_change == order.get_order_name():
+                        if order_to_change == order.get_order_name().split()[1]:
                             order_to_complete = order
                             break
                         order_to_complete = False
@@ -167,6 +169,12 @@ class OrderService:
                                 print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
                         day_price = order_price // len(order_to_complete.get_date_list())
                         final_payment = int(milage_difference // 150 * 0.02 * day_price)
+                        if final_payment > 0:
+                            payment_complete = take_payment(final_payment)
+                            if payment_complete == "h":
+                                return "h"
+                        else:
+                            payment_complete = True
                         car.set_milage(new_milage)
                         self.__car_service.update_car_list(car)
                         order_to_complete.set_car(car)
