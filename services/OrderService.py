@@ -171,6 +171,7 @@ class OrderService:
                         day_price = order_price // len(order_to_complete.get_date_list())
                         final_payment = int(milage_difference // 150 * 0.02 * day_price)
                         if final_payment > 0:
+                            print_header(prompt)
                             payment_complete = take_payment(final_payment)
                             if payment_complete == "h":
                                 return "h"

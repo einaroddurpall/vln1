@@ -13,7 +13,10 @@ class CustomerMenu:
         self.customer_menu()
 
     def customer_menu(self):
-        """ Hér er hægt að framkvæma allar aðgerðir sem koma viðskiptavinum við """
+        """ Hér er hægt að framkvæma allar þær aðgerðir sem koma viðskiptavinum við.
+            1. Leita að viðskiptavin, hér tekur CustomerService klasinn við kennitölu, athugar hvort það sé til viðskiptavinur
+               í kerfinu með þessa kennitölu og skilar viðeigandi viðskiptavin. Þegar viðskiptavinur hefur verið valinn keyrist 
+            2. Skrá nýjan viðskiptavin """
         done = False
         while not done:
             prompt = "Heimasíða / Viðskiptavinir"
@@ -67,7 +70,7 @@ class CustomerMenu:
                     for order in customer_orders:
                         print(order)
                         print()
-                    input("Ýttu á enter til að halda áfram: ")
+                    input('Ýttu á "Enter" til að halda áfram: ')
                 else:
                     print("Þessi viðskiptavinur hefur enga notkunarsögu.")
                     sleep(2)
