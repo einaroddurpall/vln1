@@ -122,7 +122,7 @@ def pretty_date (date):
 def take_payment(price):
     payment_complete = False
     while not payment_complete:
-        print("\nVerð: {}".format(pretty_str(price, "ISK")))
+        print("Verð: {}".format(pretty_str(price, "ISK")))
         pay_choice = input("1.  Borga með korti\n2.  Borga með reiðufé\nh.  Hætta við\n").lower()
         if pay_choice == "h":
             return "h"

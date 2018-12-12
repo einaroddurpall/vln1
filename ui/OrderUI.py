@@ -35,7 +35,7 @@ class OrderMenu:
                             prompt = "Heimasíða / Skoða eða skrá pantanir / Skoða pöntun"
                             print(order)
                             print('='*60)
-                            choice = input("\n1.  Uppfæra pöntun\n2.  Eyða pöntun\n3.  Tilbaka\n4.  Heim\n")
+                            choice = input("\n1.  Uppfæra pöntun\n2.  Eyða pöntun\nt.  Tilbaka\nh.  Heim\n")
                             if choice == "1":       #Pöntun uppfærist í csv næst þegar kerfið er opnað
                                 prompt += " / Uppfæra Pöntun"
                                 self.__order_service.change_order_info(order, False, prompt)
@@ -48,20 +48,19 @@ class OrderMenu:
                                     self.__order_service.order_delete(order)
                                     choice = "Tilbaka"
                                     exit_info = "Tilbaka"
-                            elif choice == "3":
+                            elif choice == "t":
                                 choice = "Tilbaka"
                                 exit_info = "Tilbaka"
                             else:
-                                choice = "Heim"
+                                choice = "h"
                                 exit_info = "Heim"
                                 done = True
                     else:
                         choice = input('Pöntunin: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heimasíða\n'.format(order_name))
-                        if choice == "t":
+                        if choice == "t" or choice == "h":
+                            if choice == "h":
+                                done = True
                             exit_info = "Tilbaka"
-                        elif choice == "h":
-                            exit_info = "Heim"
-                            done = True
             elif action == "2":
                 finished = False
                 while not finished:
