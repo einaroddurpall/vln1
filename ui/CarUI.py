@@ -107,31 +107,38 @@ class CarMenu:
             elif action == "3":
                 exit_info = ""
                 prompt += " / Skoða lausa bíla"
+                print_header(prompt)
                 while exit_info == "":
-                    print_header(prompt)
                     go_home = self.__car_service.get_available_cars(prompt)
                     if go_home != True:
-                        choice = input("1.  Skoða fleiri lausa bíla\nt.  Tilbaka\nh.  Heim\n").lower()
-                        if choice == "t" or choice == "h":
-                            if choice == "h":
-                                done = True
-                            break
+                        choice = ""
+                        while choice != "1":
+                            choice = input("1.  Skoða fleiri lausa bíla\nt.  Tilbaka\nh.  Heim\n").lower()
+                            if choice == "t" or choice == "h":
+                                if choice == "h":
+                                    done = True
+                                exit_info = "Tilbaka"
+                                break
+                            print_header(prompt)
                     else:
                         exit_info = "Tilbaka"
             elif action == "4":
                 exit_info = ""
-                prompt += " / Skoða bíla í útleigu"
+                print_header(prompt)
                 while exit_info == "":
-                    print_header(prompt)
+                    prompt += " / Skoða bíla í útleigu"
                     busy_cars_dict = self.__car_service.get_busy_cars(prompt)
                     go_home = self.__car_service.print_car_dict(busy_cars_dict)
                     if go_home != True:
-                        choice = input("1.  Skoða fleiri bíla í útleigu\nt.  Tilbaka\nh.  Heim\n")
-                        if choice == "t" or choice == "h" or choice != "1":
-                            if choice == "h":
-                                done = True
-                            exit_info = "Tilbaka"
-                            break
+                        choice = ""
+                        while choice != "1":
+                            choice = input("1.  Skoða fleiri bíla í útleigu\nt.  Tilbaka\nh.  Heim\n")
+                            if choice == "t" or choice == "h":
+                                if choice == "h":
+                                    done = True
+                                exit_info = "Tilbaka"
+                                break
+                            print_header(prompt)
                     else:
                         exit_info = "Tilbaka"
             elif action == "h":
