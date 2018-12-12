@@ -157,7 +157,7 @@ class OrderService:
                             except:
                                 print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
                         day_price = order_price // len(order_to_complete.get_date_list())
-                        final_payment = int(order_price + milage_difference // 150 * 0.02 * day_price)
+                        final_payment = int(milage_difference // 150 * 0.02 * day_price)
                         final_payment = pretty_str(final_payment, "ISK")
                         car.set_milage(new_milage)
                         self.__car_service.update_car_list(car)
