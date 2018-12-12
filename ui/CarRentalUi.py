@@ -19,6 +19,7 @@ class CarRentalUi:
         self.__staff_service = StaffService()
 
     def draw_car(self):
+        """Teiknar bíl"""
         print("\033[1;34;1m{:<31}==============".format(""))
         sleep(0.35)
         print("{:<28}=={:<16}==".format("",""))
@@ -53,6 +54,7 @@ class CarRentalUi:
         while not login:
             username = input("Username: ")
             password = input("Password: ")
+            #Athugar hvort notandi sé til og skilar því, notandanum og hvort hann sé admin
             login, admin, self.__staff = self.__staff_service.check_login(username, password)
             if login == False:
                 system('clear')
@@ -69,11 +71,8 @@ class CarRentalUi:
             else:
                 action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\nq.  Skrá út\n").lower()
             if action == "1":
-                #car.car_menu()
                 self.__carUI()
             elif action == "2":
-                #customer.customer_menu()
                 self.__customerUI()
             elif action == "3":
-                #order.order_menu()
                 self.__orderUI()
