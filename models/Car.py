@@ -16,7 +16,6 @@ class Car:
 
     def __str__(self):
         """Strengur sem birtist er bíll er prentaður."""
-
         if self.__is_available:
             is_available = "Bíllinn er laus í dag."
         else:
@@ -54,6 +53,7 @@ class Car:
         self.__milage = milage
     
     def set_availability(self, date_dict):
+        """sendir inn 'i checkabailability fallið upplýsingar og skilar hvort bílinn sé laus á þeim degi"""
         if self.check_availability([date.today()], date_dict, self.get_car_type):
             self.__is_available = True
         else:
@@ -77,9 +77,10 @@ class Car:
         return self.get_registration_num() == other.get_registration_num()
 
     def car_change_info(self, step, all_cars_list, prompt):
-        """Þetta fall er þar sem upplýsingar um bíla breytast, það tekur inn skref sem sendir notandann á þá
-        breytingu sem að hann valdi, þegar búið er til bíl er ítrað í gegnum öll skref á þessu falli í CarService
-        en þegar upplýsingum um bíl er breytt þá gerist það í car service aðeins við það skref sem er valið"""
+        '''þetta fall tekur inn uppl. um bíl og hvaða uppl. notandi vill breyta um bílin, 
+        síðan fer í viðeigandi skref og breytir þeim með viðeigandi uppl sem fallið hefur eða 
+        spyr notandann um upplýsingar og breytir þeim'''
+        # biður um bílnum frá notanda gáir síðan hvort bílnúmerið sé í lagi og skráir síðan bílnumerið á bílin ef það er löglegt
         if step == "1":
             done = False
             while not done:
@@ -96,12 +97,15 @@ class Car:
                 if registration_num:
                     self.__registration_num = registration_num
                     done = True
+        # biður um hvernig bílatýpu bílinn er og skráir það á bílin
         elif step == "2":
             self.__car_type = make_car_type()
+        # Biður um hvernig Tegund bíllinn er og skráir þáð síðan á bílin
         elif step == "3":
             self.__sub_type = input("Tegund bíls: ")
             if self.__sub_type == "t" or self.__sub_type == "h":
                 return self.__sub_type
+        # spyr um hvernig skipting bílinn er með og skráir það síðan á instancið
         elif step == "4":
             valid_transmission = False
             while valid_transmission is False:
@@ -116,6 +120,7 @@ class Car:
                     return transmission
                 else:
                     print("Villa, vinsamlegast veldu sjálfskiptan eða beinskiptan")
+        # spyr um hvað bílinn er ekinn mikið og skráir það síðan á bílin og gáir síðan hvort það sérétt slegið inn
         elif step == "5":
             valid_mileage = False
             while valid_mileage != True: 

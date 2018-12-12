@@ -98,7 +98,12 @@ class Order:
         """sets the price of the orders"""
         self.__order_price = price
 
-    def change_info(self, step, car_service, customer_service, prompt = "", price_repo=None):
+    def change_info(self, step, car_service, customer_service, prompt = "", price_repo = None):
+        '''Þetta fall tekur inn uppl. um hvaða skrefi notandinn vil breyta, síðan fer inn í það
+        skref með þær uppl. sem það þarf til að breyta viðeigaindi uppl. um ákveðna pöntun sem 
+        notandinn vill láta breyta og spyr notandinn um þær uppl. sem það þarf.'''
+        #þetta skref biður umm kennitölu viðskiptavinar síðan gáir hvort hún sé til ef hún er til þá verður viðskiptavinur
+        #skráður inn í kerfið
         if step == "1":
             valid_ssn = False
             while valid_ssn is not True:
@@ -112,6 +117,8 @@ class Order:
                     choice = input("Kennitalan {} fannst ekki.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heim\n".format(ssn))
                     if choice == "t" or choice == "h":
                         return choice
+        # Þetta skref  biður fyrst um hvernig bíla tegund notandi vill
+        # síðan gáir hvort bíll sé laus í þeim dagsetningu sem notandi vil ef bíll er laus skráir kerfið bílin í orderið
         elif step == "2":
             step2 = False
             while step2 is not True:
@@ -127,6 +134,7 @@ class Order:
                     print("Enginn bíll laus með þessi skilyrði")
                     sleep(2)
                     print_header(prompt)
+        # Þetta fall spyr notanda um hvernig trygginu notandi bill og skráir það síðan í pöntunina
         elif step == "3":
             step3 = False
             while step3 is not True:
@@ -143,6 +151,7 @@ class Order:
                     return number
                 else:
                     print("Vinsamlegast veldu viðurkennt gildi")
+        # Spyr um korta númerið notanda og gáir hvort það sé löggild og skráir það síðan á pöntunina
         elif step == "4":
             self.__card_info = make_number(16, "Kortanúmer: ", "Ólöglegt kortanúmer, reyndu aftur.")
 

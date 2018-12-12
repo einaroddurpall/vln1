@@ -21,6 +21,7 @@ def make_date(a_date):
     return date(int(year), int(month), int(day))
 
 def make_car_type():
+    '''spyr notandann um hvaða flokk af bíl hann vill fá og skilar síðan bílnumsem hann vill fá í streng'''
     valid_car_types = ["Fólksbíll", "Smábíll","Fimm sæta jeppi","Sjö sæta jeppi","Smárúta"]
     valid_car_type = False
     while valid_car_type is False:
@@ -33,30 +34,34 @@ def make_car_type():
             print("Númerið: {} er ekki í listanum, reyndu aftur.".format(number))
 
 def error_handle(search, search_input):
-        choice = input('{}: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heim\n'.format(search, search_input))
-        return choice.lower()
+    '''sendir error á skjáin hjá notandanum ef hann gerir einhverja villu'''
+    choice = input('{}: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heim\n'.format(search, search_input))
+    return choice.lower()
 
 def make_number(lenght_of_number, input_string, error_code_str):
-        legal_number = False
-        while not legal_number:
-            inp = input(input_string).lower()
-            if inp == "h" or inp == "t":
-                return inp
-            number = ""
-            for letter in inp:
-                try:
-                    int(letter)
-                    number += letter
-                except:
-                    number = ""
-                    break
-            if len(number) == lenght_of_number:
-                legal_number = True
-            else:
-                print(error_code_str)
-        return number
+    '''þegar notandinn slær inn kennitölu eða símanumer checkar þetta fall hvort það sér rétt langt og hvort allir stafir 
+    sér int annars sendir villu boða og biður um notanda að slá inn aftur'''
+    legal_number = False
+    while not legal_number:
+        inp = input(input_string).lower()
+        if inp == "h" or inp == "t":
+            return inp
+        number = ""
+        for letter in inp:
+            try:
+                int(letter)
+                number += letter
+            except:
+                number = ""
+                break
+        if len(number) == lenght_of_number:
+            legal_number = True
+        else:
+            print(error_code_str)
+    return number
     
 def check_registration_num(registration_num):
+    """Þetta fall tekur inn numeraplötu sem notandi sló inn og checkar hvort hún sé í lagi"""
     new_registration_num = ""
     for letter in registration_num:
         if (letter in string.ascii_letters) or (letter in string.digits):
@@ -66,6 +71,7 @@ def check_registration_num(registration_num):
         sleep(1)
         return False
     registration_num = new_registration_num.upper()
+    # Ef bílnúmerið er löglegt þá er skilað bílnumerinu, bara verið að cheacka alla möglega innslætti.
     if registration_num[0] in string.ascii_letters and registration_num[1] in string.ascii_letters\
     and (registration_num[2] in string.ascii_uppercase or registration_num[2] in string.digits)\
     and registration_num[3] in string.digits and registration_num[4] in string.digits:
@@ -84,6 +90,8 @@ def make_date_list(date1, date2):
     return date_list
 
 def pretty_str(number, unit):
+    '''þetta fall tekur inn tölu, og einingu og setur punkta inn á milli þriðja hvern staf og eininguna á aftast 
+    og skilar því sem streng'''
     number_str = str(number)
     number_new_str = ""
     for index, letter in enumerate(number_str[::-1]):
@@ -93,6 +101,7 @@ def pretty_str(number, unit):
     return number_new_str[::-1] + " " + unit
 
 def legal_dates(prompt):
+    '''biður notanda um að slá inn dagsetningar og passar að þær séu rétt slegnar inn'''
     valid_dates = False
     while not valid_dates:
         try:
@@ -116,15 +125,18 @@ def legal_dates(prompt):
     return date1, date2
 
 def pretty_date (date):
+    '''Þetta fall tekur dagsetningu og skilar henni í betra formi'''
     return date[8:10] + "/" + date[5:7] + "/" + date[0:4]
 
 def take_payment(price, price_promt="Verð"):
+    '''Þetta fall spyr notandann hvort hann vilji borga, og hvernig, ef hann hættir við skráist ekki pöntun inn í kerfið'''
     payment_complete = False
     while not payment_complete:
         print("{}: {}".format(price_promt, pretty_str(price, "ISK")))
         pay_choice = input("1.  Borga með korti\n2.  Borga með reiðufé\nh.  Hætta við\n").lower()
         if pay_choice == "h":
             return "h"
+        # EF notandi vill borga með pening er sent yfir í take_cash fallið
         elif pay_choice == "2":
             complete = take_cash(price)
             if type(complete) != bool:
@@ -137,6 +149,8 @@ def take_payment(price, price_promt="Verð"):
     return True
 
 def take_cash(price):
+    '''Þetta fall reiknar ef notandi kýs að borga með pening, reiknar afgnag þess og gáir hvort upphæð notanda stemmir
+    sendir hann í gengum nokkur skref ef hún gerir það ekki'''
     legal_amount = False
     while not legal_amount:
         amount = input("Sláðu inn magn (ISK): ")
@@ -153,8 +167,9 @@ def take_cash(price):
             print("Greiðsla tókst: Afgangur er {} ISK".format(amount - price))
             input('Ýttu á "Enter" til að halda áfram.')
             return True
+        # Ef greiðsla nægir ekki spyr kerfið hvort hann vilji borga með kort rest eða pening eða hætta við
         else:
-            final_pay_choice = input("Greiðsla ekki nógu stór. {} ISK vantar uppá\n1.  Borga restina með korti á skrá\n2.  Borga restina með pening\nh. hætta\n".format(pretty_str(price - amount, "ISK"))).lower()
+            final_pay_choice = input("Greiðsla nægir ekki, {} ISK vantar uppá\n1.  Borga restina með korti á skrá\n2.  Borga restina með pening\nh. hætta\n".format(pretty_str(price - amount, "ISK"))).lower()
             if final_pay_choice == "h":
                 return "h"
             elif final_pay_choice == "2":
