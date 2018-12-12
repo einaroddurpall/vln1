@@ -1,3 +1,1 @@
-Pöntun 1;Customer('Viðskiptavinur 10','Amma','1122334455','amma@afi.is','5812345');Car('DD123','Smárúta','VW Type 2 grænn','Beinskiptur',100000);datetime.date(2019, 12, 12);datetime.date(2019, 12, 13);Aukatrygging;1234123412341234;54000;False
-Pöntun 2;Customer('Viðskiptavinur 10','Amma','1122334455','amma@afi.is','5812345');Car('COL40','Smárúta','Coca Cola 2.0','Sjálfskiptur',0);datetime.date(2019, 12, 12);datetime.date(2019, 12, 13);Grunntrygging;1234432112344321;64000;False
-Pöntun 3;Customer('Viðskiptavinur 5','Huginn','1414141414','huginn@gmail.com','8203727');Car('YTG56','Smábíll','sdgh','Sjálfskiptur',654);datetime.date(2019, 5, 5);datetime.date(2019, 5, 10);Grunntrygging;1234432112344321;72000;False
+Pöntun 1;Customer('Viðskiptavinur 10','Amma','1122334455','amma@afi.is','5812345');Car('FVG44','Smábíll','erty','Beinskiptur',67776);datetime.date(2019, 5, 5);datetime.date(2019, 5, 15);Grunntrygging;1234432112344321;132000;False

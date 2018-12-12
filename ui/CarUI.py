@@ -1,9 +1,9 @@
 from os import system,name
-from services.CarService import CarService
-from models.Car import Car
 from time import sleep
 from datetime import date
 import string
+from services.CarService import CarService
+from models.Car import Car
 from models.Functions import print_header, error_handle
 
 class CarMenu:
@@ -53,56 +53,15 @@ class CarMenu:
                             if choice == "h":
                                 done = True
                             break
-                    car_selected = True
-                    while car_selected:
-                        prompt = "Heimasíða / Bílar / Skoða bíl"
-                        system('clear')
-                        print_header(prompt)
-                        car_found.set_availability(self.__car_service.get_date_dict())
-                        print(car_found)
-                        print("="*70)
-                        choice = input("\n1.  Skoða pantanir\n2.  Leita að öðru bílnúmeri\n3.  Uppfæra upplýsingar bíls\n4.  Afskrá bíl\nt.  Tilbaka\nh.  Heim\n").lower()
-                        if choice == "1":
-                            print_header(prompt)
-                            car_orders = self.__car_service.car_get_history(car_found)
-                            if car_orders:
-                                for order in car_orders:
-                                    print(order)
-                                    print()
-                            else:
-                                print_header(prompt)
-                                print("Þessi bíll hefur enga notkunarsögu.")
-                            input("Ýttu á enter til að halda áfram: ")
-                        elif choice == "2":
-                            prompt += " / Leita að öðru bílnúmeri"
-                            print_header(prompt)
-                            car_selected = False
-                        elif choice == "3":
-                            prompt += " / Uppfæra upplýsingar bíls"
-                            self.__car_service.change_car_info(car_found, False, prompt)
-                        elif choice == "4":
-                            prompt += " / Afskrá bíl"
-                            print_header(prompt)
-                            choice = input("Ertu viss?(j/n): ")
-                            if choice == "j":
-                                self.__car_service.car_delete(car_found)
-                                exit_info = "Tilbaka"
-                                car_selected = False
-                        elif choice == "t" or choice == "h":
-                            if choice == "h":
-                                done = True
-                            exit_info = "Tilbaka"
-                            car_selected = False
+                    exit_info, done = self.view_car(car_found)
             elif action == "2":
                 prompt += " / Skrá nýjan bíl"
                 print_header(prompt)
-                car_was_made = self.__car_service.make_car(prompt)
-                if type(car_was_made) != str:
-                    print_header(prompt)
-                    print("Bíll skráður í kerfið.")
-                    input('Smelltu á "Enter" til að halda áfram')
+                new_car = self.__car_service.make_car(prompt)
+                if type(new_car) == Car:
+                    exit_info, done = self.view_car(new_car)
                 else: 
-                    if car_was_made == "h":
+                    if new_car == "h":
                         done = True
             elif action == "3":
                 exit_info = ""
@@ -143,3 +102,44 @@ class CarMenu:
                         exit_info = "Tilbaka"
             elif action == "h":
                 done = True
+
+
+
+
+    def view_car(self, car):
+        car_selected = True
+        while car_selected:
+            prompt = "Heimasíða / Bílar / Skoða bíl"
+            system('clear')
+            print_header(prompt)
+            car.set_availability(self.__car_service.get_date_dict())
+            print(car)
+            print("="*70)
+            choice = input("\n1.  Skoða pantanir\n2.  Uppfæra upplýsingar bíls\n3.  Afskrá bíl\nt.  Tilbaka\nh.  Heim\n").lower()
+            if choice == "1":
+                print_header(prompt)
+                car_orders = self.__car_service.car_get_history(car)
+                if car_orders:
+                    for order in car_orders:
+                        print(order)
+                        print()
+                else:
+                    print_header(prompt)
+                    print("Þessi bíll hefur enga notkunarsögu.")
+                input('Ýttu á "Enter" til að halda áfram: ')
+            elif choice == "2":
+                prompt += " / Uppfæra upplýsingar bíls"
+                self.__car_service.change_car_info(car, False, prompt)
+            elif choice == "3":
+                prompt += " / Afskrá bíl"
+                print_header(prompt)
+                choice = input("Ertu viss?(j/n): ")
+                if choice == "j":
+                    self.__car_service.car_delete(car)
+                    return "Tilbaka", False
+            elif choice == "t":
+                return "Tilbaka", False
+            elif choice == "h":
+                return "Heim" , True
+                
+

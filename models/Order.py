@@ -2,11 +2,12 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Functions import make_number, make_date_list, make_date, pretty_str, make_car_type, legal_dates, print_header, pretty_date
+from models.Functions import make_number, make_date_list, make_date, pretty_str, make_car_type, legal_dates, print_header, pretty_date, calc_price
 from models.Car import Car
 
 class Order:
-    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name="Pöntun fær númer þegar hún hefur verið skráð", order_price = 0, complete = False):
+    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", 
+    order_name="Pöntun fær númer þegar hún hefur verið skráð", order_price = 0, complete = False):
         """Hver pöntun hefur viðskiptavin, bíl, lista af dögum, tryggingu, kortaupplýsingar(sem tryggingu), pöntunarnúmer/nafn, 
         verð og upplýsingar um hvort hún er búin eða ekki."""
         self.__customer = customer
@@ -97,7 +98,7 @@ class Order:
         """sets the price of the orders"""
         self.__order_price = price
 
-    def change_info(self, step, car_service, customer_service, prompt = ""):
+    def change_info(self, step, car_service, customer_service, prompt = "", price_repo=None):
         if step == "1":
             valid_ssn = False
             while valid_ssn is not True:
@@ -132,9 +133,11 @@ class Order:
                 if number == "2":
                     self.__insurance = "Aukatrygging"
                     step3 = True
+                    self.__order_price = calc_price(self, price_repo)
                 elif number == "1":
                     self.__insurance = "Grunntrygging"
                     step3 = True
+                    self.__order_price = calc_price(self, price_repo)
                 elif number == "t" or number == "h":
                     return number
                 else:

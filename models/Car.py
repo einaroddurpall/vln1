@@ -18,9 +18,9 @@ class Car:
         """Strengur sem birtist er bíll er prentaður."""
 
         if self.__is_available:
-            is_available = "Bíllinn er í húsinu"
+            is_available = "Bíllinn er laus í dag."
         else:
-            is_available = "Bíllinn er ekki í húsinu"
+            is_available = "Bíllinn er ekki laus í dag."
         return "Bílnúmer: {}-{}\nFlokkur bíls: {}\nTegund bíls: {}\n{}\nAkstur: {}\nLaus: {}".format(
         self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission,pretty_str(self.__milage, "km"), is_available)
 
@@ -48,8 +48,6 @@ class Car:
     def get_milage(self):
         """ Returns the milage of the car."""
         return self.__milage
-    
-
 
     def set_milage(self, milage):
         """ Sets new milage for the car in the system. When the car is returned we need to update the milage for the car."""
@@ -79,6 +77,9 @@ class Car:
         return self.get_registration_num() == other.get_registration_num()
 
     def car_change_info(self, step, all_cars_list, prompt):
+        """Þetta fall er þar sem upplýsingar um bíla breytast, það tekur inn skref sem sendir notandann á þá
+        breytingu sem að hann valdi, þegar búið er til bíl er ítrað í gegnum öll skref á þessu falli í CarService
+        en þegar upplýsingum um bíl er breytt þá gerist það í car service aðeins við það skref sem er valið"""
         if step == "1":
             done = False
             while not done:

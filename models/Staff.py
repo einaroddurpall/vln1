@@ -1,7 +1,7 @@
-from models.Person import Person
-from models.Functions import print_header, make_number
 from os import system
 from time import sleep
+from models.Person import Person
+from models.Functions import print_header, make_number
 
 class Staff(Person):
     """staff class, is a subclass of the Person class
@@ -22,8 +22,12 @@ class Staff(Person):
 
     def __str__(self):
         """Strengur sem birtist er starfsmaður er prentaður."""
-        return "Nafn: {}\nKennitala: {}\nNotandanafn {}\nLykilorð {}\nAðgengi {}".format(
-            self._name, self._ssn, self.__username, self.__password, self.__admin
+        if self.__admin == True:
+            admin = "Kerfisstjórnandi"
+        else:
+            admin = "Ekki kerifsstjórnandi"
+        return "Nafn: {}\nKennitala: {}\nNotandanafn: {}\nLykilorð: {}\nAðgengi: {}".format(
+            self._name, self._ssn, self.__username, self.__password, admin
         )
     
     def get_username(self):
@@ -60,7 +64,8 @@ class Staff(Person):
         while not done:
             print_header("Heimasíða / Starfsmenn / Skrá nýjan starfsmann")
             print(self)
-            correct = input("Er allt rétt? (j/n) ").lower()
+            print("="*70)
+            correct = input("\nEr allt rétt? (j/n) ").lower()
             if correct != "j":
                 self.update_info(staff_list)
             else:
@@ -71,7 +76,9 @@ class Staff(Person):
         correct = False
         while not correct:
             print_header("Heimasíða / Starfsmenn / Skrá nýjan starfsmann / Breyta skráningu")
-            choice = input("Hverju villtu breyta:\n1.  Nafn\n2.  Kennitala\n3.  Notandnafn\n4.  Lykilorð\n5.  Breyta aðgangi\n6.  Klára Skráningu\n")
+            print(self)
+            print("="*70)
+            choice = input("\nHverju villtu breyta:\n1.  Nafn\n2.  Kennitala\n3.  Notandnafn\n4.  Lykilorð\n5.  Breyta aðgangi\n6.  Klára Skráningu\n")
             legal_choice = False
             while not legal_choice:
                 try:

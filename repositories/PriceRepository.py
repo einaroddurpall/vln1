@@ -53,8 +53,3 @@ class PriceRepository:
             price_file.write("car_type,price\n")
             for price in self.__price_list:
                 price_file.write(price[0] + "," + price[1] + "\n")
-
-
-# price_repo = PriceRepository()
-# price_repo.set_sedan_price("1")
-# price_repo.update_price_list()

@@ -1,6 +1,6 @@
+from time import sleep
 from models.Person import Person
 from models.Functions import print_header, make_number
-from time import sleep
 
 class Customer(Person):
     """Customer class, is a subclass of the Person class

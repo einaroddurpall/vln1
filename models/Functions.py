@@ -1,8 +1,7 @@
-from datetime import date
+from datetime import date, timedelta
 from os import system
 from time import sleep
 import string
-from datetime import timedelta
 
 def print_header(prompt=""):
         """ Hreinsar terminal og prentar út header með slóð """
@@ -100,7 +99,7 @@ def legal_dates(prompt):
             date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
             if date1 < date.today():
                 print("Villa: Þú getur ekki skoðað/pantað bíla aftur í tímann, vinsamlegast sláðu inn gilda dagsetningu.")
-                input('Smelltu á "Enter" til að reyna aftur')
+                input('Ýttu á "Enter" til að reyna aftur')
                 print_header(prompt)
             else:
                 date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
@@ -108,11 +107,11 @@ def legal_dates(prompt):
                     valid_dates = True
                 else:
                     print("Villa: Afhendingardagur getur ekki verið á undan skiladegi, vinsamlegast sláðu inn gilda dagsetningu.")
-                    input('Smelltu á "Enter" til að reyna aftur')
+                    input('Ýttu á "Enter" til að reyna aftur')
                     print_header(prompt)
         except: 
             print("Villa: Dagsetning ekki til, vinsamlegast sláðu inn gilda dagsetningu.")
-            input('Smelltu á "Enter" til að reyna aftur')
+            input('Ýttu á "Enter" til að reyna aftur')
             print_header(prompt)
     return date1, date2
 
@@ -152,6 +151,7 @@ def take_cash(price):
                 return "h"
         if amount >= price:
             print("Greiðsla tókst: Afgangur er {} ISK".format(amount - price))
+            input('Ýttu á "Enter" til að halda áfram.')
             return True
         else:
             final_pay_choice = input("Greiðsla ekki nógu stór. {} ISK vantar uppá\n1.  Borga restina með korti á skrá\n2.  Borga restina með pening\nh. hætta\n".format(pretty_str(price - amount, "ISK"))).lower()
@@ -163,3 +163,29 @@ def take_cash(price):
                 continue
             else:
                 return True
+
+def calc_price(order, price_repo):
+    """Calculates the price of an order"""
+    car = order.get_car()
+    car_type = car.get_car_type()
+    base_price = get_car_price(car_type, price_repo)
+    dates = len(order.get_date_list())
+    insurance = order.get_insurance()
+    if insurance == 'Grunntrygging':
+        insurance_price = 2000
+    else:
+        insurance_price = 3500
+    return (dates)*(base_price + insurance_price)
+
+def get_car_price(car_type, price_repo):
+    '''Tekur inn streng sem lýsir bíltegundinni og skilar verðið á þeim flokki'''
+    if car_type.lower() == "smábíll":
+        return int(price_repo.get_small_car_price())
+    elif car_type.lower() == 'fólksbíll':
+        return int(price_repo.get_sedan_price())
+    elif car_type.lower() == 'fimm sæta jeppi':
+        return int(price_repo.get_five_seat_suv_price())
+    elif car_type.lower() == 'sjö sæta jeppi':
+        return int(price_repo.get_seven_seat_suv_price())
+    elif car_type.lower() == 'smárúta':
+        return int(price_repo.get_minibus_price())
