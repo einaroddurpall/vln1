@@ -19,7 +19,11 @@ class CustomerService:
         info_list = new_customer.get_info_list()
         if "t" not in info_list and "h" not in info_list:
             self.__customer_repo.add_customer(new_customer)
-        return new_customer
+            return new_customer
+        elif "t" in info_list:
+            return "t"
+        else:
+            return "h"
 
     def update_order_repo(self):
         self.__order_repo = OrderRepository()

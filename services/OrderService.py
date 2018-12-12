@@ -165,7 +165,10 @@ class OrderService:
                         order_to_complete.set_complete(True)
                         self.__order_repo.update_order_list()
                         print_header(prompt)
-                        print("Viðskiptavinur þarf að greiða {}\nPöntun er nú kláruð".format(final_payment))
+                        payment_complete = take_payment(final_payment)
+                        if type(payment_complete) == str:
+                            return "h"
+                        print("Pöntun er nú kláruð")
                         choice = input("1.  Velja aðra pöntun til að klára\n2.  Tilbaka\n3.  Heim\n")
                         if choice == "2" or choice == "3":
                             finished_completing_orders = True
