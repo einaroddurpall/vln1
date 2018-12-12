@@ -70,7 +70,10 @@ class CarService:
             if type(quit_info) == str:
                 return quit_info
         new_car.set_availability(self.get_date_dict())
-        continue_q = input("Er allt rétt? (j/n): ").lower()
+        print_header(prompt)
+        print(new_car)
+        print("="*70)
+        continue_q = input("\nEr allt rétt? (j/n): ").lower()
         if continue_q != "j":
             self.change_car_info(new_car, True, prompt)
         else:

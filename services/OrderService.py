@@ -51,17 +51,22 @@ class OrderService:
                     return "t"
                 elif choice == "h":
                     return "h"
-        continue_q = input("Er allt rétt? (j/n) ").lower()
-        if continue_q != "j":
-            self.change_order_info(new_order, True, prompt)
         price = calc_price(new_order)
         new_order.set_price(price)
+        print_header(prompt)
+        print(new_order)
+        print("="*70)
+        continue_q = input("\nEr allt rétt? (j/n) ").lower()
+        if continue_q != "j":
+            self.change_order_info(new_order, True, prompt)
+        # price = calc_price(new_order)
+        # new_order.set_price(price)
         print_header(prompt)
         payment_complete = take_payment(price)
         if type(payment_complete) == str:
             return "h"
         print_header(prompt)
-        print("Pöntun skráð.\n")
+        print("Pöntun skráð.")
         sleep(2.5)
         self.__order_repo.add_order(new_order)
         return new_order
@@ -70,7 +75,9 @@ class OrderService:
         correct = False
         while not correct:
             print_header(prompt)
-            print("Hverju villtu breyta:\n1.  Kennitölu á pöntun\n2.  Bíl og dagsetningu\n3.  Tryggingu\n4.  Kortanúmeri\n5.  Klára Skráningu")
+            print(order)
+            print("="*70)
+            print("\nHverju villtu breyta:\n1.  Kennitölu á pöntun\n2.  Bíl og dagsetningu\n3.  Tryggingu\n4.  Kortanúmeri\n5.  Klára Skráningu")
             legal_choice = False
             while not legal_choice:
                 choice = input()
