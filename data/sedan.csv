@@ -2,10 +2,5 @@ Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',100,True)
 Car('POP00','Fólksbíll','VW Passat','Sjálfskiptur',7500,True)
 Car('BBB25','Fólksbíll','BBBíll','Sjálfskiptur',2000,True)
 Car('HSG98','Fólksbíll','BLA','Sjálfskiptur',5000,True)
-Car('POP00','Fólksbíll','VW Passat','Sjálfskiptur',7500,True)
 Car('ICE10','Fólksbíll','Jaguar','Sjálfskiptur',20000,True)
-<<<<<<< HEAD
 Car('TYH32','Fólksbíll','jiii','Sjálfskiptur',8585,True)
-=======
-Car('LFC01','Fólksbíll','VW Passat','Sjálfskiptur',10,True)
->>>>>>> 67a93fe4c91241a35d1c0740e11b45bc0318647f

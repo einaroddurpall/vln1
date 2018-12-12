@@ -1,6 +1,7 @@
 from repositories.StaffRepository import StaffRepository
 from models.Staff import Staff
 from repositories.PriceRepository import PriceRepository
+from models.Functions import pretty_str
 
 class StaffService:
     '''Þessi klasi vinnur úr öllum upplýsingum sem tengjast starfsmanni, skrá starfsmann, logga sig inn og 
@@ -74,5 +75,5 @@ class StaffService:
     def print_price_list(self):
         print("{:16} {:>10}\n".format("Flokkur","Verð"))
         for price_list in self.__price_repo.get_price_list():
-            print("{:16} {:>10}".format(price_list[0], price_list[1]))
+            print("{:16} {:>10}".format(price_list[0], pretty_str(price_list[1], "ISK")))
     

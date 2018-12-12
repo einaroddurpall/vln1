@@ -57,6 +57,7 @@ class OrderService:
             self.change_order_info(new_order, True, prompt)
         price = calc_price(new_order)
         new_order.set_price(price)
+        print_header(prompt)
         payment_complete = take_payment(price)
         if type(payment_complete) == str:
             return "h"
@@ -125,7 +126,7 @@ class OrderService:
                 order_list = self.__order_repo.get_order_list()
                 order_to_complete_list = []
                 for order in order_list:
-                    if order.get_order_complete() != True and order.get_last_day() == date.today():
+                    if order.get_order_complete() != True and order.get_last_day() <= date.today():
                         order_to_complete_list.append(order)
                 if order_to_complete_list == []:
                     print("Enga pöntun þarf að klára í dag.")
