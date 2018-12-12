@@ -167,11 +167,6 @@ class OrderService:
                             print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
                     day_price = order_price // len(order_to_complete.get_date_list())
                     final_payment = int(milage_difference // 150 * 0.02 * day_price)
-                    car.set_milage(new_milage)
-                    self.__car_service.update_car_list(car)
-                    order_to_complete.set_car(car)
-                    order_to_complete.set_complete(True)
-                    self.__order_repo.update_order_list()
                     print_header(prompt)
                     if final_payment > 0:
                         payment_complete = take_payment(final_payment)
@@ -179,6 +174,11 @@ class OrderService:
                         payment_complete = True
                     if type(payment_complete) == str:
                         return "h"
+                    self.__car_service.update_car_list(car)
+                    order_to_complete.set_car(car)
+                    order_to_complete.set_complete(True)
+                    self.__order_repo.update_order_list()
+                    car.set_milage(new_milage)
                     print("Pöntun er nú kláruð")
                     choice = input("1.  Velja aðra pöntun til að klára\nt.  Tilbaka\nh.  Heim\n")
                     if choice == "t" or choice == "h":

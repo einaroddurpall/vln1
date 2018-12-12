@@ -8,8 +8,9 @@ from services.OrderService import OrderService
 
 class CustomerMenu:
 
-    def __init__(self):
+    def __init__(self, OrderService):
         self.__customer_service = CustomerService()
+        self.__order_service = OrderService
 
 
     def customer_menu(self):
@@ -85,7 +86,6 @@ class CustomerMenu:
             elif choice == "4":
                 prompt += " / Skrá pöntun á viðskiptavin"
                 print_header(prompt)
-                self.__order_service = OrderService()
                 self.__order_service.make_order_info(prompt, customer)
                 self.__customer_service.update_order_repo()
             elif choice == "t":

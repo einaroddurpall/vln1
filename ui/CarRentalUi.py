@@ -49,8 +49,9 @@ class CarRentalUi:
     def main_menu(self):
         """ Main menu er loop sem hættir þegar q er sett inn."""
         car = self.__carUI()
-        customer = self.__customerUI()
         order = self.__orderUI()
+        order_service = order.get_order_service()
+        customer = self.__customerUI(order_service)
         login = False
         while not login:
             username = input("Username: ")
