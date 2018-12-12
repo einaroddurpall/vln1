@@ -8,14 +8,14 @@ class CustomerRepository:
 
     def add_customer(self, customer):
         """Bæta viðskiptavin í .csv skrá og í viðskiptavinalista"""
-        with open("./data/customers.csv", "a", encoding = "UTF-8") as customers_file:
+        with open("./data/customers.txt", "a", encoding = "UTF-8") as customers_file:
             customers_file.write(customer.__repr__() + '\n')
         self.__customers.append(customer)
 
     def get_customers(self):
         """Ná í alla viðskiptavini úr skrá."""
         customers = []
-        with open("./data/customers.csv", encoding = "UTF-8") as customers_file:
+        with open("./data/customers.txt", encoding = "UTF-8") as customers_file:
             for row in customers_file.readlines():
                 customer = eval(row.strip())
                 customers.append(customer)
@@ -29,7 +29,7 @@ class CustomerRepository:
         """Uppfærir skrá sem heldur utan um viðskiptavi. Kallað er á þetta fall þegar
         lista sem inniheldur alla viðskiptavini er breytt, þ.e. þegar viðskiptavini er breytt.
         Skráin er þá uppfærð í takt við breytingarnar á listanum."""
-        with open("./data/customers.csv", "w", encoding = "UTF-8") as customers_file:
+        with open("./data/customers.txt", "w", encoding = "UTF-8") as customers_file:
             new_file = ""
             for a_customer in self.__customers:
                 new_file += a_customer.__repr__() + "\n"
