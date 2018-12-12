@@ -118,79 +118,70 @@ class OrderService:
         self.__order_repo.update_order_list()
 
     def complete_orders(self, prompt):
-        order_found = False
         finished_completing_orders = False
         while not finished_completing_orders:
-            while not order_found:
-                print_header(prompt)
-                order_list = self.__order_repo.get_order_list()
-                order_to_complete_list = []
-                for order in order_list:
-                    if order.get_order_complete() != True and order.get_last_day() <= date.today():
-                        order_to_complete_list.append(order)
-                if order_to_complete_list == []:
-                    print("Enga pöntun þarf að klára í dag.")
-                    sleep(2)
-                    order_found = True
-                    finished_completing_orders = True
+            # while not order_found:
+            print_header(prompt)
+            order_list = self.__order_repo.get_order_list()
+            order_to_complete_list = []
+            for order in order_list:
+                if order.get_order_complete() != True and order.get_last_day() == date.today():
+                    order_to_complete_list.append(order)
+            if order_to_complete_list == []:
+                print("Enga pöntun þarf að klára í dag.")
+                sleep(2)
+                # order_found = True
+                finished_completing_orders = True
+            else:
+                for order in order_to_complete_list:
+                    print(order)
+                    print()
+                order_to_change = input("Hvaða pöntun viltu klára? ")
+                if order_to_change == "t" or order_to_change == "h":
+                    return order_to_change
+                for order in order_to_complete_list:
+                    if order_to_change == order.get_order_name():
+                        order_to_complete = order
+                        break
+                    order_to_complete = False
+                if not order_to_complete:  # ss það finnst engin pöntun með þessu nafni
+                    choice = error_handle("Pöntun", order_to_change)
+                    if choice == "t" or choice == "h":
+                        return choice
+                    print_header(prompt)
                 else:
-                    for order in order_to_complete_list:
-                        print(order)
-                        print()
-                    order_to_change = input("Hvaða pöntun viltu klára? ")
-                    if order_to_change == "t" or order_to_change == "h":
-                        return order_to_change
-                    if len(order_to_change.split()) == 2:
-                        order_to_change = order_to_change.split()[1]
-                    for order in order_to_complete_list:
-                        if order_to_change == order.get_order_name().split()[1]:
-                            order_to_complete = order
-                            break
-                        order_to_complete = False
-                    if not order_to_complete:  # ss það finnst engin pöntun með þessu nafni
-                        choice = error_handle("Pöntun", order_to_change)
-                        if choice == "t" or choice == "h":
-                            return choice
-                        print_header(prompt)
-                    else:
-                        car = order_to_complete.get_car()
-                        order_price = int(order_to_complete.get_order_price())
-                        new_milage_boolean = False
-                        while not new_milage_boolean:
-                            try:
-                                new_milage = input("Hvað er bíllinn núna keyrður? ").lower()
-                                if new_milage == "t" or new_milage == "h":
-                                    return new_milage
-                                milage_difference = int(new_milage) - car.get_milage()
-                                if 0 < milage_difference:
-                                    new_milage_boolean = True
-                                else:
-                                    print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
-                            except:
+                    car = order_to_complete.get_car()
+                    order_price = int(order_to_complete.get_order_price())
+                    new_milage_boolean = False
+                    while not new_milage_boolean:
+                        try:
+                            new_milage = input("Hvað er bíllinn núna keyrður? ").lower()
+                            if new_milage == "t" or new_milage == "h":
+                                return new_milage
+                            milage_difference = int(new_milage) - car.get_milage()
+                            if 0 < milage_difference:
+                                new_milage_boolean = True
+                            else:
                                 print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
-                        day_price = order_price // len(order_to_complete.get_date_list())
-                        final_payment = int(milage_difference // 150 * 0.02 * day_price)
-                        if final_payment > 0:
-                            payment_complete = take_payment(final_payment)
-                            if payment_complete == "h":
-                                return "h"
-                        else:
-                            payment_complete = True
-                        car.set_milage(new_milage)
-                        self.__car_service.update_car_list(car)
-                        order_to_complete.set_car(car)
-                        order_to_complete.set_complete(True)
-                        self.__order_repo.update_order_list()
-                        print_header(prompt)
-                        if final_payment > 0:
-                            payment_complete = take_payment("Aukagreiðsla", final_payment)
-                        else:
-                            payment_complete = True
-                        if type(payment_complete) == str:
-                            return "h"
-                        print("Pöntun er nú kláruð")
-                        choice = input("1.  Velja aðra pöntun til að klára\nt.  Tilbaka\nh.  Heim\n")
-                        if choice == "t" or choice == "h":
-                            finished_completing_orders = True
-                        else:
-                            order_found = False
+                        except:
+                            print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
+                    day_price = order_price // len(order_to_complete.get_date_list())
+                    final_payment = int(milage_difference // 150 * 0.02 * day_price)
+                    print_header(prompt)
+                    if final_payment > 0:
+                        payment_complete = take_payment(final_payment)
+                    else:
+                        payment_complete = True
+                    if type(payment_complete) == str:
+                        return "h"
+                    self.__car_service.update_car_list(car)
+                    order_to_complete.set_car(car)
+                    order_to_complete.set_complete(True)
+                    self.__order_repo.update_order_list()
+                    car.set_milage(new_milage)
+                    print("Pöntun er nú kláruð")
+                    choice = input("1.  Velja aðra pöntun til að klára\nt.  Tilbaka\nh.  Heim\n")
+                    if choice == "t" or choice == "h":
+                        finished_completing_orders = True
+                    # else:
+                    #     order_found = False

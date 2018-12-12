@@ -69,6 +69,7 @@ class CarService:
             quit_info = new_car.car_change_info(str(step), self._all_cars_list, prompt)
             if type(quit_info) == str:
                 return quit_info
+        new_car.set_availability(self.get_date_dict())
         continue_q = input("Er allt rétt? (j/n): ").lower()
         if continue_q != "j":
             self.change_car_info(new_car, True, prompt)
@@ -82,6 +83,8 @@ class CarService:
         if new_or_not:
             while not correct:
                 print_header(prompt)
+                print(car)
+                print("="*70)
                 print("Hverju villtu breyta:\n1.  Bílnúmeri\n2.  Bílaflokkur\n3.  Undirtegund\n4.  Skipting\n5.  Akstur(km)\n6.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
@@ -99,9 +102,8 @@ class CarService:
         else:
             while not correct:
                 print_header(prompt)
-                
                 print(car)
-                print()
+                print("="*70)
                 print("Hverju villtu breyta:\n1.  Undirtegund\n2.  Skipting\n3.  Akstur(km)\n4.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
