@@ -180,7 +180,7 @@ class CarService:
                 if car_type in a_dict.keys():
                     print("\n{:<18}{:>10}:".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
                     print("="*60)
-                    print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+                    print("{:>20}{:>10}{:>13}{:>17}".format("Bíltegund", "Bílnúmer", 'Akstur', 'Skipting'))
                     print('-'*60)
                     for car_info in a_dict[car_type]:
                         car_number = car_info[0]

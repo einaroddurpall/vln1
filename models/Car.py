@@ -18,9 +18,9 @@ class Car:
         """Strengur sem birtist er bíll er prentaður."""
 
         if self.__is_available:
-            is_available = "Bíllinn er í húsinu"
+            is_available = "Bíllinn er laus í dag."
         else:
-            is_available = "Bíllinn er ekki í húsinu"
+            is_available = "Bíllinn er ekki laus í dag."
         return "Bílnúmer: {}-{}\nFlokkur bíls: {}\nTegund bíls: {}\n{}\nAkstur: {}\nLaus: {}".format(
         self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission,pretty_str(self.__milage, "km"), is_available)
 

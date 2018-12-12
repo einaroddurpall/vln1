@@ -72,7 +72,7 @@ class CarMenu:
                             else:
                                 print_header(prompt)
                                 print("Þessi bíll hefur enga notkunarsögu.")
-                            input("Ýttu á enter til að halda áfram: ")
+                            input('Ýttu á "Enter" til að halda áfram: ')
                         elif choice == "2":
                             prompt += " / Leita að öðru bílnúmeri"
                             print_header(prompt)
@@ -100,7 +100,7 @@ class CarMenu:
                 if type(car_was_made) != str:
                     print_header(prompt)
                     print("Bíll skráður í kerfið.")
-                    input('Smelltu á "Enter" til að halda áfram')
+                    input('Ýttu á "Enter" til að halda áfram')
                 else: 
                     if car_was_made == "h":
                         done = True

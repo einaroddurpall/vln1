@@ -57,7 +57,6 @@ class CarRentalUi:
             if login == False:
                 system('clear')
                 print("Innskráning mistókst.")
-                sleep(1)
         action = ""
         while action != "q":
             prompt = "Heimasíða"
