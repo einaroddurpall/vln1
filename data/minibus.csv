@@ -1,2 +1,3 @@
-Car('KKK69','Smárúta','Coca Cola','Sjálfskiptur',10,True)
-Car('KOP12','Smárúta','VW Type 2','Sjálfskiptur',10,True)
+Car('KKK69','Smárúta','Coca Cola','Sjálfskiptur',12342134,True)
+Car('KOP12','Smárúta','VW Type 2','Beinskiptur',150,True)
+Car('COL40','Smárúta','Coca Cola 2.0','Sjálfskiptur',0,True)

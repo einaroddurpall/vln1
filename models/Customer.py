@@ -64,6 +64,8 @@ class Customer(Person):
         while not correct:
             legal_choice = False
             while not legal_choice:
+                print(self)
+                print()
                 choice = input("Hverju villtu breyta:\n1. Nafn\n2. Kennitala\n3. Netfang\n4. Símanúmer\n5. Klára Skráningu\n")
                 print_header("Heimasíða / Viðskiptavinir / Leita að viðskiptavin / Breyta skráningu")
                 try:
@@ -110,11 +112,11 @@ class Customer(Person):
                 domain_list = domain.split(".")
                 if len(domain_list) == 2:
                     legal_email = True
-                else:
-                    print("Netfangið {} er ekki löglegt netfang.".format(email))
-                    choice = input("1.  Reyna aftur\n2.  Tilbaka\n3.  Heim")
-                    if choice == "2":
-                        return "Tilbaka"
-                    elif choice == "3":
-                        return "Heim"
+            if not legal_email:
+                print("Netfangið {} er ekki löglegt netfang.".format(email))
+                choice = input("1.  Reyna aftur\nt.  Tilbaka\nh.  Heim\n").lower()
+                if choice == "t":
+                    return "Tilbaka"
+                elif choice == "h":
+                    return "Heim"
         self.__email = email

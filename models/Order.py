@@ -100,7 +100,7 @@ class Order:
     # def get_info_list(self):
     #     return [self.__ss]
 
-    def change_info(self, step, car_service, customer_service, prompt):
+    def change_info(self, step, car_service, customer_service, prompt = ""):
         if step == "1":
             valid_ssn = False
             while valid_ssn is not True:

@@ -64,6 +64,7 @@ def check_registration_num(registration_num):
             new_registration_num += letter
     if len(new_registration_num) != 5:
         print("Þetta bílnúmer var ólöglegt.")
+        sleep(1)
         return False
     registration_num = new_registration_num.upper()
     if registration_num[0] in string.ascii_letters and registration_num[1] in string.ascii_letters\
@@ -71,7 +72,7 @@ def check_registration_num(registration_num):
     and registration_num[3] in string.digits and registration_num[4] in string.digits:
         return registration_num
     print("Þetta bílnúmer var ólöglegt.")
-    sleep(2)
+    sleep(1)
     return False
 
 def make_date_list(date1, date2):
@@ -132,6 +133,8 @@ def take_payment(price):
                     return "h"
             else:
                 payment_complete = True
+        elif pay_choice == "1":
+            payment_complete = True
     return True
 
 def take_cash(price):
@@ -140,7 +143,6 @@ def take_cash(price):
         amount = input("Sláðu inn magn (ISK): ")
         try:
             amount = int(amount)
-            legal_amount = True
         except:
             print("Sláðu einungis inn tölustafi.")
             keep_going = input("1.  Reyna aftur\nt.  Tilbaka\nh.  Hætta við\n").lower()
@@ -148,13 +150,16 @@ def take_cash(price):
                 return "t"
             elif keep_going == "h":
                 return "h"
-    if amount >= price:
-        print("Greiðsla tókst: Afgangur er {} ISK".format(amount - price))
-        return True
-    else:
-        final_pay_choice = input("Greiðsla ekki nógu stór. {} ISK vantar uppá\n1.  Borga restina með pening\n2.  Borga restina með korti á skrá\nh. hætta\n").lower()
-        if final_pay_choice == "h":
-            return "h"
-        else:
-            print("Greiðsla tókst.")
+        if amount >= price:
+            print("Greiðsla tókst: Afgangur er {} ISK".format(amount - price))
             return True
+        else:
+            final_pay_choice = input("Greiðsla ekki nógu stór. {} ISK vantar uppá\n1.  Borga restina með korti á skrá\n2.  Borga restina með pening\nh. hætta\n".format(pretty_str(price - amount, "ISK"))).lower()
+            if final_pay_choice == "h":
+                return "h"
+            elif final_pay_choice == "2":
+                price -= amount
+                print("\nVerð: {}".format(pretty_str(price, "ISK")))
+                continue
+            else:
+                return True
