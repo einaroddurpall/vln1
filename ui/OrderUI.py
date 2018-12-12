@@ -7,7 +7,7 @@ from models.Functions import print_header, pretty_str
 class OrderMenu:
     def __init__(self):
         self.__order_service = OrderService()
-        self.order_menu()
+
 
     def order_menu(self):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma pöntunum við """
@@ -76,12 +76,11 @@ class OrderMenu:
                             done = True
                     else:
                         print_header(prompt)
-                        choice = input("1.  Skrá aðra pöntun\n2.  Tilbaka\n3.  Heim\n")
-                        if choice == "2":
+                        choice = input("1.  Skrá aðra pöntun\nt.  Tilbaka\nh.  Heim\n")
+                        if choice == "t" or choice == "h":
+                            if choice == "h":
+                                done = True
                             finished = True
-                        elif choice == "3":
-                            finished = True
-                            done = True
             elif action == "3":
                 prompt += " / Klára pantanir dagsins"
                 print_header(prompt)
