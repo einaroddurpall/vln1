@@ -7,19 +7,20 @@ from models.Functions import print_header, make_date, check_registration_num, ma
 from services.ChangeService import ChangeService
 from time import sleep
 from os import system
+from repositories.PriceRepository import PriceRepository
 
-def get_car_price(car_type):
+def get_car_price(car_type, price_repo):
     '''Tekur inn streng sem lýsir bíltegundinni og skilar verðið á þeim flokki'''
     if car_type.lower() == "smábíll":
-        return CarRepository.SMALL_CAR_PRICE
+        return int(price_repo.get_small_car_price())
     elif car_type.lower() == 'fólksbíll':
-        return CarRepository.SEDAN_PRICE
+        return int(price_repo.get_sedan_price())
     elif car_type.lower() == 'fimm sæta jeppi':
-        return CarRepository.FIVE_SEAT_SUV_PRICE
+        return int(price_repo.get_five_seat_suv_price())
     elif car_type.lower() == 'sjö sæta jeppi':
-        return CarRepository.SEVEN_SEAT_SUV_PRICE
+        return int(price_repo.get_seven_seat_suv_price())
     elif car_type.lower() == 'smárúta':
-        return CarRepository.MINIBUS_PRICE
+        return int(price_repo.get_minibus_price())
 
 
 class CarService:
@@ -169,7 +170,7 @@ class CarService:
             car_type = make_car_type()
             if car_type != None:
                 if car_type in a_dict.keys():
-                    print("\n\033[1m{:<18}{:>10}:\033[0m".format(car_type, pretty_str(get_car_price(car_type), "ISK")))
+                    print("\n\033[1m{:<18}{:>10}:\033[0m".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
                     print("="*60)
                     print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
                     print('-'*60)
@@ -186,8 +187,9 @@ class CarService:
         return True
 
     def print_out_info_for_all_car_types(self, a_dict):
+        price_repo = PriceRepository()
         for key,val in a_dict.items():
-            print("\n\033[1m{:<18}{:>10}:\033[0m".format(key, pretty_str(get_car_price(key), "ISK")))
+            print("\n\033[1m{:<18}{:>10}:\033[0m".format(key, pretty_str(get_car_price(key, price_repo), "ISK")))
             print("="*60)
             print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
             print('-'*60)

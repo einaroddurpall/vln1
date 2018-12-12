@@ -76,7 +76,6 @@ class OrderMenu:
                             done = True
                     else:
                         print_header(prompt)
-                        print("Verð: {}\nPöntun skráð.".format(pretty_str(new_order.get_order_price(), "ISK")))
                         choice = input("1.  Skrá aðra pöntun\n2.  Tilbaka\n3.  Heim\n")
                         if choice == "2":
                             finished = True
