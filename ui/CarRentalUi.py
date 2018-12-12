@@ -55,7 +55,7 @@ class CarRentalUi:
         while not login:
             username = input("Username: ")
             password = input("Password: ")
-            login, admin = self.__staff_service.check_login(username, password)
+            login, admin, self.__staff = self.__staff_service.check_login(username, password)
             if login == False:
                 system('clear')
                 print("Innskráning mistókst.")
@@ -67,7 +67,7 @@ class CarRentalUi:
             if admin:
                 action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n4.  Starfsmenn\nq.  Skrá út\n").lower()
                 if action == '4':
-                    self.__staffUI()
+                    self.__staffUI(self.__staff)
             else:
                 action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\nq.  Skrá út\n").lower()
             if action == "1":

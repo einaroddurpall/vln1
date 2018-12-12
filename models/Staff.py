@@ -22,8 +22,12 @@ class Staff(Person):
 
     def __str__(self):
         """Strengur sem birtist er starfsmaður er prentaður."""
+        if self.__admin == True:
+            admin = "Kerfisstjórnandi"
+        else:
+            admin = "Ekki kerifsstjórnandi"
         return "Nafn: {}\nKennitala: {}\nNotandanafn {}\nLykilorð {}\nAðgengi {}".format(
-            self._name, self._ssn, self.__username, self.__password, self.__admin
+            self._name, self._ssn, self.__username, self.__password, admin
         )
     
     def get_username(self):

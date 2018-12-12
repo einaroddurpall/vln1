@@ -69,6 +69,7 @@ class CarService:
             quit_info = new_car.car_change_info(str(step), self._all_cars_list, prompt)
             if type(quit_info) == str:
                 return quit_info
+        new_car.set_availability(self.get_date_dict())
         continue_q = input("Er allt rétt? (j/n): ").lower()
         if continue_q != "j":
             self.change_car_info(new_car, True, prompt)
@@ -276,7 +277,7 @@ class CarService:
     def car_delete(self, car):
         self._all_cars_list.remove(car)
         car_type = car.get_car_type().lower()
-        if car_type == 'smá bíll':
+        if car_type == 'smábíll':
             self._car_repo_small_car.remove_car(car)
         elif car_type == 'fólksbíll':
             self._car_repo_sedan.remove_car(car)

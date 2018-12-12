@@ -2,6 +2,7 @@ from repositories.StaffRepository import StaffRepository
 from models.Staff import Staff
 from repositories.PriceRepository import PriceRepository
 from models.Functions import pretty_str
+from time import sleep
 
 class StaffService:
     '''Þessi klasi vinnur úr öllum upplýsingum sem tengjast starfsmanni, skrá starfsmann, logga sig inn og 
@@ -16,8 +17,8 @@ class StaffService:
         '''Gá hvort usernamið og passwordið sem slegið var inn stemmir'''
         for staff in self.__staff_list:
             if staff.get_username() == username and staff.get_password() == password:
-                return True, staff.get_admin()
-        return False, False
+                return True, staff.get_admin(), staff
+        return False, False, False
 
     def staff_register(self):
         '''Sendir skilaboð til reboið um add viðeigandi starfsmanni í skrána'''
@@ -29,10 +30,14 @@ class StaffService:
         else:
             return new_staff
     
-    def staff_delete(self, staff):
+    def staff_delete(self, staff, user_staff):
         '''Eyðir starfsmanni úr listanum og sendir á repoið að eyða starfsmanni úr skránum'''
-        self.__staff_list.remove(staff)
-        self.__staff_repo.update_staff_list()
+        if staff.get_ssn() != user_staff.get_ssn():
+            self.__staff_list.remove(staff)
+            self.__staff_repo.update_staff_list()
+        else:
+            print("Getur ekki eytt sjálfum þér úr kerfinu")
+            sleep(2)
 
     def staff_update_info(self, staff):
         '''Updatear starfsmanns upplýsingar og sendir það á repoið að updata það'''
