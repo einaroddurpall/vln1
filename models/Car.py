@@ -17,9 +17,9 @@ class Car:
     def __str__(self):
         """Strengur sem birtist er bíll er prentaður."""
         if self.__is_available:
-            is_available = "Bíllinn er í húsinu"
+            is_available = "Bíllinn er laus í dag."
         else:
-            is_available = "Bíllinn er ekki í húsinu"
+            is_available = "Bíllinn er ekki laus í dag."
         return "Bílnúmer: {}-{}\nFlokkur bíls: {}\nTegund bíls: {}\n{}\nAkstur: {}\nLaus: {}".format(
         self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission,pretty_str(self.__milage, "km"), is_available)
 
@@ -77,6 +77,10 @@ class Car:
         return self.get_registration_num() == other.get_registration_num()
 
     def car_change_info(self, step, all_cars_list, prompt):
+        '''þetta fall tekur inn uppl. um bíl og hvaða uppl. notandi vill breyta um bílin, 
+        síðan fer í viðeigandi skref og breytir þeim með viðeigandi uppl sem fallið hefur eða 
+        spyr notandann um upplýsingar og breytir þeim'''
+        # biður um bílnum frá notanda gáir síðan hvort bílnúmerið sé í lagi og skráir síðan bílnumerið á bílin ef það er löglegt
         if step == "1":
             done = False
             while not done:
@@ -93,12 +97,15 @@ class Car:
                 if registration_num:
                     self.__registration_num = registration_num
                     done = True
+        # biður um hvernig bílatýpu bílinn er og skráir það á bílin
         elif step == "2":
             self.__car_type = make_car_type()
+        # Biður um hvernig Tegund bíllinn er og skráir þáð síðan á bílin
         elif step == "3":
             self.__sub_type = input("Tegund bíls: ")
             if self.__sub_type == "t" or self.__sub_type == "h":
                 return self.__sub_type
+        # spyr um hvernig skipting bílinn er með og skráir það síðan á instancið
         elif step == "4":
             valid_transmission = False
             while valid_transmission is False:
@@ -113,6 +120,7 @@ class Car:
                     return transmission
                 else:
                     print("Villa, vinsamlegast veldu sjálfskiptan eða beinskiptan")
+        # spyr um hvað bílinn er ekinn mikið og skráir það síðan á bílin og gáir síðan hvort það sérétt slegið inn
         elif step == "5":
             valid_mileage = False
             while valid_mileage != True: 

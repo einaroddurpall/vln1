@@ -1,8 +1,8 @@
+from datetime import datetime
 from repositories.CustomerRepository import CustomerRepository
 from repositories.OrderRepository import OrderRepository
-from models.Customer import Customer
-from datetime import datetime
 from services.ChangeService import ChangeService
+from models.Customer import Customer
 
 class CustomerService:
 

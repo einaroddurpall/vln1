@@ -1,8 +1,7 @@
-from datetime import date
+from datetime import date, timedelta
 from os import system
 from time import sleep
 import string
-from datetime import timedelta
 
 def print_header(prompt=""):
         """ Hreinsar terminal og prentar út header með slóð """
@@ -72,6 +71,7 @@ def check_registration_num(registration_num):
         sleep(1)
         return False
     registration_num = new_registration_num.upper()
+    # Ef bílnúmerið er löglegt þá er skilað bílnumerinu, bara verið að cheacka alla möglega innslætti.
     if registration_num[0] in string.ascii_letters and registration_num[1] in string.ascii_letters\
     and (registration_num[2] in string.ascii_uppercase or registration_num[2] in string.digits)\
     and registration_num[3] in string.digits and registration_num[4] in string.digits:
@@ -108,7 +108,7 @@ def legal_dates(prompt):
             date1 = make_date(input("Afhendingardagur (DD.MM.YYYY): "))
             if date1 < date.today():
                 print("Villa: Þú getur ekki skoðað/pantað bíla aftur í tímann, vinsamlegast sláðu inn gilda dagsetningu.")
-                input('Smelltu á "Enter" til að reyna aftur')
+                input('Ýttu á "Enter" til að reyna aftur')
                 print_header(prompt)
             else:
                 date2 = make_date(input("Skiladagur (DD.MM.YYYY): "))
@@ -116,11 +116,11 @@ def legal_dates(prompt):
                     valid_dates = True
                 else:
                     print("Villa: Afhendingardagur getur ekki verið á undan skiladegi, vinsamlegast sláðu inn gilda dagsetningu.")
-                    input('Smelltu á "Enter" til að reyna aftur')
+                    input('Ýttu á "Enter" til að reyna aftur')
                     print_header(prompt)
         except: 
             print("Villa: Dagsetning ekki til, vinsamlegast sláðu inn gilda dagsetningu.")
-            input('Smelltu á "Enter" til að reyna aftur')
+            input('Ýttu á "Enter" til að reyna aftur')
             print_header(prompt)
     return date1, date2
 
@@ -136,6 +136,7 @@ def take_payment(price, price_promt="Verð"):
         pay_choice = input("1.  Borga með korti\n2.  Borga með reiðufé\nh.  Hætta við\n").lower()
         if pay_choice == "h":
             return "h"
+        # EF notandi vill borga með pening er sent yfir í take_cash fallið
         elif pay_choice == "2":
             complete = take_cash(price)
             if type(complete) != bool:
@@ -148,7 +149,8 @@ def take_payment(price, price_promt="Verð"):
     return True
 
 def take_cash(price):
-    '''Þetta fall reiknar ef notandi kýs að borga með pening, reiknar afgnag þess og stemmir hvort upphæð notanda stemmir'''
+    '''Þetta fall reiknar ef notandi kýs að borga með pening, reiknar afgnag þess og gáir hvort upphæð notanda stemmir
+    sendir hann í gengum nokkur skref ef hún gerir það ekki'''
     legal_amount = False
     while not legal_amount:
         amount = input("Sláðu inn magn (ISK): ")
@@ -163,7 +165,9 @@ def take_cash(price):
                 return "h"
         if amount >= price:
             print("Greiðsla tókst: Afgangur er {} ISK".format(amount - price))
+            input('Ýttu á "Enter" til að halda áfram.')
             return True
+        # Ef greiðsla nægir ekki spyr kerfið hvort hann vilji borga með kort rest eða pening eða hætta við
         else:
             final_pay_choice = input("Greiðsla nægir ekki, {} ISK vantar uppá\n1.  Borga restina með korti á skrá\n2.  Borga restina með pening\nh. hætta\n".format(pretty_str(price - amount, "ISK"))).lower()
             if final_pay_choice == "h":

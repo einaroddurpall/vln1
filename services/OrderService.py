@@ -59,8 +59,6 @@ class OrderService:
         continue_q = input("\nEr allt rétt? (j/n) ").lower()
         if continue_q != "j":
             self.change_order_info(new_order, True, prompt)
-        # price = calc_price(new_order)
-        # new_order.set_price(price)
         print_header(prompt)
         payment_complete = take_payment(price)
         if type(payment_complete) == str:
@@ -129,7 +127,6 @@ class OrderService:
             hefur þar með verið kláruð. """
         finished_completing_orders = False
         while not finished_completing_orders:
-            # while not order_found:
             print_header(prompt)
             order_list = self.__order_repo.get_order_list()
             order_to_complete_list = []
@@ -139,7 +136,6 @@ class OrderService:
             if order_to_complete_list == []:
                 print("Enga pöntun þarf að klára í dag.")
                 sleep(2)
-                # order_found = True
                 finished_completing_orders = True
             else:
                 for order in order_to_complete_list:
@@ -190,6 +186,7 @@ class OrderService:
                     order_to_complete.set_complete(True)
                     self.__order_repo.update_order_list()
                     car.set_milage(new_milage)
+                    print_header(prompt)
                     print("Pöntun er nú kláruð")
                     choice = input("1.  Velja aðra pöntun til að klára\nt.  Tilbaka\nh.  Heim\n")
                     if choice == "t" or choice == "h":
