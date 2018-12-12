@@ -15,13 +15,18 @@ class OrderMenu:
         while not done:
             prompt = "Heimasíða / Skoða eða skrá pantanir"
             print_header(prompt)
-            action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Klára pantanir dagsins\n4.  Heim\n")
+            action = input("1.  Skoða pöntun\n2.  Skrá nýja pöntun\n3.  Klára pantanir dagsins\nh.  Heim\n")
             if action == "1":      # Bæta við að það sé hægt að skrifa 1 í staðinn fyrir Order 1
                 prompt += " / Skoða pöntun"
                 print_header(prompt)
                 exit_info = ""
                 while exit_info == "":
                     order_name = input("Pöntunarnúmer: ")
+                    if order_name == "t":
+                        break
+                    elif order_name == "h":
+                        done = True
+                        break
                     order = self.__order_service.get_order_by_name(order_name)
                     print_header(prompt)
                     choice = ""

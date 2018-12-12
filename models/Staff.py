@@ -48,8 +48,6 @@ class Staff(Person):
                     break
                 else:
                     done = False
-                    
-
         while not done:
             correct = input("Er allt rétt? (j/n) ").lower()
             if correct != "j":
