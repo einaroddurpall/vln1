@@ -129,6 +129,7 @@ class Order:
                 if self.__car:
                     step2 = True
                     print_header(prompt)
+                    self.__order_price = calc_price(self, price_repo)
                 else:
                     print("Enginn bíll laus með þessi skilyrði")
                     sleep(2)
@@ -137,7 +138,7 @@ class Order:
         elif step == "3":
             step3 = False
             while step3 is not True:
-                number = input("Veldu tryggingu:\n1.  Grunntrygging (2.000 ISK á dag)\n2.  Aukatrygging (3.500 ISK á dag)\n")
+                number = input("Veldu tryggingu:\n1.  Grunntrygging ({} ISK á dag)\n2.  Aukatrygging ({} ISK á dag)\n".format(price_repo.get_base_insurance_price(), price_repo.get_extra_insurance_price()))
                 if number == "2":
                     self.__insurance = "Aukatrygging"
                     step3 = True

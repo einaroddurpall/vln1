@@ -187,9 +187,9 @@ def calc_price(order, price_repo):
     dates = len(order.get_date_list())
     insurance = order.get_insurance()
     if insurance == 'Grunntrygging':
-        insurance_price = 2000
+        insurance_price = int(price_repo.get_base_insurance_price())
     else:
-        insurance_price = 3500
+        insurance_price = int(price_repo.get_extra_insurance_price())
     return (dates)*(base_price + insurance_price)
 
 def get_car_price(car_type, price_repo):

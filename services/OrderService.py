@@ -49,7 +49,7 @@ class OrderService:
         if continue_q != "j":
             self.change_order_info(new_order, True, prompt)
         print_header(prompt)
-        payment_complete = take_payment(price)
+        payment_complete = take_payment(new_order.get_order_price())
         if type(payment_complete) == str:
             return "h"
         print_header(prompt)

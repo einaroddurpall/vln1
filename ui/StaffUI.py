@@ -83,13 +83,13 @@ class StaffMenu:
                         prompt += " / Breyta verðskrá"
                         while not exit_info:
                             print_header(prompt)
-                            choice = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\nt.  Til baka\nh.  Heim\n").lower()
+                            choice = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\n6.  Grunntrygging\n7.  Aukatrygging\nt.  Til baka\nh.  Heim\n").lower()
                             if choice == "t":
                                 exit_info = True
                             elif choice == "h":
                                 exit_info = True
                                 done = True
-                            elif choice in [str(i) for i in range(1,6)]:
+                            elif choice in [str(i) for i in range(1,8)]:
                                 exit_info, done = self.__staff_service.change_price(choice)
                     elif choice == "h":
                         done_viewing = True
