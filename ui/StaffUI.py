@@ -25,7 +25,6 @@ class StaffMenu:
                 if type(new_staff) == str:
                     if new_staff == "h":
                         done = True
-                    break
             elif action == "2":
                 exit_info = ""
                 while exit_info == "":
