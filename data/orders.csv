@@ -1,2 +1,2 @@
 Pöntun 1;Customer('Viðskiptavinur 7','Stefánnnn','1234567890','Björgvinhot@hotmail.com','8451289');Car('HHH44','Sjö sæta jeppi','Bla','Sjálfskiptur',5000,True);datetime.date(2019, 3, 6);datetime.date(2019, 3, 10);Grunntrygging;8283838484858585;135000;False
-Pöntun 2;Customer('Viðskiptavinur 7','Stefánnnn','1234567890','Björgvinhot@hotmail.com','8451289');Car('KJX89','Smábíll','Toyota Yaris','Beinskiptur',1234123,True);datetime.date(2019, 1, 1);datetime.date(2019, 1, 3);Aukatrygging;9382737474736266;40500;False
+Pöntun 2;Customer('Viðskiptavinur 7','Stefánnnn','1234567890','Björgvinhot@hotmail.com','8451289');Car('KJX89','Smábíll','Toyota Yaris','Beinskiptur',25000,True);datetime.date(2019, 1, 1);datetime.date(2019, 1, 3);Aukatrygging;9382737474736266;40500;False
