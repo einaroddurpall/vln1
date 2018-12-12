@@ -5,25 +5,12 @@ import string
 from repositories.OrderRepository import OrderRepository
 from repositories.CarRepository import CarRepository
 from repositories.PriceRepository import PriceRepository
-from services.CarService import CarService, get_car_price
+from services.CarService import CarService
 from services.CustomerService import CustomerService
 from services.ChangeService import ChangeService
 from models.Car import Car
 from models.Order import Order
-from models.Functions import print_header, error_handle, pretty_str, take_payment
-
-def calc_price(order):
-    """Calculates the price of an order"""
-    car = order.get_car()
-    car_type = car.get_car_type()
-    base_price = get_car_price(car_type, PriceRepository())
-    dates = len(order.get_date_list())
-    insurance = order.get_insurance()
-    if insurance == 'Grunntrygging':
-        insurance_price = 2000
-    else:
-        insurance_price = 3500
-    return (dates)*(base_price + insurance_price)
+from models.Functions import print_header, error_handle, pretty_str, take_payment, calc_price, get_car_price
 
 class OrderService:
 
@@ -41,17 +28,19 @@ class OrderService:
         return date(int(year), int(month), int(day))
 
     def make_order_info(self, prompt, customer_known):
+        price_repo = PriceRepository()
         new_order = Order()
         for step in range(1, 5):
             if customer_known and (step == 1):
                 new_order.set_customer(customer_known)
             else:
-                choice = new_order.change_info(str(step), self.__car_service, self.__customer_service, prompt)
+                choice = new_order.change_info(str(step), self.__car_service, self.__customer_service, prompt, price_repo)
                 if choice == "t":
                     return "t"
                 elif choice == "h":
                     return "h"
-        price = calc_price(new_order)
+        price_repo = PriceRepository()
+        price = calc_price(new_order, price_repo)
         new_order.set_price(price)
         print_header(prompt)
         print(new_order)
@@ -60,7 +49,7 @@ class OrderService:
         if continue_q != "j":
             self.change_order_info(new_order, True, prompt)
         print_header(prompt)
-        payment_complete = take_payment(price)
+        payment_complete = take_payment(new_order.get_order_price())
         if type(payment_complete) == str:
             return "h"
         print_header(prompt)
@@ -88,7 +77,7 @@ class OrderService:
                     print("Ekki valmöguleiki, veldu aftur")
             if choice == "5":
                 correct = True
-            order.change_info(choice, self.__car_service, self.__customer_service, prompt)
+            order.change_info(choice, self.__car_service, self.__customer_service, prompt, PriceRepository())
         self.__order_repo.update_order_list()
 
     def get_order_by_name(self, name):

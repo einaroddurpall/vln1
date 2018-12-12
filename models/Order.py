@@ -2,7 +2,7 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Functions import make_number, make_date_list, make_date, pretty_str, make_car_type, legal_dates, print_header, pretty_date
+from models.Functions import make_number, make_date_list, make_date, pretty_str, make_car_type, legal_dates, print_header, pretty_date, calc_price
 from models.Car import Car
 
 class Order:
@@ -98,7 +98,7 @@ class Order:
         """sets the price of the orders"""
         self.__order_price = price
 
-    def change_info(self, step, car_service, customer_service, prompt = ""):
+    def change_info(self, step, car_service, customer_service, prompt = "", price_repo=None):
         if step == "1":
             valid_ssn = False
             while valid_ssn is not True:
@@ -122,6 +122,7 @@ class Order:
                 if self.__car:
                     step2 = True
                     print_header(prompt)
+                    self.__order_price = calc_price(self, price_repo)
                 else:
                     print("Enginn bíll laus með þessi skilyrði")
                     sleep(2)
@@ -129,13 +130,15 @@ class Order:
         elif step == "3":
             step3 = False
             while step3 is not True:
-                number = input("Veldu tryggingu:\n1.  Grunntrygging (2.000 ISK á dag)\n2.  Aukatrygging (3.500 ISK á dag)\n")
+                number = input("Veldu tryggingu:\n1.  Grunntrygging ({} ISK á dag)\n2.  Aukatrygging ({} ISK á dag)\n".format(price_repo.get_base_insurance_price(), price_repo.get_extra_insurance_price()))
                 if number == "2":
                     self.__insurance = "Aukatrygging"
                     step3 = True
+                    self.__order_price = calc_price(self, price_repo)
                 elif number == "1":
                     self.__insurance = "Grunntrygging"
                     step3 = True
+                    self.__order_price = calc_price(self, price_repo)
                 elif number == "t" or number == "h":
                     return number
                 else:
