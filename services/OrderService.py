@@ -91,9 +91,19 @@ class OrderService:
 
     def get_order_by_name(self, name):
         for order in self.__order_repo.get_order_list():
-            if order.get_order_name() == name:
+            order_num = self.get_order_num_from_name(order.get_order_name())
+            try:
+                name_num = self.get_order_num_from_name(name)
+            except:
+                name_num = name
+            if order_num == name_num:
                 return order
         return None
+
+    def get_order_num_from_name(self, name):
+        name_list = name.split()
+        num = name_list[1]
+        return num
 
     def get_order_by_ssn(self, ssn):
         customer = self.__customer_service.check_ssn(ssn)
@@ -157,20 +167,22 @@ class OrderService:
                             except:
                                 print("Villa: Bíllinn getur ekki verið minna keyrður eftir leigu.")
                         day_price = order_price // len(order_to_complete.get_date_list())
-                        final_payment = int(order_price + milage_difference // 150 * 0.02 * day_price)
-                        final_payment = pretty_str(final_payment, "ISK")
+                        final_payment = int(milage_difference // 150 * 0.02 * day_price)
                         car.set_milage(new_milage)
                         self.__car_service.update_car_list(car)
                         order_to_complete.set_car(car)
                         order_to_complete.set_complete(True)
                         self.__order_repo.update_order_list()
                         print_header(prompt)
-                        payment_complete = take_payment(final_payment)
+                        if final_payment > 0:
+                            payment_complete = take_payment(final_payment)
+                        else:
+                            payment_complete = True
                         if type(payment_complete) == str:
                             return "h"
                         print("Pöntun er nú kláruð")
-                        choice = input("1.  Velja aðra pöntun til að klára\n2.  Tilbaka\n3.  Heim\n")
-                        if choice == "2" or choice == "3":
+                        choice = input("1.  Velja aðra pöntun til að klára\nt.  Tilbaka\nh.  Heim\n")
+                        if choice == "t" or choice == "h":
                             finished_completing_orders = True
                         else:
                             order_found = False

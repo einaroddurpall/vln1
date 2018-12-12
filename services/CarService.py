@@ -82,7 +82,7 @@ class CarService:
         if new_or_not:
             while not correct:
                 print_header(prompt)
-                print("Hverju villtu breyta:\n1. Bílnúmeri\n2. Bílaflokkur\n3. Undirtegund\n4. Skipting\n5. Akstur(km)\n6. Klára Skráningu")
+                print("Hverju villtu breyta:\n1.  Bílnúmeri\n2.  Bílaflokkur\n3.  Undirtegund\n4.  Skipting\n5.  Akstur(km)\n6.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
                     choice = input()
@@ -95,11 +95,11 @@ class CarService:
                         print("Ekki valmöguleiki, veldu aftur")
                 if choice == "6":
                     correct = True
-                car.car_change_info(choice, self._all_cars_list)
+                car.car_change_info(choice, self._all_cars_list, prompt)
         else:
             while not correct:
                 print_header(prompt)
-                print("Hverju villtu breyta:\n1. Undirtegund\n2. Skipting\n3. Akstur(km)\n4. Klára Skráningu")
+                print("Hverju villtu breyta:\n1.  Undirtegund\n2.  Skipting\n3.  Akstur(km)\n4.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
                     choice = input()
@@ -113,7 +113,7 @@ class CarService:
                         print("Ekki valmöguleiki, veldu aftur")
                 if choice == "6":
                     correct = True
-                car.car_change_info(choice, self._all_cars_list)
+                car.car_change_info(choice, self._all_cars_list, prompt)
         if new_or_not:
             self.car_register(car)
             self._all_cars_list.append(car)
