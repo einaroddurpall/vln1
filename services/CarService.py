@@ -82,7 +82,7 @@ class CarService:
         if new_or_not:
             while not correct:
                 print_header(prompt)
-                print("Hverju villtu breyta:\n1. Bílnúmeri\n2. Bílaflokkur\n3. Undirtegund\n4. Skipting\n5. Akstur(km)\n6. Klára Skráningu")
+                print("Hverju villtu breyta:\n1.  Bílnúmeri\n2.  Bílaflokkur\n3.  Undirtegund\n4.  Skipting\n5.  Akstur(km)\n6.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
                     choice = input()
@@ -95,11 +95,11 @@ class CarService:
                         print("Ekki valmöguleiki, veldu aftur")
                 if choice == "6":
                     correct = True
-                car.car_change_info(choice, self._all_cars_list)
+                car.car_change_info(choice, self._all_cars_list, prompt)
         else:
             while not correct:
                 print_header(prompt)
-                print("Hverju villtu breyta:\n1. Undirtegund\n2. Skipting\n3. Akstur(km)\n4. Klára Skráningu")
+                print("Hverju villtu breyta:\n1.  Undirtegund\n2.  Skipting\n3.  Akstur(km)\n4.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
                     choice = input()
@@ -113,7 +113,7 @@ class CarService:
                         print("Ekki valmöguleiki, veldu aftur")
                 if choice == "6":
                     correct = True
-                car.car_change_info(choice, self._all_cars_list)
+                car.car_change_info(choice, self._all_cars_list, prompt)
         if new_or_not:
             self.car_register(car)
             self._all_cars_list.append(car)
@@ -170,7 +170,7 @@ class CarService:
             car_type = make_car_type()
             if car_type != None:
                 if car_type in a_dict.keys():
-                    print("\n\033[1m{:<18}{:>10}:\033[0m".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
+                    print("\n{:<18}{:>10}:".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
                     print("="*60)
                     print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
                     print('-'*60)
@@ -189,7 +189,7 @@ class CarService:
     def print_out_info_for_all_car_types(self, a_dict):
         price_repo = PriceRepository()
         for key,val in a_dict.items():
-            print("\n\033[1m{:<18}{:>10}:\033[0m".format(key, pretty_str(get_car_price(key, price_repo), "ISK")))
+            print("\n{:<18}{:>10}:".format(key, pretty_str(get_car_price(key, price_repo), "ISK")))
             print("="*60)
             print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
             print('-'*60)
