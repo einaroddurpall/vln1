@@ -36,33 +36,6 @@ class OrderMenu:
                     print_header(prompt)
                     if order:
                         exit_info, done = self.view_order(order)
-                    # choice = ""
-                    # if order:
-                    #     while choice == "":
-                    #         prompt = "Heimasíða / Skoða eða skrá pantanir / Skoða pöntun"
-                    #         print_header(prompt)
-                    #         print(order)
-                    #         print('='*60)
-                    #         choice = input("\n1.  Uppfæra pöntun\n2.  Eyða pöntun\nt.  Tilbaka\nh.  Heim\n")
-                    #         if choice == "1":
-                    #             prompt += " / Uppfæra Pöntun"
-                    #             self.__order_service.change_order_info(order, False, prompt)
-                    #             exit_info = "Pöntun uppfærð"
-                    #         elif choice == "2":
-                    #             prompt += " / Eyða pöntun"
-                    #             print_header(prompt)
-                    #             choice = input("Ertu viss? (j/n): ")
-                    #             if choice == "j":
-                    #                 self.__order_service.order_delete(order)
-                    #                 choice = "Tilbaka"
-                    #                 exit_info = "Tilbaka"
-                    #         elif choice == "t":
-                    #             choice = "Tilbaka"
-                    #             exit_info = "Tilbaka"
-                    #         else:
-                    #             choice = "h"
-                    #             exit_info = "Heim"
-                    #             done = True
                     else:
                         choice = input('Pöntunin: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heimasíða\n'.format(order_name))
                         if choice == "t" or choice == "h":
@@ -102,7 +75,7 @@ class OrderMenu:
             choice = input("\n1.  Uppfæra pöntun\n2.  Eyða pöntun\nt.  Tilbaka\nh.  Heim\n")
             if choice == "1":
                 prompt += " / Uppfæra Pöntun"
-                self.__order_service.change_order_info(order, False, prompt)
+                self.__order_service.change_order_info(order, prompt)
                 # exit_info = "Pöntun uppfærð"
             elif choice == "2":
                 prompt += " / Eyða pöntun"
