@@ -117,7 +117,6 @@ class OrderService:
         self.__order_repo.update_order_list()
 
     def complete_orders(self, prompt):
-        order_found = False
         finished_completing_orders = False
         while not finished_completing_orders:
             # while not order_found:

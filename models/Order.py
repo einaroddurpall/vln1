@@ -100,7 +100,7 @@ class Order:
     # def get_info_list(self):
     #     return [self.__ss]
 
-    def change_info(self, step, car_service, customer_service, prompt):
+    def change_info(self, step, car_service, customer_service, prompt = ""):
         if step == "1":
             valid_ssn = False
             while valid_ssn is not True:
@@ -131,7 +131,7 @@ class Order:
         elif step == "3":
             step3 = False
             while step3 is not True:
-                number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
+                number = input("Veldu tryggingu:\n1.  Grunntrygging (2.000 ISK á dag)\n2.  Aukatrygging (3.500 ISK á dag)\n")
                 if number == "2":
                     self.__insurance = "Aukatrygging"
                     step3 = True

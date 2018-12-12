@@ -8,10 +8,9 @@ from services.OrderService import OrderService
 
 class CustomerMenu:
 
-    def __init__(self, OrderService):
+    def __init__(self):
         self.__customer_service = CustomerService()
-        self.__order_service = OrderService
-
+        self.customer_menu()
 
     def customer_menu(self):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma viðskiptavinum við """
@@ -86,6 +85,7 @@ class CustomerMenu:
             elif choice == "4":
                 prompt += " / Skrá pöntun á viðskiptavin"
                 print_header(prompt)
+                self.__order_service = OrderService()
                 self.__order_service.make_order_info(prompt, customer)
                 self.__customer_service.update_order_repo()
             elif choice == "t":

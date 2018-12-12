@@ -5,24 +5,29 @@ from models.Functions import print_header, error_handle, check_registration_num,
 
 class Car:
 
-    def __init__(self, registration_num="", car_type="", sub_type="", transmission="", milage=0, is_rentable=True):
+    def __init__(self, registration_num="", car_type="", sub_type="", transmission="", milage=0):
         """Hver bíll hefur bílnúmer, tegund, undirtegund, skiptingu og akstur."""
         self.__registration_num = registration_num
         self.__car_type = car_type
         self.__sub_type = sub_type
         self.__transmission = transmission
         self.__milage = milage
-        self.__is_rentable = is_rentable
+
 
     def __str__(self):
         """Strengur sem birtist er bíll er prentaður."""
-        return "Bílnúmer: {}-{}\nFlokkur bíls: {}\nTegund bíls {}\n{}\nAkstur: {}\nLaus: {}".format(
-        self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission,pretty_str(self.__milage, "km"), self.__is_rentable)
+
+        if self.__is_available:
+            is_available = "Bíllinn er í motherfucking húsinu"
+        else:
+            is_available = "Bíllinn er úr motherfucking húsinu"
+        return "Bílnúmer: {}-{}\nFlokkur bíls: {}\nTegund bíls: {}\n{}\nAkstur: {}\nLaus: {}".format(
+        self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission,pretty_str(self.__milage, "km"), is_available)
 
     def __repr__(self):
         """Strengur sem sýnir hvernig búa má til eintak af viðeigandi bíl."""
-        return "Car('{}','{}','{}','{}',{},{})".format(self.__registration_num, self.__car_type, self.__sub_type, self.__transmission,
-        self.__milage, self.__is_rentable)
+        return "Car('{}','{}','{}','{}',{})".format(self.__registration_num, self.__car_type, self.__sub_type, self.__transmission,
+        self.__milage)
 
     def get_registration_num(self):
         """ Returns the registration number of the car."""
@@ -44,13 +49,17 @@ class Car:
         """ Returns the milage of the car."""
         return self.__milage
     
-    def get_is_rentable(self):
-        """ Returns if the car is rentable or not."""
-        return self.__is_rentable
+
 
     def set_milage(self, milage):
         """ Sets new milage for the car in the system. When the car is returned we need to update the milage for the car."""
         self.__milage = milage
+    
+    def set_availability(self, date_dict):
+        if self.check_availability([date.today()], date_dict, self.get_car_type):
+            self.__is_available = True
+        else:
+            self.__is_available = False
 
     def check_availability(self, date_list, date_dict, car_list):
         """Tekur við lista af dögum, dictionary sem heldur utan um hvaða bílar eru bókaðir á hverjum degi og lista

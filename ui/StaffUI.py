@@ -75,7 +75,8 @@ class StaffMenu:
                     prompt = "Heimasíða / Starfsmenn / Skoða Verðskrá"
                     print_header(prompt)
                     self.__staff_service.print_price_list()
-                    choice = input("\n1.  Breyta skráningu\nt.  Tilbaka\nh.  Heimasíða").lower()
+                    choice = input("\n1.  Breyta skráningu\nt.  Tilbaka\nh.  Heimasíða\n").lower()
+                    
                     if choice == "1":
                         exit_info = False
                         while not exit_info:
