@@ -2,11 +2,11 @@ from models.Car import Car
 
 
 class CarRepository:
-    SMALL_CAR_PRICE = 10000
-    SEDAN_PRICE = 15000
-    FIVE_SEAT_SUV_PRICE = 20000
-    SEVEN_SEAT_SUV_PRICE = 25000
-    MINIBUS_PRICE = 30000
+    # SMALL_CAR_PRICE = 10000
+    # SEDAN_PRICE = 15000
+    # FIVE_SEAT_SUV_PRICE = 20000
+    # SEVEN_SEAT_SUV_PRICE = 25000
+    # MINIBUS_PRICE = 30000
 
     def __init__(self, name):
         """Hver tilvik af car_repository á nafn sem er nafn viðeigandi bílaflokks. Það á 
