@@ -10,14 +10,14 @@ class StaffRepository:
     
     def add_staff(self, staff):
         """Bæta starfsmanni eða yfirmanni í .csv skrá og í staff-listann."""
-        with open("./data/staff.csv", "a", encoding = "UTF-8") as staff_file:
+        with open("./data/staff.txt", "a", encoding = "UTF-8") as staff_file:
             staff_file.write(staff.__repr__() + '\n')
         self.__staff.append(staff)
 
     def get_staff(self):
         """Ná í alla starfsmenn úr skrá og skilar lista sem inniheldur þá alla."""
         staff_list = []
-        with open("./data/staff.csv", encoding = "UTF-8") as staff_file:
+        with open("./data/staff.txt", encoding = "UTF-8") as staff_file:
             for row in staff_file.readlines():
                 staff = eval(row.strip())
                 staff_list.append(staff)
@@ -27,7 +27,7 @@ class StaffRepository:
         """Uppfærir skrá sem heldur utan um starfsmenn. Kallað er á þetta fall þegar
         lista sem inniheldur alla starfsmenn er breytt, þ.e. þegar starfsmanni er breytt.
         Skráin er þá uppfærð í takt við breytingarnar á listanum."""
-        with open("./data/staff.csv", "w", encoding = "UTF-8") as staff_file:
+        with open("./data/staff.txt", "w", encoding = "UTF-8") as staff_file:
             new_file = ""
             for staff in self.__staff:
                 new_file += staff.__repr__() + "\n"

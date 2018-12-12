@@ -24,7 +24,7 @@ class OrderRepository:
     def get_orders(self):
         """Les pantanir úr skrá og setur í lista."""
         order_list = []
-        with open("./data/orders.csv", encoding = "UTF-8") as order_file:
+        with open("./data/orders.txt", encoding = "UTF-8") as order_file:
             for row in order_file.readlines():
                     order_name, customer, car, date1, date2, insurance, card_info, price, complete = row.split(";")
                     date1 = eval(date1)
@@ -37,7 +37,7 @@ class OrderRepository:
     def add_order(self, order):
         """Bætir við pöntun í pöntunarskjalið og í order-listann."""
         self.get_unique_name(order)
-        with open("./data/orders.csv", "a", encoding = "UTF-8") as order_file:
+        with open("./data/orders.txt", "a", encoding = "UTF-8") as order_file:
             order_file.write(order.__repr__() + '\n')
         self.__order_list.append(order)
 
@@ -61,7 +61,7 @@ class OrderRepository:
     def update_order_list(self):
         """Kallað er á þetta fall þegar lista sem inniheldur allar pantanir er breytt, þ.e.
         þegar pöntun er breytt. Skráin sem inniheldur pantanir er þá uppfærð í takt við breytingarnar."""
-        with open("./data/orders.csv", "w", encoding = "UTF-8") as orders_file:
+        with open("./data/orders.txt", "w", encoding = "UTF-8") as orders_file:
             new_file = ""
             for order in self.__order_list:
                 new_file += order.__repr__() + '\n'

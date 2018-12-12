@@ -140,7 +140,8 @@ class OrderService:
                         order_to_complete = order
                         break
                     order_to_complete = False
-                if not order_to_complete:  # ss það finnst engin pöntun með þessu nafni
+                # ss það finnst engin pöntun með þessu nafni
+                if not order_to_complete:
                     choice = error_handle("Pöntun", order_to_change)
                     if choice == "t" or choice == "h":
                         return choice
