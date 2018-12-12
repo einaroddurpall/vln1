@@ -174,7 +174,7 @@ class OrderService:
                         self.__order_repo.update_order_list()
                         print_header(prompt)
                         if final_payment > 0:
-                            payment_complete = take_payment(final_payment)
+                            payment_complete = take_payment("Aukagreiðsla", final_payment)
                         else:
                             payment_complete = True
                         if type(payment_complete) == str:
