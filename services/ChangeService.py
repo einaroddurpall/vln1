@@ -1,6 +1,7 @@
 from repositories.OrderRepository import OrderRepository
 from repositories.CustomerRepository import CustomerRepository
 from repositories.CarRepository import CarRepository
+from repositories.PriceRepository import PriceRepository
 from models.Order import Order
 from models.Car import Car
 
@@ -35,7 +36,7 @@ class ChangeService:
         for order in orders_to_delete:
             self.__order_list.remove(order)
         self.__order_repo.update_order_list()
-        input("Óloknum pöntunum viðskiptavinarins hefur verið eytt, ýttu á enter til að halda áfram.")
+        input('Óloknum pöntunum viðskiptavinarins hefur verið eytt, ýttu á "Enter" til að halda áfram.')
                     
     def change_car_info_consequences(self, old_car, new_car):
         """Tekur við bíl eins og hann var fyrir breytingar og eftir breytingar. Finnur allar pantanir
@@ -64,7 +65,7 @@ class ChangeService:
                         print(order)
                         print()
                         print("Veldu flokk:")
-                        order.change_info("2",car_service, customer_service)
+                        order.change_info("2",car_service, customer_service, price_repo=PriceRepository())
                     else:
                         order.set_car(new_car)
         self.__order_repo.update_order_list()

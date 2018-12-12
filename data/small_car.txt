@@ -1,5 +1,3 @@
-Car('YTG56','Smábíll','sdgh','Sjálfskiptur',654)
-Car('FVG44','Smábíll','erty','Beinskiptur',67776)
 Car('OOO99','Smábíll','treds','Sjálfskiptur',543)
 Car('WWW32','Smábíll','ertyhuj','Sjálfskiptur',345)
 Car('DFR77','Smábíll','wedfgh','Sjálfskiptur',5555)

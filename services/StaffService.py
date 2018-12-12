@@ -1,6 +1,6 @@
 from repositories.StaffRepository import StaffRepository
-from models.Staff import Staff
 from repositories.PriceRepository import PriceRepository
+from models.Staff import Staff
 from models.Functions import pretty_str
 from time import sleep
 
@@ -74,11 +74,17 @@ class StaffService:
             self.__price_repo.set_seven_seat_suv_price(new_price)
         elif choice == "5":
             self.__price_repo.set_minibus_price(new_price)
+        elif choice == "6":
+            self.__price_repo.set_base_insurance_price(new_price)
+        elif choice == "7":
+            self.__price_repo.set_extra_insurance_price(new_price)
         self.__price_repo.update_price_list()
         return False, False
     
     def print_price_list(self):
-        print("{:16} {:>10}\n".format("Flokkur","Verð"))
+        print("{:16} {:>10}".format("Flokkur","Verð"))
+        print('-'*70)
         for price_list in self.__price_repo.get_price_list():
             print("{:16} {:>10}".format(price_list[0], pretty_str(price_list[1], "ISK")))
+        print("="*70)
     

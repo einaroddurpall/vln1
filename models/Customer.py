@@ -1,6 +1,6 @@
+from time import sleep
 from models.Person import Person
 from models.Functions import print_header, make_number
-from time import sleep
 
 class Customer(Person):
     """Customer class, is a subclass of the Person class
@@ -42,9 +42,16 @@ class Customer(Person):
         )
 
     def get_info_list(self):
+        '''skilar lista sem er með öllum upllýsingum sem hver viðskiptavinur hefur '''
         return [self._name, self._ssn, self.__email, self.__gsm, self.__customer_id]
 
     def make_customer(self, customer_list):
+        '''Tekur inn customer_list, til þess að passa að viðskiptavinurinn sé ekki með sömu kennitölu og annar
+        síðan rennur rennur það í gegnum for slaufu þar sem það sendir í fallið change info með mysmunandi verkfni 
+        hvert verkefni til að fá uppl. um viðskiptavin. síðan spyr það hvort all sé rétt ef ekki, þa getur notandi 
+        breytt ákveðnum uppl um viðskiptavin'''
+        # Hér er  bara verið að fléttast í gegnum alla verkferla í Change info fallinu til hægt sé að slá
+        # inn allar uppl. sem þarf
         for step in range(1, 5):
             self.change_info(str(step), customer_list)
             info_list = self.get_info_list()
@@ -52,6 +59,7 @@ class Customer(Person):
                 if info == "t" or info == "h":
                     return info
         done = False
+        # hér er bara verið að gá hvort viljað er að breyta uppl. sem slegið var inn
         while not done:
             print_header("Heimasíða / Viðskiptavinir / Skrá nýjan viðskiptavin")
             print(self)
@@ -63,6 +71,8 @@ class Customer(Person):
                 done = True
 
     def customer_change_info(self, customer_list):
+        """Fall sem spyr notanda hvaða uppl. hann vill breyta um viðskiptavin og sendir síðan á change info fallið
+        hvaða upplýsinga notandi vill breyta"""
         correct = False
         while not correct:
             legal_choice = False
@@ -86,8 +96,12 @@ class Customer(Person):
                     print("Ekki valmöguleiki, veldu aftur")
 
     def change_info(self, choice, customer_list):
+        '''Fallið fær um hvað upplýsingum þarf að breyta um viðskiptavin og sendir hann i gegnum þann feril
+        og villu prófar þannig að notandi getur aðeins slegið inn réttar uppl.'''
+        #hér fær notandi að breyta nafni viðskiptavinars og gáð hvort það sé löglegt nafn
         if choice == "1":
             self.make_name()
+        # Hér er breytt kennitölu notnadna og gáð hvort það sé rétt sleið
         elif choice == "2":
             uniqe_ssn = False
             while not uniqe_ssn:
@@ -98,8 +112,10 @@ class Customer(Person):
                         print("Það er nú þegar viðskiptavinur með þessa kennitölu")
                         uniqe_ssn = False
             self._ssn = change
+        # Hér er breytt nafni emails og síðn gáð hvort það er rétt slegið inn
         elif choice == "3":
             self.make_email()
+        # hér er breytt símanúmer viðskiptavins og gáð hvort það sér löglegt
         elif choice == "4":
             change = make_number(7, "Símanúmer: ", "Þetta símanúmer var ólöglegt, reyndu aftur.")
             self.__gsm = change

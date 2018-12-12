@@ -2,12 +2,12 @@ from os import system, name
 from time import sleep
 from datetime import date
 import string
+from services.StaffService import StaffService
+from models.Functions import print_header
 from ui.CarUI import CarMenu
 from ui.CustomerUI import CustomerMenu
 from ui.OrderUI import OrderMenu
 from ui.StaffUI import StaffMenu
-from models.Functions import print_header
-from services.StaffService import StaffService
 
 class CarRentalUi:
 
@@ -59,7 +59,6 @@ class CarRentalUi:
             if login == False:
                 system('clear')
                 print("Innskráning mistókst.")
-                sleep(1)
         action = ""
         while action != "q":
             prompt = "Heimasíða"
