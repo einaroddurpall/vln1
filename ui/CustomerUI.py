@@ -36,7 +36,7 @@ class CustomerMenu:
                         break
                     customer = self.__customer_service.check_ssn(ssn)
                     if customer:
-                        exit_info, done = self.view_customer(customer, prompt)
+                        exit_info, done = self.view_customer(customer)
                     else:
                         choice = input('Kennitalan: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heim\n'.format(ssn))
                         if choice == "t":
@@ -49,14 +49,14 @@ class CustomerMenu:
                 print_header(prompt)
                 new_customer = self.__customer_service.customer_register()
                 if type(new_customer) == Customer:
-                    exit_info, done = self.view_customer(new_customer, prompt)
+                    exit_info, done = self.view_customer(new_customer)
                 elif new_customer == "h":
                     done = True
 
             else:
                 done = True
 
-    def view_customer(self, customer, prompt):
+    def view_customer(self, customer):
         """ Hér er hægt að framkvæma fjórar aðgerðir fyrir viðskiptavin.
             1. Sjá pantanir, hér er hægt að sjá allar pantanir sem þessi viðskiptavinur hefur skráð á sig.
             2. Breyta skráningu, hér er hægt að breyta skráningu viðskiptavinar með hjálp customer_update_info fallinu í CustomerService
@@ -65,8 +65,8 @@ class CustomerMenu:
                kerfinu líka.
             4. Skrá pöntun á viðskiptavin, hér er hoppað beint inn í make_order_info fallið í OrderService klasanum og 
                viðskiptavinurinn líka svo það þurfi ekki að velja hann aftur."""
-        exit_info2 = ""
-        while exit_info2 == "":
+        loop = True
+        while loop:
             prompt = "Heimasíða / Viðskiptavinir / Skoða viðskiptavin"
             print_header(prompt)
             print(customer)

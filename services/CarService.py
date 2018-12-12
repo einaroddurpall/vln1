@@ -24,7 +24,6 @@ def get_car_price(car_type, price_repo):
 
 
 class CarService:
-
     def __init__(self):
         self._car_repo_sedan = CarRepository("Sedan")
         self._car_repo_minibus = CarRepository("Minibus")
@@ -58,12 +57,17 @@ class CarService:
         return all_car_dict
 
     def get_all_cars_list(self):
+        '''fall sem skilur cars_list'''
         return self._all_cars_list
 
     def get_order_repo(self):
+        '''Fall sem skilar Order repoinu'''
         return self._order_repo
 
     def make_car(self, prompt):
+        ''' Þetta fall býr til bíl með grunn uppl. síðan sendir það í car_change_info fallið að breyta uppl. 
+        um hverjn hlut sem þarf að vita um bílin síðan spyr fallið hvort allt í rétt slegið inn, ef ekki sendir fallið
+        notanda í fallið change_car_info, þar sem notandi getur breytt viðeigandi uppl.'''
         new_car = Car()
         for step in range(1,6):
             quit_info = new_car.car_change_info(str(step), self._all_cars_list, prompt)
@@ -81,6 +85,8 @@ class CarService:
         return True
         
     def change_car_info(self, car, new_or_not, prompt):
+        ''' Ef notandi vill breyta uppl. um bíl þá velur hann hvejru hann bill breyta síðan er sendur í fallið 
+        car_change_info til að breyta viðeigandi uppl.'''
         old_car = car
         correct = False
         if new_or_not:
@@ -102,7 +108,8 @@ class CarService:
                 if choice == "6":
                     correct = True
                 car.car_change_info(choice, self._all_cars_list, prompt)
-        else:
+        # ef bílinn er ekki nýr og breyta er verið gömlu bíl þá fer hann notandi hingað
+        else: 
             while not correct:
                 print_header(prompt)
                 print(car)
@@ -162,6 +169,7 @@ class CarService:
         
     
     def car_find(self, registration_num):
+        '''Þetta fall skila bílnum með því bílnumeri sem er sent inn ef bíll er til'''
         registration_num = check_registration_num(registration_num)
         if registration_num:
             for car in self._all_cars_list:
@@ -195,6 +203,7 @@ class CarService:
         return True
 
     def print_out_info_for_all_car_types(self, a_dict):
+        '''Fall sem prentar út upplýsingum um alla bíla dictionerynu og undir hvaða bílaflokki þeir eru'''
         price_repo = PriceRepository()
         for key,val in a_dict.items():
             print("\n{:<18}{:>10}:".format(key, pretty_str(get_car_price(key, price_repo), "ISK")))
@@ -207,6 +216,7 @@ class CarService:
             print("="*70)
 
     def print_car_dict(self, a_dict):
+        '''fall sem sendir í föll til að prenta út lista af bílunum sem notandi vill fá sjá'''
         if a_dict:
             statement = self.search_for_specific_car_type(a_dict)
             if statement:
@@ -217,6 +227,10 @@ class CarService:
             print("Enginn bíll í útleigu á þessum tíma")
 
     def get_date_dict(self):
+        '''Býr til tómt date_dict og sækir upplýsingar um pantanir niður í order_repo. Skoðar hverja pöntun fyrir 
+        sig og sækir alla daga hverrar pöntunar. Dagarnir verða keys í dictionaryinu en bílar pantana verða value.
+        Hver dagur sem inniheldur einhverja pöntun er þannig skráður sem key í dictinu og valueið er listi af öllum
+        bílum sem eru bókaðir þann dag.'''
         date_dict = {}
         order_list = self._order_repo.get_order_list()
         for order in order_list:
@@ -251,7 +265,6 @@ class CarService:
     def get_available_cars(self, prompt):
         """Fær uppflettilista með uppteknum bílum, fær svo uppflettilista með öllum bílum, finnur svo þá bíla 
         sem eru sameiginlegir í báðum listum og fjarlægir þá úr uppflettilistanum með öllum bílum"""
-
         car_busy_dict = self.get_busy_cars(prompt)
         all_car_dict = self.make_all_cars_dict()
         delete_key_list = []
@@ -270,6 +283,7 @@ class CarService:
         return go_back
 
     def car_get_history(self, car):
+        '''Fall sem nær í lista af öllum pöntunum sem ákveðinn bíll hefur komið í'''
         orders = self._order_repo.get_order_list()
         car_orders = []
         for order in orders:
@@ -278,6 +292,8 @@ class CarService:
         return car_orders
 
     def car_delete(self, car):
+        '''fall sem eyðir ákveðnum bíl úr bílategunds listanum sem hann er í og 
+        eyðir honum úr skránum með að senda ákveðnar uppl niður í car_repoið'''
         self._all_cars_list.remove(car)
         car_type = car.get_car_type().lower()
         if car_type == 'smábíll':

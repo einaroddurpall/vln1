@@ -50,6 +50,7 @@ class CustomerRepository:
 
 
 def create_list(self, line_string):
+    """býr til lista úr línunni"""
     line_string = line_string.strip("\n")
     line_list = line_string.split(";")
     return line_list

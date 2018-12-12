@@ -34,33 +34,35 @@ class OrderMenu:
                         break
                     order = self.__order_service.get_order_by_name(order_name)
                     print_header(prompt)
-                    choice = ""
                     if order:
-                        while choice == "":
-                            prompt = "Heimasíða / Skoða eða skrá pantanir / Skoða pöntun"
-                            print_header(prompt)
-                            print(order)
-                            print('='*60)
-                            choice = input("\n1.  Uppfæra pöntun\n2.  Eyða pöntun\nt.  Tilbaka\nh.  Heim\n")
-                            if choice == "1":
-                                prompt += " / Uppfæra Pöntun"
-                                self.__order_service.change_order_info(order, False, prompt)
-                                exit_info = "Pöntun uppfærð"
-                            elif choice == "2":
-                                prompt += " / Eyða pöntun"
-                                print_header(prompt)
-                                choice = input("Ertu viss? (j/n): ")
-                                if choice == "j":
-                                    self.__order_service.order_delete(order)
-                                    choice = "Tilbaka"
-                                    exit_info = "Tilbaka"
-                            elif choice == "t":
-                                choice = "Tilbaka"
-                                exit_info = "Tilbaka"
-                            else:
-                                choice = "h"
-                                exit_info = "Heim"
-                                done = True
+                        exit_info, done = self.view_order(order)
+                    # choice = ""
+                    # if order:
+                    #     while choice == "":
+                    #         prompt = "Heimasíða / Skoða eða skrá pantanir / Skoða pöntun"
+                    #         print_header(prompt)
+                    #         print(order)
+                    #         print('='*60)
+                    #         choice = input("\n1.  Uppfæra pöntun\n2.  Eyða pöntun\nt.  Tilbaka\nh.  Heim\n")
+                    #         if choice == "1":
+                    #             prompt += " / Uppfæra Pöntun"
+                    #             self.__order_service.change_order_info(order, False, prompt)
+                    #             exit_info = "Pöntun uppfærð"
+                    #         elif choice == "2":
+                    #             prompt += " / Eyða pöntun"
+                    #             print_header(prompt)
+                    #             choice = input("Ertu viss? (j/n): ")
+                    #             if choice == "j":
+                    #                 self.__order_service.order_delete(order)
+                    #                 choice = "Tilbaka"
+                    #                 exit_info = "Tilbaka"
+                    #         elif choice == "t":
+                    #             choice = "Tilbaka"
+                    #             exit_info = "Tilbaka"
+                    #         else:
+                    #             choice = "h"
+                    #             exit_info = "Heim"
+                    #             done = True
                     else:
                         choice = input('Pöntunin: "{}" fannst ekki í kerfinu.\n1.  Reyna aftur\nt.  Tilbaka\nh.  Heimasíða\n'.format(order_name))
                         if choice == "t" or choice == "h":
@@ -73,19 +75,14 @@ class OrderMenu:
                     prompt = "Heimasíða / Skoða eða skrá pantanir / Skrá nýja pöntun"
                     print_header(prompt)
                     new_order = self.__order_service.make_order_info(prompt, False)
-                    if type(new_order) != Order:
+                    if type(new_order) == Order:
+                        finished, done = self.view_order(new_order)
+                    else:
                         if new_order == "t":
                             finished = True
                         elif new_order == "h":
                             finished = True
                             done = True
-                    else:
-                        print_header(prompt)
-                        choice = input("1.  Skrá aðra pöntun\nt.  Tilbaka\nh.  Heim\n")
-                        if choice == "t" or choice == "h":
-                            if choice == "h":
-                                done = True
-                            finished = True
             elif action == "3":
                 prompt += " / Klára pantanir dagsins"
                 print_header(prompt)
@@ -94,3 +91,27 @@ class OrderMenu:
                     done = True
             else:
                 done = True
+
+    def view_order(self, order):
+        loop = True
+        while loop:
+            prompt = "Heimasíða / Skoða eða skrá pantanir / Skoða pöntun"
+            print_header(prompt)
+            print(order)
+            print('='*60)
+            choice = input("\n1.  Uppfæra pöntun\n2.  Eyða pöntun\nt.  Tilbaka\nh.  Heim\n")
+            if choice == "1":
+                prompt += " / Uppfæra Pöntun"
+                self.__order_service.change_order_info(order, False, prompt)
+                # exit_info = "Pöntun uppfærð"
+            elif choice == "2":
+                prompt += " / Eyða pöntun"
+                print_header(prompt)
+                choice = input("Ertu viss? (j/n): ")
+                if choice == "j":
+                    self.__order_service.order_delete(order)
+                    return "Tilbaka", False
+            elif choice == "t":
+                return "Tilbaka", False
+            else:
+                return "Heim", True
