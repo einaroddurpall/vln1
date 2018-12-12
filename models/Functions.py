@@ -8,7 +8,7 @@ def print_header(prompt=""):
         """ Hreinsar terminal og prentar út header með slóð """
         system('clear')
         print(prompt)
-        print("="*60)
+        print("="*70)
 
 def make_date(a_date):
     """Tekur við dagsetningu í formi strengs og skilar date-tilviki fyrir þann dag."""
@@ -64,7 +64,6 @@ def check_registration_num(registration_num):
             new_registration_num += letter
     if len(new_registration_num) != 5:
         print("Þetta bílnúmer var ólöglegt.")
-        sleep(2)
         return False
     registration_num = new_registration_num.upper()
     if registration_num[0] in string.ascii_letters and registration_num[1] in string.ascii_letters\

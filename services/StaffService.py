@@ -21,11 +21,12 @@ class StaffService:
     def staff_register(self):
         '''Sendir skilaboð til reboið um add viðeigandi starfsmanni í skrána'''
         new_staff = Staff()
-        legal = new_staff.make_staff(self.__staff_list)
-        if legal == True:
+        new_staff = new_staff.make_staff(self.__staff_list)
+        if type(new_staff) != str:
             self.__staff_repo.add_staff(new_staff)
+            return new_staff
         else:
-            pass
+            return new_staff
     
     def staff_delete(self, staff):
         '''Eyðir starfsmanni úr listanum og sendir á repoið að eyða starfsmanni úr skránum'''
@@ -57,9 +58,9 @@ class StaffService:
                     return False, False
                 elif keep_going == "h":
                     return True, True
-        if choice == "1":
+        if choice == "2":
             self.__price_repo.set_small_car_price(new_price)
-        elif choice == "2":
+        elif choice == "1":
             self.__price_repo.set_sedan_price(new_price)
         elif choice == "3":
             self.__price_repo.set_five_seat_suv_price(new_price)

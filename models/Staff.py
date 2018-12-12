@@ -38,30 +38,37 @@ class Staff(Person):
         """Skilar True ef starfsmaður er yfirmaður annars False."""
         return self.__admin
 
+    def get_info_list(self):
+        """ Skilar lista með upplýsingunum um starfsmanninn"""
+        return [self._name, self._ssn, self.__username, self.__password, self.__admin]
+
     def make_staff(self, staff_list):
         for number in range(1, 6):
             number = str(number)
             self.change_info(number, staff_list)
+            info_list = self.get_info_list()
+            if "t" in info_list:
+                return "t"
+            elif "h" in info_list:
+                return "h"
             if number == '2':
                 if self._ssn == '':
                     done = True
                     break
                 else:
                     done = False
-                    
-
         while not done:
             correct = input("Er allt rétt? (j/n) ").lower()
             if correct != "j":
                 self.update_info(staff_list)
             else:
-                return True
+                return self
         return False
-
 
     def update_info(self, staff_list):
         correct = False
         while not correct:
+            print_header("Heimasíða / Starfsmenn / Skrá nýjan starfsmann / Breyta skráningu")
             choice = input("Hverju villtu breyta:\n1.  Nafn\n2.  Kennitala\n3.  Notandnafn\n4.  Lykilorð\n5.  Breyta aðgangi\n6.  Klára Skráningu\n")
             legal_choice = False
             while not legal_choice:

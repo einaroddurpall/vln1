@@ -44,19 +44,18 @@ class CustomerMenu:
                 prompt += " / Skrá nýjan viðskiptavin"
                 print_header(prompt)
                 new_customer = self.__customer_service.customer_register()
-                if new_customer == "h":
-                    done = True
-                elif type(new_customer) == Customer:
+                if type(new_customer) == Customer:
                     exit_info, done = self.view_customer(new_customer, prompt)
+                elif new_customer == "h":
+                    done = True
 
             else:
                 done = True
 
-
     def view_customer(self, customer, prompt):
-        prompt += " / Skoða viðskiptavin"
         exit_info2 = ""
         while exit_info2 == "":
+            prompt = "Heimasíða / Viðskiptavinir / Skoða viðskiptavin"
             print_header(prompt)
             print(customer)
             choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Skrá Pöntun á viðskiptavin\nt.  Tilbaka\nh.  Heim\n").lower()
@@ -84,6 +83,8 @@ class CustomerMenu:
                     self.__customer_service.customer_delete(customer)
                     return "Tilbaka", False
             elif choice == "4":
+                prompt += " / Skrá pöntun á viðskiptavin"
+                print_header(prompt)
                 self.__order_service = OrderService()
                 self.__order_service.make_order_info(prompt, customer)
                 self.__customer_service.update_order_repo()
