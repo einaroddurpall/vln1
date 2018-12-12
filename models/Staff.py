@@ -62,13 +62,13 @@ class Staff(Person):
             if correct != "j":
                 self.update_info(staff_list)
             else:
-                return True
+                return self
         return False
-
 
     def update_info(self, staff_list):
         correct = False
         while not correct:
+            print_header("Heimasíða / Starfsmenn / Skrá nýjan starfsmann / Breyta skráningu")
             choice = input("Hverju villtu breyta:\n1.  Nafn\n2.  Kennitala\n3.  Notandnafn\n4.  Lykilorð\n5.  Breyta aðgangi\n6.  Klára Skráningu\n")
             legal_choice = False
             while not legal_choice:

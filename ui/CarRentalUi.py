@@ -54,6 +54,7 @@ class CarRentalUi:
             password = input("Password: ")
             login, admin = self.__staff_service.check_login(username, password)
             if login == False:
+                system('clear')
                 print("Innskráning mistókst.")
                 sleep(1)
         action = ""
