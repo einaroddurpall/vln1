@@ -10,7 +10,7 @@ class CustomerMenu:
 
     def __init__(self):
         self.__customer_service = CustomerService()
-
+        self.customer_menu()
 
     def customer_menu(self):
         """ Hér er hægt að framkvæma allar aðgerðir sem koma viðskiptavinum við """

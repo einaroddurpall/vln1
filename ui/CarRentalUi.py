@@ -48,9 +48,9 @@ class CarRentalUi:
 
     def main_menu(self):
         """ Main menu er loop sem hættir þegar q er sett inn."""
-        car = self.__carUI()
-        customer = self.__customerUI()
-        order = self.__orderUI()
+        # car = self.__carUI()
+        # customer = self.__customerUI()
+        # order = self.__orderUI()
         login = False
         while not login:
             username = input("Username: ")
@@ -71,8 +71,11 @@ class CarRentalUi:
             else:
                 action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\nq.  Skrá út\n").lower()
             if action == "1":
-                car.car_menu()
+                #car.car_menu()
+                self.__carUI()
             elif action == "2":
-                customer.customer_menu()
+                #customer.customer_menu()
+                self.__customerUI()
             elif action == "3":
-                order.order_menu()
+                #order.order_menu()
+                self.__orderUI()
