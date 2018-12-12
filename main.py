@@ -5,7 +5,7 @@ def main():
     system('clear')
     ui = CarRentalUi()
     
-    ui.draw_car()
+    # ui.draw_car()
     ui.main_menu()
 
 main()
