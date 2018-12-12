@@ -1,9 +1,9 @@
 from os import system,name
-from services.CarService import CarService
-from models.Car import Car
 from time import sleep
 from datetime import date
 import string
+from services.CarService import CarService
+from models.Car import Car
 from models.Functions import print_header, error_handle
 
 class CarMenu:
@@ -72,7 +72,7 @@ class CarMenu:
                             else:
                                 print_header(prompt)
                                 print("Þessi bíll hefur enga notkunarsögu.")
-                            input("Ýttu á enter til að halda áfram: ")
+                            input('Ýttu á "Enter" til að halda áfram: ')
                         elif choice == "2":
                             prompt += " / Leita að öðru bílnúmeri"
                             print_header(prompt)
@@ -100,7 +100,7 @@ class CarMenu:
                 if type(car_was_made) != str:
                     print_header(prompt)
                     print("Bíll skráður í kerfið.")
-                    input('Smelltu á "Enter" til að halda áfram')
+                    input('Ýttu á "Enter" til að halda áfram')
                 else: 
                     if car_was_made == "h":
                         done = True

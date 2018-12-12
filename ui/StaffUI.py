@@ -1,15 +1,17 @@
 from os import system,name
-from services.StaffService import StaffService
 from time import sleep
+from services.StaffService import StaffService
 from models.Functions import print_header, error_handle
 from models.Staff import Staff
 
 class StaffMenu:
     '''þessi klasi sér um að sækja allar upplýsingar sem tengjast starfsmanni og prenta það út'''
 
-    def __init__(self):
+    def __init__(self, staff):
         self.__staff_service = StaffService()
+        self.__staff = staff
         self.staff_menu()
+        
 
     def staff_menu(self):
         """her er hægt að skrá nýjan aðgan að forritinu og breyta uppl."""
@@ -17,7 +19,7 @@ class StaffMenu:
         while not done:
             prompt = "Heimasíða / Starfsmenn"
             print_header(prompt)
-            action = input("1.  Skrá nýjan starfsmann\n2.  Leita af starfsmanni\n3.  Skoða verðskrá\nh.  Heim\n")
+            action = input("1.  Skrá nýjan starfsmann\n2.  Leita að starfsmanni\n3.  Skoða verðskrá\nh.  Heim\n")
             if action == "1":
                 prompt += " / Skrá nýjan starfsmann"
                 print_header(prompt)
@@ -53,7 +55,7 @@ class StaffMenu:
                                 print_header(prompt)
                                 choice = input("Ertu viss?(j/n): ")
                                 if choice == "j":
-                                    self.__staff_service.staff_delete(staff)
+                                    self.__staff_service.staff_delete(staff, self.__staff)
                                     exit_info = "Tilbaka"
                                     exit_info2 = "Tilbaka"
                             elif choice == "t":

@@ -1,7 +1,7 @@
-from services.OrderService import OrderService
-from models.Order import Order
 from os import system
 from time import sleep
+from services.OrderService import OrderService
+from models.Order import Order
 from models.Functions import print_header, pretty_str
 
 class OrderMenu:

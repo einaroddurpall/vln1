@@ -6,7 +6,8 @@ from models.Functions import make_number, make_date_list, make_date, pretty_str,
 from models.Car import Car
 
 class Order:
-    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", order_name="Pöntun fær númer þegar hún hefur verið skráð", order_price = 0, complete = False):
+    def __init__(self, customer="", car="", date_list=[], insurance="", card_info="", 
+    order_name="Pöntun fær númer þegar hún hefur verið skráð", order_price = 0, complete = False):
         """Hver pöntun hefur viðskiptavin, bíl, lista af dögum, tryggingu, kortaupplýsingar(sem tryggingu), pöntunarnúmer/nafn, 
         verð og upplýsingar um hvort hún er búin eða ekki."""
         self.__customer = customer

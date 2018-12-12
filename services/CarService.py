@@ -1,13 +1,13 @@
-from repositories.CarRepository import CarRepository
-from repositories.OrderRepository import OrderRepository
-from services.CustomerService import CustomerService
-from models.Car import Car
-from datetime import datetime, timedelta
-from models.Functions import print_header, make_date, check_registration_num, make_date_list, pretty_str, make_car_type, legal_dates
-from services.ChangeService import ChangeService
 from time import sleep
 from os import system
+from datetime import datetime, timedelta
+from repositories.CarRepository import CarRepository
+from repositories.OrderRepository import OrderRepository
 from repositories.PriceRepository import PriceRepository
+from services.CustomerService import CustomerService
+from services.ChangeService import ChangeService
+from models.Car import Car
+from models.Functions import print_header, make_date, check_registration_num, make_date_list, pretty_str, make_car_type, legal_dates
 
 def get_car_price(car_type, price_repo):
     '''Tekur inn streng sem lýsir bíltegundinni og skilar verðið á þeim flokki'''
@@ -180,7 +180,7 @@ class CarService:
                 if car_type in a_dict.keys():
                     print("\n{:<18}{:>10}:".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
                     print("="*60)
-                    print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+                    print("{:>20}{:>10}{:>13}{:>17}".format("Bíltegund", "Bílnúmer", 'Akstur', 'Skipting'))
                     print('-'*60)
                     for car_info in a_dict[car_type]:
                         car_number = car_info[0]
