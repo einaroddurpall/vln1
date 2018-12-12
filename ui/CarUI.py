@@ -58,6 +58,7 @@ class CarMenu:
                         prompt = "Heimasíða / Bílar / Skoða bíl"
                         system('clear')
                         print_header(prompt)
+                        car_found.set_availability(self.__car_service.get_date_dict())
                         print(car_found)
                         print("="*60)
                         choice = input("\n1.  Skoða pantanir\n2.  Leita að öðru bílnúmeri\n3.  Uppfæra upplýsingar bíls\n4.  Afskrá bíl\nt.  Tilbaka\nh.  Heim\n").lower()

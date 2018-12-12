@@ -131,7 +131,7 @@ class Order:
         elif step == "3":
             step3 = False
             while step3 is not True:
-                number = input("Veldu tryggingu:\n1.  Grunntrygging\n2.  Aukatrygging\n")
+                number = input("Veldu tryggingu:\n1.  Grunntrygging (2.000 ISK á dag)\n2.  Aukatrygging (3.500 ISK á dag)\n")
                 if number == "2":
                     self.__insurance = "Aukatrygging"
                     step3 = True

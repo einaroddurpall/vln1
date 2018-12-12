@@ -1,2 +1,8 @@
+<<<<<<< HEAD
+Car('WOW12','Fimm sæta jeppi','Jeep Ceroki','Beinskiptur',5000)
+Car('SAC11','Fimm sæta jeppi','VW Toreg','Beinskiptur',6000)
+=======
 Car('WOW12','Fimm sæta jeppi','Jeep Ceroki','Beinskiptur',6000,True)
 Car('SAC11','Fimm sæta jeppi','VW Toreg','Beinskiptur',6000,True)
+Car('IKR23','Fimm sæta jeppi','oli','Beinskiptur',5444444,True)
+>>>>>>> d873c215db4398a8ce66e34b14e383b4cce73505

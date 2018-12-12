@@ -76,6 +76,10 @@ class StaffMenu:
                     print_header(prompt)
                     self.__staff_service.print_price_list()
                     choice = input("\n1.  Breyta skráningu\nt.  Tilbaka\nh.  Heimasíða\n").lower()
+<<<<<<< HEAD
+                    
+=======
+>>>>>>> d873c215db4398a8ce66e34b14e383b4cce73505
                     if choice == "1":
                         exit_info = False
                         prompt += " / Breyta verðskrá"
