@@ -1,4 +1,4 @@
 Car('HSG98','Fólksbíll','BLA','Sjálfskiptur',5000,True)
-Car('POP00','Fólksbíll','VW Passat','Sjálfskiptur',3000,True)
+Car('POP00','Fólksbíll','VW Passat','Sjálfskiptur',3500,True)
 Car('ICE10','Fólksbíll','Jaguar','Sjálfskiptur',20000,True)
 Car('LFC54','Fólksbíll','Ford Fiesta','Beinskiptur',24000,True)

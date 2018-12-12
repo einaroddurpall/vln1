@@ -64,6 +64,7 @@ def check_registration_num(registration_num):
             new_registration_num += letter
     if len(new_registration_num) != 5:
         print("Þetta bílnúmer var ólöglegt.")
+        sleep(1)
         return False
     registration_num = new_registration_num.upper()
     if registration_num[0] in string.ascii_letters and registration_num[1] in string.ascii_letters\
@@ -71,7 +72,7 @@ def check_registration_num(registration_num):
     and registration_num[3] in string.digits and registration_num[4] in string.digits:
         return registration_num
     print("Þetta bílnúmer var ólöglegt.")
-    sleep(2)
+    sleep(1)
     return False
 
 def make_date_list(date1, date2):

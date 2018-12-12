@@ -166,8 +166,8 @@ class OrderService:
                         self.__order_repo.update_order_list()
                         print_header(prompt)
                         print("Viðskiptavinur þarf að greiða {}\nPöntun er nú kláruð".format(final_payment))
-                        choice = input("1.  Velja aðra pöntun til að klára\n2.  Tilbaka\n3.  Heim\n")
-                        if choice == "2" or choice == "3":
+                        choice = input("1.  Velja aðra pöntun til að klára\nt.  Tilbaka\nh.  Heim\n")
+                        if choice == "t" or choice == "h":
                             finished_completing_orders = True
                         else:
                             order_found = False
