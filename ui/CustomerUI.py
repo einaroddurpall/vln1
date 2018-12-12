@@ -1,10 +1,10 @@
-from services.CustomerService import CustomerService
-from models.Customer import Customer
 from os import system
 from time import sleep
-from models.Functions import print_header, make_date
 import string
 from services.OrderService import OrderService
+from services.CustomerService import CustomerService
+from models.Customer import Customer
+from models.Functions import print_header, make_date
 
 class CustomerMenu:
 

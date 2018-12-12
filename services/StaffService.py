@@ -1,6 +1,6 @@
 from repositories.StaffRepository import StaffRepository
-from models.Staff import Staff
 from repositories.PriceRepository import PriceRepository
+from models.Staff import Staff
 from models.Functions import pretty_str
 
 class StaffService:

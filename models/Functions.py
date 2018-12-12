@@ -1,8 +1,7 @@
-from datetime import date
+from datetime import date, timedelta
 from os import system
 from time import sleep
 import string
-from datetime import timedelta
 
 def print_header(prompt=""):
         """ Hreinsar terminal og prentar út header með slóð """

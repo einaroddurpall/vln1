@@ -1,7 +1,7 @@
-from models.Person import Person
-from models.Functions import print_header, make_number
 from os import system
 from time import sleep
+from models.Person import Person
+from models.Functions import print_header, make_number
 
 class Staff(Person):
     """staff class, is a subclass of the Person class

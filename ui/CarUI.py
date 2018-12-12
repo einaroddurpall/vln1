@@ -1,9 +1,9 @@
 from os import system,name
-from services.CarService import CarService
-from models.Car import Car
 from time import sleep
 from datetime import date
 import string
+from services.CarService import CarService
+from models.Car import Car
 from models.Functions import print_header, error_handle
 
 class CarMenu:
