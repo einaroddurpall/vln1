@@ -119,10 +119,10 @@ def legal_dates(prompt):
 def pretty_date (date):
     return date[8:10] + "/" + date[5:7] + "/" + date[0:4]
 
-def take_payment(price):
+def take_payment(price, price_promt="Verð"):
     payment_complete = False
     while not payment_complete:
-        print("\nVerð: {}".format(pretty_str(price, "ISK")))
+        print("{}: {}".format(price_promt, pretty_str(price, "ISK")))
         pay_choice = input("1.  Borga með korti\n2.  Borga með reiðufé\nh.  Hætta við\n").lower()
         if pay_choice == "h":
             return "h"

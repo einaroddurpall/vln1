@@ -1,1 +1,12 @@
+<<<<<<< HEAD
 Car('KJX89','Smábíll','Flottur bíll','Beinskiptur',1234123)
+=======
+Car('KJX89','Smábíll','Toyota Yaris','Beinskiptur',700000000,True)
+Car('YTG56','Smábíll','sdgh','Sjálfskiptur',654,True)
+Car('FVG44','Smábíll','erty','Beinskiptur',67776,True)
+Car('OOO99','Smábíll','treds','Sjálfskiptur',543,True)
+Car('WWW32','Smábíll','ertyhuj','Sjálfskiptur',345,True)
+Car('DFR77','Smábíll','wedfgh','Sjálfskiptur',5555,True)
+Car('YUT66','Smábíll','ofolfl','Beinskiptur',67676,True)
+Car('VBG55','Smábíll','gfds','Sjálfskiptur',2323,True)
+>>>>>>> d873c215db4398a8ce66e34b14e383b4cce73505
