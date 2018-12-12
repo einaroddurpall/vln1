@@ -10,20 +10,21 @@ from services.CarService import CarService, get_car_price
 from services.CustomerService import CustomerService
 from services.ChangeService import ChangeService
 from models.Car import Car
-from models.Functions import print_header, error_handle, pretty_str
+from models.Functions import print_header, error_handle, pretty_str, take_payment
+from repositories.PriceRepository import PriceRepository
 
 def calc_price(order):
     """Calculates the price of an order"""
     car = order.get_car()
     car_type = car.get_car_type()
-    base_price = get_car_price(car_type)
+    base_price = get_car_price(car_type, PriceRepository())
     dates = len(order.get_date_list())
     insurance = order.get_insurance()
     if insurance == 'Grunntrygging':
         insurance_price = 2000
     else:
         insurance_price = 3500
-    return dates*(base_price + insurance_price)
+    return (dates)*(base_price + insurance_price)
 
 class OrderService:
 
@@ -56,6 +57,11 @@ class OrderService:
             self.change_order_info(new_order, True, prompt)
         price = calc_price(new_order)
         new_order.set_price(price)
+        payment_complete = take_payment(price)
+        if type(payment_complete) == str:
+            return "h"
+        print("Pöntun skráð.\n")
+        sleep(2.5)
         self.__order_repo.add_order(new_order)
         self.__order_list.append(new_order)
         return new_order
