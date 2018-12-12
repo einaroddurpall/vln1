@@ -74,6 +74,10 @@ class StaffService:
             self.__price_repo.set_seven_seat_suv_price(new_price)
         elif choice == "5":
             self.__price_repo.set_minibus_price(new_price)
+        elif choice == "6":
+            self.__price_repo.set_base_insurance_price(new_price)
+        elif choice == "7":
+            self.__price_repo.set_extra_insurance_price(new_price)
         self.__price_repo.update_price_list()
         return False, False
     
