@@ -32,6 +32,7 @@ class CustomerService:
     def customer_delete(self, customer):
         self.__customers_list.remove(customer)
         self.__customer_repo.update_costumers_list()
+        self.__change_service.delete_customer_consequences(customer)
 
     def customer_update_info(self, customer):
         old_customer = customer

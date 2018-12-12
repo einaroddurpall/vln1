@@ -24,6 +24,19 @@ class ChangeService:
                     order.set_customer(new_customer)
         self.__order_repo.update_order_list()
 
+    def delete_customer_consequences(self, customer):
+        """Tekur við viðskiptavin sem var afskráður og eyðir öllum þeim pöntunum sem voru óloknar og
+        skráðar á þann viðskiptavin úr kerfinu."""
+        orders_to_delete = []
+        for order in self.__order_list:
+            if order.get_order_complete() == False:
+                if order.get_customer() == customer:
+                    orders_to_delete.append(order)
+        for order in orders_to_delete:
+            self.__order_list.remove(order)
+        self.__order_repo.update_order_list()
+        input("Óloknum pöntunum viðskiptavinarins hefur verið eytt, ýttu á enter til að halda áfram.")
+                    
     def change_car_info_consequences(self, old_car, new_car):
         """Tekur við bíl eins og hann var fyrir breytingar og eftir breytingar.Finnur allar pantanir
         þar sem óbreytti bíllinn kemur fyrir og setur þann nýja í staðinn, gerist þó aðeins ef pöntuninni
