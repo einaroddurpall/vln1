@@ -70,7 +70,7 @@ class OrderService:
         correct = False
         while not correct:
             print_header(prompt)
-            print("Hverju villtu breyta:\n1. Kennitölu á pöntun\n2. Bíl og dagsetningu\n3. Tryggingu\n4. Kortanúmeri\n5. Klára Skráningu")
+            print("Hverju villtu breyta:\n1.  Kennitölu á pöntun\n2.  Bíl og dagsetningu\n3.  Tryggingu\n4.  Kortanúmeri\n5.  Klára Skráningu")
             legal_choice = False
             while not legal_choice:
                 choice = input()
