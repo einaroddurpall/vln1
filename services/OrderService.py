@@ -63,7 +63,6 @@ class OrderService:
         print("Pöntun skráð.\n")
         sleep(2.5)
         self.__order_repo.add_order(new_order)
-        self.__order_list.append(new_order)
         return new_order
         
     def change_order_info(self, order, new_or_not, prompt):
