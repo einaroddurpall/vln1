@@ -7,6 +7,9 @@ class PriceRepository:
         self.__price_list = self.read_car_prices()
         self.__small_car_price, self.__sedan_price, self.__five_seat_suv_price, self.__seven_seat_suv_price, self.__minibus_price = self.__price_list
 
+    def get_price_list(self):
+        return self.__price_list
+
     def get_small_car_price(self):
         return self.__small_car_price[1]
     

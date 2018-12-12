@@ -17,7 +17,7 @@ class StaffMenu:
         while not done:
             prompt = "Heimasíða / Starfsmenn"
             print_header(prompt)
-            action = input("1.  Skrá nýjan starfsmann\n2.  Leita af starfsmanni\n3.  Breyta verðskrá\nh.  Heim\n")
+            action = input("1.  Skrá nýjan starfsmann\n2.  Leita af starfsmanni\n3.  Skoða verðskrá\nh.  Heim\n")
             if action == "1":
                 prompt += " / Skrá nýjan starfsmann"
                 print_header(prompt)
@@ -68,18 +68,29 @@ class StaffMenu:
                             exit_info = "Heim"
                             done = True
             elif action == "3":
-                exit_info = False
-                while not exit_info:
-                    prompt += " / Breyta verðskrá"
+                done_viewing = False
+                while not done_viewing:
+                    prompt = "Heimasíða / Starfsmenn / Skoða Verðskrá"
                     print_header(prompt)
-                    choice = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\nt.  Til baka\nh.  Heim\n").lower()
-                    if choice == "t":
-                        exit_info = True
+                    self.__staff_service.print_price_list()
+                    choice = input("\n1.  Breyta skráningu\nt.  Tilbaka\nh.  Heimasíða").lower()
+                    if choice == "1":
+                        exit_info = False
+                        while not exit_info:
+                            prompt += " / Breyta verðskrá"
+                            print_header(prompt)
+                            choice = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\nt.  Til baka\nh.  Heim\n").lower()
+                            if choice == "t":
+                                exit_info = True
+                            elif choice == "h":
+                                exit_info = True
+                                done = True
+                            elif choice in [str(i) for i in range(1,6)]:
+                                exit_info, done = self.__staff_service.change_price(choice)
                     elif choice == "h":
-                        exit_info = True
+                        done_viewing = True
                         done = True
-                    elif choice in [str(i) for i in range(1,6)]:
-                        exit_info, done = self.__staff_service.change_price(choice)
-            
+                    else:
+                        done_viewing =  True
             else:
                 done = True

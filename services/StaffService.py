@@ -70,3 +70,9 @@ class StaffService:
             self.__price_repo.set_minibus_price(new_price)
         self.__price_repo.update_price_list()
         return False, False
+    
+    def print_price_list(self):
+        print("{:16} {:>10}\n".format("Flokkur","Verð"))
+        for price_list in self.__price_repo.get_price_list():
+            print("{:16} {:>10}".format(price_list[0], price_list[1]))
+    
