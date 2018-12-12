@@ -178,3 +178,29 @@ def take_cash(price):
                 continue
             else:
                 return True
+
+def calc_price(order, price_repo):
+    """Calculates the price of an order"""
+    car = order.get_car()
+    car_type = car.get_car_type()
+    base_price = get_car_price(car_type, price_repo)
+    dates = len(order.get_date_list())
+    insurance = order.get_insurance()
+    if insurance == 'Grunntrygging':
+        insurance_price = 2000
+    else:
+        insurance_price = 3500
+    return (dates)*(base_price + insurance_price)
+
+def get_car_price(car_type, price_repo):
+    '''Tekur inn streng sem lýsir bíltegundinni og skilar verðið á þeim flokki'''
+    if car_type.lower() == "smábíll":
+        return int(price_repo.get_small_car_price())
+    elif car_type.lower() == 'fólksbíll':
+        return int(price_repo.get_sedan_price())
+    elif car_type.lower() == 'fimm sæta jeppi':
+        return int(price_repo.get_five_seat_suv_price())
+    elif car_type.lower() == 'sjö sæta jeppi':
+        return int(price_repo.get_seven_seat_suv_price())
+    elif car_type.lower() == 'smárúta':
+        return int(price_repo.get_minibus_price())

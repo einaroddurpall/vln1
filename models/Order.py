@@ -2,7 +2,7 @@ import string
 from datetime import datetime, timedelta, date
 from os import system
 from time import sleep
-from models.Functions import make_number, make_date_list, make_date, pretty_str, make_car_type, legal_dates, print_header, pretty_date
+from models.Functions import make_number, make_date_list, make_date, pretty_str, make_car_type, legal_dates, print_header, pretty_date, calc_price
 from models.Car import Car
 
 class Order:
@@ -98,7 +98,7 @@ class Order:
         """sets the price of the orders"""
         self.__order_price = price
 
-    def change_info(self, step, car_service, customer_service, prompt = ""):
+    def change_info(self, step, car_service, customer_service, prompt = "", price_repo = None):
         '''Þetta fall tekur inn uppl. um hvaða skrefi notandinn vil breyta, síðan fer inn í það
         skref með þær uppl. sem það þarf til að breyta viðeigaindi uppl. um ákveðna pöntun sem 
         notandinn vill láta breyta og spyr notandinn um þær uppl. sem það þarf.'''
@@ -141,9 +141,11 @@ class Order:
                 if number == "2":
                     self.__insurance = "Aukatrygging"
                     step3 = True
+                    self.__order_price = calc_price(self, price_repo)
                 elif number == "1":
                     self.__insurance = "Grunntrygging"
                     step3 = True
+                    self.__order_price = calc_price(self, price_repo)
                 elif number == "t" or number == "h":
                     return number
                 else:
