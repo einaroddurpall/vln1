@@ -1,6 +1,7 @@
 from repositories.OrderRepository import OrderRepository
 from repositories.CustomerRepository import CustomerRepository
 from repositories.CarRepository import CarRepository
+from repositories.PriceRepository import PriceRepository
 from models.Order import Order
 from models.Car import Car
 
@@ -64,7 +65,7 @@ class ChangeService:
                         print(order)
                         print()
                         print("Veldu flokk:")
-                        order.change_info("2",car_service, customer_service)
+                        order.change_info("2",car_service, customer_service, price_repo=PriceRepository())
                     else:
                         order.set_car(new_car)
         self.__order_repo.update_order_list()

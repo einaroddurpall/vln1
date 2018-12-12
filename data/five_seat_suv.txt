@@ -1,2 +1,0 @@
-Car('API10','Fimm sæta jeppi','Banana','Sjálfskiptur',666)
-Car('TRI85','Fimm sæta jeppi','Kia Sportage','Sjálfskiptur',32222)
