@@ -60,7 +60,7 @@ class CarMenu:
                         print_header(prompt)
                         car_found.set_availability(self.__car_service.get_date_dict())
                         print(car_found)
-                        print("="*60)
+                        print("="*70)
                         choice = input("\n1.  Skoða pantanir\n2.  Leita að öðru bílnúmeri\n3.  Uppfæra upplýsingar bíls\n4.  Afskrá bíl\nt.  Tilbaka\nh.  Heim\n").lower()
                         if choice == "1":
                             print_header(prompt)

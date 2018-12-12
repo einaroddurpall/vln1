@@ -82,7 +82,9 @@ class CarService:
         if new_or_not:
             while not correct:
                 print_header(prompt)
-                print("Hverju villtu breyta:\n1.  Bílnúmeri\n2.  Bílaflokkur\n3.  Undirtegund\n4.  Skipting\n5.  Akstur (km)\n6.  Klára Skráningu")
+                print(car)
+                print("="*70)
+                print("Hverju villtu breyta:\n1.  Bílnúmeri\n2.  Bílaflokkur\n3.  Undirtegund\n4.  Skipting\n5.  Akstur(km)\n6.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
                     choice = input()
@@ -99,9 +101,8 @@ class CarService:
         else:
             while not correct:
                 print_header(prompt)
-                
                 print(car)
-                print()
+                print("="*70)
                 print("Hverju villtu breyta:\n1.  Undirtegund\n2.  Skipting\n3.  Akstur(km)\n4.  Klára Skráningu")
                 legal_choice = False
                 while not legal_choice:
