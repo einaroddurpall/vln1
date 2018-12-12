@@ -3,7 +3,7 @@ from models.Staff import Staff
 from repositories.PriceRepository import PriceRepository
 
 class StaffService:
-    '''þessi klasi vinnur úr öllum upplýsingum sem tengjast starfsmanni, skrá starfsmann, logga sig inn og 
+    '''Þessi klasi vinnur úr öllum upplýsingum sem tengjast starfsmanni, skrá starfsmann, logga sig inn og 
     breyta uppl. sem tengjast honum'''
 
     def __init__(self):
@@ -19,7 +19,7 @@ class StaffService:
         return False, False
 
     def staff_register(self):
-        '''sendir skilaboð til reboið um add viðeigandi starfsmanni í skrána'''
+        '''Sendir skilaboð til reboið um add viðeigandi starfsmanni í skrána'''
         new_staff = Staff()
         legal = new_staff.make_staff(self.__staff_list)
         if legal == True:
@@ -28,12 +28,12 @@ class StaffService:
             pass
     
     def staff_delete(self, staff):
-        '''eyðir starfsmanni úr listanum og sendir á repoið að eyða starfsmanni úr skránum'''
+        '''Eyðir starfsmanni úr listanum og sendir á repoið að eyða starfsmanni úr skránum'''
         self.__staff_list.remove(staff)
         self.__staff_repo.update_staff_list()
 
     def staff_update_info(self, staff):
-        '''updatear starfsmanns upplýsingar og sendir það á repoið að updata það'''
+        '''Updatear starfsmanns upplýsingar og sendir það á repoið að updata það'''
         staff.update_info(self.__staff_list)
         self.__staff_repo.update_staff_list()
 
