@@ -84,10 +84,7 @@ class OrderService:
             if choice == "5":
                 correct = True
             order.change_info(choice, self.__car_service, self.__customer_service, prompt)
-        if new_or_not:
-            self.__order_repo.add_order(order)
-        else:
-            self.__order_repo.update_order_list()
+        self.__order_repo.update_order_list()
 
     def get_order_by_name(self, name):
         for order in self.__order_repo.get_order_list():

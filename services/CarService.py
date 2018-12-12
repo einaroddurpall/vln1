@@ -277,7 +277,7 @@ class CarService:
     def car_delete(self, car):
         self._all_cars_list.remove(car)
         car_type = car.get_car_type().lower()
-        if car_type == 'smá bíll':
+        if car_type == 'smábíll':
             self._car_repo_small_car.remove_car(car)
         elif car_type == 'fólksbíll':
             self._car_repo_sedan.remove_car(car)
