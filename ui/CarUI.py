@@ -120,16 +120,17 @@ class CarMenu:
                         exit_info = "Tilbaka"
             elif action == "4":
                 exit_info = ""
+                prompt += " / Skoða bíla í útleigu"
                 while exit_info == "":
-                    prompt += " / Skoða bíla í útleigu"
                     print_header(prompt)
                     busy_cars_dict = self.__car_service.get_busy_cars(prompt)
                     go_home = self.__car_service.print_car_dict(busy_cars_dict)
                     if go_home != True:
                         choice = input("1.  Skoða fleiri bíla í útleigu\nt.  Tilbaka\nh.  Heim\n")
-                        if choice == "t" or choice == "h":
+                        if choice == "t" or choice == "h" or choice != "1":
                             if choice == "h":
                                 done = True
+                            exit_info = "Tilbaka"
                             break
                     else:
                         exit_info = "Tilbaka"

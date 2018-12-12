@@ -58,6 +58,8 @@ class Staff(Person):
                 else:
                     done = False
         while not done:
+            print_header("Heimasíða / Starfsmenn / Skrá nýjan starfsmann")
+            print(self)
             correct = input("Er allt rétt? (j/n) ").lower()
             if correct != "j":
                 self.update_info(staff_list)

@@ -1,17 +1,16 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from os import system
-from models.Order import Order
 from time import sleep
-from datetime import date
 import string
 from repositories.OrderRepository import OrderRepository
 from repositories.CarRepository import CarRepository
+from repositories.PriceRepository import PriceRepository
 from services.CarService import CarService, get_car_price
 from services.CustomerService import CustomerService
 from services.ChangeService import ChangeService
 from models.Car import Car
+from models.Order import Order
 from models.Functions import print_header, error_handle, pretty_str, take_payment
-from repositories.PriceRepository import PriceRepository
 
 def calc_price(order):
     """Calculates the price of an order"""
@@ -61,6 +60,7 @@ class OrderService:
         payment_complete = take_payment(price)
         if type(payment_complete) == str:
             return "h"
+        print_header(prompt)
         print("Pöntun skráð.\n")
         sleep(2.5)
         self.__order_repo.add_order(new_order)
@@ -118,6 +118,11 @@ class OrderService:
         self.__order_repo.update_order_list()
 
     def complete_orders(self, prompt):
+        """ Þetta fall finnur hvaða pantanir eru með skiladag í dag eða liðinn skiladag og prentar þær út.
+            Notandi getur svo valið hvaða pöntun hann vill klára. Þegar sú pöntun hefur verið valinn þá reiknast
+            út hvað aukakostnað þarf að greiða (ef viðskiptavinur keyrði meira en 150 km á dag) sem viðskiptavinur
+            þarf að greiða. Þegar borgað hefur verið allan aukakostnað þá breytist skráningin á pöntuninni og hún
+            hefur þar með verið kláruð. """
         finished_completing_orders = False
         while not finished_completing_orders:
             # while not order_found:
@@ -139,8 +144,10 @@ class OrderService:
                 order_to_change = input("Hvaða pöntun viltu klára? ")
                 if order_to_change == "t" or order_to_change == "h":
                     return order_to_change
+                if len(order_to_change.split()) == 2:
+                    order_to_change = order_to_change.split()[1]
                 for order in order_to_complete_list:
-                    if order_to_change == order.get_order_name():
+                    if order_to_change == order.get_order_name().split()[1]:
                         order_to_complete = order
                         break
                     order_to_complete = False
@@ -183,5 +190,3 @@ class OrderService:
                     choice = input("1.  Velja aðra pöntun til að klára\nt.  Tilbaka\nh.  Heim\n")
                     if choice == "t" or choice == "h":
                         finished_completing_orders = True
-                    # else:
-                    #     order_found = False
