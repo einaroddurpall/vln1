@@ -57,9 +57,9 @@ class StaffService:
                     return False, False
                 elif keep_going == "h":
                     return True, True
-        if choice == "1":
+        if choice == "2":
             self.__price_repo.set_small_car_price(new_price)
-        elif choice == "2":
+        elif choice == "1":
             self.__price_repo.set_sedan_price(new_price)
         elif choice == "3":
             self.__price_repo.set_five_seat_suv_price(new_price)

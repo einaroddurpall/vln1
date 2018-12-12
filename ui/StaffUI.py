@@ -68,7 +68,7 @@ class StaffMenu:
                 while not exit_info:
                     prompt += " / Breyta verðskrá"
                     print_header(prompt)
-                    choice = input("1.  Smábíll\n2.  Fólksbíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\nt.  Til baka\nh.  Heim\n").lower()
+                    choice = input("1.  Fólksbíll\n2.  Smábíll\n3.  Fimm sæta jeppi\n4.  Sjö sæta jeppi\n5.  Smárúta\nt.  Til baka\nh.  Heim\n").lower()
                     if choice == "t":
                         exit_info = True
                     elif choice == "h":
