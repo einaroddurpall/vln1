@@ -52,8 +52,8 @@ class CarRentalUi:
         bílaflokk) er hægt að setja inn "t" til að fara tilbaka eða "h" til að fara aftur á þessa síðu. """
         login = False
         while not login:
-            username = input("Username: ")
-            password = input("Password: ")
+            username = input("Notandanafn: ")
+            password = input("Lykilorð: ")
             #Athugar hvort notandi sé til og skilar því, notandanum og hvort hann sé admin
             login, admin, self.__staff = self.__staff_service.check_login(username, password)
             if login == False:
