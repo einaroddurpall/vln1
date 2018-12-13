@@ -53,7 +53,7 @@ class Car:
         self.__milage = milage
     
     def set_availability(self, date_dict):
-        """sendir inn 'i checkabailability fallið upplýsingar og skilar hvort bílinn sé laus á þeim degi"""
+        """sendir inn í checkabailability fallið upplýsingar og skilar hvort bílinn sé laus á þeim degi"""
         if self.check_availability([date.today()], date_dict, self.get_car_type):
             self.__is_available = True
         else:

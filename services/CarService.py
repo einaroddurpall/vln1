@@ -181,7 +181,7 @@ class CarService:
     def search_for_specific_car_type(self, a_dict):
         """Function that asks user if he wants to find
         info about specific car type and does so"""
-        question = input("Viltu leita af ákveðnari tegund (j/n)? ")
+        question = input("Viltu leita af ákveðinni tegund (j/n)? ")
         if question == "j":
             car_type = make_car_type()
             if car_type != None:
