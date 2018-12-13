@@ -187,7 +187,7 @@ class CarService:
             if car_type in a_dict.keys():
                 print("\n{:<18}{:>10}:".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
                 print("="*70)
-                print("{:>20}{:>10}{:>13}{:>17}".format("Biltegund", "Bílnúmer", 'Akstur', 'Skipting'))
+                print("{:>20}{:>10}{:>13}{:>17}".format("Bíltegund", "Bílnúmer", 'Akstur', 'Skipting'))
                 print('-'*70)
                 for car_info in a_dict[car_type]:
                     car_number = car_info[0]
@@ -205,7 +205,7 @@ class CarService:
         for key,val in a_dict.items():
             print("\n{:<18}{:>10}:".format(key, pretty_str(get_car_price(key, price_repo), "ISK")))
             print("="*70)
-            print("{:>20}{:>10}{:>13}{:>17}".format("Bil tegund", "Bílnúmer", 'Akstur', 'Skipting'))
+            print("{:>20}{:>10}{:>13}{:>17}".format("Bíltegund", "Bílnúmer", 'Akstur', 'Skipting'))
             print('-'*70)
             for car_info in val:
                 car_number = car_info[0]
@@ -244,6 +244,7 @@ class CarService:
         in and dosent repeat the cars."""
         date1, date2 = legal_dates(prompt)
         list_of_days = make_date_list(date1, date2)
+        self._order_repo.update_order_list()
         car_info_dict = self.get_date_dict()
         car_type_info_dict = {}
         car_licence_list = []
