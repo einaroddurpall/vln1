@@ -1,0 +1,1 @@
+Car('YEE53','Sjö sæta jeppi','Land Rover Defender','Sjálfskiptur',500)
