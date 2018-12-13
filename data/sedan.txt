@@ -1,0 +1,7 @@
+Car('KJX89','Fólksbíll','Toyota Aygo','Sjálfskiptur',666)
+Car('FED89','Fólksbíll','Honda Accord','Beinskiptur',1001)
+Car('QQR45','Fólksbíll','Audi A4','Sjálfskiptur',400)
+Car('KEX55','Fólksbíll','Hyundai Kagl','Beinskiptur',19000)
+Car('LAZ13','Fólksbíll','Tesla s model','Sjálfskiptur',10000)
+Car('HER53','Fólksbíll','Skoda octavia','Sjálfskiptur',10020)
+Car('UGL13','Fólksbíll','Volks Wagen Passat','Beinskiptur',5023)

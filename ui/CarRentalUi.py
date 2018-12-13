@@ -42,6 +42,7 @@ class CarRentalUi:
         print("{:<19}==={:<34}===".format("",""))
         sleep(1)
         print("{:<35}CarHub \033[0m".format(""))
+        sleep(2)
 
     def main_menu(self):
         """ Main menu er loop sem hættir þegar q er sett inn. Á flestum input stöðum (fyrir utan þegar beðið er um dagsetningar eða 
@@ -60,8 +61,9 @@ class CarRentalUi:
                     print("Innskráning mistókst.")
             action = ""
             while action != "s" and action != "q":
-                prompt = "Heimasíða"
+                prompt = "Heimasíða ('t' til að fara til baka, 'h' til að fara heim)"
                 print_header(prompt)
+                prompt = "Heimasíða"
                 if admin:
                     action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\n4.  Starfsmenn\ns.  Skrá út\nq.  Loka kerfi\n").lower()
                     if action == '4':

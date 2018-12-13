@@ -1,9 +1,11 @@
+from time import sleep
 from repositories.OrderRepository import OrderRepository
 from repositories.CustomerRepository import CustomerRepository
 from repositories.CarRepository import CarRepository
 from repositories.PriceRepository import PriceRepository
 from models.Order import Order
 from models.Car import Car
+
 
 class ChangeService:
 
@@ -61,7 +63,8 @@ class ChangeService:
                     datelist = order.get_date_list()
                     new_car = order.rent_car(car_type, datelist, car_service)
                     if type(new_car) != Car:
-                        print("Bíll var skráður í pöntun/pantanir. Enginn sambærilegur bíll er laus yfir viðeigandi tímabil. Vinsamlegast skráið bíl fyrir eftirfarandi pöntun.")
+                        print("\nBíll var skráður í pöntun/pantanir. Enginn sambærilegur bíll er laus yfir viðeigandi tímabil. Vinsamlegast skráið bíl fyrir eftirfarandi pöntun.")
+                        sleep(1.5)
                         print(order)
                         print()
                         print("Veldu flokk:")

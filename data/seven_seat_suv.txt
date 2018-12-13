@@ -1,0 +1,4 @@
+Car('GOO41','Sjö sæta jeppi','Volvo X90','Sjálfskiptur',12000)
+Car('SEX11','Sjö sæta jeppi','Catilac Escalate','Sjálfskiptur',2000)
+Car('KNW24','Sjö sæta jeppi','TOYOTA Land Cruiser','Sjálfskiptur',40300)
+Car('COD10','Sjö sæta jeppi','Nissan Patrol','Beinskiptur',50000)

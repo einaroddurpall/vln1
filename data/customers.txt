@@ -1,0 +1,6 @@
+Customer('Viðskiptavinur 1','Jón Kristinn Þórðarsson','2107982349','Jóncovers@gmail.com','8451289')
+Customer('Viðskiptavinur 2','Hilmar Páll Stefánsson','0407982349','HilmarHot98@hotmail.com','8451289')
+Customer('Viðskiptavinur 3','Einar Oddur Páll Kall','2505983519','EinsiCool@mail.no','9879922')
+Customer('Viðskiptavinur 4','Huginn Sær','0101982349','huginn@snaer.is','5801212')
+Customer('Viðskiptavinur 5','Kristján Stjánn','2109982309','stjani@email.mail','8906738')
+Customer('Viðskiptavinur 6','Finnbogi Felix','2007901717','kari@gmail.com','8908844')

@@ -47,10 +47,3 @@ class CustomerRepository:
             counter += 1
             if unique_id not in id_list:
                 return unique_id
-
-
-def create_list(self, line_string):
-    """býr til lista úr línunni"""
-    line_string = line_string.strip("\n")
-    line_list = line_string.split(";")
-    return line_list

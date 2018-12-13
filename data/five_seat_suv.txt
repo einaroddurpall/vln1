@@ -1,0 +1,5 @@
+Car('IGL98','Fimm sæta jeppi','Honda CRV','Sjálfskiptur',678)
+Car('UMA31','Fimm sæta jeppi','Mini Cooper','Sjálfskiptur',21000)
+Car('JFK98','Fimm sæta jeppi','Ford 150','Sjálfskiptur',7889)
+Car('AKZ46','Fimm sæta jeppi','Audi Q5','Sjálfskiptur',4000)
+Car('HAX12','Fimm sæta jeppi','Kia Sportage','Sjálfskiptur',89000)

@@ -1,0 +1,8 @@
+Car('KKN46','Smárúta','Coca Cola','Beinskiptur',20000)
+Car('KOX66','Smárúta','Toyota Van','Sjálfskiptur',200)
+Car('HH232','Smárúta','Renault Assault','Beinskiptur',100)
+Car('KJU22','Smárúta','Ford Transit','Sjálfskiptur',300)
+Car('HM212','Smárúta','Toyota Rav Big','Sjálfskiptur',123)
+Car('LPL21','Smárúta','Benz V-Class','Sjálfskiptur',300)
+Car('POP36','Smárúta','Volkswagen Type 2','Sjálfskiptur',750)
+Car('HPS98','Smárúta','Subaru Large','Sjálfskiptur',234)
