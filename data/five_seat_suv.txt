@@ -1,2 +1,0 @@
-Car('HOT69','Fimm sæta jeppi','TOYOTA Land Cruiser','Sjálfskiptur',50)
-Car('RIP66','Fimm sæta jeppi','Susuki Jimmy','Sjálfskiptur',4000)

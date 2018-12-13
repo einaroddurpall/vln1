@@ -227,7 +227,7 @@ class CarService:
         Hver dagur sem inniheldur einhverja pöntun er þannig skráður sem key í dictinu og valueið er listi af öllum
         bílum sem eru bókaðir þann dag.'''
         date_dict = {}
-        order_list = self._order_repo.get_order_list()
+        order_list = self._order_repo.get_orders()
         for order in order_list:
             order_dates = make_date_list(order.get_first_day(), order.get_last_day())
             car = order.get_car()
@@ -279,7 +279,7 @@ class CarService:
 
     def car_get_history(self, car):
         '''Fall sem nær í lista af öllum pöntunum sem ákveðinn bíll hefur komið í'''
-        orders = self._order_repo.get_order_list()
+        orders = self._order_repo.get_orders()
         car_orders = []
         for order in orders:
             if order.get_car() == car:
