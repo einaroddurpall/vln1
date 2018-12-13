@@ -24,10 +24,12 @@ class OrderService:
         #self.__order_num = 1
 
     def make_date(self, a_date):
+        """tekur inn dagsetningu og breytir henni í date() tilvik"""
         day, month, year = a_date.split(".")
         return date(int(year), int(month), int(day))
 
     def make_order_info(self, prompt, customer_known):
+        """Býr til tóma pöntun og sendir pöntunina í gegnum ferlið að búa til allar upplýsingar um hana"""
         price_repo = PriceRepository()
         new_order = Order()
         for step in range(1, 5):
@@ -47,7 +49,7 @@ class OrderService:
         print("="*70)
         continue_q = input("\nEr allt rétt? (j/n) ").lower()
         if continue_q != "j":
-            self.change_order_info(new_order, True, prompt)
+            self.change_order_info(new_order, prompt)
         print_header(prompt)
         payment_complete = take_payment(new_order.get_order_price())
         if type(payment_complete) == str:
@@ -58,7 +60,10 @@ class OrderService:
         self.__order_repo.add_order(new_order)
         return new_order
         
-    def change_order_info(self, order, new_or_not, prompt):
+    def change_order_info(self, order, prompt):
+        """Sér um ferlið að uppfæra upplýsingar um pöntun. 
+        Þ.e.a.s tekur order og spyr hverju þú villt breyta, sendir þig svo á viðeigandi skref í order.change_info
+        síðan uppfærir það repoið og vistar breytingarnar"""
         correct = False
         while not correct:
             print_header(prompt)
@@ -81,6 +86,7 @@ class OrderService:
         self.__order_repo.update_order_list()
 
     def get_order_by_name(self, name):
+        """Finnur pöntun eftir leitarkilyrðinu name, leitar eftir pöntunarnúmeri, skilar pöntun ef hún finnst annars None"""
         for order in self.__order_repo.get_order_list():
             order_num = self.get_order_num_from_name(order.get_order_name())
             try:
@@ -92,11 +98,13 @@ class OrderService:
         return None
 
     def get_order_num_from_name(self, name):
+        """tekur inn númer og pöntun og skilar bara númerinu"""
         name_list = name.split()
         num = name_list[1]
         return num
 
     def get_order_by_ssn(self, ssn):
+        """Tekur við kennitölu og skilar lista af öllum pöntunum sem eru á þessari kennitölu"""
         customer = self.__customer_service.check_ssn(ssn)
         orders = []
         for order in self.__order_repo.get_order_list():
@@ -105,6 +113,7 @@ class OrderService:
         return orders
         
     def order_delete(self, order):
+        """Tekur við pöntun, eyðir því úr pöntunarlistanum og uppfærir pöntunarskjalið í samræmi við nýja listann"""
         self.__order_list.remove(order)
         self.__order_repo.update_order_list()
 
