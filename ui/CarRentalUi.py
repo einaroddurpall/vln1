@@ -12,17 +12,7 @@ from ui.StaffUI import StaffUI
 class CarRentalUi:
 
     def __init__(self):
-<<<<<<< HEAD
-        self.__carUI = CarUI
-        self.__orderUI = OrderUI
-        self.__customerUI = CustomerUI
         self.__staffUI = StaffUI
-=======
-        # self.__carUI = CarMenu
-        # self.__orderUI = OrderMenu
-        # self.__customerUI = CustomerMenu
-        self.__staffUI = StaffMenu
->>>>>>> 1c1fcaffab45c0f5db006933d9729ca2c7104782
         self.__staff_service = StaffService()
 
     def draw_car(self):
@@ -58,14 +48,8 @@ class CarRentalUi:
         bílaflokk) er hægt að setja inn "t" til að fara tilbaka eða "h" til að fara aftur á þessa síðu. """
         login = False
         while not login:
-<<<<<<< HEAD
-            username = input("Username: ")
-            password = input('Password: ')
-            # password = input("Password: ")
-=======
             username = input("Notandanafn: ")
             password = input("Lykilorð: ")
->>>>>>> 1c1fcaffab45c0f5db006933d9729ca2c7104782
             #Athugar hvort notandi sé til og skilar því, notandanum og hvort hann sé admin
             login, admin, self.__staff = self.__staff_service.check_login(username, password)
             if login == False:
@@ -82,11 +66,11 @@ class CarRentalUi:
             else:
                 action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\nq.  Skrá út\n").lower()
             if action == "1":
-                self.__carUI = CarMenu()
+                self.__carUI = CarUI()
                 self.__carUI.car_menu()
             elif action == "2":
-                self.__customerUI = CustomerMenu()
+                self.__customerUI = CustomerUI()
                 self.__customerUI.customer_menu()
             elif action == "3":
-                self.__orderUI = OrderMenu()
+                self.__orderUI = OrderUI()
                 self.__orderUI.order_menu()

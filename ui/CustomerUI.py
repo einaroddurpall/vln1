@@ -6,7 +6,7 @@ from services.CustomerService import CustomerService
 from models.Customer import Customer
 from models.Functions import print_header, make_date
 from models.Order import Order
-from ui.OrderUI import OrderMenu
+from ui.OrderUI import OrderUI
 
 class CustomerUI:
 
