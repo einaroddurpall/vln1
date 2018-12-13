@@ -17,10 +17,10 @@ class Car:
     def __str__(self):
         """Strengur sem birtist er bíll er prentaður."""
         if self.__is_available:
-            is_available = "Bíllinn er laus í dag."
+            is_available = "Bíllinn er laus í dag"
         else:
-            is_available = "Bíllinn er ekki laus í dag."
-        return "{}\n".format(self.__car_type) + "-"*70 + "\n{:<15} {:>20}-{}\n{:<15} {:>20}\n{:<15} {:>20}\n{:<15} {:>20}\n{:<15} {:>20}\n{:<15} {:>20}".format(
+            is_available = "Bíllinn er ekki laus í dag"
+        return "{}\n".format(self.__car_type) + "-"*70 + "\n{:<15} {:>18}-{}\n{:<15} {:>22}\n{:<15} {:>22}\n{:<15} {:>22}\n{:<15} {:>22}\n{:<15} {:>22}".format(
         "Bílnúmer:", self.__registration_num[0:2], self.__registration_num[2::], "Flokkur bíls:", self.__car_type, 
         "Tegund bíls:", self.__sub_type, "Skipting", self.__transmission, "Akstur:", pretty_str(self.__milage, "km"), "Laus:", is_available)
 
