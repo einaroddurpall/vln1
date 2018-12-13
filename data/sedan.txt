@@ -1,5 +1,0 @@
-Car('WWW11','Fólksbíll','fds','Sjálfskiptur',3322)
-Car('KOL18','Fólksbíll','Miss U Bitsí','Beinskiptur',666)
-Car('LOL00','Fólksbíll','5','Beinskiptur',666)
-Car('OJJ00','Fólksbíll','Ógeð','Sjálfskiptur',666)
-Car('COO01','Fólksbíll','Niche','Sjálfskiptur',666)
