@@ -12,9 +12,9 @@ from ui.StaffUI import StaffMenu
 class CarRentalUi:
 
     def __init__(self):
-        self.__carUI = CarMenu
-        self.__orderUI = OrderMenu
-        self.__customerUI = CustomerMenu
+        # self.__carUI = CarMenu
+        # self.__orderUI = OrderMenu
+        # self.__customerUI = CustomerMenu
         self.__staffUI = StaffMenu
         self.__staff_service = StaffService()
 
@@ -70,8 +70,11 @@ class CarRentalUi:
             else:
                 action = input("1.  Bílar\n2.  Viðskiptavinir\n3.  Skoða eða skrá pantanir\nq.  Skrá út\n").lower()
             if action == "1":
-                self.__carUI()
+                self.__carUI = CarMenu()
+                self.__carUI.car_menu()
             elif action == "2":
-                self.__customerUI()
+                self.__customerUI = CustomerMenu()
+                self.__customerUI.customer_menu()
             elif action == "3":
-                self.__orderUI()
+                self.__orderUI = OrderMenu()
+                self.__orderUI.order_menu()
