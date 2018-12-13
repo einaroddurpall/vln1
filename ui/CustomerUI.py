@@ -70,6 +70,7 @@ class CustomerMenu:
             prompt = "Heimasíða / Viðskiptavinir / Skoða viðskiptavin"
             print_header(prompt)
             print(customer)
+            print('='*70)
             choice = input("\n1.  Sjá pantanir\n2.  Breyta skráningu\n3.  Afskrá viðskiptavin\n4.  Skrá pöntun á viðskiptavin\nt.  Tilbaka\nh.  Heim\n").lower()
             if choice == "1":
                 prompt += " / Sjá pantanir"

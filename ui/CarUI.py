@@ -84,19 +84,16 @@ class CarMenu:
                 print_header(prompt)
                 while exit_info == "":
                     busy_cars_dict = self.__car_service.get_busy_cars(prompt)
-                    go_home = self.__car_service.print_car_dict(busy_cars_dict)
-                    if go_home != True:
-                        choice = ""
-                        while choice != "1":
-                            choice = input("1.  Skoða fleiri bíla í útleigu\nt.  Tilbaka\nh.  Heim\n")
-                            if choice == "t" or choice == "h":
-                                if choice == "h":
-                                    done = True
-                                exit_info = "Tilbaka"
-                                break
-                            print_header(prompt)
-                    else:
-                        exit_info = "Tilbaka"
+                    self.__car_service.print_car_dict(busy_cars_dict)
+                    choice = ""
+                    while choice != "1":
+                        choice = input("1.  Skoða fleiri bíla í útleigu\nt.  Tilbaka\nh.  Heim\n")
+                        if choice == "t" or choice == "h":
+                            if choice == "h":
+                                done = True
+                            exit_info = "Tilbaka"
+                            break
+                        print_header(prompt)
             elif action == "h":
                 done = True
 

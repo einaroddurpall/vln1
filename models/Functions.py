@@ -32,8 +32,6 @@ def make_car_type():
             return car_type
         except:
             print("Númerið: {} er ekki í listanum, reyndu aftur.".format(number))
-            # if number.lower() == 'h' or number.lower() == 't':
-            #     return None
 
 def error_handle(search, search_input):
     '''sendir error á skjáin hjá notandanum ef hann gerir einhverja villu'''

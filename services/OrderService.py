@@ -98,6 +98,7 @@ class OrderService:
         return None
 
     def get_order_num_from_name(self, name):
+        """tekur inn númer og pöntun og skilar bara númerinu"""
         name_list = name.split()
         num = name_list[1]
         return num
@@ -148,7 +149,8 @@ class OrderService:
                         order_to_complete = order
                         break
                     order_to_complete = False
-                if not order_to_complete:  # ss það finnst engin pöntun með þessu nafni
+                # ss það finnst engin pöntun með þessu nafni
+                if not order_to_complete:
                     choice = error_handle("Pöntun", order_to_change)
                     if choice == "t" or choice == "h":
                         return choice
