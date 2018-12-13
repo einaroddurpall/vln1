@@ -17,3 +17,4 @@ Customer('Viðskiptavinur 14','Baldur Gunnar Jónsson','2512982119','baldur@gmai
 Customer('Viðskiptavinur 15','Karra Magg','0101900101','km@google.com','8201580')
 Customer('Viðskiptavinur 16','Amma Kristjáns','4334433444','cool@amma.stjana','4334334')
 Customer('Viðskiptavinur 15','Baldur Guðjónsson','6767676767','baldur@isb.is','8798777')
+Customer('Viðskiptavinur 17','Jón Einarsson','1703613249','JonEinars@gmail.com','5534434')
