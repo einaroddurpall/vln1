@@ -6,7 +6,7 @@ from services.CustomerService import CustomerService
 from models.Customer import Customer
 from models.Functions import print_header, make_date
 
-class CustomerMenu:
+class CustomerUI:
 
     def __init__(self):
         self.__customer_service = CustomerService()

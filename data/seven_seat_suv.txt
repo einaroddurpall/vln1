@@ -1,0 +1,1 @@
+Car('POI01','Sjö sæta jeppi','sadklf','Sjálfskiptur',10)

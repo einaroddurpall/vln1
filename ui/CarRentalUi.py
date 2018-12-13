@@ -4,18 +4,18 @@ from datetime import date
 import string
 from services.StaffService import StaffService
 from models.Functions import print_header
-from ui.CarUI import CarMenu
-from ui.CustomerUI import CustomerMenu
-from ui.OrderUI import OrderMenu
-from ui.StaffUI import StaffMenu
+from ui.CarUI import CarUI
+from ui.CustomerUI import CustomerUI
+from ui.OrderUI import OrderUI
+from ui.StaffUI import StaffUI
 
 class CarRentalUi:
 
     def __init__(self):
-        self.__carUI = CarMenu
-        self.__orderUI = OrderMenu
-        self.__customerUI = CustomerMenu
-        self.__staffUI = StaffMenu
+        self.__carUI = CarUI
+        self.__orderUI = OrderUI
+        self.__customerUI = CustomerUI
+        self.__staffUI = StaffUI
         self.__staff_service = StaffService()
 
     def draw_car(self):
@@ -46,14 +46,14 @@ class CarRentalUi:
         sleep(1)
         print("{:<35}CarHub \033[0m".format(""))
 
-
     def main_menu(self):
         """ Main menu er loop sem hættir þegar q er sett inn. Á flestum input stöðum (fyrir utan þegar beðið er um dagsetningar eða 
         bílaflokk) er hægt að setja inn "t" til að fara tilbaka eða "h" til að fara aftur á þessa síðu. """
         login = False
         while not login:
             username = input("Username: ")
-            password = input("Password: ")
+            password = input('Password: ')
+            # password = input("Password: ")
             #Athugar hvort notandi sé til og skilar því, notandanum og hvort hann sé admin
             login, admin, self.__staff = self.__staff_service.check_login(username, password)
             if login == False:
