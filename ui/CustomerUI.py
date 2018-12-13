@@ -5,12 +5,14 @@ from services.OrderService import OrderService
 from services.CustomerService import CustomerService
 from models.Customer import Customer
 from models.Functions import print_header, make_date
+from models.Order import Order
+from ui.OrderUI import OrderMenu
 
 class CustomerUI:
 
     def __init__(self):
         self.__customer_service = CustomerService()
-        self.customer_menu()
+        # self.customer_menu()
 
     def customer_menu(self):
         """ Hér er hægt að framkvæma tvær aðgerðir sem koma viðskiptavinum við.
@@ -99,7 +101,14 @@ class CustomerUI:
                 prompt += " / Skrá pöntun á viðskiptavin"
                 print_header(prompt)
                 self.__order_service = OrderService()
-                self.__order_service.make_order_info(prompt, customer)
+                new_order = self.__order_service.make_order_info(prompt, customer)
+                if type(new_order) == Order:
+                    self.__order_ui = OrderMenu()
+                    self.__order_ui.view_order(new_order)
+                else:
+                    if new_order == "h":
+                        return "Heim", True
+
                 self.__customer_service.update_order_repo()
             elif choice == "t":
                 return "Tilbaka", False

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Pöntun 1;Customer('Viðskiptavinur 10','Amma','1122334455','amma@afi.is','5812345');Car('OOO99','Smábíll','treds','Sjálfskiptur',543);datetime.date(2019, 5, 5);datetime.date(2019, 5, 15);Grunntrygging;1234432112344321;132000;False
 Pöntun 2;Customer('Viðskiptavinur 11','Afi Sæti','5544332211','afi@amma.is','5432185');Car('WWW11','Fólksbíll','fds','Sjálfskiptur',3322);datetime.date(2020, 7, 21);datetime.date(2020, 7, 22);Grunntrygging;1234123412341234;34000;False
 Pöntun 3;Customer('Viðskiptavinur 6','Einar Oddur Páll Rúnarsson','2505983519','einaropr@gmail.com','8662282');Car('KOP12','Smárúta','VW Type 2','Beinskiptur',150);datetime.date(2019, 9, 9);datetime.date(2019, 9, 20);Grunntrygging;1234432112344321;384000;False
@@ -8,3 +9,7 @@ Pöntun 7;Customer('Viðskiptavinur 10','Amma','1122334455','amma@afi.is','58123
 Pöntun 8;Customer('Viðskiptavinur 6','Einar Oddur Páll Rúnarsson','2505983519','einaropr@gmail.com','8662282');Car('WWW32','Smábíll','ertyhuj','Sjálfskiptur',345);datetime.date(2019, 1, 1);datetime.date(2019, 12, 31);Aukatrygging;1234123412341234;5475000;False
 Pöntun 9;Customer('Viðskiptavinur 6','Einar Oddur Páll Rúnarsson','2505983519','einaropr@gmail.com','8662282');Car('LFC11','Fimm sæta jeppi','bls','Sjálfskiptur',1);datetime.date(2019, 1, 1);datetime.date(2019, 12, 31);Aukatrygging;1234123412341234;9125000;False
 Pöntun 10;Customer('Viðskiptavinur 6','Einar Oddur Páll Rúnarsson','2505983519','einaropr@gmail.com','8662282');Car('POI01','Sjö sæta jeppi','sadklf','Sjálfskiptur',10);datetime.date(2019, 1, 1);datetime.date(2019, 12, 31);Grunntrygging;1234123412341234;9855000;False
+=======
+Pöntun 1;Customer('Viðskiptavinur 10','Amma','1122334455','amma@afi.is','5812345');Car('VBG55','Smábíll','gfds','Sjálfskiptur',2323);datetime.date(2019, 1, 1);datetime.date(2019, 1, 25);Grunntrygging;1111222233334444;300000;False
+Pöntun 2;Customer('Viðskiptavinur 10','Amma','1122334455','amma@afi.is','5812345');Car('YUT66','Smábíll','ofolfl','Beinskiptur',67676);datetime.date(2019, 1, 1);datetime.date(2019, 1, 20);Grunntrygging;1111222233334444;240000;False
+>>>>>>> 1c1fcaffab45c0f5db006933d9729ca2c7104782

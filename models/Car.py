@@ -17,11 +17,12 @@ class Car:
     def __str__(self):
         """Strengur sem birtist er bíll er prentaður."""
         if self.__is_available:
-            is_available = "Bíllinn er laus í dag."
+            is_available = "Bíllinn er laus í dag"
         else:
-            is_available = "Bíllinn er ekki laus í dag."
-        return "Bílnúmer: {}-{}\nFlokkur bíls: {}\nTegund bíls: {}\n{}\nAkstur: {}\nLaus: {}".format(
-        self.__registration_num[0:2], self.__registration_num[2::], self.__car_type, self.__sub_type, self.__transmission,pretty_str(self.__milage, "km"), is_available)
+            is_available = "Bíllinn er ekki laus í dag"
+        return "{}\n".format(self.__car_type) + "-"*70 + "\n{:<15} {:>18}-{}\n{:<15} {:>22}\n{:<15} {:>22}\n{:<15} {:>22}\n{:<15} {:>22}\n{:<15} {:>22}".format(
+        "Bílnúmer:", self.__registration_num[0:2], self.__registration_num[2::], "Flokkur bíls:", self.__car_type, 
+        "Tegund bíls:", self.__sub_type, "Skipting", self.__transmission, "Akstur:", pretty_str(self.__milage, "km"), "Laus:", is_available)
 
     def __repr__(self):
         """Strengur sem sýnir hvernig búa má til eintak af viðeigandi bíl."""

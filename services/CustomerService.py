@@ -56,7 +56,7 @@ class CustomerService:
     def customer_get_history(self, customer):
         '''Fall sem nær í ákveðins viðskiptavins verslunar sögu við fyrirtæki og skilar
         allr þær pantanir sem innihalda viðskiptavin í lista'''
-        orders = self.__order_repo.get_order_list()
+        orders = self.__order_repo.get_orders()
         customer_orders = []
         for order in orders:
             if order.get_customer() == customer:

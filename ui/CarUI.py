@@ -10,7 +10,7 @@ class CarUI:
 
     def __init__(self):
         self.__car_service = CarService()
-        self.car_menu()
+        # self.car_menu()
 
     def car_menu(self):
         """ Hér eru allar aðgerðir undir "Bílar" framkvæmdar sem skiptast í fernt. """
