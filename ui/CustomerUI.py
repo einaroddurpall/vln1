@@ -103,7 +103,7 @@ class CustomerUI:
                 self.__order_service = OrderService()
                 new_order = self.__order_service.make_order_info(prompt, customer)
                 if type(new_order) == Order:
-                    self.__order_ui = OrderMenu()
+                    self.__order_ui = OrderUI()
                     self.__order_ui.view_order(new_order)
                 else:
                     if new_order == "h":

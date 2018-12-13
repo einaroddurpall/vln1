@@ -164,7 +164,7 @@ class CarService:
             return False, True
         return False, False
 
-    def search_for_specific_car_type(self, a_dict):
+    def search_for_specific_car_type(self, a_dict, condition):
         """Function that asks user if he wants to find
         info about specific car type and does so"""
         question = input("Viltu leita af ákveðinni tegund (j/n)? ")
@@ -181,7 +181,10 @@ class CarService:
                 print("="*70)
                 return False
             else:
-                print("Enginn bíll laus í þessari bílategund á þessum tíma")
+                if condition == False:
+                    print("Enginn bíll laus í þessari bílategund á þessum tíma")
+                elif condition == True:
+                    print("Enginn bíll í útleigu í þessari bílategund á þessum tíma")
                 return False
         return True
 
@@ -198,10 +201,10 @@ class CarService:
                 print("{:>20}{:>6}-{}{:>13}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], pretty_str(car_info[2], "km"), car_info[3]))
             print("="*70)
 
-    def print_car_dict(self, a_dict):
+    def print_car_dict(self, a_dict, condition):
         '''fall sem sendir í föll til að prenta út lista af bílunum sem notandi vill fá sjá'''
         if a_dict:
-            statement = self.search_for_specific_car_type(a_dict)
+            statement = self.search_for_specific_car_type(a_dict, condition)
             if statement:
                 self.print_out_info_for_all_car_types(a_dict)
         else:
@@ -260,7 +263,7 @@ class CarService:
                     None
         for key in delete_key_list:
             del all_car_dict[key]
-        self.print_car_dict(all_car_dict)
+        self.print_car_dict(all_car_dict, False)
 
     def car_get_history(self, car):
         '''Fall sem nær í lista af öllum pöntunum sem ákveðinn bíll hefur komið í'''

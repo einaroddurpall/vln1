@@ -84,7 +84,7 @@ class CarUI:
                 print_header(prompt)
                 while exit_info == "":
                     busy_cars_dict = self.__car_service.get_busy_cars(prompt)
-                    self.__car_service.print_car_dict(busy_cars_dict)
+                    self.__car_service.print_car_dict(busy_cars_dict, True)
                     choice = ""
                     while choice != "1":
                         choice = input("1.  Skoða fleiri bíla í útleigu\nt.  Tilbaka\nh.  Heim\n")
