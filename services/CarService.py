@@ -184,22 +184,19 @@ class CarService:
         question = input("Viltu leita af ákveðnari tegund (j/n)? ")
         if question == "j":
             car_type = make_car_type()
-            if car_type != None:
-                if car_type in a_dict.keys():
-                    print("\n{:<18}{:>10}:".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
-                    print("="*70)
-                    print("{:>20}{:>10}{:>13}{:>17}".format("Biltegund", "Bílnúmer", 'Akstur', 'Skipting'))
-                    print('-'*70)
-                    for car_info in a_dict[car_type]:
-                        car_number = car_info[0]
-                        print("{:>20}{:>6}-{}{:>13}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], pretty_str(car_info[2], "km"), car_info[3]))
-                    print("="*70)
-                    return False
-                else:
-                    print("Enginn bíll laus í þessari bílategund á þessum tíma")
-                    return False
+            if car_type in a_dict.keys():
+                print("\n{:<18}{:>10}:".format(car_type, pretty_str(get_car_price(car_type, PriceRepository()), "ISK")))
+                print("="*70)
+                print("{:>20}{:>10}{:>13}{:>17}".format("Biltegund", "Bílnúmer", 'Akstur', 'Skipting'))
+                print('-'*70)
+                for car_info in a_dict[car_type]:
+                    car_number = car_info[0]
+                    print("{:>20}{:>6}-{}{:>13}{:>17}".format(car_info[1], car_number[0:2],car_number[2:], pretty_str(car_info[2], "km"), car_info[3]))
+                print("="*70)
+                return False
             else:
-                return None
+                print("Enginn bíll laus í þessari bílategund á þessum tíma")
+                return False
         return True
 
     def print_out_info_for_all_car_types(self, a_dict):
@@ -221,8 +218,6 @@ class CarService:
             statement = self.search_for_specific_car_type(a_dict)
             if statement:
                 self.print_out_info_for_all_car_types(a_dict)
-            elif statement == None:
-                return True         
         else:
             print("Enginn bíll í útleigu á þessum tíma")
 
@@ -279,8 +274,7 @@ class CarService:
                     None
         for key in delete_key_list:
             del all_car_dict[key]
-        go_back = self.print_car_dict(all_car_dict)
-        return go_back
+        self.print_car_dict(all_car_dict)
 
     def car_get_history(self, car):
         '''Fall sem nær í lista af öllum pöntunum sem ákveðinn bíll hefur komið í'''
