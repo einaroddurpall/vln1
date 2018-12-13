@@ -9,20 +9,6 @@ from services.ChangeService import ChangeService
 from models.Car import Car
 from models.Functions import print_header, make_date, check_registration_num, make_date_list, pretty_str, make_car_type, legal_dates, get_car_price
 
-# def get_car_price(car_type, price_repo):
-#     '''Tekur inn streng sem lýsir bíltegundinni og skilar verðið á þeim flokki'''
-#     if car_type.lower() == "smábíll":
-#         return int(price_repo.get_small_car_price())
-#     elif car_type.lower() == 'fólksbíll':
-#         return int(price_repo.get_sedan_price())
-#     elif car_type.lower() == 'fimm sæta jeppi':
-#         return int(price_repo.get_five_seat_suv_price())
-#     elif car_type.lower() == 'sjö sæta jeppi':
-#         return int(price_repo.get_seven_seat_suv_price())
-#     elif car_type.lower() == 'smárúta':
-#         return int(price_repo.get_minibus_price())
-
-
 class CarService:
     def __init__(self):
         self._car_repo_sedan = CarRepository("Sedan")
@@ -230,7 +216,7 @@ class CarService:
         Hver dagur sem inniheldur einhverja pöntun er þannig skráður sem key í dictinu og valueið er listi af öllum
         bílum sem eru bókaðir þann dag.'''
         date_dict = {}
-        order_list = self._order_repo.get_orders()
+        order_list = self._order_repo.get_order_list()
         for order in order_list:
             order_dates = make_date_list(order.get_first_day(), order.get_last_day())
             car = order.get_car()
@@ -281,7 +267,7 @@ class CarService:
 
     def car_get_history(self, car):
         '''Fall sem nær í lista af öllum pöntunum sem ákveðinn bíll hefur komið í'''
-        orders = self._order_repo.get_orders()
+        orders = self._order_repo.get_order_list()
         car_orders = []
         for order in orders:
             if order.get_car() == car:

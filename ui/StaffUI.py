@@ -4,7 +4,7 @@ from services.StaffService import StaffService
 from models.Functions import print_header, error_handle
 from models.Staff import Staff
 
-class StaffMenu:
+class StaffUI:
     '''þessi klasi sér um að sækja allar upplýsingar sem tengjast starfsmanni og prenta það út'''
 
     def __init__(self, staff):

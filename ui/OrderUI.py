@@ -4,7 +4,7 @@ from services.OrderService import OrderService
 from models.Order import Order
 from models.Functions import print_header, pretty_str
 
-class OrderMenu:
+class OrderUI:
     def __init__(self):
         self.__order_service = OrderService()
         # self.order_menu()

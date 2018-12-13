@@ -6,7 +6,7 @@ from services.CarService import CarService
 from models.Car import Car
 from models.Functions import print_header, error_handle
 
-class CarMenu:
+class CarUI:
 
     def __init__(self):
         self.__car_service = CarService()
